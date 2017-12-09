@@ -20,10 +20,10 @@ const getStats = async () => {
     const cpuTemp = await run('cat /sys/class/thermal/thermal_zone0/temp');
     stats.push(`CPU temp: ${(Number(cpuTemp) / 1000).toFixed(1)}°C`);
 
-    let cpuUsage = await run('grep \'cpu \' /proc/stat');
-    cpuUsage = cpuUsage.split(' ').map(elem => Number(elem));
+    const grepCpuUsage = await run('grep \'cpu \' /proc/stat');
+    let cpuUsage = grepCpuUsage.split(' ').map(elem => Number(elem));
     cpuUsage = (cpuUsage[2] + cpuUsage[4]) * 100 / (cpuUsage[2] + cpuUsage[4] + cpuUsage[5]);
-    stats.push(`CPU usage: ${cpuUsage}`);
+    stats.push(`CPU usage: ${cpuUsage.toFixed(1)}%`);
 
     // const ramUsage = await run('free -m | awk \'NR==2{printf "RAM usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }\'');
     // stats.push(ramUsage);
@@ -31,7 +31,7 @@ const getStats = async () => {
     // const diskUsage = await run(`df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'`);
     // stats.push(diskUsage);
 
-    return stats.join('\n');
+    return stats.join('');
 };
 
 module.exports = getStats;
