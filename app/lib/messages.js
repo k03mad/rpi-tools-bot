@@ -4,12 +4,14 @@ const commands = [
     '/help - the list of all available commands',
     '',
     '/reboot - reboot RPi',
+    '/run - send command to RPi terminal',
     '/stats - get RPi temperature and usage stats'
 ];
 
 const msg = {
     common: {
-        deployed:   'I am deployed'
+        deployed:   'I am deployed',
+        run:        'Command sent'
     },
     readme: {
         badges: [

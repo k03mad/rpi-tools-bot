@@ -1,7 +1,7 @@
 const exec = require('executive');
 
 /**
- * Send string to bash
+ * Send command to bash
  */
 const run = async str => {
     const bash = await exec(str);
