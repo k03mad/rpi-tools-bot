@@ -26,7 +26,9 @@ const getStats = async () => {
     stats.push(`CPU usage: ${cpuUsage.toFixed(2)}%`);
 
     const ramUsage = await run('free -m');
-    stats.push(ramUsage);
+    const [, total] = ramUsage.match(/Mem: +(\d+)/);
+    const [, used] = ramUsage.match(/Mem: +\d+ +(\d+)/);
+    stats.push(`RAM usage: ${used}/${total}MB`);
 
     // const diskUsage = await run(`df -h | awk '$NF=="/"{printf "Disk Usage: %d/%dGB (%s)\n", $3,$2,$5}'`);
     // stats.push(diskUsage);
