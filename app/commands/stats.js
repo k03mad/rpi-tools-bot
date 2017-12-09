@@ -1,4 +1,4 @@
-const run = require('../lib/utils');
+const {run} = require('../lib/utils');
 
 /**
  * Get RPi3 GPU temperature
