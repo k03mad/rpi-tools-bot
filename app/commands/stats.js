@@ -36,7 +36,7 @@ const cpuTemp = async () => {
  */
 const cpuUsage = async () => {
     let cpu = await exec('grep \'cpu \' /proc/stat');
-    cpu = cpu.split(' ').map(elem => Number(elem));
+    cpu = cpu.stdout.split(' ').map(elem => Number(elem));
     cpu = (cpu[2] + cpu[4]) * 100 / (cpu[2] + cpu[4] + cpu[5]);
     return `CPU usage: ${
         cpu.toFixed(2)
@@ -52,8 +52,8 @@ const cpuUsage = async () => {
  */
 const ramUsage = async () => {
     const ram = await exec('free -m');
-    const [, ramTotal] = ram.match(/Mem: +(\d+)/);
-    const [, ramUsed] = ram.match(/Mem: +\d+ +(\d+)/);
+    const [, ramTotal] = ram.stdout.match(/Mem: +(\d+)/);
+    const [, ramUsed] = ram.stdout.match(/Mem: +\d+ +(\d+)/);
     return `RAM usage: ${ramUsed}MB/${ramTotal}MB\n`;
 };
 
@@ -66,8 +66,8 @@ const ramUsage = async () => {
  */
 const diskUsage = async () => {
     const disk = await exec('df -h');
-    const [, diskTotal] = disk.match(/\/dev\/root +(\d+G)/);
-    const [, diskUsed] = disk.match(/\/dev\/root +\d+. +([\d,]+.)/);
+    const [, diskTotal] = disk.stdout.match(/\/dev\/root +(\d+G)/);
+    const [, diskUsed] = disk.stdout.match(/\/dev\/root +\d+. +([\d,]+.)/);
     return `Disk usage: ${diskUsed}B/${diskTotal}B`;
 };
 
@@ -78,7 +78,7 @@ const getStats = async () => {
     return [
         await gpuTemp(),
         await cpuTemp(),
-        // await cpuUsage(),
+        await cpuUsage(),
         await ramUsage(),
         await diskUsage()
     ].join(' ');
