@@ -14,7 +14,7 @@
     "colors": "1.1.2",
     "executive": "1.5.12",
     "forever": "0.15.3",
-    "network-list": "1.1.2",
+    "network-list": "https://github.com/k03mad/network-list",
     "node-telegram-bot-api": "0.29.0",
     "require-all": "2.2.0"
   },
