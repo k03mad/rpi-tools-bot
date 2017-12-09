@@ -14,4 +14,7 @@ bot.sendMessage(myChat, msg.common.deployed);
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens */
 
 bot.onText(  q('help|start'),           mes => sendText      (bot, mes,         c.help('bot')      ));
+
+bot.onText(  q('arp'),            async mes => sendText      (bot, mes,   await c.arp()            ));
+bot.onText(  q('reboot'),         async mes => sendText      (bot, mes,   await c.reboot()         ));
 bot.onText(  q('stats'),          async mes => sendMdText    (bot, mes,   await c.stats()          ));

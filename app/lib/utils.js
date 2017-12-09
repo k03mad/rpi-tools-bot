@@ -5,7 +5,7 @@ const exec = require('executive');
  */
 const run = async str => {
     const bash = await exec(str);
-    return bash.stdout;
+    return bash.stdout || bash.stderr || bash;
 };
 
 /**

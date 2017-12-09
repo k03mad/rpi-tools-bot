@@ -4,6 +4,8 @@ Get data from Raspberry Pi 3
 
 **/help** the list of all available commands  
   
+**/arp** get local network device list  
+**/reboot** reboot RPi  
 **/stats** get RPi temperature and usage stats
 
 (⌐■_■)

@@ -3,6 +3,8 @@
 const commands = [
     '/help - the list of all available commands',
     '',
+    '/arp - get local network device list',
+    '/reboot - reboot RPi',
     '/stats - get RPi temperature and usage stats'
 ];
 
