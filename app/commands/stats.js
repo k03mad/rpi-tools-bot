@@ -1,4 +1,4 @@
-const exec = require('executive');
+const run = require('../lib/utils');
 
 /**
  * Get RPi3 GPU temperature
@@ -7,11 +7,9 @@ const exec = require('executive');
  * temp=50.5'C
  */
 const gpuTemp = async () => {
-    const gpu = await exec('vcgencmd measure_temp');
+    const gpu = await run('vcgencmd measure_temp');
     return `GPU temp: *${
-        gpu.stdout
-            .replace('temp=', '')
-            .replace('\'', '°')
+        gpu.replace('temp=', '').replace('\'', '°')
     }*`;
 };
 
@@ -22,9 +20,9 @@ const gpuTemp = async () => {
  * temp=50.5'C
  */
 const cpuTemp = async () => {
-    const cpu = await exec('cat /sys/class/thermal/thermal_zone0/temp');
+    const cpu = await run('cat /sys/class/thermal/thermal_zone0/temp');
     return `CPU temp: *${
-        (Number(cpu.stdout) / 1000).toFixed(1)
+        (Number(cpu) / 1000).toFixed(1)
     }°C*\n\n`;
 };
 
@@ -35,8 +33,8 @@ const cpuTemp = async () => {
  * cpu  22118 0 3669 658313 3087 0 119 0 0 0
  */
 const cpuUsage = async () => {
-    let cpu = await exec('grep \'cpu \' /proc/stat');
-    cpu = cpu.stdout.split(' ').map(elem => Number(elem));
+    let cpu = await run('grep \'cpu \' /proc/stat');
+    cpu = cpu.split(' ').map(elem => Number(elem));
     cpu = (cpu[2] + cpu[4]) * 100 / (cpu[2] + cpu[4] + cpu[5]);
     return `CPU usage: *${
         cpu.toFixed(2)
@@ -51,9 +49,9 @@ const cpuUsage = async () => {
  * Mem:            923          79         484          11         359         778
  */
 const ramUsage = async () => {
-    const ram = await exec('free -m');
-    const [, ramTotal] = ram.stdout.match(/Mem: +(\d+)/);
-    const [, ramUsed] = ram.stdout.match(/Mem: +\d+ +(\d+)/);
+    const ram = await run('free -m');
+    const [, ramTotal] = ram.match(/Mem: +(\d+)/);
+    const [, ramUsed] = ram.match(/Mem: +\d+ +(\d+)/);
     return `RAM usage: ${ramUsed} / *${ramTotal}MB*\n`;
 };
 
@@ -65,9 +63,9 @@ const ramUsage = async () => {
  * /dev/root           57G         5,4G   49G           10% /
  */
 const diskUsage = async () => {
-    const disk = await exec('df -h');
-    const [, diskTotal] = disk.stdout.match(/\/dev\/root +(\d+.)/);
-    const [, diskUsed] = disk.stdout.match(/\/dev\/root +\d+. +([\d,]+)/);
+    const disk = await run('df -h');
+    const [, diskTotal] = disk.match(/\/dev\/root +(\d+.)/);
+    const [, diskUsed] = disk.match(/\/dev\/root +\d+. +([\d,]+)/);
     return `Disk usage: ${diskUsed} / *${diskTotal}B*`;
 };
 
