@@ -30,7 +30,7 @@ const getStats = async () => {
 
     //                 total        used        free      shared  buff/cache   available
     // Mem:            923          79         484          11         359         778
-    const ramUsage = await run('c');
+    const ramUsage = await run('free -m');
     const [, ramTotal] = ramUsage.match(/Mem: +(\d+)/);
     const [, ramUsed] = ramUsage.match(/Mem: +\d+ +(\d+)/);
     stats.push(`RAM usage: ${ramUsed}MB/${ramTotal}MB`);
