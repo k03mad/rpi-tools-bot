@@ -1,2 +1,2 @@
-help - список всех доступных команд
-stats - получает температуру и свободное место с RPi3
+help - the list of all available commands
+stats - get RPi temperature and usage stats

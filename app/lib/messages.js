@@ -1,9 +1,9 @@
 /* eslint-disable key-spacing, no-multi-spaces, indent */
 
 const commands = [
-    '/help - список всех доступных команд',
+    '/help - the list of all available commands',
     '',
-    '/stats - получает температуру и свободное место с RPi3'
+    '/stats - get RPi temperature and usage stats'
 ];
 
 const msg = {
@@ -15,7 +15,7 @@ const msg = {
                     '![Dependencies](https://david-dm.org/k03mad/raspi-tlgrm-bot.svg)'
         ],
         footer:     '(⌐■_■)',
-        header:     'Бот для получения данных с Raspberry Pi 3',
+        header:     'Get data from Raspberry Pi 3',
         md:         'README.md generated',
         txt:        'commands.txt generated'
     },
