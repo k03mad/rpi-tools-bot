@@ -60,7 +60,7 @@ const ramUsage = async () => {
 /**
  * Get RPi3 disk usage
  *
- * bash log:
+//  * bash log:
  * Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
  * /dev/root           57G         5,4G   49G           10% /
  */
@@ -78,7 +78,7 @@ const getStats = async () => {
     return [
         await gpuTemp(),
         await cpuTemp(),
-        await cpuUsage(),
+        // await cpuUsage(),
         await ramUsage(),
         await diskUsage()
     ].join(' ');
