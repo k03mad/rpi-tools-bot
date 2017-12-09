@@ -5,14 +5,13 @@ const commands = [
     '',
     '/arp - get RPi local network device list',
     '/reboot - reboot RPi',
-    '/run - run command in RPi terminal',
+    '/shutdown - shutdown RPi',
     '/stats - get RPi temperature and usage stats'
 ];
 
 const msg = {
     common: {
-        deployed:   'I am deployed',
-        run:        'No output for the command'
+        deployed:   'I am deployed'
     },
     readme: {
         badges: [
