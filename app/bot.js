@@ -17,5 +17,5 @@ bot.sendMessage(myChat, msg.common.deployed);
 bot.onText( q('arp'),           async mes => {if (wl(mes))  sendText    (bot, mes,  await c.arp()             );});
 bot.onText( q('help|start'),          mes => {if (wl(mes))  sendText    (bot, mes,        c.help('bot')       );});
 bot.onText( q('reboot'),        async mes => {if (wl(mes))  sendText    (bot, mes,  await c.reboot()          );});
-bot.onText( q('reboot'),        async mes => {if (wl(mes))  sendText    (bot, mes,  await c.shutdown()        );});
+bot.onText( q('shutdown'),      async mes => {if (wl(mes))  sendText    (bot, mes,  await c.shutdown()        );});
 bot.onText( q('stats'),         async mes => {if (wl(mes))  sendMdText  (bot, mes,  await c.stats()           );});
