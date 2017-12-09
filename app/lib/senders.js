@@ -1,17 +1,30 @@
 const track = require('./botan');
-const {convertToArray} = require('./utils');
+const {convertToArray, splitString} = require('./utils');
 const {msg} = require('./messages');
+
+const MAX_MSG_LENGTH = 4096;
 
 /**
  * Send text mes
  */
-const sendText = (bot, mes, text) => {
-    try {
-        convertToArray(text).forEach(elem => {
-            bot.sendMessage(mes.chat.id, elem);
-        });
-    } catch (ex) {
-        console.log(msg.send.norm(msg, ex));
+const sendText = async (bot, mes, text) => {
+    for (const elem of convertToArray(text)) {
+        // max text length limit
+        try {
+            if (elem.length > MAX_MSG_LENGTH) {
+                // split by lines
+                const longStringArr = splitString(elem, MAX_MSG_LENGTH);
+
+                for (const elemPart of longStringArr) {
+                    await bot.sendMessage(mes.chat.id, elemPart);
+                }
+
+            } else {
+                bot.sendMessage(mes.chat.id, elem);
+            }
+        } catch (ex) {
+            console.log(msg.send.norm(mes, ex));
+        }
     }
 
     track(mes);

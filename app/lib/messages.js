@@ -10,7 +10,8 @@ const commands = [
 
 const msg = {
     common: {
-        deployed:   'I am deployed'
+        deployed:   'I am deployed',
+        run:        'No output for the command'
     },
     readme: {
         badges: [

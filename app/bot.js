@@ -2,7 +2,8 @@ const TelegramBot = require('node-telegram-bot-api');
 const c = require('require-all')(`${__dirname}/commands`);
 const {telegramToken, myChat} = require('./lib/env');
 const {msg} = require('./lib/messages');
-const {sendText, sendMdText, q} = require('./lib/senders');
+const {search, sendText, sendMdText, q} = require('./lib/senders');
+const {wl} = require('./lib/utils');
 
 const bot = new TelegramBot(telegramToken, {polling: {
     interval: 3000,
@@ -11,10 +12,10 @@ const bot = new TelegramBot(telegramToken, {polling: {
 
 bot.sendMessage(myChat, msg.common.deployed);
 
-/* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens */
+/* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
 
-bot.onText(  q('help|start'),           mes => sendText      (bot, mes,         c.help('bot')      ));
-
-bot.onText(  q('arp'),            async mes => sendText      (bot, mes,   await c.arp()            ));
-bot.onText(  q('reboot'),         async mes => sendText      (bot, mes,   await c.reboot()         ));
-bot.onText(  q('stats'),          async mes => sendMdText    (bot, mes,   await c.stats()          ));
+bot.onText( q('arp'),           async mes => {if (wl(mes))  sendText    (bot, mes,  await c.arp()             );});
+bot.onText( q('help|start'),          mes => {if (wl(mes))  sendText    (bot, mes,        c.help('bot')       );});
+bot.onText( q('reboot'),        async mes => {if (wl(mes))  sendText    (bot, mes,  await c.reboot()          );});
+bot.onText( q('run', 'search'), async mes => {if (wl(mes))  sendText    (bot, mes,  await c.run(search(mes))  );});
+bot.onText( q('stats'),         async mes => {if (wl(mes))  sendMdText  (bot, mes,  await c.stats()           );});
