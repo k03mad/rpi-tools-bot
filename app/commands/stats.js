@@ -18,12 +18,12 @@ const getStats = async () => {
     stats.push(`GPU temp: ${gpuTemp.replace('temp=', '').replace('\'', '°')}`);
 
     const cpuTemp = await run('cat /sys/class/thermal/thermal_zone0/temp');
-    stats.push(`CPU temp: ${(Number(cpuTemp) / 1000).toFixed(1)}°C`);
+    stats.push(`CPU temp: ${(Number(cpuTemp) / 1000).toFixed(1)}°C\n\n`);
 
     const grepCpuUsage = await run('grep \'cpu \' /proc/stat');
     let cpuUsage = grepCpuUsage.split(' ').map(elem => Number(elem));
     cpuUsage = (cpuUsage[2] + cpuUsage[4]) * 100 / (cpuUsage[2] + cpuUsage[4] + cpuUsage[5]);
-    stats.push(`CPU usage: ${cpuUsage.toFixed(1)}%`);
+    stats.push(`CPU usage: ${cpuUsage.toFixed(2)}%`);
 
     // const ramUsage = await run('free -m | awk \'NR==2{printf "RAM usage: %s/%sMB (%.2f%%)\n", $3,$2,$3*100/$2 }\'');
     // stats.push(ramUsage);
