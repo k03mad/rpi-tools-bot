@@ -3,7 +3,6 @@
 const commands = [
     '/help - the list of all available commands',
     '',
-    '/reboot - reboot RPi',
     '/run - send command to RPi terminal',
     '/stats - get RPi temperature and usage stats'
 ];

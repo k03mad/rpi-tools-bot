@@ -6,7 +6,7 @@ const {msg} = require('../lib/messages');
  */
 const runCmd = async command => {
     const output = await run(command);
-    return output || msg.common.run;
+    return output.stdout || output || msg.common.run;
 };
 
 module.exports = runCmd;
