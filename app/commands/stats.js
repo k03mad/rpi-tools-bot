@@ -54,7 +54,7 @@ const ramUsage = async () => {
     const ram = await exec('free -m');
     const [, ramTotal] = ram.stdout.match(/Mem: +(\d+)/);
     const [, ramUsed] = ram.stdout.match(/Mem: +\d+ +(\d+)/);
-    return `RAM usage: ${ramUsed}/*${ramTotal}MB*\n`;
+    return `RAM usage: ${ramUsed} / *${ramTotal}MB*\n`;
 };
 
 /**
@@ -68,7 +68,7 @@ const diskUsage = async () => {
     const disk = await exec('df -h');
     const [, diskTotal] = disk.stdout.match(/\/dev\/root +(\d+.)/);
     const [, diskUsed] = disk.stdout.match(/\/dev\/root +\d+. +([\d,]+)/);
-    return `Disk usage: ${diskUsed}/*${diskTotal}B*`;
+    return `Disk usage: ${diskUsed} / *${diskTotal}B*`;
 };
 
 /**
