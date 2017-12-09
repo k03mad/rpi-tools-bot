@@ -33,13 +33,13 @@ const getStats = async () => {
     const ramUsage = await run('free -m');
     const [, ramTotal] = ramUsage.match(/Mem: +(\d+)/);
     const [, ramUsed] = ramUsage.match(/Mem: +\d+ +(\d+)/);
-    stats.push(`RAM usage: ${ramUsed}MB/${ramTotal}MB`);
+    stats.push(`RAM usage: ${ramUsed}MB/${ramTotal}MB\n`);
 
     // Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
     // /dev/root           57G         5,4G   49G           10% /
     const diskUsage = await run('df -h');
-    const [, diskTotal] = diskUsage.match(/\/dev\/root +(\d+)G/);
-    const [, diskUsed] = diskUsage.match(/\/dev\/root +(\d+). +([\d,]+.)/);
+    const [, diskTotal] = diskUsage.match(/\/dev\/root +(\d+G)/);
+    const [, diskUsed] = diskUsage.match(/\/dev\/root +\d+. +([\d,]+.)/);
     stats.push(`Disk usage: ${diskUsed}B/${diskTotal}B`);
 
     return stats.join('');
