@@ -66,8 +66,8 @@ const ramUsage = async () => {
  */
 const diskUsage = async () => {
     const disk = await exec('df -h');
-    const [, diskTotal] = disk.stdout.match(/\/dev\/root +(\d+)/);
-    const [, diskUsed] = disk.stdout.match(/\/dev\/root +\d+. +([\d,]+.)/);
+    const [, diskTotal] = disk.stdout.match(/\/dev\/root +(\d+.)/);
+    const [, diskUsed] = disk.stdout.match(/\/dev\/root +\d+. +([\d,])/);
     return `Disk usage: ${diskUsed}/*${diskTotal}B*`;
 };
 
