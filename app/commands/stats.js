@@ -66,7 +66,7 @@ const diskUsage = async () => {
     const disk = await run('df -h');
     const [, diskTotal] = disk.match(/\/dev\/root +(\d+.)/);
     const [, diskUsed] = disk.match(/\/dev\/root +\d+. +([\d,]+)/);
-    return `Disk usage: ${diskUsed} / *${diskTotal}B*`;
+    return `SD usage: ${diskUsed} / *${diskTotal}B*`;
 };
 
 /**
