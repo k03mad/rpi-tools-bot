@@ -1,4 +1,4 @@
-const track = require('./botan');
+const track = require('../lib/analytics');
 const {convertToArray, splitString} = require('./utils');
 const {msg} = require('./messages');
 
@@ -8,6 +8,7 @@ const MAX_MSG_LENGTH = 4096;
  * Send text mes
  */
 const sendText = async (bot, mes, text) => {
+
     for (const elem of convertToArray(text)) {
         // max text length limit
         try {
