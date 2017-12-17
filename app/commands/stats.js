@@ -86,12 +86,9 @@ const uptime = async () => {
  */
 const getStats = async () => {
     const stats = await Promise.all([
-        gpuTemp(),
-        cpuTemp(),
-        cpuUsage(),
-        ramUsage(),
-        diskUsage(),
-        uptime()
+        gpuTemp(), cpuTemp(),
+        cpuUsage(), ramUsage(),
+        diskUsage(), uptime()
     ]);
 
     return stats.join('\n');

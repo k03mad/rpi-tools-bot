@@ -7,6 +7,8 @@ Get data from Raspberry Pi 3
 **/arp** get RPi local network device list  
 **/reboot** reboot RPi  
 **/shutdown** shutdown RPi  
-**/stats** get RPi temperature and usage stats
+**/stats** get RPi temperature and usage stats  
+**/update** check for updates  
+**/upgrade** install updates
 
 (⌐■_■)

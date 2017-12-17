@@ -6,7 +6,9 @@ const commands = [
     '/arp - get RPi local network device list',
     '/reboot - reboot RPi',
     '/shutdown - shutdown RPi',
-    '/stats - get RPi temperature and usage stats'
+    '/stats - get RPi temperature and usage stats',
+    '/update - check for updates',
+    '/upgrade - install updates'
 ];
 
 const msg = {
