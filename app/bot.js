@@ -14,8 +14,10 @@ bot.sendMessage(myChat, msg.common.deployed);
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
 
-bot.onText( q('arp'),           async mes => {if (wl(mes))  sendText    (bot, mes,  await c.arp()             );});
-bot.onText( q('help|start'),          mes => {if (wl(mes))  sendText    (bot, mes,        c.help('bot')       );});
-bot.onText( q('reboot'),        async mes => {if (wl(mes))  sendText    (bot, mes,  await c.reboot()          );});
-bot.onText( q('shutdown'),      async mes => {if (wl(mes))  sendText    (bot, mes,  await c.shutdown()        );});
-bot.onText( q('stats'),         async mes => {if (wl(mes))  sendMdText  (bot, mes,  await c.stats()           );});
+bot.onText( q('arp'),         async mes => {if (wl(mes))  sendText   (bot, mes,  await c.arp()        );});
+bot.onText( q('help|start'),        mes => {if (wl(mes))  sendText   (bot, mes,        c.help('bot')  );});
+bot.onText( q('reboot'),      async mes => {if (wl(mes))  sendText   (bot, mes,  await c.reboot()     );});
+bot.onText( q('shutdown'),    async mes => {if (wl(mes))  sendText   (bot, mes,  await c.shutdown()   );});
+bot.onText( q('stats'),       async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.stats()      );});
+bot.onText( q('update'),      async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.update()     );});
+bot.onText( q('upgrade'),     async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.upgrade()    );});
