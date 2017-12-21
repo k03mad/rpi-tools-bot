@@ -7,7 +7,7 @@ const update = async () => {
     const cmd = [];
     cmd.push(
         await run('sudo apt-get update'),
-        await run('sudo apt-get upgrade')
+        await run('sudo apt-get upgrade --assume-no')
     );
 
     return cmd.join('\n');
