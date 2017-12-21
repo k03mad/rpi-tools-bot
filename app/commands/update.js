@@ -3,13 +3,14 @@ const {run} = require('../lib/utils');
 /**
  * Check for updates
  */
-const update = () => {
-    const cmd = [
-        'sudo apt-get update',
-        'sudo apt-get upgrade'
-    ].join(' && ');
+const update = async () => {
+    const cmd = [];
+    cmd.push(
+        await run('sudo apt-get update'),
+        await run('sudo apt-get upgrade')
+    );
 
-    return run(cmd);
+    return cmd.join('\n');
 };
 
 module.exports = update;
