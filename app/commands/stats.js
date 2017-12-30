@@ -1,33 +1,29 @@
 const {run} = require('../lib/utils');
 
 /**
- * Get RPi3 GPU temperature
+ * Get GPU temperature
  *
  * bash log:
  * temp=50.5'C
  */
 const gpuTemp = async () => {
     const gpu = await run('vcgencmd measure_temp');
-    return `GPU temp: *${
-        gpu.replace('temp=', '').replace('\'', '°')
-    }*`;
+    return `GPU temp: *${gpu.replace('temp=', '').replace('\'', '°')}*`;
 };
 
 /**
- * Get RPi3 CPU temperature
+ * Get CPU temperature
  *
  * bash log:
  * temp=50.5'C
  */
 const cpuTemp = async () => {
     const cpu = await run('cat /sys/class/thermal/thermal_zone0/temp');
-    return `CPU temp: *${
-        (Number(cpu) / 1000).toFixed(1)
-    }°C*`;
+    return `CPU temp: *${(Number(cpu) / 1000).toFixed(1)}°C*`;
 };
 
 /**
- * Get RPi3 CPU usage
+ * Get CPU usage
  *
  * bash log:
  * cpu  22118 0 3669 658313 3087 0 119 0 0 0
@@ -36,13 +32,11 @@ const cpuUsage = async () => {
     let cpu = await run('grep \'cpu \' /proc/stat');
     cpu = cpu.split(' ').map(elem => Number(elem));
     cpu = (cpu[2] + cpu[4]) * 100 / (cpu[2] + cpu[4] + cpu[5]);
-    return `CPU usage: *${
-        cpu.toFixed(2)
-    }%*\n`;
+    return `CPU usage: *${cpu.toFixed(2)}%*\n`;
 };
 
 /**
- * Get RPi3 RAM usage
+ * Get RAM usage
  *
  * bash log:
  *                 total        used        free      shared  buff/cache   available
@@ -56,7 +50,7 @@ const ramUsage = async () => {
 };
 
 /**
- * Get RPi3 disk usage
+ * Get disk usage
  *
  * bash log:
  * Файловая система Размер Использовано  Дост Использовано% Cмонтировано в
@@ -70,7 +64,7 @@ const diskUsage = async () => {
 };
 
 /**
- * Get RPi3 uptime
+ * Get uptime
  *
  * bash log:
  * 23:29:04 up 14 min,  3 users,  load average: 0,25, 0,26, 0,20
@@ -82,16 +76,61 @@ const uptime = async () => {
 };
 
 /**
- * Get some stats
+ * Get IPs
+ *
+ * bash log:
+ * 192.168.1.1
+ */
+const ip = async router => {
+    const opts = router
+        ? {cut: 3, which: 'Router'}
+        : {cut: 7, which: 'Current'};
+
+    const getIp = await run(`ip route get 8.8.8.8 | head -1 | cut -d' ' -f${opts.cut}`);
+    return `${opts.which} IP: *${getIp}*`;
+};
+
+/**
+ * Get sessions
+ *
+ * bash log:
+ * pi       tty1         2017-12-30 13:13
+ * pi       pts/0        2017-12-30 22:15 (192.168.1.1)
+ */
+const sessions = async () => {
+    const who = await run('who');
+    return `Sessions:\n${who}`;
+};
+
+/**
+ * OS version
+ *
+ * bash log:
+ * PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
+ */
+const ver = async () => {
+    const os = await run('cat /etc/*release | head -n 1');
+    const kernel = await run('uname -rs');
+    return `${os.replace(/PRETTY_NAME=|"/g, '')}\n${kernel}`;
+};
+
+/**
+ * Get all stats
  */
 const getStats = async () => {
-    const stats = await Promise.all([
+    return Promise.all([
+
+        ver(),
+
         gpuTemp(), cpuTemp(),
         cpuUsage(), ramUsage(),
-        diskUsage(), uptime()
-    ]);
+        diskUsage(), uptime(),
 
-    return stats.join('\n');
+        ip(), ip('router'),
+
+        sessions()
+
+    ]).join('\n');
 };
 
 module.exports = getStats;
