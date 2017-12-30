@@ -83,8 +83,8 @@ const uptime = async () => {
  */
 const ip = async () => {
     const getIp = await run('ip route get 8.8.8.8');
-    const [, current] = getIp.match(/via (.+) dev/);
-    const [, router] = getIp.match(/src (.+)/);
+    const [, router] = getIp.match(/via (.+) dev/);
+    const [, current] = getIp.match(/src (.+)/);
     return `\nCurrent IP: *${current}*\nRouter IP: *${router}*`;
 };
 
@@ -97,7 +97,7 @@ const ip = async () => {
  */
 const sessions = async () => {
     const who = await run('who');
-    return `\nSessions:\n_${who}_`;
+    return `\nSessions:\n${who}`;
 };
 
 /**
