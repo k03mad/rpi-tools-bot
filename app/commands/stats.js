@@ -117,8 +117,8 @@ const ver = async () => {
 /**
  * Get all stats
  */
-const getStats = () => {
-    return Promise.all([
+const getStats = async () => {
+    const stats = await Promise.all([
 
         ver(),
 
@@ -130,7 +130,9 @@ const getStats = () => {
 
         sessions()
 
-    ]).join('\n');
+    ]);
+
+    return stats.join('\n');
 };
 
 module.exports = getStats;
