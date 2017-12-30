@@ -79,15 +79,13 @@ const uptime = async () => {
  * Get IPs
  *
  * bash log:
- * 192.168.1.1
+ * 8.8.8.8 via 192.168.1.133 dev wlan0 src 192.168.1.100
  */
-const ip = async router => {
-    const opts = router
-        ? {cut: 3, which: 'Router'}
-        : {cut: 7, which: 'Current'};
-
-    const getIp = await run(`ip route get 8.8.8.8 | head -1 | cut -d' ' -f${opts.cut}`);
-    return `${opts.which} IP: *${getIp}*`;
+const ip = async () => {
+    const getIp = await run('ip route get 8.8.8.8');
+    const [, current] = getIp.match(/via (.+) dev/);
+    const [, router] = getIp.match(/src (.+)/);
+    return `Current IP: *${current}*Router IP: *${router}*`;
 };
 
 /**
@@ -111,7 +109,7 @@ const sessions = async () => {
 const ver = async () => {
     const os = await run('cat /etc/*release | head -n 1');
     const kernel = await run('uname -rs');
-    return `${os.replace(/PRETTY_NAME=|"/g, '')}\n${kernel}`;
+    return os.replace(/PRETTY_NAME=|"/g, '') + kernel;
 };
 
 /**
@@ -126,7 +124,7 @@ const getStats = async () => {
         cpuUsage(), ramUsage(),
         diskUsage(), uptime(),
 
-        ip(), ip('router'),
+        ip(),
 
         sessions()
 
