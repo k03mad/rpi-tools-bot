@@ -72,7 +72,7 @@ const diskUsage = async () => {
 const uptime = async () => {
     const overall = await run('uptime');
     const [, time] = overall.match(/up (.+), {2}\d/);
-    return `Uptime: *${time}*`;
+    return `Uptime: *${time}*\n`;
 };
 
 /**
@@ -85,7 +85,7 @@ const ip = async () => {
     const getIp = await run('ip route get 8.8.8.8');
     const [, current] = getIp.match(/via (.+) dev/);
     const [, router] = getIp.match(/src (.+)/);
-    return `Current IP: *${current}*Router IP: *${router}*`;
+    return `Current IP: *${current}*\nRouter IP: *${router}*`;
 };
 
 /**
