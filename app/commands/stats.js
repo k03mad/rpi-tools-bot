@@ -117,7 +117,7 @@ const ver = async () => {
 /**
  * Get all stats
  */
-const getStats = async () => {
+const getStats = () => {
     return Promise.all([
 
         ver(),
