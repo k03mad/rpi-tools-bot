@@ -113,6 +113,21 @@ const ver = async () => {
 };
 
 /**
+ * Updates count
+ *
+ * bash log:
+ * 1
+ */
+const updates = async () => {
+    const count = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -c -P "^Inst"');
+    const msg = Number(count) > 0
+        ? `\nUPDATES AVAILABLE: *${count}*`
+        : '';
+
+    return msg;
+};
+
+/**
  * Get all stats
  */
 const getStats = async () => {
@@ -126,8 +141,9 @@ const getStats = async () => {
 
         ip(),
 
-        sessions()
+        sessions(),
 
+        updates()
     ]);
 
     return stats.join('\n');
