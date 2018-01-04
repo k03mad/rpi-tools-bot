@@ -121,7 +121,7 @@ const ver = async () => {
 const updates = async () => {
     const count = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -c -P "^Inst"');
     const msg = Number(count) > 0
-        ? `\nUPDATES AVAILABLE: *${count}*`
+        ? `UPDATES AVAILABLE: *${count}*`
         : '';
 
     return msg;

@@ -13,7 +13,7 @@
     "colors": "1.1.2",
     "executive": "1.5.12",
     "forever": "0.15.3",
-    "network-list": "1.1.4",
+    "network-list": "https://github.com/k03mad/network-list",
     "node-botmetrics": "1.0.0",
     "node-telegram-bot-api": "0.30.0",
     "request": "2.83.0",
