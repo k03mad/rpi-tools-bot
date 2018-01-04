@@ -1,4 +1,4 @@
-const netList = require('../../node_modules/network-list/src/index.js');
+const netList = require('network-list');
 
 /**
  * Scan local network
