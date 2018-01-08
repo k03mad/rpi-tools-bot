@@ -125,7 +125,7 @@ const updates = async () => {
 
     if (grepUpdates) {
         console.log('if on');
-        const pkg = grepUpdates.match(/Inst (.+) \[\d/g);
+        const pkg = grepUpdates.match(/Inst (.+) \[\d/);
         console.log('pkg: ', pkg);
         return pkg;
     }
