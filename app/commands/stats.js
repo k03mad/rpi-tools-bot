@@ -120,14 +120,19 @@ const ver = async () => {
  * Inst libpoppler64 [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf])
  */
 const updates = async () => {
+    const MSG = 'Updates available:';
     const grepUpdates = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
-    console.log(grepUpdates);
 
     if (grepUpdates) {
-        console.log('if on');
-        const pkg = grepUpdates.match(/Inst (.+) \[\d/);
-        console.log('pkg: ', pkg);
-        return pkg;
+        const packages = [];
+
+        grepUpdates.split('\n').forEach(pkg => {
+            packages.push(pkg.match(/Inst (.+) \[\d/));
+        });
+
+        return packages.length > 1
+            ? `${MSG}\n${packages.join('\n')}`
+            : `${MSG} ${packages[0]}`;
     }
 
     return '';
