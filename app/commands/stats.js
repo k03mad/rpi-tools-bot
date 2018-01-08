@@ -116,15 +116,18 @@ const ver = async () => {
  * Updates count
  *
  * bash log:
- * 1
+ * Inst poppler-utils [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf]) []
+ * Inst libpoppler64 [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf])
  */
 const updates = async () => {
-    const count = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -c -P "^Inst"');
-    const msg = Number(count) > 0
-        ? `UPDATES AVAILABLE: *${count}*`
-        : '';
+    const grepUpdates = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
 
-    return msg;
+    if (grepUpdates) {
+        const [, pkg] = grepUpdates.match(/Inst (.+) \[\d/g);
+        return pkg;
+    }
+
+    return '';
 };
 
 /**
