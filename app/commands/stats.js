@@ -121,9 +121,12 @@ const ver = async () => {
  */
 const updates = async () => {
     const grepUpdates = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
+    console.log(grepUpdates);
 
     if (grepUpdates) {
-        const [, pkg] = grepUpdates.match(/Inst (.+) \[\d/g);
+        console.log('if on');
+        const pkg = grepUpdates.match(/Inst (.+) \[\d/g);
+        console.log('pkg: ', pkg);
         return pkg;
     }
 
