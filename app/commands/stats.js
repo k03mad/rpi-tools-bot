@@ -126,8 +126,8 @@ const updates = async () => {
     if (grepUpdates) {
         const packages = [];
 
-        grepUpdates.split('\n').forEach(elem => {
-            const [, pkg] = elem.match(/Inst (.+) \[\d/);
+        grepUpdates.split('Inst ').filter(Boolean).forEach(elem => {
+            const [, pkg] = elem.match(/^(.+?) /);
             packages.push(pkg);
         });
 
