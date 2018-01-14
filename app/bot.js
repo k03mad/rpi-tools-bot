@@ -1,7 +1,6 @@
 const TelegramBot = require('node-telegram-bot-api');
 const c = require('require-all')(`${__dirname}/commands`);
 const {telegramToken, myChat} = require('./lib/env');
-const {msg} = require('./lib/messages');
 const {sendText, sendMdText, q} = require('./lib/senders');
 const {wl} = require('./lib/utils');
 
@@ -10,7 +9,7 @@ const bot = new TelegramBot(telegramToken, {polling: {
     params: {allowed_updates: ['message']}
 }});
 
-bot.sendMessage(myChat, msg.common.deployed);
+bot.sendMessage(myChat, (() => c.stats())());
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
 

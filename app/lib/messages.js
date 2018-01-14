@@ -10,9 +10,6 @@ const commands = [
 ];
 
 const msg = {
-    common: {
-        deployed:   'I am deployed'
-    },
     readme: {
         badges: [
                     '![Dependencies](https://david-dm.org/k03mad/raspi-tlgrm-bot.svg)'
