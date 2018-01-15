@@ -9,6 +9,7 @@ const {run} = require('../lib/utils');
  */
 const updates = async () => {
     const grepUpdates = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
+    console.log(grepUpdates);
 
     if (grepUpdates.stdout) {
         const MSG = 'Updates available:';
