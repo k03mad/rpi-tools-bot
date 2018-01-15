@@ -1,8 +1,8 @@
-const TelegramBot = require('node-telegram-bot-api');
-const c = require('require-all')(`${__dirname}/commands`);
-const {telegramToken, myChat} = require('./lib/env');
 const {sendText, sendMdText, q} = require('./lib/senders');
+const {telegramToken, myChat} = require('./lib/env');
 const {wl} = require('./lib/utils');
+const c = require('require-all')(`${__dirname}/commands`);
+const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(telegramToken, {polling: {
     interval: 3000,
