@@ -9,7 +9,9 @@ const bot = new TelegramBot(telegramToken, {polling: {
     params: {allowed_updates: ['message']}
 }});
 
-bot.sendMessage(myChat, (() => c.stats())());
+(async () => {
+    bot.sendMessage(myChat, await c.stats());
+})();
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
 
