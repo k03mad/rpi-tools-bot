@@ -1,5 +1,6 @@
 help - the list of all available commands
-arp - get RPi local network device list
-reboot - reboot RPi
-shutdown - shutdown RPi
-stats - get RPi temperature and usage stats
+arp - get local network devices list
+reboot - reboot
+shutdown - shutdown
+stats - get some usage stats
+updates - check for updates
