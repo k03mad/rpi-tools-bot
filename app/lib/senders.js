@@ -11,20 +11,16 @@ const sendText = async (bot, mes, text) => {
 
     for (const elem of convertToArray(text)) {
         // max text length limit
-        try {
-            if (elem.length > MAX_MSG_LENGTH) {
-                // split by lines
-                const longStringArr = splitString(elem, MAX_MSG_LENGTH);
+        if (elem.length > MAX_MSG_LENGTH) {
+            // split by lines
+            const longStringArr = splitString(elem, MAX_MSG_LENGTH);
 
-                for (const elemPart of longStringArr) {
-                    await bot.sendMessage(mes.chat.id, elemPart);
-                }
-
-            } else {
-                bot.sendMessage(mes.chat.id, elem);
+            for (const elemPart of longStringArr) {
+                await bot.sendMessage(mes.chat.id, elemPart);
             }
-        } catch (ex) {
-            console.log(msg.send.norm(mes, ex));
+
+        } else {
+            bot.sendMessage(mes.chat.id, elem).catch(ex => console.log(msg.send.norm(mes, ex)));
         }
     }
 
@@ -35,13 +31,9 @@ const sendText = async (bot, mes, text) => {
  * Send text mes with markdown
  */
 const sendMdText = (bot, mes, text) => {
-    try {
-        convertToArray(text).forEach(elem => {
-            bot.sendMessage(mes.chat.id, elem, {parse_mode: 'Markdown'});
-        });
-    } catch (ex) {
-        console.log(msg.send.mark(msg, ex));
-    }
+    convertToArray(text).forEach(elem => {
+        bot.sendMessage(mes.chat.id, elem, {parse_mode: 'Markdown'}).catch(ex => console.log(msg.send.mark(mes, ex)));
+    });
 
     track(mes);
 };

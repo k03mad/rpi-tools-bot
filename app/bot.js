@@ -10,7 +10,7 @@ const bot = new TelegramBot(telegramToken, {polling: {
 }});
 
 (async () => {
-    bot.sendMessage(myChat, await c.stats());
+    bot.sendMessage(myChat, await c.updates());
 })();
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
@@ -20,3 +20,4 @@ bot.onText( q('help|start'),        mes => {if (wl(mes))  sendText   (bot, mes, 
 bot.onText( q('reboot'),      async mes => {if (wl(mes))  sendText   (bot, mes,  await c.reboot()     );});
 bot.onText( q('shutdown'),    async mes => {if (wl(mes))  sendText   (bot, mes,  await c.shutdown()   );});
 bot.onText( q('stats'),       async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.stats()      );});
+bot.onText( q('updates'),     async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.updates()    );});
