@@ -20,7 +20,7 @@
     "require-all": "2.2.0"
   },
   "devDependencies": {
-    "eslint": "4.14.0",
+    "eslint": "4.15.0",
     "eslint-config-k03mad": "0.2.0",
     "eslint-plugin-const-case": "1.0.3",
     "eslint-plugin-node": "5.2.1",

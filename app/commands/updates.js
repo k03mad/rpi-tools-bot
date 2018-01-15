@@ -1,3 +1,5 @@
+const {run} = require('../lib/utils');
+
 /**
  * Updates count
  *
