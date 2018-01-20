@@ -16,18 +16,19 @@ const scan = () => {
  */
 const arp = async () => {
     const devices = [];
+    const scanned = await scan();
 
-    let scanned = await scan();
-    scanned = scanned.filter(elem => elem.alive);
-    scanned.forEach(elem => {
-        for (const key in elem) {
-            if (key !== 'alive' && elem[key] && !elem[key].includes('Error')) {
-                devices.push(`${key}: ${elem[key]}`);
+    scanned
+        .filter(elem => elem.alive)
+        .forEach(elem => {
+            for (const key in elem) {
+                if (key !== 'alive' && elem[key] && !elem[key].includes('Error')) {
+                    devices.push(`${key}: ${elem[key]}`);
+                }
             }
-        }
 
-        devices.push('');
-    });
+            devices.push('');
+        });
 
     return devices.join('\n');
 };
