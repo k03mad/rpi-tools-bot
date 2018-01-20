@@ -1,5 +1,8 @@
-const exec = require('executive');
+const util = require('util');
+const {exec} = require('child_process');
 const {myChat} = require('./env');
+
+const bash = util.promisify(exec);
 
 /**
  * Chat ids whitelist
@@ -12,8 +15,8 @@ const wl = msg => {
  * Send command to bash
  */
 const run = async str => {
-    const bash = await exec(str);
-    return bash.stdout || bash.stderr || bash;
+    const {stdout, stderr} = await bash(str);
+    return stdout || stderr;
 };
 
 /**
