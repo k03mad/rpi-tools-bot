@@ -1,4 +1,4 @@
-const scanner = require('node-wifi-scanner');
+const scanner = require('node-wifiscanner2');
 
 /**
  * Scan wifi
