@@ -15,7 +15,6 @@
     "network-list": "https://github.com/k03mad/network-list",
     "node-botmetrics": "1.0.0",
     "node-telegram-bot-api": "0.30.0",
-    "request": "2.83.0",
     "require-all": "2.2.0"
   },
   "devDependencies": {
