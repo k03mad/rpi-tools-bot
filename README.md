@@ -8,6 +8,7 @@ Get data from Raspberry Pi 3
 **/reboot** reboot  
 **/shutdown** shutdown  
 **/stats** get some usage stats  
-**/updates** check for updates
+**/updates** check for updates  
+**/wifi** get hotspots list
 
 (⌐■_■)

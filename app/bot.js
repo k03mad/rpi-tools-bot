@@ -21,3 +21,4 @@ bot.onText( q('reboot'),      async mes => {if (wl(mes))  sendText   (bot, mes, 
 bot.onText( q('shutdown'),    async mes => {if (wl(mes))  sendText   (bot, mes,  await c.shutdown()   );});
 bot.onText( q('stats'),       async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.stats()      );});
 bot.onText( q('updates'),     async mes => {if (wl(mes))  sendText   (bot, mes,  await c.updates()    );});
+bot.onText( q('wifi'),        async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.wifi()       );});

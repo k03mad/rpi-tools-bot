@@ -1,4 +1,5 @@
 const exec = require('executive');
+const got = require('got');
 const {myChat} = require('./env');
 
 /**
@@ -47,8 +48,23 @@ const splitString = (str, l) => {
     return strs;
 };
 
+/**
+ * Send request
+ */
+const get = (url, opts = {}) => {
+    opts.retries = 1;
+    opts.timeout = {
+        connect: 15000,
+        request: 15000,
+        socket: 15000
+    };
+
+    return got(url, opts);
+};
+
 module.exports = {
     convertToArray,
+    get,
     run,
     splitString,
     wl

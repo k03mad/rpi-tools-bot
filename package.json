@@ -1,6 +1,6 @@
 {
   "name": "raspi-tlgrm-bot",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Raspberry Pi 3 Telegram bot",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
@@ -13,6 +13,7 @@
     "colors": "1.1.2",
     "executive": "1.5.12",
     "forever": "0.15.3",
+    "got": "8.0.3",
     "network-list": "https://github.com/k03mad/network-list",
     "node-botmetrics": "1.0.0",
     "node-telegram-bot-api": "0.30.0",
