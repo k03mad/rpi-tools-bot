@@ -13,7 +13,7 @@ const wl = msg => {
  */
 const run = async str => {
     const {stdout, stderr} = await exec.quiet(str);
-    console.log(run);
+    console.log(stdout);
     return stdout || stderr;
 };
 
