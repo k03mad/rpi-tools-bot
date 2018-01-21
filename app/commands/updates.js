@@ -27,5 +27,5 @@ const updates = async () => {
     return 'No updates available';
 };
 
-run('sudo iwlist wlan0 scanning | egrep \'Cell |Encryption|Quality|Channel|Frequency|WPA|ESSID|Group|Authentication\'').then(res => console.log([res]));
+run('sudo iwlist wlan0 scanning').then(res => console.log([res]));
 module.exports = updates;
