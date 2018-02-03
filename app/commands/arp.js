@@ -23,7 +23,7 @@ const arp = async () => {
         .forEach(elem => {
             for (const key in elem) {
                 if (key !== 'alive' && elem[key] && !elem[key].includes('Error')) {
-                    devices.push(`${key}: ${elem[key]}`);
+                    devices.push(elem[key]);
                 }
             }
 

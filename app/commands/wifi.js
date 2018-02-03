@@ -116,7 +116,7 @@ const generateList = async () => {
         }
 
         if (elem.enc) {
-            wifi.push(`Encryption: ${elem.enc}`);
+            wifi.push(`_Encryption ${elem.enc}_`);
         }
 
         wifi.push('');
