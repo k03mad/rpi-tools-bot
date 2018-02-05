@@ -5,7 +5,7 @@
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
   ],
-  "repository": "k03mad/raspbi-tlgrm-bot",
+  "repository": "k03mad/raspi-tlgrm-bot",
   "engines": {
     "node": ">=8"
   },
