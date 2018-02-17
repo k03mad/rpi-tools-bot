@@ -1,4 +1,4 @@
-const {get, run} = require('../lib/utils');
+const {getMacVendor, run} = require('../lib/utils');
 
 /**
  * Get WiFi list
@@ -62,8 +62,7 @@ const addVendor = async () => {
     const list = await signalToPercent();
     await Promise.all(list.map(async elem => {
         try {
-            const {body} = await get(`http://api.macvendors.com/${elem.mac}`);
-            elem.vendor = body;
+            elem.vendor = await getMacVendor(elem.mac);
         } catch (ex) {}
     }));
 

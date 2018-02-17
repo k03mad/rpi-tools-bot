@@ -1,36 +1,63 @@
-const netList = require('../../node_modules/network-list/src/index.js');
+const {JSDOM} = require('jsdom');
+const {get, getMacVendor} = require('../lib/utils');
+const {wifiLogin, wifiPass, wifiIP} = require('../lib/env');
 
 /**
- * Scan local network
+ * Get device list from router
  */
-const scan = () => {
-    return new Promise((resolve, reject) => {
-        netList.scan({}, (err, obj) => {
-            err ? reject(err) : resolve(obj);
-        });
+const getDeviceList = async () => {
+    const url = `http://${wifiIP}/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo`;
+    const SELECTOR = '.menu_content_list_table tr';
+
+    const {body} = await get(url, {
+        auth: `${wifiLogin}:${wifiPass}`
     });
+
+    const {window: {document}} = new JSDOM(body);
+    const query = document.querySelectorAll(SELECTOR);
+
+    return Array.from(query).map(elem => elem.textContent);
 };
 
 /**
- * Get local device list
+ * Pretty device list and add mac vendor
  */
-const arp = async () => {
-    const devices = [];
-    const scanned = await scan();
+const prettyDeviceList = async () => {
+    const MAC_RE = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
+    let list;
 
-    scanned
-        .filter(elem => elem.alive)
-        .forEach(elem => {
-            for (const key in elem) {
-                if (key !== 'alive' && elem[key] && !elem[key].includes('Error')) {
-                    devices.push(elem[key]);
+    try {
+        list = await getDeviceList();
+    } catch (ex) {
+        return ex.toString();
+    }
+
+    const output = [];
+
+    for (const data of list.map(elem => elem.split('\n'))) {
+        const prepare = [];
+
+        if (data[1] && !isNaN(Number(data[1]))) {
+
+            for (const field of data) {
+                if (isNaN(Number(field))) {
+
+                    try {
+                        if (MAC_RE.test(field)) {
+                            const vendor = await getMacVendor(field);
+                            prepare.push(vendor);
+                        }
+                    } catch (ex) {}
+
+                    prepare.push(field);
                 }
             }
 
-            devices.push('');
-        });
+            output.push(prepare);
+        }
+    }
 
-    return devices.join('\n');
+    return output.map(elem => elem.join('\n')).join('\n\n');
 };
 
-module.exports = arp;
+module.exports = prettyDeviceList;

@@ -52,19 +52,27 @@ const splitString = (str, l) => {
  * Send request
  */
 const get = (url, opts = {}) => {
-    opts.retries = 1;
     opts.timeout = {
         connect: 15000,
-        request: 15000,
-        socket: 15000
+        request: 20000,
+        socket: 25000
     };
 
     return got(url, opts);
 };
 
+/**
+ * Get mac-address vendor info
+ */
+const getMacVendor = async mac => {
+    const {body} = await get(`http://api.macvendors.com/${mac}`);
+    return body;
+};
+
 module.exports = {
     convertToArray,
     get,
+    getMacVendor,
     run,
     splitString,
     wl
