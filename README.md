@@ -2,13 +2,13 @@
 
 Get data from Raspberry Pi 3
 
-**/help** the list of all available commands  
+**/help** this list  
   
-**/arp** get local network devices list  
-**/reboot** reboot  
-**/shutdown** shutdown  
-**/stats** get some usage stats  
-**/updates** check for updates  
-**/wifi** get hotspots list
+**/apt_update** check for updates  
+**/pi_reboot** reboot pi after 1 minute  
+**/pi_shutdown** shutdown pi after 1 minute  
+**/pi_stat** some usage stats  
+**/wifi_conn** wifi connected devices list  
+**/wifi_scan** wifi spots list
 
 (⌐■_■)

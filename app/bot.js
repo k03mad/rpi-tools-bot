@@ -9,16 +9,17 @@ const bot = new TelegramBot(telegramToken, {polling: {
     params: {allowed_updates: ['message']}
 }});
 
-(async () => {
-    bot.sendMessage(myChat, await c.updates());
-})();
+(async () => bot.sendMessage(myChat, await c.updates()))();
 
-/* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
+/* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly, no-underscore-dangle */
 
-bot.onText( q('arp'),         async mes => {if (wl(mes))  sendText   (bot, mes,  await c.arp()        );});
-bot.onText( q('help|start'),        mes => {if (wl(mes))  sendText   (bot, mes,        c.help('bot')  );});
-bot.onText( q('reboot'),      async mes => {if (wl(mes))  sendText   (bot, mes,  await c.reboot()     );});
-bot.onText( q('shutdown'),    async mes => {if (wl(mes))  sendText   (bot, mes,  await c.shutdown()   );});
-bot.onText( q('stats'),       async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.stats()      );});
-bot.onText( q('updates'),     async mes => {if (wl(mes))  sendText   (bot, mes,  await c.updates()    );});
-bot.onText( q('wifi'),        async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.wifi()       );});
+bot.onText( q('help|start'),        mes => {if (wl(mes))  sendText   (bot, mes,        c._help('bot')    );});
+
+bot.onText( q('apt_update'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.apt_update()    );});
+
+bot.onText( q('pi_reboot'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi_reboot()     );});
+bot.onText( q('pi_shutdown'), async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi_shutdown()   );});
+bot.onText( q('pi_stat'),     async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.pi_stats()      );});
+
+bot.onText( q('wifi_conn'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.wifi_conn()     );});
+bot.onText( q('wifi_scan'),   async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.wifi_scan()     );});
