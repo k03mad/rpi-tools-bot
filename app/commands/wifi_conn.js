@@ -9,10 +9,7 @@ const getDeviceList = async () => {
     const url = `http://${wifiIP}/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo`;
     const SELECTOR = '.menu_content_list_table tr';
 
-    const {body} = await get(url, {
-        auth: `${wifiLogin}:${wifiPass}`
-    });
-
+    const {body} = await get(url, {auth: `${wifiLogin}:${wifiPass}`});
     const {window: {document}} = new JSDOM(body);
     const query = document.querySelectorAll(SELECTOR);
 

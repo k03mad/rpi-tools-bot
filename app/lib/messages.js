@@ -4,14 +4,19 @@ const commands = [
     '/help - this list',
     '',
     '/apt_update - check for updates',
+    '/apt_upgrade - install updates',
     '/pi_reboot - reboot pi after 1 minute',
     '/pi_shutdown - shutdown pi after 1 minute',
     '/pi_stat - some usage stats',
     '/wifi_conn - wifi connected devices list',
+    '/wifi_reboot - wifi spot reboot',
     '/wifi_scan - wifi spots list'
 ];
 
 const msg = {
+    common: {
+        reboot: 'Proceed to reboot'
+    },
     readme: {
         badges: [
                     '![Dependencies](https://david-dm.org/k03mad/raspi-tlgrm-bot.svg)'
