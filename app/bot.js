@@ -10,7 +10,7 @@ const bot = new TelegramBot(telegramToken, {polling: {
 }});
 
 (async () => {
-    bot.sendMessage(myChat, await c.updates());
+    bot.sendMessage(myChat, await c.apt_update());
 })();
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly, no-underscore-dangle */
