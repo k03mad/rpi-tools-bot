@@ -19,7 +19,7 @@ bot.onText( q('apt_update'),  async mes => {if (wl(mes))  sendText   (bot, mes, 
 
 bot.onText( q('pi_reboot'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi_reboot()     );});
 bot.onText( q('pi_shutdown'), async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi_shutdown()   );});
-bot.onText( q('pi_stat'),     async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.pi_stats()      );});
+bot.onText( q('pi_stat'),     async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.pi_stat()      );});
 
 bot.onText( q('wifi_conn'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.wifi_conn()     );});
 bot.onText( q('wifi_scan'),   async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.wifi_scan()     );});
