@@ -9,7 +9,7 @@ const upgrades = async () => {
     const commands = [
         'sudo apt-get update',
         'sudo apt-get upgrade -y',
-        'sudo apt-get autoremove',
+        'sudo apt-get autoremove -y',
         'sudo apt-get autoclean',
         'nvm install node',
         'npm i -g npm',
