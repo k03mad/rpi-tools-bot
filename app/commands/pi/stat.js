@@ -124,7 +124,7 @@ const nodeVer = async () => {
         run('npm -v')
     ]);
 
-    return `\nnode: ${versions[0].replace(/^v/, '')}npm: ${versions[1]}`;
+    return `\nnode: ${versions[0].replace(/^v/, '')}npm: ${versions[1].replace('\n', '')}`;
 };
 
 /**
