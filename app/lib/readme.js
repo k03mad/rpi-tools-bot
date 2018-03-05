@@ -1,6 +1,6 @@
 const colors = require('colors/safe');
 const fs = require('fs');
-const getHelpMessage = require('../commands/_help');
+const getHelpMessage = require('../commands/help');
 const {msg, commands} = require('./messages');
 
 const help = getHelpMessage('readme');

@@ -1,4 +1,5 @@
-const {run} = require('../lib/utils');
+const {run} = require('../../lib/utils');
+const {msg} = require('../../lib/messages');
 
 /**
  * Updates count
@@ -24,7 +25,7 @@ const updates = async () => {
             : `${MSG} ${packages[0]}`;
     }
 
-    return 'No updates available';
+    return msg.common.updates;
 };
 
 module.exports = updates;

@@ -53,9 +53,9 @@ const splitString = (str, l) => {
  */
 const get = (url, opts = {}) => {
     opts.timeout = {
-        connect: 15000,
-        request: 20000,
-        socket: 25000
+        connect: 20000,
+        request: 25000,
+        socket: 30000
     };
 
     return got(url, opts);
@@ -65,7 +65,7 @@ const get = (url, opts = {}) => {
  * Get mac-address vendor info
  */
 const getMacVendor = async mac => {
-    const {body} = await get(`http://api.macvendors.com/${mac}`);
+    const {body} = await get(`https://macvendors.co/api/vendorname/${mac}`);
     return body;
 };
 

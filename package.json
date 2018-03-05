@@ -1,6 +1,6 @@
 {
   "name": "raspi-tlgrm-bot",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Raspberry Pi 3 Telegram bot",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
@@ -20,10 +20,10 @@
     "require-all": "2.2.0"
   },
   "devDependencies": {
-    "eslint": "4.18.1",
+    "eslint": "4.18.2",
     "eslint-config-k03mad": "0.2.4",
     "eslint-plugin-const-case": "1.0.3",
-    "eslint-plugin-node": "6.0.0",
+    "eslint-plugin-node": "6.0.1",
     "eslint-plugin-promise": "3.6.0",
     "pre-commit": "1.2.2",
     "pruner-cli": "0.2.1"

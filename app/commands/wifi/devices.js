@@ -1,6 +1,6 @@
 const {JSDOM} = require('jsdom');
-const {get, getMacVendor} = require('../lib/utils');
-const {wifiLogin, wifiPass, wifiIP} = require('../lib/env');
+const {get, getMacVendor} = require('../../lib/utils');
+const {wifiLogin, wifiPass, wifiIP} = require('../../lib/env');
 
 /**
  * Get device list from router
@@ -38,14 +38,6 @@ const prettyDeviceList = async () => {
 
             for (const field of data) {
                 if (isNaN(Number(field))) {
-
-                    try {
-                        if (MAC_RE.test(field)) {
-                            const vendor = await getMacVendor(field);
-                            prepare.push(vendor);
-                        }
-                    } catch (ex) {}
-
                     prepare.push(field);
                 }
             }
@@ -53,6 +45,16 @@ const prettyDeviceList = async () => {
             output.push(prepare);
         }
     }
+
+    await Promise.all(output.map(async elem => {
+        const [, mac] = elem;
+
+        try {
+            if (MAC_RE.test(mac)) {
+                elem[1] = `${mac}\n${await getMacVendor(mac)}`;
+            }
+        } catch (ex) {}
+    }));
 
     return output.map(elem => elem.join('\n')).join('\n\n');
 };

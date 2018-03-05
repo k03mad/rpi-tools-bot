@@ -8,14 +8,15 @@ const commands = [
     '/pi_reboot - reboot pi after 1 minute',
     '/pi_shutdown - shutdown pi after 1 minute',
     '/pi_stat - some usage stats',
-    '/wifi_conn - wifi connected devices list',
+    '/wifi_devices - wifi connected devices list',
     '/wifi_reboot - wifi spot reboot',
-    '/wifi_scan - wifi spots list'
+    '/wifi_spots - wifi spots list'
 ];
 
 const msg = {
     common: {
-        reboot: 'Proceed to reboot'
+        reboot: 'Proceed to reboot',
+        updates: 'No updates available'
     },
     readme: {
         badges: [

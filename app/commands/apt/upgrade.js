@@ -1,4 +1,4 @@
-const {run} = require('../lib/utils');
+const {run} = require('../../lib/utils');
 
 /**
  * Install updates
@@ -10,7 +10,10 @@ const upgrades = async () => {
         'sudo apt-get update',
         'sudo apt-get upgrade -y',
         'sudo apt-get autoremove',
-        'sudo apt-get autoclean'
+        'sudo apt-get autoclean',
+        'nvm install node',
+        'npm i -g npm',
+        'npm i -g forever'
     ];
 
     for (const cmd of commands) {

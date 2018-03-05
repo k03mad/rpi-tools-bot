@@ -1,4 +1,4 @@
-const {getMacVendor, run} = require('../lib/utils');
+const {getMacVendor, run} = require('../../lib/utils');
 
 /**
  * Get WiFi list

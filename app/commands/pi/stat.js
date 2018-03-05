@@ -1,4 +1,4 @@
-const {run} = require('../lib/utils');
+const {run} = require('../../lib/utils');
 
 /**
  * Get GPU temperature
@@ -107,9 +107,25 @@ const sessions = async () => {
  * PRETTY_NAME="Raspbian GNU/Linux 9 (stretch)"
  */
 const ver = async () => {
-    const os = await run('cat /etc/*release | head -n 1');
-    const kernel = await run('uname -rs');
-    return os.replace(/PRETTY_NAME=|"/g, '') + kernel;
+    const versions = await Promise.all([
+        run('cat /etc/*release | head -n 1'),
+        run('uname -rs')
+    ]);
+
+    return versions[0].replace(/PRETTY_NAME=|"/g, '') + versions[1];
+};
+
+/**
+ * NodeJS version
+ */
+const nodeVer = async () => {
+    const versions = await Promise.all([
+        run('node -v'),
+        run('npm -v'),
+        run('nvm --version')
+    ]);
+
+    return `node: ${versions[0].replace(/^v/, '')}\nnpm: ${versions[1]}\nnvm: ${versions[2]}`;
 };
 
 /**
@@ -125,6 +141,8 @@ const getStats = async () => {
         diskUsage(), uptime(),
 
         ip(),
+
+        nodeVer(),
 
         sessions()
     ]);

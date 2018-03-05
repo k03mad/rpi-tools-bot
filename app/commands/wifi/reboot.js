@@ -1,6 +1,6 @@
-const {get} = require('../lib/utils');
-const {msg} = require('../lib/messages');
-const {wifiLogin, wifiPass, wifiIP} = require('../lib/env');
+const {get} = require('../../lib/utils');
+const {msg} = require('../../lib/messages');
+const {wifiLogin, wifiPass, wifiIP} = require('../../lib/env');
 
 /**
  * Reboot router
