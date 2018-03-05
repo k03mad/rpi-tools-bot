@@ -62,7 +62,11 @@ const addVendor = async () => {
     const list = await signalToPercent();
     await Promise.all(list.map(async elem => {
         try {
-            elem.vendor = await getMacVendor(elem.mac);
+            const vendor = await getMacVendor(elem.mac);
+
+            if (vendor !== 'No vendor') {
+                elem.vendor = vendor;
+            }
         } catch (ex) {}
     }));
 
