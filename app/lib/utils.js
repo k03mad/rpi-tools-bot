@@ -13,7 +13,7 @@ const wl = msg => {
  * Send command to bash
  */
 const run = async str => {
-    const {stdout, stderr} = await exec.quiet(str);
+    const {stdout, stderr} = await exec(str);
     return stdout || stderr;
 };
 
