@@ -121,11 +121,10 @@ const ver = async () => {
 const nodeVer = async () => {
     const versions = await Promise.all([
         run('node -v'),
-        run('npm -v'),
-        run('nvm --version')
+        run('npm -v')
     ]);
 
-    return `node: ${versions[0].replace(/^v/, '')}\nnpm: ${versions[1]}\nnvm: ${versions[2]}`;
+    return `\nnode: ${versions[0].replace(/^v/, '')}npm: ${versions[1]}`;
 };
 
 /**
