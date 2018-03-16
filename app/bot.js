@@ -25,6 +25,8 @@ bot.onText( q('help'),               mes => {if (wl(mes))  sendText   (bot, mes,
 bot.onText( q('apt_update'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.apt.update()    );});
 bot.onText( q('apt_upgrade'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.apt.upgrade()   );});
 
+bot.onText( q('co2'),          async mes => {if (wl(mes))  sendText   (bot, mes,  await c.co2()           );});
+
 bot.onText( q('pi_reboot'),    async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi.reboot()     );});
 bot.onText( q('pi_shutdown'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi.shutdown()   );});
 bot.onText( q('pi_stat'),      async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.pi.stat()       );});

@@ -6,6 +6,7 @@ Get data from Raspberry Pi 3
   
 **/apt_update** check for updates  
 **/apt_upgrade** install updates  
+**/co2** get current co2 ppm  
 **/pi_reboot** reboot pi after 1 minute  
 **/pi_shutdown** shutdown pi after 1 minute  
 **/pi_stat** some usage stats  
