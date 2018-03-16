@@ -18,6 +18,4 @@ def mh_z19():
             return {'co2': ord(s[2])*256 + ord(s[3])}
         break
 
-if __name__ == '__main__':
-    value = mh_z19()
-    print "co2=", value["co2"]
+print mh_z19()["co2"]
