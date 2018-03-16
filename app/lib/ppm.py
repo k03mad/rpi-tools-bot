@@ -1,5 +1,6 @@
 import serial
 import time
+import sys
 
 def mh_z19():
     ser = serial.Serial(
@@ -18,4 +19,6 @@ def mh_z19():
             return {'co2': ord(s[2])*256 + ord(s[3])}
         break
 
-print mh_z19()["co2"]
+if __name__ == '__main__':
+    value = mh_z19()
+    print value['co2']
