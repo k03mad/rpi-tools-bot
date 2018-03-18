@@ -11,9 +11,24 @@ const bot = new TelegramBot(telegramToken, {polling: {
     params: {allowed_updates: ['message']}
 }});
 
-// COMMANDS
+// check raspberry updates at startup
+(async () => {
+    const updates = await c.apt.update();
+
+    if (updates !== msg.common.updates) {
+        bot.sendMessage(myChat, updates);
+    }
+
+})();
+
+sendBotStartChart().catch(ex => msg.chart.start(ex));
+
+every('1m').do(() => {
+    sendCo2Chart().catch(ex => msg.chart.co2(ex));
+});
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
+
 bot.onText( q('help'),               mes => {if (wl(mes))  sendText   (bot, mes,        c.help('bot')     );});
 
 bot.onText( q('apt_update'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.apt.update()    );});
@@ -27,20 +42,3 @@ bot.onText( q('pi_stat'),      async mes => {if (wl(mes))  sendMdText (bot, mes,
 bot.onText( q('wifi_devices'), async mes => {if (wl(mes))  sendText   (bot, mes,  await c.wifi.devices()  );});
 bot.onText( q('wifi_reboot'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.wifi.reboot()   );});
 bot.onText( q('wifi_spots'),   async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.wifi.spots()    );});
-
-// CRONS
-
-// at startup
-(async () => {
-    const updates = await c.apt.update();
-
-    if (updates !== msg.common.updates) {
-        bot.sendMessage(myChat, updates);
-    }
-
-    sendBotStartChart().catch(ex => msg.chart.start(ex));
-})();
-
-every('1m').do(() => {
-    sendCo2Chart().catch(ex => msg.chart.co2(ex));
-});
