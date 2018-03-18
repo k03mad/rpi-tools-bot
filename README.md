@@ -2,7 +2,7 @@
 
 Get data from Raspberry Pi 3
 
-**/help** этот список  
+**/help** this list  
   
 **/apt_update** check for updates  
 **/apt_upgrade** install updates  

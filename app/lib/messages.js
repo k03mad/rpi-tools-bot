@@ -1,7 +1,7 @@
 /* eslint-disable key-spacing, no-multi-spaces, indent */
 
 const commands = [
-    '/help - этот список',
+    '/help - this list',
     '',
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
