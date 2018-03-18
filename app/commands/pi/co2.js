@@ -13,7 +13,7 @@ const co2 = async onlyNum => {
         return ppm;
     }
 
-    const defStr = `CO₂: **${ppm} ppm**\n\n`;
+    const defStr = `CO₂: *${ppm} ppm*\n\n`;
 
     switch (true) {
         case ppm > 1400:

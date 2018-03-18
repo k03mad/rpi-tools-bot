@@ -2,7 +2,7 @@ const {every} = require('schedule');
 const {msg} = require('./lib/messages');
 const {sendText, sendMdText, q} = require('./lib/senders');
 const {telegramToken, myChat} = require('./lib/env');
-const {wl, sendBotStartChart, sendCo2Chart} = require('./lib/utils');
+const {wl, sendCo2Chart} = require('./lib/utils');
 const c = require('require-all')(`${__dirname}/commands`);
 const TelegramBot = require('node-telegram-bot-api');
 
@@ -21,10 +21,8 @@ const bot = new TelegramBot(telegramToken, {polling: {
 
 })();
 
-sendBotStartChart().catch(ex => msg.chart.start(ex));
-
-every('1m').do(() => {
-    sendCo2Chart().catch(ex => msg.chart.co2(ex));
+every('1m').do(async () => {
+    sendCo2Chart(await c.pi.co2('num')).catch(ex => msg.chart.co2(ex));
 });
 
 /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
