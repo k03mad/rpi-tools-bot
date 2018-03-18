@@ -1,6 +1,4 @@
 import serial
-import time
-import sys
 
 def mh_z19():
     ser = serial.Serial(
