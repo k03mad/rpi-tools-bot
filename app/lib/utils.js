@@ -1,6 +1,8 @@
 const exec = require('executive');
 const got = require('got');
-const {myChat} = require('./env');
+const {myChat, thingSpeakToken} = require('./env');
+
+const chartUrl = `https://api.thingspeak.com/update?api_key=${thingSpeakToken}`;
 
 /**
  * Chat ids whitelist
@@ -69,11 +71,27 @@ const getMacVendor = async mac => {
     return body;
 };
 
+/**
+ * Send ppm to chart
+ */
+const sendCo2Chart = ppm => {
+    return get(`${chartUrl}&field1=${ppm}`);
+};
+
+/**
+ * Send bot start to chart
+ */
+const sendBotStartChart = () => {
+    return get(`${chartUrl}&field2=started`);
+};
+
 module.exports = {
     convertToArray,
     get,
     getMacVendor,
     run,
+    sendBotStartChart,
+    sendCo2Chart,
     splitString,
     wl
 };

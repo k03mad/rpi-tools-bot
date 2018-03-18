@@ -19,7 +19,7 @@ const co2 = async onlyNum => {
         case ppm > 1400:
             return defStr + msg.co2.high;
         case ppm > 1000:
-            return defStr + msg.co2.aboveMedium;
+            return defStr + msg.co2.aboveMed;
         case ppm > 800:
             return defStr + msg.co2.medium;
         case ppm > 300:
