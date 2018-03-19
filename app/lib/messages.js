@@ -26,7 +26,8 @@ const msg = {
         err:        'Что-то пошло не так: невозможно получить концентрацию, либо она слишком мала, чтобы быть верной'
     },
     chart: {
-        co2:        ex              => `I can't send CO₂ to chart\n${ex}`
+        ts:         ex              => `I can't send CO₂ to thing speak chart\n${ex}`,
+        cor:        ex              => `I can't send CO₂ to corlysis chart\n${ex}`
     },
     common: {
         reboot:     'Proceed to reboot',
