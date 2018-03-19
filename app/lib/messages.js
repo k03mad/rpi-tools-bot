@@ -27,7 +27,8 @@ const msg = {
     },
     chart: {
         ts:         ex              => `I can't send CO₂ to thing speak chart\n${ex}`,
-        cor:        ex              => `I can't send CO₂ to corlysis chart\n${ex}`
+        cor:        ex              => `I can't send CO₂ to corlysis chart\n${ex}`,
+        corRem:     ex              => `I can't remove old data from corlysis\n${ex}`
     },
     common: {
         reboot:     'Proceed to reboot',
