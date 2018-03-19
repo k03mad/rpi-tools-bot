@@ -2,6 +2,9 @@ const {get} = require('./utils');
 const {thingSpeakToken, corlysisToken, corlysisPubToken} = require('./env');
 const fs = require('fs');
 const os = require('os');
+const {promisify} = require('util');
+
+const writeStream = promisify(fs.createWriteStream);
 
 /**
  * Send ppm to thingspeak
@@ -60,7 +63,7 @@ const getChartImageCor = async () => {
         headers: {
             cookie: `token=${corlysisPubToken}`
         }
-    }).pipe(fs.createWriteStream(file));
+    }).pipe(await writeStream(file));
 
     return file;
 };
