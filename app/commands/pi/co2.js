@@ -15,7 +15,7 @@ const co2 = async onlyNum => {
 
     const CHART_LINK = 'Chart: https://thingspeak.com/channels/452758';
     const ppmString = `CO₂: *${ppm} ppm*`;
-    
+
     /**
      * Generate full message with explanation and chart link
      */
