@@ -29,6 +29,7 @@ const msg = {
         ts:         ex              => `I can't send CO₂ to thing speak chart\n${ex}`,
         cor:        ex              => `I can't send CO₂ to corlysis chart\n${ex}`,
         corRem:     ex              => `I can't remove old data from corlysis\n${ex}`,
+        err:        ex              => `I can't get CO₂ from sensor\n${ex}`,
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {

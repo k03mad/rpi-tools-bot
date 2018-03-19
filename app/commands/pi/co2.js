@@ -1,7 +1,29 @@
 const {getChartImageCor} = require('../../lib/charts');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
+const {thingSpeakChannel, corlysisPubToken} = require('../../lib/env');
 const path = require('path');
+
+/**
+ * Return detailed message about ppm values
+ */
+const getDetailedMsg = ppm => {
+    switch (true) {
+        case ppm > 1400:
+            return msg.co2.high;
+        case ppm > 1000:
+            return msg.co2.aboveMed;
+        case ppm > 800:
+            return msg.co2.medium;
+        case ppm > 600:
+            return msg.co2.belowMed;
+        case ppm > 300:
+            return msg.co2.low;
+
+        default:
+            return msg.co2.err;
+    }
+};
 
 /**
  * Get CO2 from mh_z19 with ppm.py
@@ -14,35 +36,16 @@ const co2 = async onlyNum => {
         return ppm;
     }
 
-    const message = [`CO₂: *${ppm} ppm*`];
+    const message = [
+        `CO₂: *${ppm} ppm*`,
 
-    switch (true) {
-        case ppm > 1400:
-            message.push(msg.co2.high);
-            break;
-        case ppm > 1000:
-            message.push(msg.co2.aboveMed);
-            break;
-        case ppm > 800:
-            message.push(msg.co2.medium);
-            break;
-        case ppm > 600:
-            message.push(msg.co2.belowMed);
-            break;
-        case ppm > 300:
-            message.push(msg.co2.low);
-            break;
+        getDetailedMsg(ppm),
 
-        default:
-            message.push(msg.co2.err);
-    }
-
-    message.push([
-        'Charts:',
-        '[ThingSpeak](https://thingspeak.com/channels/452758)',
-        '[Grafana](https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959)',
-        '[Grafana (admin)](https://corlysis.com/grafana/dashboard/db/pi3-sensors)'
-    ].join('\n'));
+        `Charts: \
+        [ThingSpeak](https://thingspeak.com/channels/${thingSpeakChannel}) \
+        [Grafana](https://corlysis.com/grafana/?token=${corlysisPubToken}) \
+        [Grafana (admin)](https://corlysis.com/grafana/dashboard/db/pi3-sensors)`
+    ].join('\n\n');
 
     let chart;
 
@@ -52,7 +55,7 @@ const co2 = async onlyNum => {
         chart = msg.chart.picErr(ex);
     }
 
-    return [message.join('\n\n'), chart];
+    return [message, chart];
 };
 
 module.exports = co2;

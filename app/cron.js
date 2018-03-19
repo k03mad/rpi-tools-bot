@@ -5,9 +5,18 @@ const co2 = require('./commands/pi/co2');
 
 // send data to charts
 every('1m').do(async () => {
-    const ppm = await co2('num');
-    sendCo2ChartTS(ppm).catch(ex => msg.chart.ts(ex));
-    sendCo2ChartCor(ppm).catch(ex => msg.chart.cor(ex));
+    let ppm;
+
+    try {
+        ppm = await co2('num');
+    } catch (ex) {
+        console.log(msg.chart.err(ex));
+    }
+
+    if (ppm) {
+        sendCo2ChartTS(ppm).catch(ex => msg.chart.ts(ex));
+        sendCo2ChartCor(ppm).catch(ex => msg.chart.cor(ex));
+    }
 });
 
 // remove old data from corlysis due to free plan
