@@ -45,6 +45,19 @@ const sendMdText = (bot, mes, text, disablePreview) => {
 };
 
 /**
+ * Send photo
+ */
+const sendPhoto = (bot, mes, photo) => {
+    if (typeof photo === 'string') {
+        sendText(bot, mes, photo);
+    } else {
+        bot.sendPhoto(mes.chat.id, photo).catch(ex => console.log(msg.send.photo(mes, ex)));
+    }
+
+    track(mes);
+};
+
+/**
  * Get search request with support for /ex and /ex@bot_name commands
  * (slice command length + 1 space from mes)
  */
@@ -68,5 +81,6 @@ module.exports = {
     q,
     search,
     sendMdText,
+    sendPhoto,
     sendText
 };

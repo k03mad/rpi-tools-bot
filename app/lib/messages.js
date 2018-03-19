@@ -45,7 +45,8 @@ const msg = {
     },
     send: {
         mark:       (res, ex)       => `I can't send markdown message.\n${ex}\n${JSON.stringify(res)}`,
-        norm:       (res, ex)       => `I can't send normal message.\n${ex}\n${JSON.stringify(res)}`
+        norm:       (res, ex)       => `I can't send normal message.\n${ex}\n${JSON.stringify(res)}`,
+        photo:      (res, ex)       => `I can't send photo message.\n${ex}\n${JSON.stringify(res)}`
     }
 };
 

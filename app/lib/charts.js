@@ -1,4 +1,4 @@
-const {thingSpeakToken, corlysisToken} = require('./env');
+const {thingSpeakToken, corlysisToken, corlysisPubToken} = require('./env');
 const {get} = require('./utils');
 
 /**
@@ -39,7 +39,29 @@ const removeOldDataCor = () => {
     });
 };
 
+/**
+ * Get chart image from corlysis
+ */
+const getChartImageCor = async () => {
+    const {body} = await get('https://corlysis.com/grafana/render/dashboard-solo/db/pi3-sensors', {
+        query: {
+            refresh: '30s',
+            orgId: '821',
+            panelId: '1',
+            width: '1000',
+            height: '500',
+            tz: 'UTC%2B03%3A00'
+        },
+        headers: {
+            cookie: `token=${corlysisPubToken}`
+        }
+    });
+
+    return Buffer.from(body);
+};
+
 module.exports = {
+    getChartImageCor,
     removeOldDataCor,
     sendCo2ChartCor,
     sendCo2ChartTS
