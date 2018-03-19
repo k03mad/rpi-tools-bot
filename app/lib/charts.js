@@ -1,10 +1,10 @@
 const {get} = require('./utils');
 const {thingSpeakToken, corlysisToken, corlysisPubToken} = require('./env');
-const fs = require('fs');
+// const fs = require('fs');
 const os = require('os');
-const {promisify} = require('util');
+// const {promisify} = require('util');
 
-const writeStream = promisify(fs.createWriteStream);
+// const writeFile = promisify(fs.writeFile);
 
 /**
  * Send ppm to thingspeak
@@ -48,24 +48,27 @@ const removeOldDataCor = () => {
  * Get chart image from corlysis
  */
 const getChartImageCor = async () => {
-    const file = `${os.tmpdir()}/chart${Date.now()}.png`;
+    // const file = `${os.tmpdir()}/chart${Date.now()}.png`;
 
-    await get('https://corlysis.com/grafana/render/dashboard-solo/db/pi3-sensors', {
-        stream: true,
+    const {body} = await get('https://corlysis.com/grafana/render/dashboard-solo/db/pi3-sensors', {
+        encoding: null,
         query: {
             refresh: '30s',
             orgId: '821',
             panelId: '1',
             width: '1000',
-            height: '500',
-            tz: 'UTC%2B03%3A00'
+            height: '400',
+            tz: 'UTC+03:00'
         },
         headers: {
             cookie: `token=${corlysisPubToken}`
         }
-    }).pipe(await writeStream(file));
+    });
 
-    return file;
+    const buffer = Buffer.from(body);
+    // await writeFile(file, buffer);
+
+    return buffer;
 };
 
 module.exports = {

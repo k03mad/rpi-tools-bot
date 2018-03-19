@@ -48,7 +48,7 @@ const sendMdText = (bot, mes, text, disablePreview) => {
  * Send photo
  */
 const sendPhoto = (bot, mes, photo) => {
-    photo.includes('.png')
+    Buffer.isBuffer(photo)
         ? bot.sendPhoto(mes.chat.id, photo).catch(ex => console.log(msg.send.photo(mes, ex)))
         : sendText(bot, mes, photo);
 
