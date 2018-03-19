@@ -13,22 +13,28 @@ const co2 = async onlyNum => {
         return ppm;
     }
 
-    const defStr = `CO₂: *${ppm} ppm*\n\n`;
+    const CHART_LINK = 'Chart: https://thingspeak.com/channels/452758';
+    const ppmString = `CO₂: *${ppm} ppm*`;
+    
+    /**
+     * Generate full message with explanation and chart link
+     */
+    const fullMsg = explain => [ppmString, explain, CHART_LINK].join('\n\n');
 
     switch (true) {
         case ppm > 1400:
-            return defStr + msg.co2.high;
+            return fullMsg(msg.co2.high);
         case ppm > 1000:
-            return defStr + msg.co2.aboveMed;
+            return fullMsg(msg.co2.aboveMed);
         case ppm > 800:
-            return defStr + msg.co2.medium;
+            return fullMsg(msg.co2.medium);
         case ppm > 600:
-            return defStr + msg.co2.belowMed;
+            return fullMsg(msg.co2.belowMed);
         case ppm > 300:
-            return defStr + msg.co2.low;
+            return fullMsg(msg.co2.low);
 
         default:
-            return defStr + msg.co2.err;
+            return fullMsg(msg.co2.err);
     }
 
 };
