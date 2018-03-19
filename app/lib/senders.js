@@ -45,12 +45,14 @@ const sendMdText = (bot, mes, text, disablePreview) => {
 };
 
 /**
- * Send photo
+ * Send photo with text
  */
-const sendPhoto = (bot, mes, photo) => {
-    Buffer.isBuffer(photo)
-        ? bot.sendPhoto(mes.chat.id, photo).catch(ex => console.log(msg.send.photo(mes, ex)))
-        : sendText(bot, mes, photo);
+const sendTextPh = (bot, mes, phText) => {
+    convertToArray(phText).forEach(elem => {
+        Buffer.isBuffer(elem)
+            ? bot.sendPhoto(mes.chat.id, elem).catch(ex => console.log(msg.send.photo(mes, ex)))
+            : sendText(bot, mes, elem, true);
+    });
 
     track(mes);
 };
@@ -79,6 +81,6 @@ module.exports = {
     q,
     search,
     sendMdText,
-    sendPhoto,
+    sendTextPh,
     sendText
 };

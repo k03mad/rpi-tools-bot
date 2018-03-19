@@ -40,12 +40,19 @@ const co2 = async onlyNum => {
     message.push([
         'Charts:',
         'https://thingspeak.com/channels/452758',
-        'https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959'
+        'https://corlysis.com/grafana/dashboard/db/pi3-sensors (login)',
+        'https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959 (anonymous)'
     ].join('\n'));
 
-    return [message.join('\n\n'), await getChartImageCor()];
-};
+    let chart;
 
-co2().then(console.log);
+    try {
+        chart = await getChartImageCor();
+    } catch (ex) {
+        chart = msg.chart.picErr(ex);
+    }
+
+    return [message.join('\n\n'), chart];
+};
 
 module.exports = co2;
