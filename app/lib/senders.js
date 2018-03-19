@@ -48,11 +48,9 @@ const sendMdText = (bot, mes, text, disablePreview) => {
  * Send photo
  */
 const sendPhoto = (bot, mes, photo) => {
-    if (typeof photo === 'string') {
-        sendText(bot, mes, photo);
-    } else {
-        bot.sendPhoto(mes.chat.id, photo).catch(ex => console.log(msg.send.photo(mes, ex)));
-    }
+    photo.includes('.png')
+        ? bot.sendPhoto(mes.chat.id, photo).catch(ex => console.log(msg.send.photo(mes, ex)))
+        : sendText(bot, mes, photo);
 
     track(mes);
 };

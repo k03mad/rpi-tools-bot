@@ -1,5 +1,10 @@
-const {thingSpeakToken, corlysisToken, corlysisPubToken} = require('./env');
 const {get} = require('./utils');
+const {promisify} = require('util');
+const {thingSpeakToken, corlysisToken, corlysisPubToken} = require('./env');
+const fs = require('fs');
+const os = require('os');
+
+const writeFile = promisify(fs.writeFile);
 
 /**
  * Send ppm to thingspeak
@@ -57,7 +62,9 @@ const getChartImageCor = async () => {
         }
     });
 
-    return Buffer.from(body);
+    const file = `${os.tmpdir()}/chart.png`;
+    await writeFile(file, body);
+    return file;
 };
 
 module.exports = {
