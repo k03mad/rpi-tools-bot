@@ -1,6 +1,6 @@
 const exec = require('executive');
 const got = require('got');
-const {myChat, thingSpeakToken, corlysisToken} = require('./env');
+const {myChat} = require('./env');
 
 /**
  * Chat ids whitelist
@@ -69,33 +69,11 @@ const getMacVendor = async mac => {
     return body;
 };
 
-/**
- * Send ppm to thingspeak
- */
-const sendCo2ChartTS = ppm => {
-    return get(`https://api.thingspeak.com/update?api_key=${thingSpeakToken}&field1=${ppm}`);
-};
-
-/**
- * Send ppm to corlysis
- */
-const sendCo2ChartCor = ppm => {
-    const options = {
-        method: 'POST',
-        body: `pi3,sensor=co2 ppm=${ppm}`,
-        auth: `token:${corlysisToken}`
-    };
-
-    return get('https://corlysis.com:8086/write?db=pi', options);
-};
-
 module.exports = {
     convertToArray,
     get,
     getMacVendor,
     run,
-    sendCo2ChartCor,
-    sendCo2ChartTS,
     splitString,
     wl
 };

@@ -13,18 +13,18 @@ const co2 = async onlyNum => {
         return ppm;
     }
 
-    const CHART_LINK = [
+    const chartLink = [
         'Charts:',
         'https://thingspeak.com/channels/452758',
         'https://corlysis.com/grafana/dashboard/db/pi3-sensors'
     ].join('\n');
-    
+
     const ppmString = `CO₂: *${ppm} ppm*`;
 
     /**
      * Generate full message with explanation and chart link
      */
-    const fullMsg = explain => [ppmString, explain, CHART_LINK].join('\n\n');
+    const fullMsg = explain => [ppmString, explain, chartLink].join('\n\n');
 
     switch (true) {
         case ppm > 1400:
