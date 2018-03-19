@@ -39,9 +39,9 @@ const co2 = async onlyNum => {
 
     message.push([
         'Charts:',
-        'https://thingspeak.com/channels/452758',
-        'https://corlysis.com/grafana/dashboard/db/pi3-sensors (login)',
-        'https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959 (anonymous)'
+        '[ThingSpeak](https://thingspeak.com/channels/452758)',
+        '[Grafana](https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959)',
+        '[Grafana (admin)](https://corlysis.com/grafana/dashboard/db/pi3-sensors)'
     ].join('\n'));
 
     let chart;
