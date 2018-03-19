@@ -38,13 +38,8 @@ const co2 = async onlyNum => {
 
     const message = [
         `CO₂: *${ppm} ppm*`,
-
         getDetailedMsg(ppm),
-
-        `Charts: \
-        [ThingSpeak](https://thingspeak.com/channels/${thingSpeakChannel}) \
-        [Grafana](https://corlysis.com/grafana/?token=${corlysisPubToken}) \
-        [Grafana (admin)](https://corlysis.com/grafana/dashboard/db/pi3-sensors)`
+        `Charts: [ThingSpeak](https://thingspeak.com/channels/${thingSpeakChannel}) [Grafana](https://corlysis.com/grafana/?token=${corlysisPubToken}) [Grafana (admin)](https://corlysis.com/grafana/dashboard/db/pi3-sensors)`
     ].join('\n\n');
 
     let chart;
