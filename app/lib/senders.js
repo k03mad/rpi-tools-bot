@@ -51,7 +51,7 @@ const sendTextPh = (bot, mes, phText) => {
     convertToArray(phText).forEach(elem => {
         Buffer.isBuffer(elem)
             ? bot.sendPhoto(mes.chat.id, elem).catch(ex => console.log(msg.send.photo(mes, ex)))
-            : sendText(bot, mes, elem, true);
+            : sendMdText(bot, mes, elem, true);
     });
 
     track(mes);
