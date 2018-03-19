@@ -13,7 +13,12 @@ const co2 = async onlyNum => {
         return ppm;
     }
 
-    const CHART_LINK = 'Chart: https://thingspeak.com/channels/452758';
+    const CHART_LINK = [
+        'Charts:',
+        'https://thingspeak.com/channels/452758',
+        'https://corlysis.com/grafana/dashboard/db/pi3-sensors'
+    ].join('\n');
+    
     const ppmString = `CO₂: *${ppm} ppm*`;
 
     /**
