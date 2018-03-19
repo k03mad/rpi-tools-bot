@@ -30,9 +30,15 @@ const sendText = async (bot, mes, text) => {
 /**
  * Send text mes with markdown
  */
-const sendMdText = (bot, mes, text) => {
+const sendMdText = (bot, mes, text, disablePreview) => {
     convertToArray(text).forEach(elem => {
-        bot.sendMessage(mes.chat.id, elem, {parse_mode: 'Markdown'}).catch(ex => console.log(msg.send.mark(mes, ex)));
+        const opts = {parse_mode: 'Markdown'};
+
+        if (disablePreview) {
+            opts.disable_web_page_preview = true;
+        }
+
+        bot.sendMessage(mes.chat.id, elem, opts).catch(ex => console.log(msg.send.mark(mes, ex)));
     });
 
     track(mes);
