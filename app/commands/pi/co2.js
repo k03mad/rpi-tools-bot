@@ -1,3 +1,4 @@
+const {getChartImageCor} = require('../../lib/charts');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
 const path = require('path');
@@ -13,35 +14,38 @@ const co2 = async onlyNum => {
         return ppm;
     }
 
-    const chartLink = [
-        'Charts:',
-        'https://thingspeak.com/channels/452758',
-        'https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959'
-    ].join('\n');
-
-    const ppmString = `CO₂: *${ppm} ppm*`;
-
-    /**
-     * Generate full message with explanation and chart link
-     */
-    const fullMsg = explain => [ppmString, explain, chartLink].join('\n\n');
+    const message = [`CO₂: *${ppm} ppm*`];
 
     switch (true) {
         case ppm > 1400:
-            return fullMsg(msg.co2.high);
+            message.push(msg.co2.high);
+            break;
         case ppm > 1000:
-            return fullMsg(msg.co2.aboveMed);
+            message.push(msg.co2.aboveMed);
+            break;
         case ppm > 800:
-            return fullMsg(msg.co2.medium);
+            message.push(msg.co2.medium);
+            break;
         case ppm > 600:
-            return fullMsg(msg.co2.belowMed);
+            message.push(msg.co2.belowMed);
+            break;
         case ppm > 300:
-            return fullMsg(msg.co2.low);
+            message.push(msg.co2.low);
+            break;
 
         default:
-            return fullMsg(msg.co2.err);
+            message.push(msg.co2.err);
     }
 
+    message.push([
+        'Charts:',
+        'https://thingspeak.com/channels/452758',
+        'https://corlysis.com/grafana/?token=ac9af9d1-8f34-49ac-926f-3b8ba0bed959'
+    ].join('\n'));
+
+    return [message.join('\n\n'), await getChartImageCor()];
 };
+
+co2().then(console.log);
 
 module.exports = co2;
