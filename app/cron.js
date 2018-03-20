@@ -20,6 +20,6 @@ every('1m').do(async () => {
 });
 
 // remove old data from corlysis due to free plan
-every('10h').do(() => {
-    removeOldDataCor().catch(ex => msg.chart.corRem(ex));
-});
+// every('10h').do(() => {
+//    removeOldDataCor().catch(ex => msg.chart.corRem(ex));
+// });
