@@ -1,6 +1,6 @@
 const {every} = require('schedule');
 const {msg} = require('./lib/messages');
-const {removeOldDataCor, sendCo2ChartCor, sendCo2ChartTS} = require('./lib/charts');
+const {sendCo2ChartCor, sendCo2ChartTS} = require('./lib/charts');
 const co2 = require('./commands/pi/co2');
 
 // send data to charts

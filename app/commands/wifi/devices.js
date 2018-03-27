@@ -1,6 +1,6 @@
-const {JSDOM} = require('jsdom');
 const {get, getMacVendor} = require('../../lib/utils');
 const {wifiLogin, wifiPass, wifiIP} = require('../../lib/env');
+const cheerio = require('cheerio');
 
 /**
  * Get device list from router
@@ -10,10 +10,15 @@ const getDeviceList = async () => {
     const SELECTOR = '.menu_content_list_table tr';
 
     const {body} = await get(url, {auth: `${wifiLogin}:${wifiPass}`});
-    const {window: {document}} = new JSDOM(body);
-    const query = document.querySelectorAll(SELECTOR);
 
-    return Array.from(query).map(elem => elem.textContent);
+    const $ = cheerio.load(body);
+
+    const output = [];
+    const query = $(SELECTOR).each((i, elem) => output.push($(elem).text()));
+
+    query.each((i, elem) => output.push($(elem).text()));
+
+    return output;
 };
 
 /**
