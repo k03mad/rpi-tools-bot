@@ -3,6 +3,7 @@
 Get data from Raspberry Pi 3
 
 **/help** this list  
+**/user** current uesr info  
   
 **/apt_update** check for updates  
 **/apt_upgrade** install updates  

@@ -2,6 +2,7 @@
 
 const commands = [
     '/help - this list',
+    '/user - current uesr info',
     '',
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',

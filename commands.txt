@@ -1,4 +1,5 @@
 help - this list
+user - current uesr info
 apt_update - check for updates
 apt_upgrade - install updates
 pi_co2 - get current CO₂ sensor data
