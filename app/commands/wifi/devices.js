@@ -14,7 +14,7 @@ const getDeviceList = async () => {
     const $ = cheerio.load(body);
 
     const output = [];
-    const query = $(SELECTOR).each((i, elem) => output.push($(elem).text()));
+    const query = $(SELECTOR);
 
     query.each((i, elem) => output.push($(elem).text()));
 
