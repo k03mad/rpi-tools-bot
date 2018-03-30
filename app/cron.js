@@ -10,7 +10,10 @@ const moment = require('moment');
  */
 const cron = bot => {
 
-    let now = moment();
+    const DANGER_PPM = 1000;
+    const REPEAT_ALARM = 30;
+
+    let now = moment().subtract(REPEAT_ALARM, 'minutes');
 
     // check raspberry updates at startup
     (async () => {
@@ -35,8 +38,8 @@ const cron = bot => {
             sendCo2ChartTS(ppm).catch(ex => msg.chart.ts(ex));
             sendCo2ChartCor(ppm).catch(ex => msg.chart.cor(ex));
 
-            // send warning every 30 minutes until ppm drop
-            if (ppm > 1000 && moment().diff(now, 'minutes') > 30) {
+            // send warning every REPEAT_ALARM minutes until ppm drop
+            if (ppm > DANGER_PPM && moment().diff(now, 'minutes') > REPEAT_ALARM) {
                 bot.sendMessage(myChat, msg.co2.warning(ppm));
                 now = moment();
             }
