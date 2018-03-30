@@ -1,8 +1,8 @@
 help - this list
-user - current uesr info
+user - current user info
 apt_update - check for updates
 apt_upgrade - install updates
-pi_co2 - get current CO₂ sensor data
+pi_sensors - get current sensors data
 pi_reboot - reboot pi after 1 minute
 pi_shutdown - shutdown pi after 1 minute
 pi_stat - some usage stats
