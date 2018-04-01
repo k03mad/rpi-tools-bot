@@ -4,16 +4,17 @@ const {myChat} = require('./lib/env');
 const {sendCo2ChartCor, sendCo2ChartTS} = require('./lib/charts');
 const c = require('require-all')(`${__dirname}/cmd`);
 const moment = require('moment');
+const {KNOWN_DEVICES, MAC_RE} = require('./lib/utils');
 
 /**
  * Bot crons
  */
 const cron = bot => {
 
-    const DANGER_PPM = 1000;
-    const REPEAT_ALARM = 30;
+    const PPM_WARNING = 1000;
+    const PPM_REPEAT_ALARM = 30;
 
-    let now = moment().subtract(REPEAT_ALARM, 'minutes');
+    let now = moment().subtract(PPM_REPEAT_ALARM, 'minutes');
 
     // check raspberry updates at startup
     (async () => {
@@ -39,11 +40,26 @@ const cron = bot => {
             sendCo2ChartCor(ppm).catch(ex => msg.chart.cor(ex));
 
             // send warning every REPEAT_ALARM minutes until ppm drop
-            if (ppm > DANGER_PPM && moment().diff(now, 'minutes') > REPEAT_ALARM) {
+            if (ppm > PPM_WARNING && moment().diff(now, 'minutes') > PPM_REPEAT_ALARM) {
                 bot.sendMessage(myChat, msg.co2.warning(ppm));
                 now = moment();
             }
         }
+    });
+
+    // check for unknown device connected to router
+    every('5m').do(async () => {
+        const devices = (await c.wifi.devices()).split('\n\n');
+        const known = Object.values(KNOWN_DEVICES).join();
+
+        const unknown = [];
+        devices.forEach(elem => {
+            if (!known.includes(elem.match(MAC_RE)[0])) {
+                unknown.push(elem);
+            }
+        });
+
+        bot.sendMessage(myChat, msg.common.unknownDev(unknown.join('\n\n')));
     });
 
     // // remove old data from corlysis due to free plan

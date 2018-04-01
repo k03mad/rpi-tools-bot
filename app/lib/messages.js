@@ -35,8 +35,9 @@ const msg = {
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
-        reboot:     'Proceed to reboot',
-        updates:    'No updates available'
+        reboot:                        'Proceed to reboot',
+        updates:                       'No updates available',
+        unknownDev: dev             => `Unknown device connected to router:\n\n${dev}`
     },
     readme: {
         badges: [
