@@ -14,7 +14,7 @@ const cron = bot => {
     const PPM_WARNING = 1000;
     const PPM_REPEAT_ALARM = 30;
 
-    let now = moment().subtract(PPM_REPEAT_ALARM, 'minutes');
+    let ppmTimer = moment().subtract(PPM_REPEAT_ALARM, 'minutes');
 
     // check raspberry updates at startup
     (async () => {
@@ -40,9 +40,9 @@ const cron = bot => {
             sendCo2ChartCor(ppm).catch(ex => msg.chart.cor(ex));
 
             // send warning every REPEAT_ALARM minutes until ppm drop
-            if (ppm > PPM_WARNING && moment().diff(now, 'minutes') > PPM_REPEAT_ALARM) {
+            if (ppm > PPM_WARNING && moment().diff(ppmTimer, 'minutes') > PPM_REPEAT_ALARM) {
                 bot.sendMessage(myChat, msg.co2.warning(ppm));
-                now = moment();
+                ppmTimer = moment();
             }
         }
     });
@@ -59,7 +59,9 @@ const cron = bot => {
             }
         });
 
-        bot.sendMessage(myChat, msg.common.unknownDev(unknown.join('\n\n')));
+        if (unknown.length > 0) {
+            bot.sendMessage(myChat, msg.common.unknownDev(unknown.join('\n\n')));
+        }
     });
 
     // // remove old data from corlysis due to free plan
