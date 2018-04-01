@@ -70,7 +70,7 @@ const getMacVendor = async mac => {
 };
 
 /**
- * Known WiFi-connected devices list
+ * Known router connected devices list
  */
 const KNOWN_DEVICES = {
     S6: 'E8-50-8B-39-55-1D',
