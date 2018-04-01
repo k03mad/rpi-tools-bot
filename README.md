@@ -3,6 +3,7 @@
 Get data from Raspberry Pi 3
 
 **/help** this list  
+**/log** forever log  
 **/user** current user info  
   
 **/apt_update** check for updates  

@@ -10,12 +10,13 @@
     "node": ">=8"
   },
   "dependencies": {
+    "app-root-path": "2.0.1",
     "cheerio": "1.0.0-rc.2",
     "colors": "1.2.1",
     "executive": "1.5.13",
     "forever": "0.15.3",
     "got": "8.3.0",
-    "moment": "2.21.0",
+    "moment": "2.22.0",
     "node-botmetrics": "1.0.0",
     "node-telegram-bot-api": "0.30.0",
     "require-all": "2.2.0",
@@ -33,10 +34,11 @@
   "scripts": {
     "bot": "npm run stop && npm run start",
     "clean": "rm -rf ./node_modules || true",
+    "cleanlog": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --cache --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "readme": "node app/lib/readme && git add README.md",
     "setup": "npm i && prune",
-    "start": "NODE_ENV=production forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
+    "start": "npm run cleanlog && NODE_ENV=production forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [
