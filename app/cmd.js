@@ -10,7 +10,7 @@ const cmd = bot => {
 
     bot.onText( q('help'),               mes => {if (wl(mes))  sendText   (bot, mes,        c.help('bot')                );});
     bot.onText( q('user'),               mes =>                sendText   (bot, mes,        JSON.stringify(mes, null, 4)   ));
-    bot.onText( q('log'),                mes => {if (wl(mes))  sendText   (bot, mes,        c.log()                      );});
+    bot.onText( q('log'),          async mes => {if (wl(mes))  sendText   (bot, mes,  await c.log()                      );});
 
     bot.onText( q('apt_update'),   async mes => {if (wl(mes))  sendText   (bot, mes,  await c.apt.update()               );});
     bot.onText( q('apt_upgrade'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.apt.upgrade()              );});
