@@ -37,7 +37,7 @@ const msg = {
     common: {
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available',
-        unknownDev: dev             => `Unknown device connected to router:\n\n${dev}`
+        unknownDev: dev             => `Unknown device connected to the router:\n\n${dev}`
     },
     readme: {
         badges: [
