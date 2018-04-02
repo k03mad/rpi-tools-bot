@@ -73,6 +73,7 @@ const getMacVendor = async mac => {
  * Known router connected devices list
  */
 const KNOWN_DEVICES = {
+    iPhoneTan: '0C-30-21-D9-AE-43',
     MacH: '78-31-C1-CA-63-9E',
     MacW: '8C-85-90-17-69-E7',
     N5x: 'A8-B8-6E-48-32-D7',
