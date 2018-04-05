@@ -7,15 +7,15 @@ const botmetrics = require('node-botmetrics')(metricsToken);
 const track = msg => {
     let {text} = msg;
 
-    if (text && text.includes(' ')) {
-        text = text.substr(0, text.indexOf(' '));
-    }
-
-    if (text && text.includes('@')) {
-        text = text.substr(0, text.indexOf('@'));
-    }
-
     if (text) {
+        if (text.includes(' ')) {
+            text = text.substr(0, text.indexOf(' '));
+        }
+
+        if (text.includes('@')) {
+            text = text.substr(0, text.indexOf('@'));
+        }
+
         botmetrics.track({
             message_type: 'incoming',
             metadata: msg,
