@@ -53,7 +53,7 @@ const cron = bot => {
         let devices;
 
         try {
-            devices = (await c.wifi.devices()).split('\n\n');
+            [devices] = (await c.wifi.devices()).split('\n\n');
             console.log('​-----------------');
             console.log('​devices', devices);
             console.log('​-----------------');
