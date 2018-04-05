@@ -61,7 +61,8 @@ const cron = bot => {
             }
 
             for (const mac in knownDevices) {
-                if (knownDevices[mac] === elem.match(MAC_RE)[0]) {
+                // if device is not offline and from known list
+                if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
                     data.push(`${mac}=${index + 1}`);
                 }
             }
