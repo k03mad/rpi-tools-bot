@@ -49,33 +49,42 @@ const cron = bot => {
 
     // check devices connected to the router
     every('5m').do(async () => {
-        const devices = (await c.wifi.devices()).split('\n\n');
-        const known = Object.values(knownDevices).join();
+        let devices;
 
-        const data = [];
-        const unknown = [];
-
-        devices.forEach((elem, index) => {
-            if (!known.includes(elem.match(MAC_RE)[0])) {
-                unknown.push(elem);
-            }
-
-            for (const mac in knownDevices) {
-                // if device is not offline and from known list
-                if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
-                    data.push(`${mac}=${index + 1}`);
-                }
-            }
-        });
-
-        // send unknown device warning
-        if (unknown.length > 0) {
-            sendText(bot, {chat: {id: myChat}}, msg.common.unknownDev(unknown.join('\n\n')));
+        try {
+            devices = (await c.wifi.devices()).split('\n\n');
+        } catch (ex) {
+            console.log(msg.common.devErr(ex));
         }
 
-        // send online devices
-        if (data.length > 0) {
-            sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
+        if (devices) {
+            const known = Object.values(knownDevices).join();
+
+            const data = [];
+            const unknown = [];
+
+            devices.forEach((elem, index) => {
+                if (!known.includes(elem.match(MAC_RE)[0])) {
+                    unknown.push(elem);
+                }
+
+                for (const mac in knownDevices) {
+                    // if device is not offline and from known list
+                    if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
+                        data.push(`${mac}=${index + 1}`);
+                    }
+                }
+            });
+
+            // send unknown device warning
+            if (unknown.length > 0) {
+                sendText(bot, {chat: {id: myChat}}, msg.common.unknownDev(unknown.join('\n\n')));
+            }
+
+            // send online devices
+            if (data.length > 0) {
+                sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
+            }
         }
     });
 

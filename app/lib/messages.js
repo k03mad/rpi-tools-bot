@@ -35,6 +35,7 @@ const msg = {
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
+        devErr:     dev             => `I can't get devices connected to the router:\n\n${dev}`,
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available',
         unknownDev: dev             => `Unknown device connected to the router:\n\n${dev}`
