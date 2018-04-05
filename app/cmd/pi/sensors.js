@@ -1,7 +1,6 @@
 const {getChartImageCor} = require('../../lib/charts');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
-const {thingSpeakChannel, corlysisPubToken} = require('../../lib/env');
 const path = require('path');
 
 /**
@@ -40,12 +39,7 @@ const sensors = async onlyNum => {
 
     const message = [
         `CO₂: *${ppm} ppm* (${getDetailedMsg(ppm, 'co2')})`,
-        [
-            'Charts:',
-            `[ThingSpeak](https://thingspeak.com/channels/${thingSpeakChannel})`,
-            `[Grafana](https://corlysis.com/grafana/?token=${corlysisPubToken})`,
-            '[Grafana (admin)](https://corlysis.com/grafana/dashboard/db/pi3-sensors)'
-        ].join('\n')
+        '[Grafana](https://corlysis.com/grafana/dashboard/db/pi3-sensors)'
     ].join('\n\n');
 
     let chart;
