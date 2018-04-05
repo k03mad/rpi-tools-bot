@@ -1,10 +1,11 @@
 const {every} = require('schedule');
+const {MAC_RE} = require('./lib/utils');
 const {msg} = require('./lib/messages');
-const {myChat} = require('./lib/env');
-const {sendCo2ChartCor, sendCo2ChartTS} = require('./lib/charts');
+const {knownDevices, myChat} = require('./lib/env');
+const {sendText} = require('./lib/senders');
+const {sendToCorlysis} = require('./lib/charts');
 const c = require('require-all')(`${__dirname}/cmd`);
 const moment = require('moment');
-const {KNOWN_DEVICES, MAC_RE} = require('./lib/utils');
 
 /**
  * Bot crons
@@ -21,7 +22,7 @@ const cron = bot => {
         const updates = await c.apt.update();
 
         if (updates !== msg.common.updates) {
-            bot.sendMessage(myChat, updates);
+            sendText(bot, {chat: {id: myChat}}, updates);
         }
     })();
 
@@ -36,38 +37,46 @@ const cron = bot => {
         }
 
         if (ppm) {
-            sendCo2ChartTS(ppm).catch(ex => msg.chart.ts(ex));
-            sendCo2ChartCor(ppm).catch(ex => msg.chart.cor(ex));
+            sendToCorlysis('sensor=co2', `ppm=${ppm}`).catch(ex => msg.chart.cor(ex));
 
             // send warning every REPEAT_ALARM minutes until ppm drop
             if (ppm > PPM_WARNING && moment().diff(ppmTimer, 'minutes') > PPM_REPEAT_ALARM) {
-                bot.sendMessage(myChat, msg.co2.warning(ppm));
+                sendText(bot, {chat: {id: myChat}}, msg.co2.warning(ppm));
                 ppmTimer = moment();
             }
         }
     });
 
-    // check for unknown device connected to router
+    // check devices connected to the router
     every('5m').do(async () => {
         const devices = (await c.wifi.devices()).split('\n\n');
-        const known = Object.values(KNOWN_DEVICES).join();
+        const known = Object.values(knownDevices).join();
 
+        const data = [];
         const unknown = [];
-        devices.forEach(elem => {
+
+        devices.forEach((elem, index) => {
             if (!known.includes(elem.match(MAC_RE)[0])) {
                 unknown.push(elem);
             }
+
+            for (const mac in knownDevices) {
+                if (knownDevices[mac] === elem.match(MAC_RE)[0]) {
+                    data.push(`${mac}=${index + 1}`);
+                }
+            }
         });
 
+        // send unknown device warning
         if (unknown.length > 0) {
-            bot.sendMessage(myChat, msg.common.unknownDev(unknown.join('\n\n')));
+            sendText(bot, {chat: {id: myChat}}, msg.common.unknownDev(unknown.join('\n\n')));
+        }
+
+        // send online devices
+        if (data.length > 0) {
+            sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
         }
     });
-
-    // // remove old data from corlysis due to free plan
-    // every('10h').do(() => {
-    //     removeOldDataCor().catch(ex => msg.chart.corRem(ex));
-    // });
 
 };
 

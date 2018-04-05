@@ -70,19 +70,6 @@ const getMacVendor = async mac => {
 };
 
 /**
- * Known router connected devices list
- */
-const KNOWN_DEVICES = {
-    iPhoneTan: '0C-30-21-D9-AE-43',
-    MacH: '78-31-C1-CA-63-9E',
-    MacW: '8C-85-90-17-69-E7',
-    N5x: 'A8-B8-6E-48-32-D7',
-    Pi3: 'B8-27-EB-22-57-46',
-    S6: 'E8-50-8B-39-55-1D',
-    TV: '1C-5A-6B-EA-C1-BB'
-};
-
-/**
  * MAC address RegExp
  */
 const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
@@ -91,7 +78,6 @@ module.exports = {
     convertToArray,
     get,
     getMacVendor,
-    KNOWN_DEVICES,
     MAC_RE,
     run,
     splitString,
