@@ -1,40 +1,15 @@
 const {get} = require('./utils');
-const {thingSpeakToken, corlysisToken, corlysisPubToken} = require('./env');
+const {corlysisToken, corlysisPubToken} = require('./env');
 
 /**
- * Send ppm to thingspeak
+ * Send data to corlysis
  */
-const sendCo2ChartTS = ppm => {
-    return get('https://api.thingspeak.com/update', {
-        query: {
-            api_key: thingSpeakToken,
-            field1: ppm
-        }
-    });
-};
-
-/**
- * Send ppm to corlysis
- */
-const sendCo2ChartCor = ppm => {
+const sendToCorlysis = (field, data) => {
     return get('https://corlysis.com:8086/write', {
         query: {
             db: 'pi'
         },
-        body: `pi3,sensor=co2 ppm=${ppm}`,
-        auth: `token:${corlysisToken}`
-    });
-};
-
-/**
- * Remove old data from corlysis due to free plan
- */
-const removeOldDataCor = () => {
-    return get('https://corlysis.com:8086/query', {
-        query: {
-            db: 'pi',
-            q: 'delete from "pi3" where time < now()-13d'
-        },
+        body: `pi3,${field} ${data}`,
         auth: `token:${corlysisToken}`
     });
 };
@@ -42,7 +17,7 @@ const removeOldDataCor = () => {
 /**
  * Get chart image from corlysis
  */
-const getChartImageCor = async () => {
+const getCO2ChartImage = async () => {
     const {body} = await get('https://corlysis.com/grafana/render/dashboard-solo/db/pi3-sensors', {
         encoding: null,
         query: {
@@ -62,8 +37,6 @@ const getChartImageCor = async () => {
 };
 
 module.exports = {
-    getChartImageCor,
-    removeOldDataCor,
-    sendCo2ChartCor,
-    sendCo2ChartTS
+    getCO2ChartImage,
+    sendToCorlysis
 };
