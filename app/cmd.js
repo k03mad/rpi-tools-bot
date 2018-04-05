@@ -20,7 +20,7 @@ const cmd = bot => {
     bot.onText( q('pi_shutdown'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.pi.shutdown()              );});
     bot.onText( q('pi_stat'),      async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.pi.stat()                  );});
 
-    bot.onText( q('wifi_devices'), async mes => {if (wl(mes))  sendText   (bot, mes,  await c.wifi.devices()             );});
+    bot.onText( q('wifi_devices'), async mes => {if (wl(mes))  sendTextPh (bot, mes,  await c.wifi.devices()             );});
     bot.onText( q('wifi_reboot'),  async mes => {if (wl(mes))  sendText   (bot, mes,  await c.wifi.reboot()              );});
     bot.onText( q('wifi_spots'),   async mes => {if (wl(mes))  sendMdText (bot, mes,  await c.wifi.spots()               );});
 

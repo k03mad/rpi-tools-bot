@@ -1,4 +1,4 @@
-const {getCO2ChartImage} = require('../../lib/charts');
+const {getCorlysisChartImage} = require('../../lib/charts');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
 const path = require('path');
@@ -45,7 +45,7 @@ const sensors = async onlyNum => {
     let chart;
 
     try {
-        chart = await getCO2ChartImage();
+        chart = await getCorlysisChartImage(1);
     } catch (ex) {
         chart = msg.chart.picErr(ex);
     }
