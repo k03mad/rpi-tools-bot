@@ -48,7 +48,8 @@ const cron = bot => {
     });
 
     // check devices connected to the router
-    every('5m').do(async () => {
+    // every('5m').do(async () => {
+    (async () => {
         let devices;
 
         try {
@@ -86,7 +87,7 @@ const cron = bot => {
                 sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
             }
         }
-    });
+    })();
 
 };
 
