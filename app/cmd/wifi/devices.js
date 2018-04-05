@@ -1,4 +1,6 @@
 const {get, getMacVendor} = require('../../lib/utils');
+const {getCorlysisChartImage} = require('../../lib/charts');
+const {msg} = require('../../lib/messages');
 const {wifiLogin, wifiPass, wifiIP} = require('../../lib/env');
 const cheerio = require('cheerio');
 
@@ -61,7 +63,15 @@ const prettyDeviceList = async () => {
         } catch (ex) {}
     }));
 
-    return output.map(elem => elem.join('\n')).join('\n\n');
+    let chart;
+
+    try {
+        chart = await getCorlysisChartImage(2);
+    } catch (ex) {
+        chart = msg.chart.picErr(ex);
+    }
+
+    return [output.map(elem => elem.join('\n')).join('\n\n'), chart];
 };
 
 module.exports = prettyDeviceList;
