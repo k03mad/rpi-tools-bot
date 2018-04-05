@@ -48,15 +48,11 @@ const cron = bot => {
     });
 
     // check devices connected to the router
-    // every('5m').do(async () => {
-    (async () => {
+    every('5m').do(async () => {
         let devices;
 
         try {
             devices = (await c.wifi.devices())[0].split('\n\n');
-            console.log('​-----------------');
-            console.log('​devices', devices);
-            console.log('​-----------------');
         } catch (ex) {
             console.log(msg.common.devErr(ex));
         }
@@ -75,7 +71,6 @@ const cron = bot => {
                 for (const mac in knownDevices) {
                     // if device is not offline and from known list
                     if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
-                        console.log(`${mac}=${index + 1}`);
                         data.push(`${mac}=${index + 1}`);
                     }
                 }
@@ -89,10 +84,9 @@ const cron = bot => {
             // send online devices
             if (data.length > 0) {
                 sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
-                console.log('sended');
             }
         }
-    })();
+    });
 
 };
 
