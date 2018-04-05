@@ -17,7 +17,7 @@ const sendToCorlysis = (field, data) => {
 /**
  * Get chart image from corlysis
  */
-const getChartImageCor = async () => {
+const getCO2ChartImage = async () => {
     const {body} = await get('https://corlysis.com/grafana/render/dashboard-solo/db/pi3-sensors', {
         encoding: null,
         query: {
@@ -37,6 +37,6 @@ const getChartImageCor = async () => {
 };
 
 module.exports = {
-    getChartImageCor,
+    getCO2ChartImage,
     sendToCorlysis
 };
