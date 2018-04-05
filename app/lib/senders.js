@@ -45,16 +45,25 @@ const sendMdText = (bot, mes, text, disablePreview) => {
 };
 
 /**
+ * Send photo mes
+ */
+const sendPhoto = (bot, mes, photo) => {
+    convertToArray(photo).forEach(elem => {
+        bot.sendPhoto(mes.chat.id, elem).catch(ex => console.log(msg.send.photo(mes, ex)));
+    });
+
+    track(mes);
+};
+
+/**
  * Send photo with text
  */
 const sendTextPh = (bot, mes, phText) => {
     convertToArray(phText).forEach(elem => {
         Buffer.isBuffer(elem)
-            ? bot.sendPhoto(mes.chat.id, elem).catch(ex => console.log(msg.send.photo(mes, ex)))
+            ? sendPhoto(bot, mes, elem)
             : sendMdText(bot, mes, elem, true);
     });
-
-    track(mes);
 };
 
 /**

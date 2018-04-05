@@ -7,21 +7,23 @@ const botmetrics = require('node-botmetrics')(metricsToken);
 const track = msg => {
     let {text} = msg;
 
-    if (text.includes(' ')) {
+    if (text && text.includes(' ')) {
         text = text.substr(0, text.indexOf(' '));
     }
 
-    if (text.includes('@')) {
+    if (text && text.includes('@')) {
         text = text.substr(0, text.indexOf('@'));
     }
 
-    botmetrics.track({
-        message_type: 'incoming',
-        metadata: msg,
-        platform: 'telegram',
-        text,
-        user_id: msg.from.username || `${msg.from.first_name} ${msg.from.last_name}`
-    });
+    if (text) {
+        botmetrics.track({
+            message_type: 'incoming',
+            metadata: msg,
+            platform: 'telegram',
+            text,
+            user_id: msg.from.username || `${msg.from.first_name} ${msg.from.last_name}`
+        });
+    }
 };
 
 module.exports = track;

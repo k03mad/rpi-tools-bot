@@ -38,9 +38,8 @@ const sensors = async onlyNum => {
     }
 
     const message = [
-        `CO₂: *${ppm} ppm* (${getDetailedMsg(ppm, 'co2')})`,
-        '[Grafana](https://corlysis.com/grafana/dashboard/db/pi3)'
-    ].join('\n\n');
+        `CO₂: *${ppm} ppm* (${getDetailedMsg(ppm, 'co2')})`
+    ].join('\n');
 
     let chart;
 
