@@ -17,16 +17,7 @@ const cron = bot => {
 
     let ppmTimer = moment().subtract(PPM_REPEAT_ALARM, 'minutes');
 
-    // check raspberry updates at startup
-    (async () => {
-        const updates = await c.apt.update();
-
-        if (updates !== msg.common.updates) {
-            sendText(bot, {chat: {id: myChat}}, updates);
-        }
-    })();
-
-    // send data to charts
+    // send sensor data to charts
     every('1m').do(async () => {
         let ppm;
 
@@ -54,7 +45,7 @@ const cron = bot => {
         try {
             devices = (await c.wifi.devices())[0].split('\n\n');
         } catch (ex) {
-            console.log(msg.common.devErr(ex));
+            console.log(msg.cron.devErr(ex));
         }
 
         if (devices) {
@@ -78,13 +69,28 @@ const cron = bot => {
 
             // send unknown device warning
             if (unknown.length > 0) {
-                sendText(bot, {chat: {id: myChat}}, msg.common.unknownDev(unknown.join('\n\n')));
+                sendText(bot, {chat: {id: myChat}}, msg.cron.unknownDev(unknown.join('\n\n')));
             }
 
             // send online devices
             if (data.length > 0) {
                 sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
             }
+        }
+    });
+
+    // check raspberry updates
+    every('6h').do(async () => {
+        let updates;
+
+        try {
+            updates = await c.apt.update();
+        } catch (ex) {
+            console.log(msg.cron.updErr(ex));
+        }
+
+        if (updates && updates !== msg.common.updates) {
+            sendText(bot, {chat: {id: myChat}}, updates);
         }
     });
 

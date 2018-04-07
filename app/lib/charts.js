@@ -24,7 +24,7 @@ const getCorlysisChartImage = async panelId => {
             panelId,
             refresh: '30s',
             orgId: '821',
-            width: '1000',
+            width: '1300',
             height: '400',
             tz: 'UTC+03:00'
         },

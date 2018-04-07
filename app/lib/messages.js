@@ -31,14 +31,17 @@ const msg = {
     chart: {
         cor:        ex              => `I can't send data to corlysis chart\n${ex}`,
         corRem:     ex              => `I can't remove old data from corlysis\n${ex}`,
-        err:        ex              => `I can't get CO₂ from sensor\n${ex}`,
+        err:        ex              => `I can't get data from sensor\n${ex}`,
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
-        devErr:     dev             => `I can't get devices connected to the router:\n\n${dev}`,
         reboot:                        'Proceed to reboot',
-        updates:                       'No updates available',
-        unknownDev: dev             => `Unknown device connected to the router:\n\n${dev}`
+        updates:                       'No updates available'
+    },
+    cron: {
+        devErr:     ex              => `I can't get devices connected to the router:\n\n${ex}`,
+        updErr:     ex              => `I can't get pi updates:\n\n${ex}`,
+        unknownDev: ex              => `Unknown device connected to the router:\n\n${ex}`
     },
     readme: {
         badges: [
