@@ -1,23 +1,30 @@
-const {get, getMacVendor} = require('../../lib/utils');
+const {get, getMacVendor, router, MAC_RE} = require('../../lib/utils');
 const {getCorlysisChartImage} = require('../../lib/charts');
 const {msg} = require('../../lib/messages');
-const {wifiLogin, wifiPass, wifiIP} = require('../../lib/env');
 const cheerio = require('cheerio');
 
 /**
  * Get device list from router
  */
-const getDeviceList = async () => {
-    const url = `http://${wifiIP}/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo`;
+const getDeviceList = async opts => {
+    const host = `http://${router(opts).ip}`;
+    const ports = [':2828', ':80'];
+    const PATH = '/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo';
+
     const SELECTOR = '.menu_content_list_table tr';
 
-    const {body} = await get(url, {auth: `${wifiLogin}:${wifiPass}`});
+    let body;
+
+    try {
+        ({body} = await get(host + ports[0] + PATH, {auth: router(opts).cred}));
+    } catch (ex) {
+        ({body} = await get(host + ports[1] + PATH, {auth: router(opts).cred}));
+    }
 
     const $ = cheerio.load(body);
-
-    const output = [];
     const query = $(SELECTOR);
 
+    const output = [];
     query.each((i, elem) => output.push($(elem).text()));
 
     return output;
@@ -26,12 +33,11 @@ const getDeviceList = async () => {
 /**
  * Pretty device list and add mac vendor
  */
-const prettyDeviceList = async () => {
-    const MAC_RE = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
+const prettyDeviceList = async (opts = {}) => {
     let list;
 
     try {
-        list = await getDeviceList();
+        list = await getDeviceList(opts);
     } catch (ex) {
         return ex.toString();
     }
@@ -57,21 +63,32 @@ const prettyDeviceList = async () => {
         const [, mac] = elem;
 
         try {
-            if (MAC_RE.test(mac)) {
+            if (new RegExp(`^${MAC_RE.source}$`).test(mac)) {
                 elem[1] = `${mac}\n${await getMacVendor(mac)}`;
             }
         } catch (ex) {}
     }));
 
-    let chart;
+    const answer = [output.length > 0 ? output.map(elem => elem.join('\n')).join('\n\n') : msg.common.noDev];
 
-    try {
-        chart = await getCorlysisChartImage(2);
-    } catch (ex) {
-        chart = msg.chart.picErr(ex);
+    if (!opts.noChart) {
+        let chart;
+
+        try {
+            chart = await getCorlysisChartImage(2);
+        } catch (ex) {
+            chart = msg.chart.picErr(ex);
+        }
+
+        answer.push(chart);
     }
 
-    return [output.map(elem => elem.join('\n')).join('\n\n'), chart];
+    return answer;
 };
+
+// prettyDeviceList().then(console.log);
+// prettyDeviceList({place: 'knpl'}).then(console.log);
+// prettyDeviceList({noChart: true}).then(console.log);
+// prettyDeviceList({place: 'knpl', noChart: true}).then(console.log);
 
 module.exports = prettyDeviceList;

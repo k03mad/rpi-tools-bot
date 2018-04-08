@@ -40,41 +40,52 @@ const cron = bot => {
 
     // check devices connected to the router
     every('5m').do(async () => {
-        let devices;
 
-        try {
-            devices = (await c.wifi.devices())[0].split('\n\n');
-        } catch (ex) {
-            console.log(msg.cron.devErr(ex));
+        const places = {};
+
+        for (const opts of [{noChart: true}, {noChart: true, place: 'knpl'}]) {
+            try {
+                const key = opts.place || 'home';
+                const prop = (await c.wifi.devices(opts))[0].split('\n\n');
+                places[key] = prop;
+            } catch (ex) {
+                console.log(msg.cron.devErr(ex));
+            }
         }
 
-        if (devices) {
-            const known = Object.values(knownDevices).join();
+        if (Object.keys(places).length > 0) {
+            for (const place in places) {
 
-            const data = [];
-            const unknown = [];
+                const known = Object.values(knownDevices).join();
 
-            devices.forEach((elem, index) => {
-                if (!known.includes(elem.match(MAC_RE)[0])) {
-                    unknown.push(elem);
-                }
+                const data = [];
+                const unknown = [];
 
-                for (const mac in knownDevices) {
-                    // if device is not offline and from known list
-                    if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
-                        data.push(`${mac}=${index + 1}`);
+                places[place].forEach((elem, index) => {
+                    if (elem !== msg.common.noDev) {
+                        if (!known.includes(elem.match(MAC_RE)[0])) {
+                            unknown.push(elem);
+                        }
+
+                        for (const mac in knownDevices) {
+                            // if device is not offline and from known list
+                            if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
+                                data.push(`${mac}=${index + 1}`);
+                            }
+                        }
                     }
+                });
+
+                // send unknown device warning
+                if (unknown.length > 0) {
+                    sendText(bot, {chat: {id: myChat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
                 }
-            });
 
-            // send unknown device warning
-            if (unknown.length > 0) {
-                sendText(bot, {chat: {id: myChat}}, msg.cron.unknownDev(unknown.join('\n\n')));
-            }
+                // send online devices
+                if (data.length > 0) {
+                    sendToCorlysis(`wifi=devices${place}`, data.join()).catch(ex => msg.chart.cor(ex));
+                }
 
-            // send online devices
-            if (data.length > 0) {
-                sendToCorlysis('wifi=devices', data.join()).catch(ex => msg.chart.cor(ex));
             }
         }
     });

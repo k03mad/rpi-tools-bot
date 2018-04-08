@@ -13,9 +13,11 @@ const commands = [
     '/pi_shutdown - shutdown pi after 1 minute',
     '/pi_stat - some usage stats',
     '',
-    '/wifi_devices - wifi connected devices list',
-    '/wifi_reboot - wifi spot reboot',
-    '/wifi_spots - wifi spots list'
+    '/wifi_home_devices - wifi connected devices list',
+    '/wifi_home_reboot - wifi spot reboot',
+    '/wifi_knpl_devices - wifi connected devices list',
+    '/wifi_knpl_reboot - wifi spot reboot',
+    '/wifi_spots - scan wifi spots'
 ];
 
 const msg = {
@@ -35,13 +37,14 @@ const msg = {
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
+        noDev:                         'No devices available',
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available'
     },
     cron: {
         devErr:     ex              => `I can't get devices connected to the router:\n\n${ex}`,
         updErr:     ex              => `I can't get pi updates:\n\n${ex}`,
-        unknownDev: ex              => `Unknown device connected to the router:\n\n${ex}`
+        unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`
     },
     readme: {
         badges: [

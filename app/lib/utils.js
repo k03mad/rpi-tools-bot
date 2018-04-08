@@ -1,6 +1,7 @@
 const exec = require('executive');
 const got = require('got');
 const {myChat} = require('./env');
+const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
 
 /**
  * Chat ids whitelist
@@ -74,11 +75,27 @@ const getMacVendor = async mac => {
  */
 const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
 
+/**
+ * Return router credentials
+ */
+const router = opts => {
+    return opts.place
+        ? {
+            ip: wifiKnplIP,
+            cred: wifiKnplCred
+        }
+        : {
+            ip: wifiIP,
+            cred: wifiCred
+        };
+};
+
 module.exports = {
     convertToArray,
     get,
     getMacVendor,
     MAC_RE,
+    router,
     run,
     splitString,
     wl
