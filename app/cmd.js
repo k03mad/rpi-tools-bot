@@ -6,7 +6,7 @@ const c = require('require-all')(`${__dirname}/cmd`);
  * Bot commands
  */
 const cmd = bot => {
-    /* eslint-disable no-multi-spaces, func-call-spacing, space-in-parens, brace-style, max-statements-per-line, curly */
+    /* eslint-disable no-multi-spaces, space-in-parens, brace-style, max-statements-per-line, curly */
 
     bot.onText(q('help'),                    mes => {if (wl(mes)) answer(bot, mes,       c.help('bot')                                            );});
     bot.onText(q('user'),                    mes =>               answer(bot, mes,       JSON.stringify(mes, null, 4)                               ));
