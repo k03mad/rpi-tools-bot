@@ -8,7 +8,7 @@ const bot = new TelegramBot(telegramToken, {polling: {
     params: {allowed_updates: ['message']}
 }});
 
-bot.on('polling_error', ex => console.log(ex));
+bot.on('polling_error', ex => console.log(ex.message));
 
 cmd(bot);
 cron(bot);

@@ -1,3 +1,6 @@
+// remove "Automatic enabling of cancellation of promises is deprecated" message
+process.env.NTBA_FIX_319 = true;
+
 module.exports = {
     corlysisPubToken: process.env.CORLYSIS_PUB_TOKEN,
     corlysisToken: process.env.CORLYSIS_TOKEN,
