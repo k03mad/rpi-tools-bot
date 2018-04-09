@@ -26,6 +26,4 @@ const reboot = async (opts = {}) => {
     return msg.common.reboot;
 };
 
-// reboot({place: 'knpl'}).then(console.log);
-
 module.exports = reboot;

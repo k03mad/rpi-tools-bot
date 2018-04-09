@@ -75,7 +75,7 @@ const prettyDeviceList = async (opts = {}) => {
         let chart;
 
         try {
-            chart = await getCorlysisChartImage(2);
+            chart = await getCorlysisChartImage(opts.place === 'knpl' ? 3 : 2);
         } catch (ex) {
             chart = msg.chart.picErr(ex);
         }
@@ -85,10 +85,5 @@ const prettyDeviceList = async (opts = {}) => {
 
     return answer;
 };
-
-// prettyDeviceList().then(console.log);
-// prettyDeviceList({place: 'knpl'}).then(console.log);
-// prettyDeviceList({noChart: true}).then(console.log);
-// prettyDeviceList({place: 'knpl', noChart: true}).then(console.log);
 
 module.exports = prettyDeviceList;
