@@ -5,65 +5,33 @@ const {msg} = require('./messages');
 const MAX_MSG_LENGTH = 4096;
 
 /**
- * Send text mes
+ * Send photo with text
  */
-const sendText = async (bot, mes, text) => {
+const answer = async (bot, mes, sends, opts) => {
+    for (const send of convertToArray(sends)) {
 
-    for (const elem of convertToArray(text)) {
-        // max text length limit
-        if (elem.length > MAX_MSG_LENGTH) {
-            // split by lines
-            const longStringArr = splitString(elem, MAX_MSG_LENGTH);
+        if (Buffer.isBuffer(send)) {
+            bot.sendPhoto(mes.chat.id, send, opts).catch(ex => console.log(msg.send.photo(mes, ex)));
+
+        } else if (send.length > MAX_MSG_LENGTH) {
+            // split by new lines
+            const longStringArr = splitString(send, MAX_MSG_LENGTH);
 
             for (const elemPart of longStringArr) {
-                await bot.sendMessage(mes.chat.id, elemPart);
+                try {
+                    await bot.sendMessage(mes.chat.id, elemPart, opts);
+                } catch (ex) {
+                    console.log(msg.send.norm(mes, ex));
+                }
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, elem).catch(ex => console.log(msg.send.norm(mes, ex)));
+            bot.sendMessage(mes.chat.id, send, opts).catch(ex => console.log(msg.send.norm(mes, ex)));
         }
+
     }
 
     track(mes);
-};
-
-/**
- * Send text mes with markdown
- */
-const sendMdText = (bot, mes, text, disablePreview) => {
-    convertToArray(text).forEach(elem => {
-        const opts = {parse_mode: 'Markdown'};
-
-        if (disablePreview) {
-            opts.disable_web_page_preview = true;
-        }
-
-        bot.sendMessage(mes.chat.id, elem, opts).catch(ex => console.log(msg.send.mark(mes, ex)));
-    });
-
-    track(mes);
-};
-
-/**
- * Send photo mes
- */
-const sendPhoto = (bot, mes, photo) => {
-    convertToArray(photo).forEach(elem => {
-        bot.sendPhoto(mes.chat.id, elem).catch(ex => console.log(msg.send.photo(mes, ex)));
-    });
-
-    track(mes);
-};
-
-/**
- * Send photo with text
- */
-const sendTextPh = (bot, mes, phText) => {
-    convertToArray(phText).forEach(elem => {
-        Buffer.isBuffer(elem)
-            ? sendPhoto(bot, mes, elem)
-            : sendMdText(bot, mes, elem, true);
-    });
 };
 
 /**
@@ -87,9 +55,7 @@ const q = (command, req) => {
 };
 
 module.exports = {
+    answer,
     q,
-    search,
-    sendMdText,
-    sendTextPh,
-    sendText
+    search
 };
