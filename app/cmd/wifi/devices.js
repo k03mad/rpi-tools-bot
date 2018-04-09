@@ -13,12 +13,19 @@ const getDeviceList = async opts => {
 
     const SELECTOR = '.menu_content_list_table tr';
 
+    const errors = [];
     let body;
 
-    try {
-        ({body} = await get(host + ports[0] + PATH, {auth: router(opts).cred}));
-    } catch (ex) {
-        ({body} = await get(host + ports[1] + PATH, {auth: router(opts).cred}));
+    await Promise.all(ports.map(async port => {
+        try {
+            ({body} = await get(host + port + PATH, {auth: router(opts).cred}));
+        } catch (ex) {
+            errors.push(ex);
+        }
+    }));
+
+    if (errors.length > 1) {
+        throw new Error(errors.join('\n'));
     }
 
     const $ = cheerio.load(body);
