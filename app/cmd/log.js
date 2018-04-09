@@ -12,7 +12,7 @@ const getLogMessage = async () => {
         const log = await readFile(`${appRoot}/forever.log`);
         return log.toString();
     } catch (ex) {
-        return ex;
+        return ex.message;
     }
 };
 
