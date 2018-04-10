@@ -2,7 +2,7 @@ const {every} = require('schedule');
 const {MAC_RE} = require('./lib/utils');
 const {msg} = require('./lib/messages');
 const {knownDevices, myChat} = require('./lib/env');
-const {sendText} = require('./lib/senders');
+const {answer} = require('./lib/senders');
 const {sendToCorlysis} = require('./lib/charts');
 const c = require('require-all')(`${__dirname}/cmd`);
 const moment = require('moment');
@@ -32,7 +32,7 @@ const cron = bot => {
 
             // send warning every REPEAT_ALARM minutes until ppm drop
             if (ppm > PPM_WARNING && moment().diff(ppmTimer, 'minutes') > PPM_REPEAT_ALARM) {
-                sendText(bot, {chat: {id: myChat}}, msg.co2.warning(ppm));
+                answer(bot, {chat: {id: myChat}}, msg.co2.warning(ppm));
                 ppmTimer = moment();
             }
         }
@@ -78,7 +78,7 @@ const cron = bot => {
 
                 // send unknown device warning
                 if (unknown.length > 0) {
-                    sendText(bot, {chat: {id: myChat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
+                    answer(bot, {chat: {id: myChat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
                 }
 
                 // send online devices
@@ -101,7 +101,7 @@ const cron = bot => {
         }
 
         if (updates && updates !== msg.common.updates) {
-            sendText(bot, {chat: {id: myChat}}, updates);
+            answer(bot, {chat: {id: myChat}}, updates);
         }
     });
 
