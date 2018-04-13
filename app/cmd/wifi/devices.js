@@ -18,7 +18,14 @@ const getDeviceList = async opts => {
 
     await Promise.all(ports.map(async port => {
         try {
-            ({body} = await get(host + port + PATH, {auth: router(opts).cred}));
+            ({body} = await get(host + port + PATH, {
+                auth: router(opts).cred,
+                timeout: {
+                    connect: 2000,
+                    request: 3000,
+                    socket: 5000
+                }
+            }));
         } catch (ex) {
             errors.push(ex);
         }

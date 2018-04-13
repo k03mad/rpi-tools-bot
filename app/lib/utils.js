@@ -53,11 +53,13 @@ const splitString = (str, l) => {
  * Send request
  */
 const get = (url, opts = {}) => {
-    opts.timeout = {
-        connect: 20000,
-        request: 25000,
-        socket: 30000
-    };
+    if (!opts.timeout) {
+        opts.timeout = {
+            connect: 20000,
+            request: 25000,
+            socket: 30000
+        };
+    }
 
     return got(url, opts);
 };
