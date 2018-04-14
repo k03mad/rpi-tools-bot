@@ -6,7 +6,7 @@ const c = require('require-all')(`${__dirname}/cmd`);
  */
 const cmd = bot => {
     reply(bot, 'help', c.help, 'bot');
-    reply(bot, 'user', c.log);
+    reply(bot, 'log', c.log);
 
     reply(bot, 'apt_update', c.apt.update);
     reply(bot, 'apt_upgrade', c.apt.upgrade);
