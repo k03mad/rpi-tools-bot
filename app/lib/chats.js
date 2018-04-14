@@ -64,10 +64,10 @@ const answer = async (bot, mes, sends, opts) => {
 /**
  * Reply on command text
  */
-const reply = (bot, enteredText, cmd, opts = {}) => {
+const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
         if ([myChat].includes(String(mes.chat.id))) {
-            answer(bot, mes, await cmd, opts);
+            answer(bot, mes, await cmd(...convertToArray(args)), opts);
         }
     });
 };
