@@ -1,7 +1,5 @@
-const {telegramToken} = require('./lib/env');
+const {telegramToken} = require('../env');
 const TelegramBot = require('node-telegram-bot-api');
-const cmd = require('./cmd');
-const cron = require('./cron');
 
 const bot = new TelegramBot(telegramToken, {polling: {
     interval: 3000,
@@ -10,5 +8,5 @@ const bot = new TelegramBot(telegramToken, {polling: {
 
 bot.on('polling_error', ex => console.log(ex.message));
 
-cmd(bot);
-cron(bot);
+require('./cmd')(bot);
+require('./cron')(bot);

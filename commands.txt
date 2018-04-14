@@ -1,14 +1,13 @@
 help - this list
 log - forever log
-user - current user info
 apt_update - check for updates
 apt_upgrade - install updates
 pi_sensors - get current sensors data
-pi_reboot - reboot pi after 1 minute
-pi_shutdown - shutdown pi after 1 minute
+pi_reboot - reboot pi
+pi_shutdown - shutdown pi
 pi_stat - some usage stats
-wifi_home_devices - wifi connected devices list
-wifi_home_reboot - wifi spot reboot
-wifi_knpl_devices - wifi connected devices list
-wifi_knpl_reboot - wifi spot reboot
+wifi_devices_home - wifi connected devices list
+wifi_devices_knpl - wifi connected devices list
+wifi_reboot_home - wifi spot reboot
+wifi_reboot_knpl - wifi spot reboot
 wifi_spots - scan wifi spots

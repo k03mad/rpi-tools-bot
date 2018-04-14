@@ -1,4 +1,4 @@
-const {getCorlysisChartImage} = require('../../lib/charts');
+const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
 const path = require('path');
