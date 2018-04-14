@@ -12,10 +12,8 @@ const commands = [
     '/pi_shutdown - shutdown pi',
     '/pi_stat - some usage stats',
     '',
-    '/wifi_devices_home - wifi connected devices list',
-    '/wifi_devices_knpl - wifi connected devices list',
-    '/wifi_reboot_home - wifi spot reboot',
-    '/wifi_reboot_knpl - wifi spot reboot',
+    '/wifi_devices - wifi connected devices list',
+    '/wifi_reboot - wifi spot reboot',
     '/wifi_spots - scan wifi spots'
 ];
 
@@ -36,6 +34,7 @@ const msg = {
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
+        choose:     ()              => 'Choose network',
         noDev:                         'No devices available',
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available'

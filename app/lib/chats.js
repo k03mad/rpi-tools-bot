@@ -70,4 +70,20 @@ const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     });
 };
 
-module.exports = {reply};
+/**
+ * Return keyboard options
+ */
+const keyboard = arr => {
+    return {
+        reply_markup: {
+            keyboard: [arr],
+            resize_keyboard: true,
+            one_time_keyboard: true
+        }
+    };
+};
+
+module.exports = {
+    reply,
+    keyboard
+};
