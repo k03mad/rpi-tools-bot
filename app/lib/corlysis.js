@@ -1,5 +1,5 @@
 const {get} = require('./utils');
-const {corlysisToken, corlysisPubToken} = require('./env');
+const {corlysisToken, corlysisPubToken} = require('../../env');
 
 /**
  * Send data to corlysis

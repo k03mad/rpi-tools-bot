@@ -1,5 +1,5 @@
 const {get, getMacVendor, router, MAC_RE} = require('../../lib/utils');
-const {getCorlysisChartImage} = require('../../lib/charts');
+const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 const cheerio = require('cheerio');
 
@@ -8,25 +8,18 @@ const cheerio = require('cheerio');
  */
 const getDeviceList = async opts => {
     const host = `http://${router(opts).ip}`;
-    const ports = [':2828', ':80'];
     const PATH = '/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo';
 
     const SELECTOR = '.menu_content_list_table tr';
 
-    const errors = [];
-    let body;
-
-    await Promise.all(ports.map(async port => {
-        try {
-            ({body} = await get(host + port + PATH, {auth: router(opts).cred}));
-        } catch (ex) {
-            errors.push(ex);
+    const {body} = await get(host + PATH, {
+        auth: router(opts).cred,
+        timeout: {
+            connect: 2000,
+            request: 3000,
+            socket: 5000
         }
-    }));
-
-    if (errors.length > 1) {
-        throw new Error(errors.join('\n'));
-    }
+    });
 
     const $ = cheerio.load(body);
     const query = $(SELECTOR);

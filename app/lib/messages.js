@@ -3,20 +3,17 @@
 const commands = [
     '/help - this list',
     '/log - forever log',
-    '/user - current user info',
     '',
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
     '',
     '/pi_sensors - get current sensors data',
-    '/pi_reboot - reboot pi after 1 minute',
-    '/pi_shutdown - shutdown pi after 1 minute',
+    '/pi_reboot - reboot pi',
+    '/pi_shutdown - shutdown pi',
     '/pi_stat - some usage stats',
     '',
-    '/wifi_home_devices - wifi connected devices list',
-    '/wifi_home_reboot - wifi spot reboot',
-    '/wifi_knpl_devices - wifi connected devices list',
-    '/wifi_knpl_reboot - wifi spot reboot',
+    '/wifi_devices - wifi connected devices list',
+    '/wifi_reboot - wifi spot reboot',
     '/wifi_spots - scan wifi spots'
 ];
 
@@ -37,6 +34,7 @@ const msg = {
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
+        choose:     ()              => 'Choose network',
         emptyLog:                      'Log is empty',
         noDev:                         'No devices available',
         reboot:                        'Proceed to reboot',
@@ -57,9 +55,10 @@ const msg = {
         txt:        'commands.txt generated'
     },
     send: {
-        mark:       (res, ex)       => `I can't send markdown message.\n${ex}\n${JSON.stringify(res)}`,
-        norm:       (res, ex)       => `I can't send normal message.\n${ex}\n${JSON.stringify(res)}`,
-        photo:      (res, ex)       => `I can't send photo message.\n${ex}\n${JSON.stringify(res)}`
+        mark:       (res, ex)       => `I can't send markdown message\n${ex}\n${JSON.stringify(res)}`,
+        norm:       (res, ex)       => `I can't send normal message\n${ex}\n${JSON.stringify(res)}`,
+        photo:      (res, ex)       => `I can't send photo message\n${ex}\n${JSON.stringify(res)}`,
+        typing:     (res, ex)       => `I can't send typing message\n${ex}\n${JSON.stringify(res)}`
     }
 };
 

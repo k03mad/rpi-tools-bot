@@ -1,13 +1,32 @@
 const exec = require('executive');
 const got = require('got');
-const {myChat} = require('./env');
-const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
+const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('../../env');
+const {metricsToken} = require('../../env');
+const botmetrics = require('node-botmetrics')(metricsToken);
 
 /**
- * Chat ids whitelist
+ * Track current command
  */
-const wl = msg => {
-    return [myChat].includes(String(msg.chat.id));
+const track = msg => {
+    let {text} = msg;
+
+    if (text) {
+        if (text.includes(' ')) {
+            text = text.substr(0, text.indexOf(' '));
+        }
+
+        if (text.includes('@')) {
+            text = text.substr(0, text.indexOf('@'));
+        }
+
+        botmetrics.track({
+            message_type: 'incoming',
+            metadata: msg,
+            platform: 'telegram',
+            text,
+            user_id: msg.from.username || `${msg.from.first_name} ${msg.from.last_name}`
+        });
+    }
 };
 
 /**
@@ -26,38 +45,16 @@ const convertToArray = elem => {
 };
 
 /**
- * Split long string by \n into array of strings
- */
-const splitString = (str, l) => {
-    const strs = [];
-
-    while (str.length > l) {
-        let pos = str.substring(0, l).lastIndexOf('\n');
-        pos = pos <= 0 ? l : pos;
-        strs.push(str.substring(0, pos));
-
-        let i = str.indexOf('\n', pos) + 1;
-
-        if (i < pos || i > pos + l) {
-            i = pos;
-        }
-
-        str = str.substring(i);
-    }
-
-    strs.push(str);
-    return strs;
-};
-
-/**
  * Send request
  */
 const get = (url, opts = {}) => {
-    opts.timeout = {
-        connect: 20000,
-        request: 25000,
-        socket: 30000
-    };
+    if (!opts.timeout) {
+        opts.timeout = {
+            connect: 20000,
+            request: 25000,
+            socket: 30000
+        };
+    }
 
     return got(url, opts);
 };
@@ -97,6 +94,5 @@ module.exports = {
     MAC_RE,
     router,
     run,
-    splitString,
-    wl
+    track
 };
