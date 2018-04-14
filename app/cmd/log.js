@@ -11,7 +11,7 @@ const readFile = promisify(fs.readFile);
 const getLogMessage = async () => {
     try {
         const log = await readFile(`${appRoot}/forever.log`);
-        return log ? log.toString() : msg.common.emptyLog;
+        return log.length > 1 ? log.toString() : msg.common.emptyLog;
     } catch (ex) {
         return ex.message;
     }
