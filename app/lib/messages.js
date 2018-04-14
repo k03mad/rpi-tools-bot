@@ -37,6 +37,7 @@ const msg = {
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
+        emptyLog:                      'Log is empty',
         noDev:                         'No devices available',
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available'
