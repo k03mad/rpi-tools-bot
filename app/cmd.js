@@ -1,31 +1,31 @@
-const {answer, q} = require('./lib/senders');
-const {wl} = require('./lib/utils');
+const {reply, keyboard} = require('./lib/chats');
 const c = require('require-all')(`${__dirname}/cmd`);
+const {msg} = require('./lib/messages');
 
 /**
  * Bot commands
  */
 const cmd = bot => {
-    /* eslint-disable no-multi-spaces, space-in-parens, brace-style, max-statements-per-line, curly */
+    reply(bot, 'help', c.help, 'bot');
+    reply(bot, 'log', c.log);
 
-    bot.onText(q('help'),                    mes => {if (wl(mes)) answer(bot, mes,       c.help('bot')                                            );});
-    bot.onText(q('user'),                    mes =>               answer(bot, mes,       JSON.stringify(mes, null, 4)                               ));
-    bot.onText(q('log'),               async mes => {if (wl(mes)) answer(bot, mes, await c.log()                                                  );});
+    reply(bot, 'apt_update', c.apt.update);
+    reply(bot, 'apt_upgrade', c.apt.upgrade);
 
-    bot.onText(q('apt_update'),        async mes => {if (wl(mes)) answer(bot, mes, await c.apt.update()                                           );});
-    bot.onText(q('apt_upgrade'),       async mes => {if (wl(mes)) answer(bot, mes, await c.apt.upgrade()                                          );});
+    reply(bot, 'pi_sensors', c.pi.sensors, null, {parse_mode: 'Markdown'});
+    reply(bot, 'pi_reboot', c.pi.reboot);
+    reply(bot, 'pi_shutdown', c.pi.shutdown);
+    reply(bot, 'pi_stat', c.pi.stat, null, {parse_mode: 'Markdown'});
 
-    bot.onText(q('pi_sensors'),        async mes => {if (wl(mes)) answer(bot, mes, await c.pi.sensors(),                 {parse_mode: 'Markdown'} );});
-    bot.onText(q('pi_reboot'),         async mes => {if (wl(mes)) answer(bot, mes, await c.pi.reboot()                                            );});
-    bot.onText(q('pi_shutdown'),       async mes => {if (wl(mes)) answer(bot, mes, await c.pi.shutdown()                                          );});
-    bot.onText(q('pi_stat'),           async mes => {if (wl(mes)) answer(bot, mes, await c.pi.stat(),                    {parse_mode: 'Markdown'} );});
+    reply(bot, 'wifi_devices', msg.common.choose, null, keyboard(['/wifi_devices_home', '/wifi_devices_knpl']));
+    reply(bot, 'wifi_devices_home', c.wifi.devices);
+    reply(bot, 'wifi_devices_knpl', c.wifi.devices, {place: 'knpl'});
 
-    bot.onText(q('wifi_home_devices'), async mes => {if (wl(mes)) answer(bot, mes, await c.wifi.devices()                                         );});
-    bot.onText(q('wifi_home_reboot'),  async mes => {if (wl(mes)) answer(bot, mes, await c.wifi.reboot()                                          );});
-    bot.onText(q('wifi_knpl_devices'), async mes => {if (wl(mes)) answer(bot, mes, await c.wifi.devices({place: 'knpl'})                          );});
-    bot.onText(q('wifi_knpl_reboot'),  async mes => {if (wl(mes)) answer(bot, mes, await c.wifi.reboot({place: 'knpl'})                           );});
-    bot.onText(q('wifi_spots'),        async mes => {if (wl(mes)) answer(bot, mes, await c.wifi.spots(),                 {parse_mode: 'Markdown'} );});
+    reply(bot, 'wifi_reboot', msg.common.choose, null, keyboard(['/wifi_reboot_home', '/wifi_reboot_knpl']));
+    reply(bot, 'wifi_reboot_home', c.wifi.reboot);
+    reply(bot, 'wifi_reboot_knpl', c.wifi.reboot, {place: 'knpl'});
 
+    reply(bot, 'wifi_spots', c.wifi.spots, null, {parse_mode: 'Markdown'});
 };
 
 module.exports = cmd;
