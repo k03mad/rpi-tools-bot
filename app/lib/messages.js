@@ -40,7 +40,6 @@ const msg = {
         updates:                       'No updates available'
     },
     cron: {
-        devErr:     ex              => `I can't get devices connected to the router:\n\n${ex}`,
         updErr:     ex              => `I can't get pi updates:\n\n${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`
     },
