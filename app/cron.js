@@ -7,7 +7,7 @@ const {sendSensorsData, sendConnectedWiFiDevices, checkRaspberryUpdates} = requi
 const cron = bot => {
     every('1m').do(() => sendSensorsData(bot));
     every('5m').do(() => sendConnectedWiFiDevices(bot));
-    every('6h').do(() => checkRaspberryUpdates());
+    every('6h').do(() => checkRaspberryUpdates(bot));
 };
 
 module.exports = cron;
