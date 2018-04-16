@@ -35,6 +35,7 @@ const msg = {
     },
     common: {
         choose:     ()              => 'Choose network',
+        emptyLog:                      'Log is empty',
         noDev:                         'No devices available',
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available'
