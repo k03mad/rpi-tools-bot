@@ -35,7 +35,7 @@ const answer = async (bot, mes, sends, opts) => {
     for (const send of convertToArray(sends)) {
 
         if (Buffer.isBuffer(send)) {
-            bot.sendPhoto(mes.chat.id, send, opts).catch(ex => console.log(msg.send.photo(mes, ex)));
+            bot.sendPhoto(mes.chat.id, send, opts).catch(ex => console.log(msg.send.photo(ex)));
 
         } else if (send.length > MAX_MSG_LENGTH) {
             // split by new lines
@@ -50,7 +50,7 @@ const answer = async (bot, mes, sends, opts) => {
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, send, opts).catch(ex => console.log(msg.send.norm(mes, ex)));
+            bot.sendMessage(mes.chat.id, send, opts).catch(ex => console.log(msg.send.norm(ex)));
         }
 
     }
@@ -64,7 +64,7 @@ const answer = async (bot, mes, sends, opts) => {
 const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
         if ([myChat].includes(String(mes.chat.id))) {
-            bot.sendChatAction(mes.chat.id, 'typing').catch(ex => console.log(msg.send.typing(mes, ex)));
+            bot.sendChatAction(mes.chat.id, 'typing').catch(ex => console.log(msg.send.typing(ex)));
             answer(bot, mes, await cmd(...convertToArray(args)), opts);
         }
     });

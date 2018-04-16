@@ -3,6 +3,7 @@ const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('../../env');
 const botmetrics = require('node-botmetrics')(metricsToken);
 const exec = require('executive');
 const got = require('got');
+const moment = require('moment');
 
 /**
  * Track current command
@@ -87,8 +88,16 @@ const router = opts => {
         };
 };
 
+/**
+ * Get current date
+ */
+const currentDate = () => {
+    return moment().format('YYYY.MM.DD HH:MM:SS');
+};
+
 module.exports = {
     convertToArray,
+    currentDate,
     get,
     getMacVendor,
     MAC_RE,
