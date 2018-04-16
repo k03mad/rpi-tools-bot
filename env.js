@@ -7,6 +7,7 @@ module.exports = {
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
     metricsToken: process.env.RP_METRICS_TOKEN,
     myChat: process.env.MY_CHAT,
+    proxyPac: process.env.PROXY_PAC,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
     wifiIP: process.env.WIFI_IP,
     wifiCred: process.env.WIFI_CRED,

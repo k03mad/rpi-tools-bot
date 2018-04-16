@@ -1,8 +1,8 @@
+const {metricsToken} = require('../../env');
+const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('../../env');
+const botmetrics = require('node-botmetrics')(metricsToken);
 const exec = require('executive');
 const got = require('got');
-const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('../../env');
-const {metricsToken} = require('../../env');
-const botmetrics = require('node-botmetrics')(metricsToken);
 
 /**
  * Track current command
