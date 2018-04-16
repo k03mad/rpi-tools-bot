@@ -1,5 +1,7 @@
-// remove "Automatic enabling of cancellation of promises is deprecated" message
+// remove "Automatic enabling of cancellation of promises is deprecated"
 process.env.NTBA_FIX_319 = true;
+// remove "In the future, content-type of files you send will default to "application/octet-stream"
+process.env.NTBA_FIX_350 = true;
 
 module.exports = {
     corlysisPubToken: process.env.CORLYSIS_PUB_TOKEN,
