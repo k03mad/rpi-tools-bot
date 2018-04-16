@@ -84,6 +84,7 @@ const keyboard = arr => {
 };
 
 module.exports = {
+    answer,
     reply,
     keyboard
 };
