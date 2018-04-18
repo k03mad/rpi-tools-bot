@@ -136,15 +136,17 @@ const sensors = async onlyNum => {
         message.push(`CO₂: *${data.ppm} ppm* (${getLevel(data.ppm, 'co2')})`);
     }
 
-    let chart;
+    const output = [message.join('\n')];
 
-    try {
-        chart = await getCorlysisChartImage(1);
-    } catch (ex) {
-        chart = msg.chart.picErr(ex);
-    }
+    await Promise.all([1, 4, 5].map(async elem => {
+        try {
+            output.push(await getCorlysisChartImage(elem));
+        } catch (ex) {
+            output.push(msg.chart.picErr(ex));
+        }
+    }));
 
-    return [message.join('\n'), chart];
+    return output;
 };
 
 module.exports = sensors;
