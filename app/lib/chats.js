@@ -1,4 +1,4 @@
-const {convertToArray, track} = require('./utils');
+const {convertToArray} = require('./utils');
 const {msg} = require('./messages');
 const {myChat} = require('../../env');
 
@@ -54,8 +54,6 @@ const answer = async (bot, mes, sends, opts) => {
         }
 
     }
-
-    track(mes);
 };
 
 /**

@@ -27,7 +27,7 @@ const sendSensorsData = async bot => {
             send.push(`${key}=${data[key]}`);
         }
 
-        sendToCorlysis('sensors=all', send.join()).catch(ex => msg.chart.cor(ex));
+        sendToCorlysis('sensors=weather', send.join()).catch(ex => msg.chart.cor(ex));
 
         // send warning every REPEAT_ALARM minutes until ppm drop
         if (data.ppm > PPM_WARNING && moment().diff(ppmTimer, PPM_REPEAT_ALARM.unit) > PPM_REPEAT_ALARM.time) {
