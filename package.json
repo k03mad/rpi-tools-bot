@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "app-root-path": "2.0.1",
-    "bme280-sensor": "0.1.6",
+    "bme-sensor-nolog": "0.1.6",
     "cheerio": "1.0.0-rc.2",
     "colors": "1.2.1",
     "executive": "1.5.13",

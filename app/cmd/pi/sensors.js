@@ -1,7 +1,7 @@
 const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
-const BME280 = require('bme280-sensor');
+const BME280 = require('bme-sensor-nolog');
 const path = require('path');
 
 /**
