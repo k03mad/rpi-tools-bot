@@ -15,22 +15,26 @@ let ppmTimer = moment().subtract(PPM_REPEAT_ALARM.time, PPM_REPEAT_ALARM.unit);
  *  Send sensor data and warn about high ppm
  */
 const sendSensorsData = async bot => {
-    let ppm;
+    const data = await c.pi.sensors('onlyNum');
 
-    try {
-        ({ppm} = await c.pi.sensors('num'));
-    } catch (ex) {
-        console.log(msg.chart.err(ex));
-    }
+    if (Object.keys(data).length === 0) {
+        console.log(msg.sensor.noData);
+    } else {
 
-    if (ppm) {
-        sendToCorlysis('sensor=co2', `ppm=${ppm}`).catch(ex => msg.chart.cor(ex));
+        const send = [];
+
+        for (const key in data) {
+            send.push(`${key}=${data[key]}`);
+        }
+
+        sendToCorlysis('sensors=weather', send.join()).catch(ex => msg.chart.cor(ex));
 
         // send warning every REPEAT_ALARM minutes until ppm drop
-        if (ppm > PPM_WARNING && moment().diff(ppmTimer, PPM_REPEAT_ALARM.unit) > PPM_REPEAT_ALARM.time) {
-            answer(bot, {chat: {id: myChat}}, msg.co2.warning(ppm));
+        if (data.ppm > PPM_WARNING && moment().diff(ppmTimer, PPM_REPEAT_ALARM.unit) > PPM_REPEAT_ALARM.time) {
+            answer(bot, {chat: {id: myChat}}, msg.sensor.warning(data.ppm));
             ppmTimer = moment();
         }
+
     }
 };
 

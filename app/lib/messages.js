@@ -19,32 +19,22 @@ const commands = [
 
 const msg = {
     /* eslint-disable key-spacing, no-multi-spaces, indent */
-
-    co2: {
-        high:                          'dangerous',
-        aboveMed:                      'high',
-        medium:                        'above normal',
-        belowMed:                      'slightly above normal',
-        low:                           'normal',
-        err:                           'Something goes wrong: can\'t get ppm, or too low level',
-        warning:    ppm             => `Ventilate the room! Too high ppm: ${ppm}`
-    },
     chart: {
-        cor:        ex              => `${currentDate()} sending data to corlysis: ${ex.message}`,
-        err:        ex              => `${currentDate()} get data from sensors: ${ex.message}`,
+        cor:        ex              => `${currentDate()} sending data to corlysis: ${ex}`,
         picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`
     },
     common: {
         choose:     ()              => 'Choose network',
         emptyLog:                      'Log is empty',
+        level:      type            => `Something wrong with get level type: ${type}`,
         noDev:                         'No devices available',
-        polling:    ex              => `${currentDate()} polling: ${ex.message}`,
+        polling:    ex              => `${currentDate()} polling: ${ex}`,
         reboot:                        'Proceed to reboot',
         updates:                       'No updates available'
     },
     cron: {
-        devErr:     ex              => `${currentDate()} get devices from router: ${ex.message}`,
-        updErr:     ex              => `${currentDate()} get pi updates: ${ex.message}`,
+        devErr:     ex              => `${currentDate()} get devices from router: ${ex}`,
+        updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`
     },
     readme: {
@@ -56,10 +46,17 @@ const msg = {
         md:                            'README.md generated',
         txt:                           'commands.txt generated'
     },
+    sensor: {
+        err:        type            => `no ${type} data or too low level`,
+        noData:                        `${currentDate()} data from sensors is empty`,
+        warning:    ppm             => `Ventilate the room! Too high ppm: ${ppm}`,
+        bme:        ex              => `${currentDate()} cannot get data from bme: ${ex}`,
+        mhz:        ex              => `${currentDate()} cannot get data from mhz: ${ex}`
+    },
     send: {
-        norm:       ex              => `${currentDate()} sending normal message: ${ex.message}`,
-        photo:      ex              => `${currentDate()} sending photo message: ${ex.message}`,
-        typing:     ex              => `${currentDate()} sending typing message: ${ex.message}`
+        norm:       ex              => `${currentDate()} sending normal message: ${ex}`,
+        photo:      ex              => `${currentDate()} sending photo message: ${ex}`,
+        typing:     ex              => `${currentDate()} sending typing message: ${ex}`
     }
 };
 

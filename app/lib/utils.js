@@ -1,34 +1,7 @@
-const {metricsToken} = require('../../env');
 const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('../../env');
-const botmetrics = require('node-botmetrics')(metricsToken);
 const exec = require('executive');
 const got = require('got');
 const moment = require('moment');
-
-/**
- * Track current command
- */
-const track = msg => {
-    let {text} = msg;
-
-    if (text) {
-        if (text.includes(' ')) {
-            text = text.substr(0, text.indexOf(' '));
-        }
-
-        if (text.includes('@')) {
-            text = text.substr(0, text.indexOf('@'));
-        }
-
-        botmetrics.track({
-            message_type: 'incoming',
-            metadata: msg,
-            platform: 'telegram',
-            text,
-            user_id: msg.from.username || `${msg.from.first_name} ${msg.from.last_name}`
-        });
-    }
-};
 
 /**
  * Send command to bash
@@ -92,7 +65,7 @@ const router = opts => {
  * Get current date
  */
 const currentDate = () => {
-    return moment().format('YYYY.MM.DD HH:MM:SS');
+    return moment().format('YYYY.MM.DD HH:mm:ss');
 };
 
 module.exports = {
@@ -102,6 +75,5 @@ module.exports = {
     getMacVendor,
     MAC_RE,
     router,
-    run,
-    track
+    run
 };

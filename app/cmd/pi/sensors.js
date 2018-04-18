@@ -1,46 +1,140 @@
 const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
-// const BME280 = require('bme280-sensor');
+const BME280 = require('bme-sensor-nolog');
 const path = require('path');
 
 /**
- * Return detailed message about sensor values
+ * Return value level
  */
-const getDetailedMsg = (ppm, type) => {
-    if (type === 'co2') {
-        switch (true) {
-            case ppm > 1400:
-                return msg.co2.high;
-            case ppm > 1000:
-                return msg.co2.aboveMed;
-            case ppm > 800:
-                return msg.co2.medium;
-            case ppm > 600:
-                return msg.co2.belowMed;
-            case ppm > 300:
-                return msg.co2.low;
+const getLevel = (value, type) => {
+    switch (type) {
+        case 'temp':
+            switch (true) {
+                case value > 24:
+                    return 'high';
+                case value > 20:
+                    return 'normal';
+                case value > 0:
+                    return 'low';
 
-            default:
-                return msg.co2.err;
-        }
+                default:
+                    return msg.sensor.err(type);
+            }
+
+        case 'hum':
+            switch (true) {
+                case value > 60:
+                    return 'high';
+                case value > 40:
+                    return 'normal';
+                case value > 0:
+                    return 'low';
+
+                default:
+                    return msg.sensor.err(type);
+            }
+
+        case 'press':
+            switch (true) {
+                case value > 760:
+                    return 'high';
+                case value > 750:
+                    return 'normal';
+                case value > 0:
+                    return 'low';
+
+                default:
+                    return msg.sensor.err(type);
+            }
+
+        case 'co2':
+            switch (true) {
+                case value > 1400:
+                    return 'dangerous';
+                case value > 1000:
+                    return 'high';
+                case value > 800:
+                    return 'above normal';
+                case value > 600:
+                    return 'slightly above normal';
+                case value > 300:
+                    return 'normal';
+
+                default:
+                    return msg.sensor.err(type);
+            }
+
+        default:
+            return msg.common.level(type);
     }
 };
 
 /**
- * Get sensors data with python
+ * Get data from mhz19
+ */
+const getMhz19 = async () => {
+    const pyFile = path.join(__dirname, '..', '..', 'lib', 'ppm.py');
+    return {ppm: Number(await run(`sudo python ${pyFile}`))};
+};
+
+/**
+ * Get data from bme280
+ */
+const getBme280 = async () => {
+    const bme280 = new BME280({i2cAddress: 0x76});
+    await bme280.init();
+
+    const data = await bme280.readSensorData();
+
+    const newData = {
+        temp: Math.round(data.temperature_C),
+        hum: Math.round(data.humidity),
+        press: Math.round(data.pressure_hPa * 0.75006375541921)
+    };
+
+    return newData;
+};
+
+/**
+ * Get sensors data
  */
 const sensors = async onlyNum => {
-    const pyFile = path.join(__dirname, '..', '..', 'py', 'ppm.py');
-    const ppm = Number(await run(`sudo python ${pyFile}`));
+    const data = {};
 
-    if (onlyNum) {
-        return {ppm};
+    try {
+        Object.assign(data, await getMhz19());
+    } catch (ex) {
+        console.log(msg.sensor.mhz(ex));
     }
 
-    const message = [
-        `CO₂: *${ppm} ppm* (${getDetailedMsg(ppm, 'co2')})`
-    ].join('\n');
+    try {
+        Object.assign(data, await getBme280());
+    } catch (ex) {
+        console.log(msg.sensor.bme(ex));
+    }
+
+    if (onlyNum) {
+        return data;
+    }
+
+    const message = [];
+
+    if (data.temp) {
+        message.push(`Temp: *${data.temp}°C* (${getLevel(data.temp, 'temp')})`);
+    }
+
+    if (data.hum) {
+        message.push(`Humidity: *${data.hum}%* (${getLevel(data.hum, 'hum')})`);
+    }
+
+    if (data.press) {
+        message.push(`Pressure: *${data.press} mmHg* (${getLevel(data.press, 'press')})`);
+    }
+
+    if (data.ppm) {
+        message.push(`CO₂: *${data.ppm} ppm* (${getLevel(data.ppm, 'co2')})`);
+    }
 
     let chart;
 
@@ -50,30 +144,7 @@ const sensors = async onlyNum => {
         chart = msg.chart.picErr(ex);
     }
 
-    return [message, chart];
+    return [message.join('\n'), chart];
 };
-
-// const bme280 = new BME280({i2cAddress: 0x76});
-
-// (async () => {
-//     await bme280.init();
-//     const data = await bme280.readSensorData();
-//     console.log(data);
-// })();
-
-// const bme = {
-//     temperature_C: 28.39,
-//     humidity: 37.61701977356487,
-//     pressure_hPa: 993.6540132242864
-// };
-
-// bme.pressure = bme.pressure_hPa * 0.75006375541921;
-// delete bme.pressure_hPa;
-
-// for (const elem in bme) {
-//     bme[elem] = Math.round(bme[elem]);
-// }
-
-// console.log(bme);
 
 module.exports = sensors;
