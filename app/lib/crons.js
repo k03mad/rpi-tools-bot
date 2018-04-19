@@ -24,7 +24,7 @@ const sendSensorsData = async bot => {
         const send = [];
 
         for (const key in data) {
-            send.push(`${key}=${data[key]}`);
+            send.push(`${key}=${data[key]}i`);
         }
 
         sendToCorlysis('sensors=weather', send.join()).catch(ex => msg.chart.cor(ex));
@@ -70,7 +70,7 @@ const sendConnectedWiFiDevices = async bot => {
                     for (const mac in knownDevices) {
                         // if device is not offline and from known list
                         if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
-                            data.push(`${mac}=${index + 1}`);
+                            data.push(`${mac}=${index + 1}i`);
                         }
                     }
                 }
