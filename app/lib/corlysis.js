@@ -7,7 +7,7 @@ const {corlysisToken, corlysisPubToken} = require('../../env');
 const sendToCorlysis = (field, data) => {
     return get('https://corlysis.com:8086/write', {
         query: {
-            db: 'pi'
+            db: 'mydb'
         },
         body: `pi3,${field} ${data}`,
         auth: `token:${corlysisToken}`
