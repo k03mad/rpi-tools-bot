@@ -8,6 +8,7 @@ module.exports = {
     corlysisToken: process.env.CORLYSIS_TOKEN,
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
     myChat: process.env.MY_CHAT,
+    proxy: process.env.PROXY_PAC,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
     wifiIP: process.env.WIFI_IP,
     wifiCred: process.env.WIFI_CRED,
