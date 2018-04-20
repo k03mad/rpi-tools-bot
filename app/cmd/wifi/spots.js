@@ -63,7 +63,7 @@ const signalToPercent = async () => {
 const addVendor = async (opts = {}) => {
     const list = await signalToPercent();
 
-    if (!opts.noVendor) {
+    if (!opts || !opts.noVendor) {
         await Promise.all(list.map(async elem => {
             try {
                 const vendor = await getMacVendor(elem.mac);
@@ -81,7 +81,7 @@ const addVendor = async (opts = {}) => {
 /**
  * Sort WiFi list
  */
-const sortList = async opts => {
+const sortList = async (opts = {}) => {
     const list = await addVendor(opts);
 
     /**
@@ -134,7 +134,7 @@ const generateList = async (opts = {}) => {
 
     output.push(wifi.join('\n'));
 
-    if (!opts.noChart) {
+    if (!opts || !opts.noChart) {
         try {
             output.push(await getCorlysisChartImage(6));
         } catch (ex) {
