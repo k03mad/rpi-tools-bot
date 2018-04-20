@@ -58,17 +58,20 @@ const signalToPercent = async () => {
 /**
  * Add mac-address vendor info
  */
-const addVendor = async () => {
+const addVendor = async noVendor => {
     const list = await signalToPercent();
-    await Promise.all(list.map(async elem => {
-        try {
-            const vendor = await getMacVendor(elem.mac);
 
-            if (vendor !== 'No vendor') {
-                elem.vendor = vendor;
-            }
-        } catch (ex) {}
-    }));
+    if (!noVendor) {
+        await Promise.all(list.map(async elem => {
+            try {
+                const vendor = await getMacVendor(elem.mac);
+
+                if (vendor !== 'No vendor') {
+                    elem.vendor = vendor;
+                }
+            } catch (ex) {}
+        }));
+    }
 
     return list;
 };
@@ -76,8 +79,8 @@ const addVendor = async () => {
 /**
  * Sort WiFi list
  */
-const sortList = async () => {
-    const list = await addVendor();
+const sortList = async noVendor => {
+    const list = await addVendor(noVendor);
 
     /**
      * Use signal strength to sort list
@@ -103,8 +106,8 @@ const sortList = async () => {
 /**
  * Convert list to message
  */
-const generateList = async () => {
-    const list = await sortList();
+const generateList = async noVendor => {
+    const list = await sortList(noVendor);
     const wifi = [];
 
     for (const elem of list) {

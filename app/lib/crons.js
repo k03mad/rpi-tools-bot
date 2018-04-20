@@ -91,6 +91,31 @@ const sendConnectedWiFiDevices = async bot => {
 };
 
 /**
+ * Send WiFi spots list
+ */
+const sendWiFiSpotsList = async () => {
+    let spots = [];
+
+    try {
+        spots = await c.wifi.spots('noVendor');
+        spots = spots.split('\n\n').map(elem => elem.split('\n'));
+    } catch (ex) {
+        console.log(msg.cron.spotErr(ex));
+    }
+
+    const data = [];
+    spots.forEach(elem => {
+        const [, spot] = elem[0].match(/\*(.+)\*/);
+        const [, value] = elem[0].match(/\((\d+)%\)/);
+        data.push(`${spot}=${value}i`);
+    });
+
+    if (data.length > 0) {
+        sendToCorlysis('wifi=spots', data.join()).catch(ex => msg.chart.cor(ex));
+    }
+};
+
+/**
  * Check system updates with apt-get update
  */
 const checkRaspberryUpdates = async bot => {
@@ -110,5 +135,6 @@ const checkRaspberryUpdates = async bot => {
 module.exports = {
     sendSensorsData,
     sendConnectedWiFiDevices,
+    sendWiFiSpotsList,
     checkRaspberryUpdates
 };
