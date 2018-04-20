@@ -60,7 +60,7 @@ const signalToPercent = async () => {
 /**
  * Add mac-address vendor info
  */
-const addVendor = async opts => {
+const addVendor = async (opts = {}) => {
     const list = await signalToPercent();
 
     if (!opts.noVendor) {
