@@ -1,5 +1,5 @@
 const {getMacVendor, run} = require('../../lib/utils');
-const {getCorlysisChartImage} = require('../../cron');
+const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 
 /**
