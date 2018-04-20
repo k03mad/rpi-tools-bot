@@ -50,7 +50,7 @@ const sendConnectedWiFiDevices = async bot => {
 
         Array.isArray(devices)
             ? places[key] = devices[0].split('\n\n')
-            : console.log(msg.cron.devErr(devices));
+            : console.log(msg.cron.devErr(key, devices));
     }
 
     if (Object.keys(places).length > 0) {
