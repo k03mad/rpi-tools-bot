@@ -1,4 +1,6 @@
 const {getMacVendor, run} = require('../../lib/utils');
+const {getCorlysisChartImage} = require('../../cron');
+const {msg} = require('../../lib/messages');
 
 /**
  * Get WiFi list
@@ -106,8 +108,10 @@ const sortList = async noVendor => {
 /**
  * Convert list to message
  */
-const generateList = async noVendor => {
-    const list = await sortList(noVendor);
+const generateList = async (opts = {}) => {
+    const list = await sortList(opts.noVendor);
+
+    const output = [];
     const wifi = [];
 
     for (const elem of list) {
@@ -128,7 +132,17 @@ const generateList = async noVendor => {
         wifi.push('');
     }
 
-    return wifi.join('\n');
+    output.push(wifi.join('\n'));
+
+    if (!opts.noChart) {
+        try {
+            output.push(await getCorlysisChartImage(6));
+        } catch (ex) {
+            output.push(msg.chart.picErr(ex));
+        }
+    }
+
+    return output;
 };
 
 module.exports = generateList;

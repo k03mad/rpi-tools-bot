@@ -98,7 +98,7 @@ const sendWiFiSpotsList = async () => {
     let spots = [];
 
     try {
-        spots = await c.wifi.spots('noVendor');
+        spots = await c.wifi.spots({noVendor: true, noChart: true});
         spots = spots.split('\n\n').map(elem => elem.split('\n'));
     } catch (ex) {
         console.log(msg.cron.spotErr(ex));
