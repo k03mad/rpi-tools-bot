@@ -13,12 +13,7 @@ const getDeviceList = async opts => {
     const SELECTOR = '.menu_content_list_table tr';
 
     const {body} = await get(host + PATH, {
-        auth: router(opts).cred,
-        timeout: {
-            connect: 3000,
-            request: 5000,
-            socket: 7000
-        }
+        auth: router(opts).cred
     });
 
     const $ = cheerio.load(body);
