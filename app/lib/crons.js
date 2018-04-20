@@ -5,6 +5,7 @@ const {msg} = require('./messages');
 const {sendToCorlysis} = require('./corlysis');
 const c = require('require-all')(`${__dirname}/../cmd`);
 const moment = require('moment');
+const slugify = require('slugify');
 
 const PPM_WARNING = 1000;
 const PPM_REPEAT_ALARM = {time: 30, unit: 'minutes'};
@@ -107,7 +108,7 @@ const sendWiFiSpotsList = async () => {
     spots.forEach(elem => {
         const [, spot] = elem[0].match(/\*(.+)\*/);
         const [, value] = elem[0].match(/\((\d+)%\)/);
-        data.push(`${spot}=${value}i`);
+        data.push(`${slugify(spot)}=${value}i`);
     });
 
     if (data.length > 0) {
