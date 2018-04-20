@@ -15,9 +15,9 @@ const getDeviceList = async opts => {
     const {body} = await get(host + PATH, {
         auth: router(opts).cred,
         timeout: {
-            connect: 2000,
-            request: 3000,
-            socket: 5000
+            connect: 3000,
+            request: 5000,
+            socket: 7000
         }
     });
 
