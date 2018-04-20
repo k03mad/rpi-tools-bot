@@ -91,6 +91,62 @@ const sendConnectedWiFiDevices = async bot => {
 };
 
 /**
+ * Send WiFi spots list
+ */
+const sendWiFiSpotsList = async bot => {
+    const spots = await c.wifi.spots('noVendor');
+    return spots;
+    // const places = {};
+
+    // for (const opts of [{noChart: true}, {noChart: true, place: 'knpl'}]) {
+    //     const key = opts.place || 'home';
+    //     const devices = await c.wifi.devices(opts);
+
+    //     Array.isArray(devices)
+    //         ? places[key] = devices[0].split('\n\n')
+    //         : console.log(msg.cron.devErr(key, devices));
+    // }
+
+    // if (Object.keys(places).length > 0) {
+    //     for (const place in places) {
+
+    //         const known = Object.values(knownDevices).join();
+
+    //         const data = [];
+    //         const unknown = [];
+
+    //         places[place].forEach((elem, index) => {
+    //             if (elem !== msg.common.noDev) {
+    //                 if (!known.includes(elem.match(MAC_RE)[0])) {
+    //                     unknown.push(elem);
+    //                 }
+
+    //                 for (const mac in knownDevices) {
+    //                     // if device is not offline and from known list
+    //                     if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
+    //                         data.push(`${mac}=${index + 1}i`);
+    //                     }
+    //                 }
+    //             }
+    //         });
+
+    //         // send unknown device warning
+    //         if (unknown.length > 0) {
+    //             answer(bot, {chat: {id: myChat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
+    //         }
+
+    //         // send online devices
+    //         if (data.length > 0) {
+    //             sendToCorlysis(`wifi=devices${place}`, data.join()).catch(ex => msg.chart.cor(ex));
+    //         }
+
+    //     }
+    // }
+};
+
+sendWiFiSpotsList().then(console.log);
+
+/**
  * Check system updates with apt-get update
  */
 const checkRaspberryUpdates = async bot => {
