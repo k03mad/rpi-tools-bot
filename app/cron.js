@@ -5,11 +5,11 @@ const {sendSensorsData, sendNetworkSpeed, sendConnectedWiFiDevices, sendWiFiSpot
  * Bot crons
  */
 const cron = bot => {
-    every('1m').do(() => sendSensorsData(bot));
+    every('2m').do(() => sendSensorsData(bot));
     every('5m').do(() => sendConnectedWiFiDevices(bot));
 
-    every('10m').do(() => sendWiFiSpotsList());
-    every('15m').do(() => sendNetworkSpeed());
+    every('11m').do(() => sendWiFiSpotsList());
+    every('13m').do(() => sendNetworkSpeed());
 
     every('5h').do(() => checkRaspberryUpdates(bot));
 };
