@@ -5,7 +5,6 @@ const {msg} = require('./messages');
 const {sendToCorlysis} = require('./corlysis');
 const c = require('require-all')(`${__dirname}/../cmd`);
 const moment = require('moment');
-const slugify = require('slugify');
 
 const PPM_WARNING = 1000;
 const PPM_REPEAT_ALARM = {time: 30, unit: 'minutes'};
@@ -92,42 +91,6 @@ const sendConnectedWiFiDevices = async bot => {
 };
 
 /**
- * Send WiFi spots list
- */
-const sendWiFiSpotsList = async () => {
-    let spots = [];
-
-    try {
-        [spots] = await c.wifi.spots({noVendor: true, noChart: true});
-        spots = spots.split('\n\n').map(elem => elem.split('\n'));
-    } catch (ex) {
-        console.log(msg.cron.spotErr(ex));
-    }
-
-    const data = [];
-    spots.forEach(elem => {
-        const [, spot] = elem[0].match(/\*(.+)\*/);
-        const [, value] = elem[0].match(/\((\d+)%\)/);
-        data.push(`${slugify(spot)}=${value}i`);
-    });
-
-    if (data.length > 0) {
-        sendToCorlysis('wifi=spots', data.join()).catch(ex => msg.chart.cor(ex));
-    }
-};
-
-/**
- * Send network speed
- */
-const sendNetworkSpeed = async () => {
-    const data = await c.wifi.speed('onlyNum');
-
-    Array.isArray(data) && data.length === 2
-        ? sendToCorlysis('wifi=speed', `download=${data[0]}i,upload=${data[1]}i`).catch(ex => msg.chart.cor(ex))
-        : console.log(msg.cron.speedErr(data));
-};
-
-/**
  * Check system updates with apt-get update
  */
 const checkRaspberryUpdates = async bot => {
@@ -147,7 +110,5 @@ const checkRaspberryUpdates = async bot => {
 module.exports = {
     checkRaspberryUpdates,
     sendConnectedWiFiDevices,
-    sendNetworkSpeed,
-    sendSensorsData,
-    sendWiFiSpotsList
+    sendSensorsData
 };

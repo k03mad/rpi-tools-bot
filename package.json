@@ -21,9 +21,7 @@
     "node-telegram-bot-api": "0.30.0",
     "pac-proxy-agent": "3.0.0",
     "require-all": "2.2.0",
-    "schedule": "0.1.0",
-    "slugify": "1.2.9",
-    "speedtest-net": "1.4.2"
+    "schedule": "0.1.0"
   },
   "devDependencies": {
     "eslint": "4.19.1",

@@ -14,7 +14,6 @@ const commands = [
     '',
     '/wifi_devices - wifi connected devices list',
     '/wifi_reboot - wifi spot reboot',
-    '/wifi_speed - test network speed',
     '/wifi_spots - scan wifi spots'
 ];
 
@@ -31,13 +30,11 @@ const msg = {
         noDev:                         'No devices available',
         polling:    ex              => `${currentDate()} polling: ${ex}`,
         reboot:                        'Proceed to reboot',
-        speed:      ex              => `${currentDate()} speed measurement: ${ex}`,
+        vendor:     (mac, ex)       => `${currentDate()} get ${mac} vendor: ${ex}`,
         updates:                       'No updates available'
     },
     cron: {
         devErr:     (place, ex)     => `${currentDate()} get devices from ${place} router: ${ex}`,
-        spotErr:    ex              => `${currentDate()} get wifi spots list: ${ex}`,
-        speedErr:   ex              => `${currentDate()} get network speed test: ${ex}`,
         updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`
     },

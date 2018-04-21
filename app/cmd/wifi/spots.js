@@ -1,5 +1,4 @@
 const {getMacVendor, run} = require('../../lib/utils');
-const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 
 /**
@@ -60,20 +59,20 @@ const signalToPercent = async () => {
 /**
  * Add mac-address vendor info
  */
-const addVendor = async (opts = {}) => {
+const addVendor = async () => {
     const list = await signalToPercent();
 
-    if (!opts || !opts.noVendor) {
-        await Promise.all(list.map(async elem => {
-            try {
-                const vendor = await getMacVendor(elem.mac);
+    await Promise.all(list.map(async elem => {
+        try {
+            const vendor = await getMacVendor(elem.mac);
 
-                if (vendor !== 'No vendor') {
-                    elem.vendor = vendor;
-                }
-            } catch (ex) {}
-        }));
-    }
+            if (vendor !== 'No vendor') {
+                elem.vendor = vendor;
+            }
+        } catch (ex) {
+            console.log(msg.common.vendor(elem.mac, ex));
+        }
+    }));
 
     return list;
 };
@@ -81,8 +80,8 @@ const addVendor = async (opts = {}) => {
 /**
  * Sort WiFi list
  */
-const sortList = async (opts = {}) => {
-    const list = await addVendor(opts);
+const sortList = async () => {
+    const list = await addVendor();
 
     /**
      * Use signal strength to sort list
@@ -108,10 +107,9 @@ const sortList = async (opts = {}) => {
 /**
  * Convert list to message
  */
-const generateList = async (opts = {}) => {
-    const list = await sortList(opts);
+const generateList = async () => {
+    const list = await sortList();
 
-    const output = [];
     const wifi = [];
 
     for (const elem of list) {
@@ -132,17 +130,7 @@ const generateList = async (opts = {}) => {
         wifi.push('');
     }
 
-    output.push(wifi.join('\n'));
-
-    if (!opts || !opts.noChart) {
-        try {
-            output.push(await getCorlysisChartImage(6));
-        } catch (ex) {
-            output.push(msg.chart.picErr(ex));
-        }
-    }
-
-    return output;
+    return wifi.join('\n');
 };
 
 module.exports = generateList;
