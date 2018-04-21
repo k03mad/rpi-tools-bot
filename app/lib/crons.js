@@ -117,6 +117,17 @@ const sendWiFiSpotsList = async () => {
 };
 
 /**
+ * Send network speed
+ */
+const sendNetworkSpeed = async () => {
+    const data = await c.wifi.speed('onlyNum');
+
+    Array.isArray(data) && data.length === 2
+        ? sendToCorlysis('wifi=speed', `download=${data[0]}i,upload=${data[1]}i`).catch(ex => msg.chart.cor(ex))
+        : console.log(msg.cron.speedErr(data));
+};
+
+/**
  * Check system updates with apt-get update
  */
 const checkRaspberryUpdates = async bot => {
@@ -134,8 +145,9 @@ const checkRaspberryUpdates = async bot => {
 };
 
 module.exports = {
-    sendSensorsData,
+    checkRaspberryUpdates,
     sendConnectedWiFiDevices,
-    sendWiFiSpotsList,
-    checkRaspberryUpdates
+    sendNetworkSpeed,
+    sendSensorsData,
+    sendWiFiSpotsList
 };

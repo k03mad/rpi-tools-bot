@@ -15,6 +15,7 @@ Get data from Raspberry Pi 3
   
 **/wifi_devices** wifi connected devices list  
 **/wifi_reboot** wifi spot reboot  
+**/wifi_speed** test network speed  
 **/wifi_spots** scan wifi spots
 
 (⌐■_■)
