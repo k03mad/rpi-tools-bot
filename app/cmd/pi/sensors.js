@@ -75,7 +75,13 @@ const getLevel = (value, type) => {
  */
 const getMhz19 = async () => {
     const pyFile = path.join(__dirname, '..', '..', 'lib', 'ppm.py');
-    return {ppm: Number(await run(`sudo python ${pyFile}`))};
+    const ppm = Number(await run(`sudo python ${pyFile}`));
+
+    if (ppm < 100 || ppm > 3000) {
+        throw new Error(`wrong ppm count: ${ppm}`);
+    }
+
+    return {ppm};
 };
 
 /**
@@ -87,13 +93,25 @@ const getBme280 = async () => {
 
     const data = await bme280.readSensorData();
 
-    const newData = {
-        temp: Math.round(data.temperature_C),
-        hum: Math.round(data.humidity),
-        press: Math.round(data.pressure_hPa * 0.75006375541921)
-    };
+    const temp = Math.round(data.temperature_C);
 
-    return newData;
+    if (temp < -50 || temp > 50) {
+        throw new Error(`wrong temp count: ${temp}`);
+    }
+
+    const hum = Math.round(data.humidity);
+
+    if (hum < 0 || hum > 100) {
+        throw new Error(`wrong hum count: ${hum}`);
+    }
+
+    const press = Math.round(data.pressure_hPa * 0.75006375541921);
+
+    if (press < 600 || press > 900) {
+        throw new Error(`wrong press count: ${press}`);
+    }
+
+    return {temp, hum, press};
 };
 
 /**
