@@ -24,9 +24,9 @@ const convertToArray = elem => {
 const get = (url, opts = {}) => {
     if (!opts.timeout) {
         opts.timeout = {
-            connect: 5000,
-            socket: 7000,
-            request: 10000
+            connect: 10000,
+            socket: 15000,
+            request: 20000
         };
     }
 

@@ -27,7 +27,7 @@ const sendSensorsData = async bot => {
             send.push(`${key}=${data[key]}i`);
         }
 
-        sendToCorlysis('sensors=weather', send.join()).catch(ex => msg.chart.cor(ex));
+        sendToCorlysis('sensors=weather', send.join()).catch(ex => console.log(msg.chart.cor(ex)));
 
         // send warning every REPEAT_ALARM minutes until ppm drop
         if (data.ppm > PPM_WARNING && moment().diff(ppmTimer, PPM_REPEAT_ALARM.unit) > PPM_REPEAT_ALARM.time) {
@@ -83,7 +83,7 @@ const sendConnectedWiFiDevices = async bot => {
 
             // send online devices
             if (data.length > 0) {
-                sendToCorlysis(`wifi=devices${place}`, data.join()).catch(ex => msg.chart.cor(ex));
+                sendToCorlysis(`wifi=devices${place}`, data.join()).catch(ex => console.log(msg.chart.cor(ex)));
             }
 
         }
