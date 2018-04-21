@@ -41,7 +41,7 @@ const formatResults = async raw => {
     const output = [`Download: *${results[0]} Mbps*\nUpload: *${results[1]} Mbps*`];
 
     try {
-        output.push(await getCorlysisChartImage(6));
+        output.push(await getCorlysisChartImage(7));
     } catch (ex) {
         output.push(msg.chart.picErr(ex));
     }
