@@ -25,7 +25,6 @@ const cmd = bot => {
     reply(bot, 'wifi_reboot_home', c.wifi.reboot);
     reply(bot, 'wifi_reboot_knpl', c.wifi.reboot, {place: 'knpl'});
 
-    reply(bot, 'wifi_speed', c.wifi.speed, null, {parse_mode: 'Markdown'});
     reply(bot, 'wifi_spots', c.wifi.spots, null, {parse_mode: 'Markdown'});
 };
 
