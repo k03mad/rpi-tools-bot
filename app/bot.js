@@ -2,6 +2,7 @@ const {msg} = require('./lib/messages');
 const {proxy, telegramToken} = require('../env');
 const PacProxyAgent = require('pac-proxy-agent');
 const TelegramBot = require('node-telegram-bot-api');
+const {sendToCorlysis} = require('./lib/corlysis');
 
 const agent = new PacProxyAgent(proxy);
 const bot = new TelegramBot(telegramToken, {
@@ -12,7 +13,10 @@ const bot = new TelegramBot(telegramToken, {
     request: {agent}
 });
 
-bot.on('polling_error', ex => console.log(msg.common.polling(ex)));
+bot.on('polling_error', err => {
+    console.log(msg.common.polling(err));
+    sendToCorlysis('bot=polling', 'pollErr=1i').catch(ex => console.log(msg.chart.cor(ex)));
+});
 
 require('./cmd')(bot);
 require('./cron')(bot);
