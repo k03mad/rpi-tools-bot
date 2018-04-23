@@ -15,7 +15,7 @@ const bot = new TelegramBot(telegramToken, {
 });
 
 const POLLING_REPEAT_ALARM = {time: 60, unit: 'seconds'};
-let pollingTimer = moment();
+let pollingTimer = moment().subtract(POLLING_REPEAT_ALARM.time, POLLING_REPEAT_ALARM.unit);
 
 bot.on('polling_error', err => {
     console.log(msg.common.polling(err));
