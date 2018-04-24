@@ -107,7 +107,7 @@ const getBme280 = async () => {
 
     const press = Math.round(data.pressure_hPa * 0.75006375541921);
 
-    if (press < 600 || press > 900) {
+    if (press < 700 || press > 800) {
         throw new Error(`wrong press count: ${press}`);
     }
 
