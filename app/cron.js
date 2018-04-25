@@ -5,7 +5,7 @@ const {sendSensorsData, sendConnectedWiFiDevices, checkRaspberryUpdates} = requi
  * Bot crons
  */
 const cron = bot => {
-    every('1m').do(() => sendSensorsData(bot));
+    every('1m').do(() => sendSensorsData());
     every('5m').do(() => sendConnectedWiFiDevices(bot));
     every('5h').do(() => checkRaspberryUpdates(bot));
 };

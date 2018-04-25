@@ -50,7 +50,6 @@ const msg = {
     sensor: {
         err:        type            => `no ${type} data or too low level`,
         noData:                        `${currentDate()} data from sensors is empty`,
-        warning:    ppm             => `Ventilate the room! Too high ppm: ${ppm}`,
         bme:        ex              => `${currentDate()} cannot get data from bme: ${ex}`,
         mhz:        ex              => `${currentDate()} cannot get data from mhz: ${ex}`
     },

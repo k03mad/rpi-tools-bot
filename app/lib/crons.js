@@ -4,17 +4,11 @@ const {MAC_RE} = require('./utils');
 const {msg} = require('./messages');
 const {sendToCorlysis} = require('./corlysis');
 const c = require('require-all')(`${__dirname}/../cmd`);
-const moment = require('moment');
-
-const PPM_WARNING = 1000;
-const PPM_REPEAT_ALARM = {time: 30, unit: 'minutes'};
-
-let ppmTimer = moment().subtract(PPM_REPEAT_ALARM.time, PPM_REPEAT_ALARM.unit);
 
 /**
  *  Send sensor data and warn about high ppm
  */
-const sendSensorsData = async bot => {
+const sendSensorsData = async () => {
     const data = await c.pi.sensors('onlyNum');
 
     if (Object.keys(data).length === 0) {
@@ -28,12 +22,6 @@ const sendSensorsData = async bot => {
         }
 
         sendToCorlysis('sensors=weather', send.join()).catch(ex => console.log(msg.chart.cor(ex)));
-
-        // send warning every REPEAT_ALARM minutes until ppm drop
-        if (data.ppm > PPM_WARNING && moment().diff(ppmTimer, PPM_REPEAT_ALARM.unit) > PPM_REPEAT_ALARM.time) {
-            answer(bot, {chat: {id: myChat}}, msg.sensor.warning(data.ppm));
-            ppmTimer = moment();
-        }
 
     }
 };
