@@ -38,8 +38,8 @@
     "cleanlog": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "readme": "node app/lib/readme && git add README.md",
-    "setup": "npm i && prune",
-    "start": "npm run cleanlog && NODE_ENV=production forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
+    "setup": "npm run cleanlog && npm run clean && npm i && prune",
+    "start": "NODE_ENV=production forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [
