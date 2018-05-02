@@ -36,7 +36,7 @@ const sendConnectedWiFiDevices = async bot => {
         const devices = await c.wifi.devices(place);
 
         if (devices !== msg.common.noDev) {
-            places[place] = devices[0].split('\n\n');
+            places[place] = devices.split('\n\n');
         }
     }
 
