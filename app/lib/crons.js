@@ -49,7 +49,6 @@ const sendConnectedWiFiDevices = async bot => {
             const unknown = [];
 
             places[place].forEach((elem, index) => {
-                if (elem !== msg.common.noDev) {
                     if (!known.includes(elem.match(MAC_RE)[0])) {
                         unknown.push(elem);
                     }
@@ -60,7 +59,6 @@ const sendConnectedWiFiDevices = async bot => {
                             data.push(`${mac}=${index + 1}i`);
                         }
                     }
-                }
             });
 
             // send unknown device warning
