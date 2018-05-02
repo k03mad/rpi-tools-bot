@@ -3,6 +3,7 @@
 Get data from Raspberry Pi 3
 
 **/help** this list  
+**/graph** get all graphs  
 **/log** forever log  
   
 **/apt_update** check for updates  

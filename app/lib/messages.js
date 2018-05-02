@@ -2,6 +2,7 @@ const {currentDate} = require('./utils');
 
 const commands = [
     '/help - this list',
+    '/graph - get all graphs',
     '/log - forever log',
     '',
     '/apt_update - check for updates',

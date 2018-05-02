@@ -32,13 +32,12 @@ const sendSensorsData = async () => {
 const sendConnectedWiFiDevices = async bot => {
     const places = {};
 
-    for (const opts of [{noChart: true}, {noChart: true, place: 'knpl'}]) {
-        const key = opts.place || 'home';
-        const devices = await c.wifi.devices(opts);
+    for (const place of ['mad', 'knpl']) {
+        const devices = await c.wifi.devices(place);
 
         Array.isArray(devices)
-            ? places[key] = devices[0].split('\n\n')
-            : console.log(msg.cron.devErr(key, devices));
+            ? places[place] = devices[0].split('\n\n')
+            : console.log(msg.cron.devErr(place, devices));
     }
 
     if (Object.keys(places).length > 0) {

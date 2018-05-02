@@ -49,8 +49,8 @@ const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
 /**
  * Return router credentials
  */
-const router = opts => {
-    return opts.place
+const router = place => {
+    return place === 'knpl'
         ? {
             ip: wifiKnplIP,
             cred: wifiKnplCred

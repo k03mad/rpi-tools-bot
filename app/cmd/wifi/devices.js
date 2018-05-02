@@ -1,19 +1,18 @@
 const {get, getMacVendor, router, MAC_RE} = require('../../lib/utils');
-const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 const cheerio = require('cheerio');
 
 /**
  * Get device list from router
  */
-const getDeviceList = async opts => {
-    const host = `http://${router(opts).ip}`;
+const getDeviceList = async place => {
+    const host = `http://${router(place).ip}`;
     const PATH = '/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo';
 
     const SELECTOR = '.menu_content_list_table tr';
 
     const {body} = await get(host + PATH, {
-        auth: router(opts).cred
+        auth: router(place).cred
     });
 
     const $ = cheerio.load(body);
@@ -28,11 +27,11 @@ const getDeviceList = async opts => {
 /**
  * Pretty device list and add mac vendor
  */
-const prettyDeviceList = async (opts = {}) => {
+const prettyDeviceList = async place => {
     let list;
 
     try {
-        list = await getDeviceList(opts);
+        list = await getDeviceList(place);
     } catch (ex) {
         return ex.toString();
     }
@@ -64,21 +63,7 @@ const prettyDeviceList = async (opts = {}) => {
         } catch (ex) {}
     }));
 
-    const answer = [output.length > 0 ? output.map(elem => elem.join('\n')).join('\n\n') : msg.common.noDev];
-
-    if (!opts.noChart) {
-        let chart;
-
-        try {
-            chart = await getCorlysisChartImage(opts.place === 'knpl' ? 3 : 2);
-        } catch (ex) {
-            chart = msg.chart.picErr(ex);
-        }
-
-        answer.push(chart);
-    }
-
-    return answer;
+    return output.length > 0 ? output.map(elem => elem.join('\n')).join('\n\n') : msg.common.noDev;
 };
 
 module.exports = prettyDeviceList;

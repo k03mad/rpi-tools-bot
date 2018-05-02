@@ -1,4 +1,3 @@
-const {getCorlysisChartImage} = require('../../lib/corlysis');
 const {msg} = require('../../lib/messages');
 const {run} = require('../../lib/utils');
 const BME280 = require('bme-sensor-nolog');
@@ -154,17 +153,7 @@ const sensors = async onlyNum => {
         message.push(`CO₂: *${data.ppm} ppm* (${getLevel(data.ppm, 'co2')})`);
     }
 
-    const output = [message.join('\n')];
-
-    await Promise.all([1, 4, 5].map(async elem => {
-        try {
-            output.push(await getCorlysisChartImage(elem));
-        } catch (ex) {
-            output.push(msg.chart.picErr(ex));
-        }
-    }));
-
-    return output;
+    return message.join('\n');
 };
 
 module.exports = sensors;
