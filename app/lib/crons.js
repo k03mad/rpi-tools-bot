@@ -32,13 +32,13 @@ const sendSensorsData = async () => {
 const sendConnectedWiFiDevices = async bot => {
     const places = {};
 
-    for (const place of ['mad', 'knpl']) {
+    await Promise.all(['mad', 'knpl'].map(async place => {
         const devices = await c.wifi.devices(place);
 
-        if (devices !== msg.common.noDev && devices.includes('\n')) {
+        if (devices.includes('\n')) {
             places[place] = devices.split('\n\n');
         }
-    }
+    }));
 
     if (Object.keys(places).length > 0) {
         for (const place in places) {
