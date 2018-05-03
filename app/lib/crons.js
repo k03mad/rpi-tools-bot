@@ -34,6 +34,9 @@ const sendConnectedWiFiDevices = async bot => {
 
     for (const place of ['mad', 'knpl']) {
         const devices = await c.wifi.devices(place);
+        console.log('​-----------------');
+        console.log('​devices', devices);
+        console.log('​-----------------');
 
         if (devices !== msg.common.noDev) {
             places[place] = devices.split('\n\n');
@@ -48,17 +51,24 @@ const sendConnectedWiFiDevices = async bot => {
             const data = [];
             const unknown = [];
 
-            places[place].forEach((elem, index) => {
-                    if (!known.includes(elem.match(MAC_RE)[0])) {
-                        unknown.push(elem);
-                    }
+            console.log('​-------------');
+            console.log('​place', place);
+            console.log('​-------------');
+            console.log('​---------------');
+            console.log('​places', places);
+            console.log('​---------------');
 
-                    for (const mac in knownDevices) {
-                        // if device is not offline and from known list
-                        if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
-                            data.push(`${mac}=${index + 1}i`);
-                        }
+            places[place].forEach((elem, index) => {
+                if (!known.includes(elem.match(MAC_RE)[0])) {
+                    unknown.push(elem);
+                }
+
+                for (const mac in knownDevices) {
+                    // if device is not offline and from known list
+                    if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
+                        data.push(`${mac}=${index + 1}i`);
                     }
+                }
             });
 
             // send unknown device warning
