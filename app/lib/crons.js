@@ -34,9 +34,6 @@ const sendConnectedWiFiDevices = async bot => {
 
     for (const place of ['mad', 'knpl']) {
         const devices = await c.wifi.devices(place);
-        console.log('​-----------------');
-        console.log('​devices', devices);
-        console.log('​-----------------');
 
         if (devices !== msg.common.noDev) {
             places[place] = devices.split('\n\n');
@@ -50,13 +47,6 @@ const sendConnectedWiFiDevices = async bot => {
 
             const data = [];
             const unknown = [];
-
-            console.log('​-------------');
-            console.log('​place', place);
-            console.log('​-------------');
-            console.log('​---------------');
-            console.log('​places', places);
-            console.log('​---------------');
 
             places[place].forEach((elem, index) => {
                 if (!known.includes(elem.match(MAC_RE)[0])) {
