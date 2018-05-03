@@ -9,7 +9,7 @@ const data = [
     msg.readme.badges.join(' '),
     msg.readme.header,
     help.join('  \n'),
-    msg.readme.footer
+    msg.readme.footer,
 ];
 
 fs.writeFile('README.md', data.join('\n\n'), err => {

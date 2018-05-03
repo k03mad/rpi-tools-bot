@@ -10,7 +10,7 @@ const reboot = async place => {
 
     try {
         await get(host + PATH, {
-            auth: router(place).cred
+            auth: router(place).cred,
         });
     } catch (ex) {
         return ex.toString();

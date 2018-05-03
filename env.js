@@ -13,5 +13,5 @@ module.exports = {
     wifiIP: process.env.WIFI_IP,
     wifiCred: process.env.WIFI_CRED,
     wifiKnplIP: process.env.WIFI_KNPL_IP,
-    wifiKnplCred: process.env.WIFI_KNPL_CRED
+    wifiKnplCred: process.env.WIFI_KNPL_CRED,
 };

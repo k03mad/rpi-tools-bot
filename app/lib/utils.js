@@ -26,7 +26,7 @@ const get = (url, opts = {}) => {
         opts.timeout = {
             connect: 15000,
             socket: 20000,
-            request: 30000
+            request: 30000,
         };
     }
 
@@ -53,11 +53,11 @@ const router = place => {
     return place === 'knpl'
         ? {
             ip: wifiKnplIP,
-            cred: wifiKnplCred
+            cred: wifiKnplCred,
         }
         : {
             ip: wifiIP,
-            cred: wifiCred
+            cred: wifiCred,
         };
 };
 
@@ -75,5 +75,5 @@ module.exports = {
     getMacVendor,
     MAC_RE,
     router,
-    run
+    run,
 };

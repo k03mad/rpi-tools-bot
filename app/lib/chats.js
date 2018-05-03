@@ -76,13 +76,13 @@ const keyboard = arr => {
         reply_markup: {
             keyboard: [arr],
             resize_keyboard: true,
-            one_time_keyboard: true
-        }
+            one_time_keyboard: true,
+        },
     };
 };
 
 module.exports = {
     answer,
     reply,
-    keyboard
+    keyboard,
 };

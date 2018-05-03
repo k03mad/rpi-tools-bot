@@ -9,9 +9,9 @@ const agent = new PacProxyAgent(proxy);
 const bot = new TelegramBot(telegramToken, {
     polling: {
         interval: 3000,
-        params: {allowed_updates: ['message']}
+        params: {allowed_updates: ['message']},
     },
-    request: {agent}
+    request: {agent},
 });
 
 const POLLING_REPEAT_ALARM = {time: 60, unit: 'seconds'};

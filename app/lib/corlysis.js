@@ -7,10 +7,10 @@ const {corlysisToken, corlysisPubToken} = require('../../env');
 const sendToCorlysis = (field, data) => {
     return get('https://corlysis.com:8086/write', {
         query: {
-            db: 'mydb'
+            db: 'mydb',
         },
         body: `pi3,${field} ${data}`,
-        auth: `token:${corlysisToken}`
+        auth: `token:${corlysisToken}`,
     });
 };
 
@@ -26,11 +26,11 @@ const getCorlysisChartImage = async panelId => {
             orgId: '821',
             width: '1200',
             height: '400',
-            tz: 'UTC+03:00'
+            tz: 'UTC+03:00',
         },
         headers: {
-            cookie: `token=${corlysisPubToken}`
-        }
+            cookie: `token=${corlysisPubToken}`,
+        },
     });
 
     return Buffer.from(body);
@@ -38,5 +38,5 @@ const getCorlysisChartImage = async panelId => {
 
 module.exports = {
     getCorlysisChartImage,
-    sendToCorlysis
+    sendToCorlysis,
 };

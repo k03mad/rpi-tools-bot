@@ -95,5 +95,5 @@ const checkRaspberryUpdates = async bot => {
 module.exports = {
     checkRaspberryUpdates,
     sendConnectedWiFiDevices,
-    sendSensorsData
+    sendSensorsData,
 };

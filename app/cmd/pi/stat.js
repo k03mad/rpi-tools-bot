@@ -109,7 +109,7 @@ const sessions = async () => {
 const ver = async () => {
     const versions = await Promise.all([
         run('cat /etc/*release | head -n 1'),
-        run('uname -rs')
+        run('uname -rs'),
     ]);
 
     return versions[0].replace(/PRETTY_NAME=|"/g, '') + versions[1];
@@ -121,7 +121,7 @@ const ver = async () => {
 const nodeVer = async () => {
     const versions = await Promise.all([
         run('node -v'),
-        run('npm -v')
+        run('npm -v'),
     ]);
 
     return `\nnode: ${versions[0].replace(/^v/, '')}npm: ${versions[1].replace('\n', '')}`;
@@ -143,7 +143,7 @@ const getStats = async () => {
 
         nodeVer(),
 
-        sessions()
+        sessions(),
     ]);
 
     return stats.join('\n');
