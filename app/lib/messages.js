@@ -55,7 +55,7 @@ const msg = {
     },
     send: {
         norm:       ex              => `${currentDate()} sending normal message: ${ex}`,
-        photo:      ex              => `${currentDate()} sending photo message: ${ex.toString()}`,
+        photo:      ex              => `${currentDate()} sending photo message: ${ex}`,
         typing:     ex              => `${currentDate()} sending typing message: ${ex}`,
     },
 };
