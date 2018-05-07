@@ -3,6 +3,8 @@ process.env.NTBA_FIX_319 = true;
 // remove "In the future, content-type of files you send will default to "application/octet-stream"
 process.env.NTBA_FIX_350 = true;
 
+process.env.NODE_ENV = 'production';
+
 module.exports = {
     corlysisPubToken: process.env.CORLYSIS_PUB_TOKEN,
     corlysisToken: process.env.CORLYSIS_TOKEN,

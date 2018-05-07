@@ -7,13 +7,13 @@
   ],
   "repository": "k03mad/raspi-tlgrm-bot",
   "engines": {
-    "node": ">=9"
+    "node": ">=10"
   },
   "dependencies": {
     "app-root-path": "2.0.1",
     "bme-sensor-nolog": "0.1.6",
     "cheerio": "1.0.0-rc.2",
-    "colors": "1.2.3",
+    "colors": "1.2.4",
     "executive": "1.5.13",
     "forever": "0.15.3",
     "got": "8.3.1",
@@ -29,8 +29,7 @@
     "eslint-plugin-const-case": "1.0.4",
     "eslint-plugin-node": "6.0.1",
     "eslint-plugin-promise": "3.7.0",
-    "pre-commit": "1.2.2",
-    "pruner-cli": "0.2.1"
+    "pre-commit": "1.2.2"
   },
   "scripts": {
     "bot": "npm run stop && npm run start",
@@ -38,8 +37,8 @@
     "cleanlog": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "readme": "node app/lib/readme && git add README.md",
-    "setup": "npm run cleanlog && npm run clean && npm i && prune",
-    "start": "NODE_ENV=production forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
+    "setup": "npm run cleanlog && npm i",
+    "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [
