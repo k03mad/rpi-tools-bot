@@ -35,7 +35,11 @@ const answer = async (bot, mes, sends, opts) => {
     for (const send of convertToArray(sends)) {
 
         if (Buffer.isBuffer(send)) {
-            bot.sendPhoto(mes.chat.id, send, opts).catch(ex => console.log(msg.send.photo(ex)));
+            try {
+                await bot.sendPhoto(mes.chat.id, send, opts);
+            } catch (ex) {
+                console.log(msg.send.photo(ex));
+            }
 
         } else if (send.length > MAX_MSG_LENGTH) {
             // split by new lines
