@@ -35,9 +35,9 @@ const sendConnectedWiFiDevices = async bot => {
     await Promise.all(['mad', 'knpl'].map(async place => {
         const devices = await c.wifi.devices(place);
 
-        if (devices.includes('\n')) {
-            places[place] = devices.split('\n\n');
-        }
+        devices.includes('\n')
+            ? places[place] = devices.split('\n\n')
+            : console.log(msg.chart.cor(place, devices));
     }));
 
     if (Object.keys(places).length > 0) {
