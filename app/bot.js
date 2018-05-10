@@ -14,14 +14,14 @@ const bot = new TelegramBot(telegramToken, {
     request: {agent},
 });
 
-const POLLING_REPEAT_ALARM = {time: 60, unit: 'seconds'};
-let pollingTimer = moment().subtract(POLLING_REPEAT_ALARM.time, POLLING_REPEAT_ALARM.unit);
+const POLLING_REPEAT_ALARM = 60000;
+let pollingTimer = moment();
 
 bot.on('polling_error', err => {
     console.log(msg.common.polling(err));
 
-    // send polling errors to corlysis every 1 minute
-    if (moment().diff(pollingTimer, POLLING_REPEAT_ALARM.unit) > POLLING_REPEAT_ALARM.time) {
+    // send polling errors to corlysis every POLLING_REPEAT_ALARM
+    if (moment().diff(pollingTimer) > POLLING_REPEAT_ALARM) {
         pollingTimer = moment();
         sendToCorlysis('bot=polling', 'pollErr=1i').catch(ex => console.log(msg.chart.cor(ex)));
     }
