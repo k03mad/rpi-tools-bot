@@ -37,7 +37,7 @@ const sendConnectedWiFiDevices = async bot => {
 
         devices.includes('\n')
             ? places[place] = devices.split('\n\n')
-            : console.log(msg.chart.cor(place, devices));
+            : console.log(msg.common.errDev(place, devices));
     }));
 
     if (Object.keys(places).length > 0) {
