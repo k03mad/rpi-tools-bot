@@ -21,7 +21,7 @@ const sendSensorsData = async () => {
             send.push(`${key}=${data[key]}i`);
         }
 
-        sendToCorlysis('sensors=weather', send.join()).catch(ex => console.log(msg.chart.cor(ex)));
+        sendToCorlysis('sensors=weather', send.join()).catch(err => console.log(msg.chart.cor(err)));
 
     }
 };
@@ -68,7 +68,7 @@ const sendConnectedWiFiDevices = async bot => {
 
             // send online devices
             if (data.length > 0) {
-                sendToCorlysis(`wifi=devices${place}`, data.join()).catch(ex => console.log(msg.chart.cor(ex)));
+                sendToCorlysis(`wifi=devices${place}`, data.join()).catch(err => console.log(msg.chart.cor(err)));
             }
 
         }
@@ -83,8 +83,8 @@ const checkRaspberryUpdates = async bot => {
 
     try {
         updates = await c.apt.update();
-    } catch (ex) {
-        console.log(msg.cron.updErr(ex));
+    } catch (err) {
+        console.log(msg.cron.updErr(err));
     }
 
     if (updates && updates !== msg.common.updates) {

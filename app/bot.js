@@ -17,13 +17,13 @@ const bot = new TelegramBot(telegramToken, {
 const POLLING_REPEAT_ALARM = 60000;
 let pollingTimer = moment();
 
-bot.on('polling_error', err => {
-    console.log(msg.common.polling(err));
+bot.on('polling_error', ex => {
+    console.log(msg.common.polling(ex));
 
     // send polling errors to corlysis every POLLING_REPEAT_ALARM
     if (moment().diff(pollingTimer) > POLLING_REPEAT_ALARM) {
         pollingTimer = moment();
-        sendToCorlysis('bot=polling', 'pollErr=1i').catch(ex => console.log(msg.chart.cor(ex)));
+        sendToCorlysis('bot=polling', 'pollErr=1i').catch(err => console.log(msg.chart.cor(err)));
     }
 });
 

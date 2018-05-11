@@ -12,8 +12,8 @@ const reboot = async place => {
         await get(host + PATH, {
             auth: router(place).cred,
         });
-    } catch (ex) {
-        return ex.toString();
+    } catch (err) {
+        return err.toString();
     }
 
     return msg.common.reboot;

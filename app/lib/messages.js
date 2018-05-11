@@ -29,6 +29,7 @@ const msg = {
         emptyLog:                      'Log is empty',
         level:      type            => `Something wrong with get level type: ${type}`,
         noDev:                         'No devices available',
+        noVendor:   (mac, ex)       => `${currentDate()} get ${mac} mac vendor: ${ex}`,
         errDev:     (place, ex)     => `${currentDate()} get ${place} devices: ${ex}`,
         polling:    ex              => `${currentDate()} polling: ${ex}`,
         reboot:                        'Proceed to reboot',

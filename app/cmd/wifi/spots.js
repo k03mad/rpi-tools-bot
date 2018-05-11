@@ -69,8 +69,8 @@ const addVendor = async () => {
             if (vendor !== 'No vendor') {
                 elem.vendor = vendor;
             }
-        } catch (ex) {
-            console.log(msg.common.vendor(elem.mac, ex));
+        } catch (err) {
+            console.log(msg.common.vendor(elem.mac, err));
         }
     }));
 

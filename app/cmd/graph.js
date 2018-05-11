@@ -12,8 +12,8 @@ const graph = async () => {
     await Promise.all(ids.map(async elem => {
         try {
             output.push(await getCorlysisChartImage(elem));
-        } catch (ex) {
-            output.push(msg.chart.picErr(ex));
+        } catch (err) {
+            output.push(msg.chart.picErr(err));
         }
     }));
 

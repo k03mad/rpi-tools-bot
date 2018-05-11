@@ -12,8 +12,8 @@ const getLogMessage = async () => {
     try {
         const log = await readFile(`${appRoot}/forever.log`);
         return log.length > 1 ? log.toString() : msg.common.emptyLog;
-    } catch (ex) {
-        return ex.message;
+    } catch (err) {
+        return err.message;
     }
 };
 

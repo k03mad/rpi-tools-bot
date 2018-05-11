@@ -37,8 +37,8 @@ const answer = async (bot, mes, sends, opts) => {
         if (Buffer.isBuffer(send)) {
             try {
                 await bot.sendPhoto(mes.chat.id, send, opts);
-            } catch (ex) {
-                console.log(msg.send.photo(ex));
+            } catch (err) {
+                console.log(msg.send.photo(err));
             }
 
         } else if (send.length > MAX_MSG_LENGTH) {
@@ -48,13 +48,13 @@ const answer = async (bot, mes, sends, opts) => {
             for (const elemPart of longStringArr) {
                 try {
                     await bot.sendMessage(mes.chat.id, elemPart, opts);
-                } catch (ex) {
-                    console.log(msg.send.norm(mes, ex));
+                } catch (err) {
+                    console.log(msg.send.norm(mes, err));
                 }
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, send, opts).catch(ex => console.log(msg.send.norm(ex)));
+            bot.sendMessage(mes.chat.id, send, opts).catch(err => console.log(msg.send.norm(err)));
         }
 
     }
@@ -66,7 +66,7 @@ const answer = async (bot, mes, sends, opts) => {
 const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
         if ([myChat].includes(String(mes.chat.id))) {
-            bot.sendChatAction(mes.chat.id, 'typing').catch(ex => console.log(msg.send.typing(ex)));
+            bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(msg.send.typing(err)));
             answer(bot, mes, await cmd(...convertToArray(args)), opts);
         }
     });

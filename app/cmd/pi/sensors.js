@@ -121,14 +121,14 @@ const sensors = async onlyNum => {
 
     try {
         Object.assign(data, await getMhz19());
-    } catch (ex) {
-        console.log(msg.sensor.mhz(ex));
+    } catch (err) {
+        console.log(msg.sensor.mhz(err));
     }
 
     try {
         Object.assign(data, await getBme280());
-    } catch (ex) {
-        console.log(msg.sensor.bme(ex));
+    } catch (err) {
+        console.log(msg.sensor.bme(err));
     }
 
     if (onlyNum) {

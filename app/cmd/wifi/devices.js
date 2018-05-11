@@ -32,8 +32,8 @@ const prettyDeviceList = async place => {
 
     try {
         list = await getDeviceList(place);
-    } catch (ex) {
-        return ex.toString();
+    } catch (err) {
+        return err.toString();
     }
 
     const output = [];
@@ -60,7 +60,9 @@ const prettyDeviceList = async place => {
             if (new RegExp(`^${MAC_RE.source}$`).test(mac)) {
                 elem[1] = `${mac}\n${await getMacVendor(mac)}`;
             }
-        } catch (ex) {}
+        } catch (err) {
+            console.log(msg.common.vendor(mac, err));
+        }
     }));
 
     return output.length > 0 ? output.map(elem => elem.join('\n')).join('\n\n') : msg.common.noDev;
