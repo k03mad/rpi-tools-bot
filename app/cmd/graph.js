@@ -6,7 +6,7 @@ const {msg} = require('../lib/messages');
  */
 const graph = async () => {
     const GRAPHS_COUNT = 6;
-    const ids = Array.from(Array(GRAPHS_COUNT), (_, x) => ++x);
+    const ids = [...new Array(GRAPHS_COUNT)].map((_, x) => ++x);
 
     const output = [];
     await Promise.all(ids.map(async elem => {
