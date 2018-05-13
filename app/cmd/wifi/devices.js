@@ -1,6 +1,7 @@
-const {get, getMacVendor, router, MAC_RE} = require('../../lib/utils');
+const {get, router, MAC_RE} = require('../../lib/utils');
 const {msg} = require('../../lib/messages');
 const cheerio = require('cheerio');
+const oui = require('oui');
 
 /**
  * Get device list from router
@@ -53,17 +54,17 @@ const prettyDeviceList = async place => {
         }
     }
 
-    await Promise.all(output.map(async elem => {
+    output.forEach(elem => {
         const [, mac] = elem;
 
         try {
             if (new RegExp(`^${MAC_RE.source}$`).test(mac)) {
-                elem[1] = `${mac}\n${await getMacVendor(mac)}`;
+                elem[1] = `${mac}\n${oui(mac).split('\n')[0]}`;
             }
         } catch (err) {
             console.log(msg.common.vendor(mac, err));
         }
-    }));
+    });
 
     return output.length > 0 ? output.map(elem => elem.join('\n')).join('\n\n') : msg.common.noDev;
 };
