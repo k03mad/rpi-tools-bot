@@ -37,6 +37,7 @@ const msg = {
         updates:                       'No updates available',
     },
     cron: {
+        dns:        ex              => `${currentDate()} get dns queries: ${ex}`,
         updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`,
     },

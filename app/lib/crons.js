@@ -1,6 +1,6 @@
 const {answer} = require('./chats');
 const {knownDevices, myChat} = require('../../env');
-const {MAC_RE} = require('./utils');
+const {MAC_RE, run} = require('./utils');
 const {msg} = require('./messages');
 const {sendToCorlysis} = require('./corlysis');
 const c = require('require-all')(`${__dirname}/../cmd`);
@@ -92,8 +92,29 @@ const checkRaspberryUpdates = async bot => {
     }
 };
 
+/**
+ * Send blocked queries by local dns
+ */
+const sendDnsQueries = async () => {
+    let log;
+
+    try {
+        log = JSON.parse(await run('pihole -c -j'));
+    } catch (err) {
+        console.log(msg.cron.dns(err));
+    }
+
+    const queries = log.dns_queries_today;
+    const blocked = log.ads_blocked_today;
+
+    if (log && queries && blocked) {
+        sendToCorlysis('dns=queries', `queries=${queries}i,blocked=${blocked}i`).catch(err => console.log(msg.chart.cor(err)));
+    }
+};
+
 module.exports = {
     checkRaspberryUpdates,
     sendConnectedWiFiDevices,
+    sendDnsQueries,
     sendSensorsData,
 };
