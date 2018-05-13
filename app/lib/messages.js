@@ -2,8 +2,8 @@ const {currentDate} = require('./utils');
 
 const commands = [
     '/help - this list',
-    '/graph - get all graphs',
-    '/log - forever log',
+    '/graph - get all grafana graphs',
+    '/log - print and erase forever log',
     '',
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
@@ -15,7 +15,6 @@ const commands = [
     '',
     '/wifi_devices - wifi connected devices list',
     '/wifi_reboot - wifi spot reboot',
-    '/wifi_spots - scan wifi spots',
 ];
 
 const msg = {

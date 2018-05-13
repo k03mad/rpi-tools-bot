@@ -3,8 +3,8 @@
 Get data from Raspberry Pi 3
 
 **/help** this list  
-**/graph** get all graphs  
-**/log** forever log  
+**/graph** get all grafana graphs  
+**/log** print and erase forever log  
   
 **/apt_update** check for updates  
 **/apt_upgrade** install updates  
@@ -15,7 +15,6 @@ Get data from Raspberry Pi 3
 **/pi_stat** some usage stats  
   
 **/wifi_devices** wifi connected devices list  
-**/wifi_reboot** wifi spot reboot  
-**/wifi_spots** scan wifi spots
+**/wifi_reboot** wifi spot reboot
 
 (⌐■_■)
