@@ -14,8 +14,6 @@ const getLogMessage = async () => {
 
     try {
         const log = await readFile(logfile);
-        await run(`rm -rf ${logfile}`);
-        await run(`touch ${logfile}`);
 
         return log.length > 1 ? log.toString() : msg.common.emptyLog;
     } catch (err) {
