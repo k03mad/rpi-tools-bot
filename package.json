@@ -38,9 +38,9 @@
     "clean": "rm -rf ./node_modules || true",
     "cleanlog": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
-    "oui": "oui --update",
+    "oui": "oui --update || true",
     "readme": "node app/lib/readme && git add README.md",
-    "setup": "npm run cleanlog && npm run oui && npm i",
+    "setup": "npm i && npm run cleanlog && npm run oui",
     "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
     "stop": "forever stop -t raspi || true"
   },

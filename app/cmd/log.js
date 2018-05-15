@@ -1,6 +1,5 @@
 const {msg} = require('../lib/messages');
 const {promisify} = require('util');
-const {run} = require('../lib/utils');
 const appRoot = require('app-root-path');
 const fs = require('fs');
 
