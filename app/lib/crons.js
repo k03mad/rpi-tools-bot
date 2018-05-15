@@ -98,19 +98,22 @@ const checkRaspberryUpdates = async bot => {
  * Send blocked queries by local dns
  */
 const sendDnsQueries = async () => {
-    let log;
+    let parsedLog;
 
     try {
-        log = JSON.parse(await run('pihole -c -j'));
+        const log = await run('pihole -c -j');
+        parsedLog = JSON.parse(log);
     } catch (err) {
-        console.log(msg.cron.dns(err));
+        console.log(msg.cron.dns(log, err));
     }
+    
+    if (parsedLog) {
+        const queries = parsedLog.dns_queries_today;
+        const blocked = parsedLog.ads_blocked_today;
 
-    const queries = log.dns_queries_today;
-    const blocked = log.ads_blocked_today;
-
-    if (log && queries && blocked) {
-        sendToCorlysis('dns=queries', `today=${queries}i,blocked=${blocked}i`).catch(err => console.log(msg.chart.cor(err)));
+        if (queries && blocked) {
+            sendToCorlysis('dns=queries', `today=${queries}i,blocked=${blocked}i`).catch(err => console.log(msg.chart.cor(err)));
+        }
     }
 };
 
