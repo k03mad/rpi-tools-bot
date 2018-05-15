@@ -8,7 +8,6 @@ const path = require('path');
  */
 const getMhz19 = async () => {
     const pyFile = path.join(__dirname, 'ppm.py');
-    console.log(pyFile);
     const ppm = Number(await run(`sudo python ${pyFile}`));
 
     if (ppm < 100 || ppm > 3000) {
