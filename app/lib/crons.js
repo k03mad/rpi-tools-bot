@@ -98,15 +98,16 @@ const checkRaspberryUpdates = async bot => {
  * Send blocked queries by local dns
  */
 const sendDnsQueries = async () => {
+    let log;
     let parsedLog;
 
     try {
-        const log = await run('pihole -c -j');
+        log = await run('pihole -c -j');
         parsedLog = JSON.parse(log);
     } catch (err) {
         console.log(msg.cron.dns(log, err));
     }
-    
+
     if (parsedLog) {
         const queries = parsedLog.dns_queries_today;
         const blocked = parsedLog.ads_blocked_today;
