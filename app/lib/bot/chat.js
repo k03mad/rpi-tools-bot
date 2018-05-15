@@ -1,6 +1,6 @@
-const {convertToArray} = require('./utils');
-const {msg} = require('./messages');
-const {myChat} = require('../../env');
+const {convertToArray} = require('../utils');
+const {msg} = require('../messages');
+const {myChat} = require('../../../env');
 
 const MAX_MSG_LENGTH = 4096;
 

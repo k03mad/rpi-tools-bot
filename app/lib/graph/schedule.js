@@ -1,15 +1,20 @@
-const {answer} = require('./chats');
-const {knownDevices, myChat} = require('../../env');
-const {MAC_RE, run} = require('./utils');
-const {msg} = require('./messages');
+const {answer} = require('../bot/chat');
+const {knownDevices, myChat, lastfmToken} = require('../../../env');
+const {MAC_RE, run, get} = require('../utils');
+const {msg} = require('../messages');
+const {promisify} = require('util');
 const {sendToCorlysis} = require('./corlysis');
-const c = require('require-all')(`${__dirname}/../cmd`);
+const c = require('require-all')(`${__dirname}/../../cmd`);
+const fs = require('fs');
+const sensors = require('./sensors');
+
+const readFile = promisify(fs.readFile);
 
 /**
  *  Send sensor data and warn about high ppm
  */
 const sendSensorsData = async () => {
-    const data = await c.pi.sensors('onlyNum');
+    const data = await sensors();
 
     if (Object.keys(data).length === 0) {
         console.log(msg.sensor.noData);
@@ -87,9 +92,10 @@ const checkRaspberryUpdates = async bot => {
         updates = await c.apt.update();
     } catch (err) {
         console.log(msg.cron.updErr(err));
+        return;
     }
 
-    if (updates && updates !== msg.common.updates) {
+    if (updates !== msg.common.updates) {
         answer(bot, {chat: {id: myChat}}, updates);
     }
 };
@@ -106,21 +112,101 @@ const sendDnsQueries = async () => {
         parsedLog = JSON.parse(log);
     } catch (err) {
         console.log(msg.cron.dns(log, err));
+        return;
     }
 
-    if (parsedLog) {
-        const queries = parsedLog.dns_queries_today;
-        const blocked = parsedLog.ads_blocked_today;
+    const queries = parsedLog.dns_queries_today;
+    const blocked = parsedLog.ads_blocked_today;
 
-        if (queries && blocked) {
-            sendToCorlysis('dns=queries', `today=${queries}i,blocked=${blocked}i`).catch(err => console.log(msg.chart.cor(err)));
+    if (queries && blocked) {
+        sendToCorlysis('dns=queries', `today=${queries}i,blocked=${blocked}i`).catch(err => console.log(msg.chart.cor(err)));
+    }
+
+};
+
+/**
+ * Send blocked hosts by local dns
+ */
+const sendDnsBlocks = async () => {
+    const HOSTS_COUNT = 10;
+
+    let pass;
+    let parsed;
+
+    try {
+        const file = await readFile('/etc/pihole/setupVars.conf');
+        [, pass] = file.toString().match(/WEBPASSWORD=(.+)\n/);
+    } catch (err) {
+        console.log(msg.cron.dnsVar(err));
+        return;
+    }
+
+    try {
+        const {body} = await get('http://localhost/admin/api.php', {
+            query: {
+                topItems: 25,
+                auth: pass,
+            },
+            json: true,
+        });
+        parsed = body.top_ads;
+    } catch (err) {
+        console.log(msg.cron.dnsTop(err));
+        return;
+    }
+
+    let i = 0;
+    const data = [];
+
+    for (const ad in parsed) {
+        data.push(`${ad}=${parsed[ad]}i`);
+        i++;
+
+        if (i === HOSTS_COUNT) {
+            break;
         }
+    }
+
+    if (data.length > 0) {
+        sendToCorlysis('dns=top', data.join()).catch(err => console.log(msg.chart.cor(err)));
+    }
+};
+
+/**
+ * Send last fm plays count
+ */
+const sendLastFm = async () => {
+    const users = ['k03mad', 'kanaplushka'];
+    let data;
+
+    await Promise.all(users.map(async elem => {
+        try {
+            const {body} = await get('http://ws.audioscrobbler.com/2.0/', {
+                query: {
+                    method: 'user.getinfo',
+                    user: elem,
+                    api_key: lastfmToken,
+                    format: 'json',
+                },
+                json: true,
+            });
+
+            return data.push(`${body.user.name}=${body.user.playcount}i`);
+        } catch (err) {
+            console.log(msg.cron.lastfm(err));
+        }
+    }));
+
+    if (data.length > 0) {
+        sendToCorlysis('lastfm=plays', data.join()).catch(err => console.log(msg.chart.cor(err)));
     }
 };
 
 module.exports = {
     checkRaspberryUpdates,
     sendConnectedWiFiDevices,
+    sendDnsBlocks,
     sendDnsQueries,
+    sendLastFm,
     sendSensorsData,
 };

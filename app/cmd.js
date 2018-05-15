@@ -1,4 +1,4 @@
-const {reply, keyboard} = require('./lib/chats');
+const {reply, keyboard} = require('./lib/bot/chat');
 const c = require('require-all')(`${__dirname}/cmd`);
 const {msg} = require('./lib/messages');
 
@@ -13,7 +13,6 @@ const cmd = bot => {
     reply(bot, 'apt_update', c.apt.update);
     reply(bot, 'apt_upgrade', c.apt.upgrade);
 
-    reply(bot, 'pi_sensors', c.pi.sensors, null, {parse_mode: 'Markdown'});
     reply(bot, 'pi_reboot', c.pi.reboot);
     reply(bot, 'pi_shutdown', c.pi.shutdown);
     reply(bot, 'pi_stat', c.pi.stat, null, {parse_mode: 'Markdown'});

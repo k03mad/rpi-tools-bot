@@ -26,7 +26,6 @@ const msg = {
     common: {
         choose:     ()              => 'Choose network',
         emptyLog:                      'Log is empty',
-        level:      type            => `Something wrong with get level type: ${type}`,
         noDev:                         'No devices available',
         noVendor:   (mac, ex)       => `${currentDate()} get ${mac} mac vendor: ${ex}`,
         errDev:     (place, ex)     => `${currentDate()} get ${place} devices: ${ex}`,
@@ -37,6 +36,9 @@ const msg = {
     },
     cron: {
         dns:        (log, ex)       => `${currentDate()} get dns queries: ${ex}, log: ${log}`,
+        dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,
+        dnsTop:     ex              => `${currentDate()} get pihole top hosts: ${ex}`,
+        lastfm:     ex              => `${currentDate()} get lastfm plays count: ${ex}`,
         updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`,
     },
@@ -50,7 +52,6 @@ const msg = {
         txt:                           'commands.txt generated',
     },
     sensor: {
-        err:        type            => `no ${type} data or too low level`,
         noData:                        `${currentDate()} data from sensors is empty`,
         bme:        ex              => `${currentDate()} cannot get data from bme: ${ex}`,
         mhz:        ex              => `${currentDate()} cannot get data from mhz: ${ex}`,

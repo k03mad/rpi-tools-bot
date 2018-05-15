@@ -9,6 +9,7 @@ module.exports = {
     corlysisPubToken: process.env.CORLYSIS_PUB_TOKEN,
     corlysisToken: process.env.CORLYSIS_TOKEN,
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
+    lastfmToken: process.env.LAST_FM,
     myChat: process.env.MY_CHAT,
     proxy: process.env.PROXY_PAC,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
