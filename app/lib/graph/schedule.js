@@ -154,7 +154,7 @@ const sendDnsBlocks = async () => {
         console.log(msg.cron.dnsTop(err));
         return;
     }
-console.log(parsed);
+
     let i = 0;
     const data = [];
 
