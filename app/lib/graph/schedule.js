@@ -115,12 +115,9 @@ const sendDnsQueries = async () => {
         return;
     }
 
-    const queries = parsedLog.dns_queries_today;
-    const blocked = parsedLog.ads_blocked_today;
-
-    if (queries && blocked) {
-        sendToCorlysis('dns=queries', `today=${queries}i,blocked=${blocked}i`).catch(err => console.log(msg.chart.cor(err)));
-    }
+    sendToCorlysis('dns=queries',
+        `today=${parsedLog.dns_queries_today}i,blocked=${parsedLog.ads_blocked_today}i`
+    ).catch(err => console.log(msg.chart.cor(err)));
 
 };
 
