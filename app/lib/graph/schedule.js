@@ -177,7 +177,7 @@ const sendDnsBlocks = async () => {
  */
 const sendLastFm = async () => {
     const users = ['k03mad', 'kanaplushka'];
-    let data;
+    const data = [];
 
     await Promise.all(users.map(async elem => {
         try {
