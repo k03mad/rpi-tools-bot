@@ -3,7 +3,7 @@ const {currentDate} = require('./utils');
 const commands = [
     '/help - this list',
     '/graph - get all grafana graphs',
-    '/log - print and erase forever log',
+    '/log - print forever log',
     '',
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
