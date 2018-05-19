@@ -5,7 +5,7 @@ const {msg} = require('../lib/messages');
  * Get corlysis charts
  */
 const graph = async () => {
-    const GRAPHS_COUNT = 9;
+    const GRAPHS_COUNT = 10;
     const ids = [...new Array(GRAPHS_COUNT)].map((_, x) => ++x);
 
     const output = [];
