@@ -1,15 +1,15 @@
 const {get} = require('../utils');
-const {corlysisToken, corlysisPubToken} = require('../../../env');
+const {corlysisToken, corlysisPubToken, corlysisDash, corlysisDb, corlysisWrite} = require('../../../env');
 
 /**
  * Send data to corlysis
  */
 const sendToCorlysis = (field, data) => {
-    return get('https://corlysis.com:8086/write', {
+    return get(corlysisWrite, {
         query: {
-            db: 'mydb',
+            db: corlysisDb,
         },
-        body: `pi3,${field} ${data}`,
+        body: `${corlysisDash},${field} ${data}`,
         auth: `token:${corlysisToken}`,
     });
 };
