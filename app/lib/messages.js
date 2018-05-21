@@ -8,7 +8,6 @@ const commands = [
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
     '',
-    '/pi_sensors - get current sensors data',
     '/pi_reboot - reboot pi',
     '/pi_shutdown - shutdown pi',
     '/pi_stat - some usage stats',
