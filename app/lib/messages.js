@@ -2,7 +2,6 @@ const {currentDate} = require('./utils');
 
 const commands = [
     '/help - this list',
-    '/graph - get all grafana graphs',
     '/log - print forever log',
     '',
     '/apt_update - check for updates',
@@ -20,7 +19,6 @@ const msg = {
     /* eslint-disable key-spacing, no-multi-spaces, indent */
     chart: {
         cor:        ex              => `${currentDate()} sending data to corlysis: ${ex}`,
-        picErr:     ex              => `I can't get chart picture from corlysis\n${ex}`,
     },
     common: {
         choose:     ()              => 'Choose network',

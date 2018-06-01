@@ -1,5 +1,4 @@
 help - this list
-graph - get all grafana graphs
 log - print forever log
 apt_update - check for updates
 apt_upgrade - install updates

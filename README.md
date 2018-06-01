@@ -3,7 +3,6 @@
 Get data from Raspberry Pi 3
 
 **/help** this list  
-**/graph** get all grafana graphs  
 **/log** print forever log  
   
 **/apt_update** check for updates  
