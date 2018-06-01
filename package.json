@@ -39,9 +39,9 @@
     "cleanlog": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "oui": "oui --update || true",
-    "readme": "node app/lib/bot/readme && git add README.md",
+    "readme": "node app/bot/lib/readme && git add README.md",
     "setup": "npm i && npm run cleanlog && npm run oui",
-    "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log app/bot.js",
+    "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log index.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [

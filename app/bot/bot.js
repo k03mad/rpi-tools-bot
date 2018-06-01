@@ -1,6 +1,6 @@
-const {msg} = require('./lib/messages');
+const {msg} = require('../messages');
 const {proxy, telegramToken} = require('../env');
-const {sendToCorlysis} = require('./lib/graph/corlysis');
+const {sendToCorlysis} = require('../utils');
 const moment = require('moment');
 const PacProxyAgent = require('pac-proxy-agent');
 const TelegramBot = require('node-telegram-bot-api');
@@ -27,5 +27,6 @@ bot.on('polling_error', ex => {
     }
 });
 
-require('./cmd')(bot);
-require('./cron')(bot);
+require('./lib/cmd')(bot);
+
+module.exports = bot;

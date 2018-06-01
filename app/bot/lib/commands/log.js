@@ -1,4 +1,4 @@
-const {msg} = require('../lib/messages');
+const {msg} = require('../../../messages');
 const {promisify} = require('util');
 const appRoot = require('app-root-path');
 const fs = require('fs');

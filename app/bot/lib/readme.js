@@ -1,7 +1,7 @@
 const colors = require('colors/safe');
 const fs = require('fs');
-const getHelpMessage = require('../../cmd/help');
-const {msg, commands} = require('../messages');
+const getHelpMessage = require('./commands/help');
+const {msg, commands} = require('../../messages');
 
 const help = getHelpMessage('readme');
 

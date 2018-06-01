@@ -1,4 +1,4 @@
-const {commands} = require('../lib/messages');
+const {commands} = require('../../../messages');
 
 /**
  * Get help message for GitHub README.md and bot help
