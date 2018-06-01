@@ -1,4 +1,4 @@
-const {run} = require('../../lib/utils');
+const {run} = require('../../../../utils');
 
 /**
  * Get GPU temperature

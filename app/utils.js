@@ -1,7 +1,11 @@
-const {wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('../../env');
+const {corlysisToken, corlysisDash, corlysisDb, corlysisWrite, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
 const exec = require('executive');
 const got = require('got');
 const moment = require('moment');
+const fs = require('fs');
+const {promisify} = require('util');
+
+const readFile = promisify(fs.readFile);
 
 /**
  * Send command to bash
@@ -34,6 +38,19 @@ const get = (url, opts = {}) => {
 };
 
 /**
+ * Send data to corlysis
+ */
+const sendToCorlysis = (field, data) => {
+    return get(corlysisWrite, {
+        query: {
+            db: corlysisDb,
+        },
+        body: `${corlysisDash},${field} ${data}`,
+        auth: `token:${corlysisToken}`,
+    });
+};
+
+/**
  * MAC address RegExp
  */
 const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
@@ -60,11 +77,22 @@ const currentDate = () => {
     return moment().format('YYYY.MM.DD HH:mm:ss');
 };
 
+/**
+ * Read pi-hole web api password
+ */
+const getPiHoleApiPass = async () => {
+    const file = await readFile('/etc/pihole/setupVars.conf');
+    const [, pass] = file.toString().match(/WEBPASSWORD=(.+)\n/);
+    return pass;
+};
+
 module.exports = {
     convertToArray,
     currentDate,
     get,
+    getPiHoleApiPass,
     MAC_RE,
     router,
     run,
+    sendToCorlysis,
 };

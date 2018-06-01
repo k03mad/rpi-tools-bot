@@ -1,0 +1,33 @@
+const BME280 = require('bme-sensor-nolog');
+
+/**
+ * Get data from bme280
+ */
+const getBme280 = async () => {
+    const bme280 = new BME280({i2cAddress: 0x76});
+    await bme280.init();
+
+    const data = await bme280.readSensorData();
+
+    const temp = Math.round(data.temperature_C);
+
+    if (temp < -50 || temp > 50) {
+        throw new Error(`wrong temp count: ${temp}`);
+    }
+
+    const hum = Math.round(data.humidity);
+
+    if (hum < 0 || hum > 100) {
+        throw new Error(`wrong hum count: ${hum}`);
+    }
+
+    const press = Math.round(data.pressure_hPa * 0.75006375541921);
+
+    if (press < 700 || press > 800) {
+        throw new Error(`wrong press count: ${press}`);
+    }
+
+    return {temp, hum, press};
+};
+
+module.exports = getBme280;

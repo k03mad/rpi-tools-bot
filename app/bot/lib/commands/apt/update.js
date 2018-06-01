@@ -1,5 +1,5 @@
-const {run} = require('../../lib/utils');
-const {msg} = require('../../lib/messages');
+const {run} = require('../../../../utils');
+const {msg} = require('../../../../messages');
 
 /**
  * Updates count

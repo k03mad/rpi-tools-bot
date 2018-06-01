@@ -1,5 +1,5 @@
-const {get, router} = require('../../lib/utils');
-const {msg} = require('../../lib/messages');
+const {get, router} = require('../../../../utils');
+const {msg} = require('../../../../messages');
 
 /**
  * Reboot router

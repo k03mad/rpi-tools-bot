@@ -1,6 +1,6 @@
-const {msg} = require('./lib/messages');
+const {msg} = require('../messages');
 const {proxy, telegramToken} = require('../env');
-const {sendToCorlysis} = require('./lib/graph/corlysis');
+const {sendToCorlysis} = require('../utils');
 const moment = require('moment');
 const PacProxyAgent = require('pac-proxy-agent');
 const TelegramBot = require('node-telegram-bot-api');
@@ -23,9 +23,11 @@ bot.on('polling_error', ex => {
     // send polling errors to corlysis every POLLING_REPEAT_ALARM
     if (moment().diff(pollingTimer) > POLLING_REPEAT_ALARM) {
         pollingTimer = moment();
-        sendToCorlysis('bot=polling', 'pollErr=1i').catch(err => console.log(msg.chart.cor(err)));
+        const DB = 'bot=polling';
+        sendToCorlysis(DB, 'pollErr=1i').catch(err => console.log(msg.chart.cor(DB, err)));
     }
 });
 
-require('./cmd')(bot);
-require('./cron')(bot);
+require('./lib/reply')(bot);
+
+module.exports = bot;
