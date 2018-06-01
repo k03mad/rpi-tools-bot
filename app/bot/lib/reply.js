@@ -5,7 +5,7 @@ const {msg} = require('../../messages');
 /**
  * Bot commands
  */
-const cmd = bot => {
+const replies = bot => {
     reply(bot, 'help', c.help, 'bot');
     reply(bot, 'log', c.log);
 
@@ -27,4 +27,4 @@ const cmd = bot => {
     reply(bot, 'wifi_spots', c.wifi.spots, null, {parse_mode: 'Markdown'});
 };
 
-module.exports = cmd;
+module.exports = replies;

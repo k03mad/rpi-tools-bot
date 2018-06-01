@@ -27,6 +27,6 @@ bot.on('polling_error', ex => {
     }
 });
 
-require('./lib/cmd')(bot);
+require('./lib/reply')(bot);
 
 module.exports = bot;
