@@ -22,7 +22,7 @@ const cron = bot => {
     // 10 * 2016 = 20160
     every('10m').do(() => sendDnsTop());
 
-    // 2 * 1344 = 2688
+    // 10 * 1344 = 13440
     every('15m').do(() => sendLastFm());
 
     every('5h').do(() => checkRaspberryUpdates(bot));
