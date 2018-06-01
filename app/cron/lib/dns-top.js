@@ -37,11 +37,13 @@ const sendDnsTop = async () => {
     }
 
     if (ads.length > 0) {
-        sendToCorlysis('dns=topBlock', ads.join()).catch(err => console.log(msg.chart.cor(err)));
+        const DB = 'dns=topBlock';
+        sendToCorlysis(DB, ads.join()).catch(err => console.log(msg.chart.cor(DB, err)));
     }
 
     if (queries.length > 0) {
-        sendToCorlysis('dns=topQueries', queries.join()).catch(err => console.log(msg.chart.cor(err)));
+        const DB = 'dns=topQueries';
+        sendToCorlysis(DB, queries.join()).catch(err => console.log(msg.chart.cor(DB, err)));
     }
 };
 

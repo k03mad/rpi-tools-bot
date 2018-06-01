@@ -16,9 +16,11 @@ const sendDnsQueries = async () => {
         return;
     }
 
-    sendToCorlysis('dns=queries',
-        `today=${parsedLog.dns_queries_today}i,blocked=${parsedLog.ads_blocked_today}i`
-    ).catch(err => console.log(msg.chart.cor(err)));
+    const DB = 'dns=queries';
+
+    sendToCorlysis(
+        DB, `today=${parsedLog.dns_queries_today}i,blocked=${parsedLog.ads_blocked_today}i`
+    ).catch(err => console.log(msg.chart.cor(DB, err)));
 };
 
 module.exports = sendDnsQueries;

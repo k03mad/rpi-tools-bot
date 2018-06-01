@@ -48,7 +48,8 @@ const sendConnectedWiFiDevices = async bot => {
 
             // send online devices
             if (data.length > 0) {
-                sendToCorlysis(`wifi=devices${place}`, data.join()).catch(err => console.log(msg.chart.cor(err)));
+                const db = `wifi=devices${place}`;
+                sendToCorlysis(db, data.join()).catch(err => console.log(msg.chart.cor(db, err)));
             }
 
         }

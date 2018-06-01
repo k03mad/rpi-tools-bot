@@ -18,7 +18,7 @@ const commands = [
 const msg = {
     /* eslint-disable key-spacing, no-multi-spaces, indent */
     chart: {
-        cor:        ex              => `${currentDate()} sending data to corlysis: ${ex}`,
+        cor:        (db, ex)        => `${currentDate()} sending ${db} to corlysis: ${ex}`,
     },
     common: {
         choose:     ()              => 'Choose network',

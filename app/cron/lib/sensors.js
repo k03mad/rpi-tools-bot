@@ -18,7 +18,8 @@ const sendSensorsData = async () => {
             send.push(`${key}=${data[key]}i`);
         }
 
-        sendToCorlysis('sensors=weather', send.join()).catch(err => console.log(msg.chart.cor(err)));
+        const DB = 'sensors=weather';
+        sendToCorlysis(DB, send.join()).catch(err => console.log(msg.chart.cor(DB, err)));
 
     }
 };

@@ -28,7 +28,8 @@ const sendLastFm = async () => {
     }));
 
     if (data.length > 0) {
-        sendToCorlysis('lastfm=plays', data.join()).catch(err => console.log(msg.chart.cor(err)));
+        const DB = 'lastfm=plays';
+        sendToCorlysis(DB, data.join()).catch(err => console.log(msg.chart.cor(DB, err)));
     }
 };
 
