@@ -44,7 +44,7 @@ const msg = {
                                        '![Dependencies](https://david-dm.org/k03mad/raspi-tlgrm-bot.svg)',
         ],
         footer:                        '(⌐■_■)',
-        header:                        'Get data from Raspberry Pi 3',
+        header:                        'Run Telegram bot, execute crons, send sensors data to Grafana',
         md:                            'README.md generated',
         txt:                           'commands.txt generated',
     },

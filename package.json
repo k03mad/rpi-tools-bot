@@ -1,11 +1,11 @@
 {
-  "name": "raspi-tlgrm-bot",
-  "version": "4.1.0",
-  "description": "Raspberry Pi 3 Telegram bot",
+  "name": "raspberry-tools",
+  "version": "4.2.0",
+  "description": "Raspberry Pi 3 Tools",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
   ],
-  "repository": "k03mad/raspi-tlgrm-bot",
+  "repository": "k03mad/raspberry-tools",
   "engines": {
     "node": ">=10"
   },
@@ -41,7 +41,7 @@
     "oui": "oui --update || true",
     "readme": "node app/bot/lib/readme && git add README.md",
     "setup": "npm i && npm run cleanlog && npm run oui",
-    "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspi-tlgrm-bot/forever.log index.js",
+    "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspberry-tools/forever.log index.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [
