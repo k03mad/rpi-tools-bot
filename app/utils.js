@@ -23,9 +23,21 @@ const convertToArray = elem => {
 };
 
 /**
+ * Wait for some time
+ */
+const nowWait = time => {
+    return new Promise(resolve => setTimeout(resolve, time));
+};
+
+/**
  * Send request
  */
-const get = (url, opts = {}) => {
+const get = async (url, opts = {}) => {
+    // turn off default retries only with timeout catch
+    opts.retries = 0;
+    // retries for any errors catch
+    const RETRIES = 3;
+
     if (!opts.timeout) {
         opts.timeout = {
             connect: 15000,
@@ -34,7 +46,19 @@ const get = (url, opts = {}) => {
         };
     }
 
-    return got(url, opts);
+    let error;
+
+    for (let i = 0; i < RETRIES; i++) {
+        try {
+            return await got(url, opts);
+        } catch (err) {
+            error = `[Retries: ${i + 1}/${RETRIES}] ${err}`;
+        }
+
+        await nowWait(1000);
+    }
+
+    throw new Error(error);
 };
 
 /**
