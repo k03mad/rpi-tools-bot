@@ -52,13 +52,13 @@ const get = async (url, opts = {}) => {
         try {
             return await got(url, opts);
         } catch (err) {
-            error = `[Retries: ${i + 1}/${RETRIES}] ${err}`;
+            error = err;
         }
 
         await nowWait(1000);
     }
 
-    throw new Error(error);
+    throw error;
 };
 
 /**
