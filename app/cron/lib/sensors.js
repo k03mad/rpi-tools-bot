@@ -1,5 +1,5 @@
 const {msg} = require('../../messages');
-const {sendToCorlysis} = require('../../utils');
+const {sendToInflux} = require('../../utils');
 const sensors = require('../../sensors/sensors');
 
 /**
@@ -18,8 +18,8 @@ const sendSensorsData = async () => {
             send.push(`${key}=${data[key]}i`);
         }
 
-        const DB = 'sensors=weather';
-        sendToCorlysis(DB, send.join()).catch(err => console.log(msg.chart.cor(DB, err)));
+        const TAG = 'sensors=weather';
+        sendToInflux(TAG, send.join()).catch(err => console.log(msg.common.influx(TAG, err)));
 
     }
 };

@@ -1,4 +1,4 @@
-const {corlysisToken, corlysisDash, corlysisDb, corlysisWrite, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
+const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
 const exec = require('executive');
 const got = require('got');
 const moment = require('moment');
@@ -62,15 +62,12 @@ const get = async (url, opts = {}) => {
 };
 
 /**
- * Send data to corlysis
+ * Store data to influxdb
  */
-const sendToCorlysis = (field, data) => {
-    return get(corlysisWrite, {
-        query: {
-            db: corlysisDb,
-        },
-        body: `${corlysisDash},${field} ${data}`,
-        auth: `token:${corlysisToken}`,
+const sendToInflux = (tag, data) => {
+    return get(influxUrl, {
+        query: {db: influxDb},
+        body: `${influxMeas},${tag} ${data}`,
     });
 };
 
@@ -118,5 +115,5 @@ module.exports = {
     MAC_RE,
     router,
     run,
-    sendToCorlysis,
+    sendToInflux,
 };

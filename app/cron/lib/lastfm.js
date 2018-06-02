@@ -1,5 +1,5 @@
 const {lastfmToken} = require('../../env');
-const {get, sendToCorlysis} = require('../../utils');
+const {get, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
 
 /**
@@ -29,8 +29,8 @@ const sendLastFm = async () => {
     }
 
     if (data.length > 0) {
-        const DB = 'lastfm=topartist';
-        sendToCorlysis(DB, data.join()).catch(err => console.log(msg.chart.cor(DB, err)));
+        const TAG = 'lastfm=topartist';
+        sendToInflux(TAG, data.join()).catch(err => console.log(msg.common.influx(TAG, err)));
     }
 };
 

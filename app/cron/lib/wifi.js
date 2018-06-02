@@ -1,6 +1,6 @@
 const {answer} = require('../../bot/lib/chat');
 const {knownDevices, myChat} = require('../../env');
-const {MAC_RE, sendToCorlysis} = require('../../utils');
+const {MAC_RE, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
 const getDevices = require('../../bot/lib/commands/wifi/devices');
 
@@ -48,8 +48,8 @@ const sendConnectedWiFiDevices = async bot => {
 
             // send online devices
             if (data.length > 0) {
-                const db = `wifi=devices${place}`;
-                sendToCorlysis(db, data.join()).catch(err => console.log(msg.chart.cor(db, err)));
+                const tag = `wifi=devices${place}`;
+                sendToInflux(tag, data.join()).catch(err => console.log(msg.common.influx(tag, err)));
             }
 
         }

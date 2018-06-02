@@ -6,11 +6,9 @@ process.env.NTBA_FIX_350 = true;
 process.env.NODE_ENV = 'production';
 
 module.exports = {
-    corlysisDash: process.env.CORLYSIS_DASH,
-    corlysisDb: process.env.CORLYSIS_DB,
-    corlysisPubToken: process.env.CORLYSIS_PUB_TOKEN,
-    corlysisToken: process.env.CORLYSIS_TOKEN,
-    corlysisWrite: process.env.CORLYSIS_WRITE,
+    influxDb: process.env.INFLUX_DB,
+    influxMeas: process.env.INFLUX_MEAS,
+    influxUrl: process.env.INFLUX_URL,
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
     lastfmToken: process.env.LAST_FM,
     myChat: process.env.MY_CHAT,

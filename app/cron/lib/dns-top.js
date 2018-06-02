@@ -1,4 +1,4 @@
-const {get, getPiHoleApiPass, sendToCorlysis} = require('../../utils');
+const {get, getPiHoleApiPass, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
 
 /**
@@ -37,13 +37,13 @@ const sendDnsTop = async () => {
     }
 
     if (ads.length > 0) {
-        const DB = 'dns=topBlock';
-        sendToCorlysis(DB, ads.join()).catch(err => console.log(msg.chart.cor(DB, err)));
+        const TAG = 'dns=topBlock';
+        sendToInflux(TAG, ads.join()).catch(err => console.log(msg.common.influx(TAG, err)));
     }
 
     if (queries.length > 0) {
-        const DB = 'dns=topQueries';
-        sendToCorlysis(DB, queries.join()).catch(err => console.log(msg.chart.cor(DB, err)));
+        const TAG = 'dns=topQueries';
+        sendToInflux(TAG, queries.join()).catch(err => console.log(msg.common.influx(TAG, err)));
     }
 };
 

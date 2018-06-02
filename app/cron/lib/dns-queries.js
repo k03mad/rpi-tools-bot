@@ -1,4 +1,4 @@
-const {run, sendToCorlysis} = require('../../utils');
+const {run, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
 
 /**
@@ -16,11 +16,11 @@ const sendDnsQueries = async () => {
         return;
     }
 
-    const DB = 'dns=queries';
+    const TAG = 'dns=queries';
 
-    sendToCorlysis(
-        DB, `today=${parsedLog.dns_queries_today}i,blocked=${parsedLog.ads_blocked_today}i`
-    ).catch(err => console.log(msg.chart.cor(DB, err)));
+    sendToInflux(
+        TAG, `today=${parsedLog.dns_queries_today}i,blocked=${parsedLog.ads_blocked_today}i`
+    ).catch(err => console.log(msg.common.influx(TAG, err)));
 };
 
 module.exports = sendDnsQueries;

@@ -17,12 +17,10 @@ const commands = [
 
 const msg = {
     /* eslint-disable key-spacing, no-multi-spaces, indent */
-    chart: {
-        cor:        (db, ex)        => `${currentDate()} sending ${db} to corlysis: ${ex}`,
-    },
     common: {
         choose:     ()              => 'Choose network',
         emptyLog:                      'Log is empty',
+        influx:     (db, ex)        => `${currentDate()} sending ${db} to influx: ${ex}`,
         noDev:                         'No devices available',
         noVendor:   (mac, ex)       => `${currentDate()} get ${mac} mac vendor: ${ex}`,
         errDev:     (place, ex)     => `${currentDate()} get ${place} devices: ${ex}`,
