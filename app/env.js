@@ -11,6 +11,8 @@ module.exports = {
     influxUrl: process.env.INFLUX_URL,
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
     lastfmToken: process.env.LAST_FM,
+    lastfmUserMad: process.env.LAST_FM_MAD,
+    lastfmUserKnpl: process.env.LAST_FM_KNPL,
     myChat: process.env.MY_CHAT,
     proxy: process.env.PROXY_PAC,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,

@@ -1,4 +1,4 @@
-const {lastfmToken} = require('../../env');
+const {lastfmToken, lastfmUserMad, lastfmUserKnpl} = require('../../env');
 const {get, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
 const cyrillicToTranslit = require('cyrillic-to-translit-js');
@@ -7,32 +7,39 @@ const cyrillicToTranslit = require('cyrillic-to-translit-js');
  * Send last fm top artists
  */
 const sendLastFm = async () => {
-    const data = [];
+    const users = [lastfmUserMad, lastfmUserKnpl];
+    const data = {};
 
-    try {
-        const {body} = await get('http://ws.audioscrobbler.com/2.0/', {
-            query: {
-                api_key: lastfmToken,
-                format: 'json',
-                limit: 10,
-                method: 'user.gettopartists',
-                period: '1month',
-                user: 'k03mad',
-            },
-            json: true,
-        });
+    await Promise.all(users.map(async user => {
+        try {
+            const {body} = await get('http://ws.audioscrobbler.com/2.0/', {
+                query: {
+                    api_key: lastfmToken,
+                    format: 'json',
+                    limit: 10,
+                    method: 'user.gettopartists',
+                    period: '1month',
+                    user,
+                },
+                json: true,
+            });
 
-        body.topartists.artist.forEach(artist => {
-            data.push(`${cyrillicToTranslit().transform(artist.name, '-')}=${artist.playcount}i`);
-        });
-    } catch (err) {
-        console.log(msg.cron.lastfm(err));
-    }
+            data[user] = [];
 
-    if (data.length > 0) {
-        const TAG = 'lastfm=topartist';
-        sendToInflux(TAG, data.join()).catch(err => console.log(msg.common.influx(TAG, err)));
-    }
+            body.topartists.artist.forEach(artist => {
+                data[user].push(`${cyrillicToTranslit().transform(artist.name, '-')}=${artist.playcount}i`);
+            });
+        } catch (err) {
+            console.log(msg.cron.lastfm(err));
+        }
+    }));
+
+    users.forEach(user => {
+        if (data[user].length > 0) {
+            const tag = `lastfm=topartist${user}`;
+            sendToInflux(tag, data[user].join()).catch(err => console.log(msg.common.influx(tag, err)));
+        }
+    });
 };
 
 module.exports = sendLastFm;
