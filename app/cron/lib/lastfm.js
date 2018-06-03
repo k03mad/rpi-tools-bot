@@ -1,7 +1,6 @@
 const {lastfmToken, lastfmUserMad, lastfmUserKnpl} = require('../../env');
 const {get, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
-const cyrillicToTranslit = require('cyrillic-to-translit-js');
 
 /**
  * Send last fm top artists
@@ -27,7 +26,7 @@ const sendLastFm = async () => {
             data[user] = [];
 
             body.topartists.artist.forEach(artist => {
-                data[user].push(`${cyrillicToTranslit().transform(artist.name, '-')}=${artist.playcount}i`);
+                data[user].push(`${artist.name.replace(' ', '\\ ')}=${artist.playcount}i`);
             });
         } catch (err) {
             console.log(msg.cron.lastfm(err));

@@ -14,7 +14,6 @@
     "bme-sensor-nolog": "0.1.6",
     "cheerio": "1.0.0-rc.2",
     "colors": "1.3.0",
-    "cyrillic-to-translit-js": "2.1.0",
     "executive": "1.5.13",
     "forever": "0.15.3",
     "got": "8.3.1",
