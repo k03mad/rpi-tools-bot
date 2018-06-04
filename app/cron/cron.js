@@ -1,24 +1,21 @@
 const {every} = require('schedule');
-const checkRaspberryUpdates = require('./lib/updates');
-const sendConnectedWiFiDevices = require('./lib/wifi');
-const sendDnsQueries = require('./lib/dns-queries');
-const sendDnsTop = require('./lib/dns-top');
-const sendLastFm = require('./lib/lastfm');
-const sendSensorsData = require('./lib/sensors');
+const c = require('require-all')(`${__dirname}/lib`);
 
 /**
  * Bot crons
  */
 const cron = bot => {
-    every('1m').do(() => sendSensorsData(bot));
-    every('5m').do(() => sendConnectedWiFiDevices(bot));
+    every('1m').do(() => c['send-sensors-data'](bot));
+    every('5m').do(() => c['send-connected-wifi-devices'](bot));
 
-    every('10m').do(() => sendDnsQueries());
-    every('10m').do(() => sendDnsTop());
+    every('10m').do(() => c['send-dns-queries']());
+    every('10m').do(() => c['send-dns-top']());
 
-    every('15m').do(() => sendLastFm());
+    every('15m').do(() => c['send-lastfm']());
 
-    every('5h').do(() => checkRaspberryUpdates(bot));
+    every('1h').do(() => c['send-adblock-errors']());
+
+    every('5h').do(() => c['check-raspberry-updates'](bot));
 };
 
 module.exports = cron;
