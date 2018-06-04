@@ -17,7 +17,7 @@ const sendLastFm = async () => {
                     format: 'json',
                     limit: 10,
                     method: 'user.gettopartists',
-                    period: '1month',
+                    period: '7day',
                     user,
                 },
                 json: true,
