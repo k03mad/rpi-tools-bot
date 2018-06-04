@@ -39,7 +39,7 @@ const msg = {
     },
     readme: {
         badges: [
-                                       '![Dependencies](https://david-dm.org/k03mad/raspi-tlgrm-bot.svg)',
+                                       '![Dependencies](https://david-dm.org/k03mad/raspberry-tools.svg)',
         ],
         footer:                        '(⌐■_■)',
         header:                        'Run Telegram bot, execute crons, send sensors data to Grafana',
