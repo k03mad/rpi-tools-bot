@@ -1,5 +1,6 @@
 const {get, getPiHoleApiPass, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
+const {piholeUrl} = require('../../env');
 
 /**
  * Send dns top hosts
@@ -17,7 +18,7 @@ const sendDnsTop = async () => {
     let body;
 
     try {
-        ({body} = await get('http://localhost/admin/api.php', {
+        ({body} = await get(piholeUrl, {
             query: {topItems: 10, auth},
             json: true,
         }));

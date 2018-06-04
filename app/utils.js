@@ -7,6 +7,9 @@ const {promisify} = require('util');
 
 const readFile = promisify(fs.readFile);
 
+// all alarm will be repeated each N minutes
+const REPEAT_ALARM = 30;
+
 /**
  * Send command to bash
  */
@@ -107,7 +110,15 @@ const getPiHoleApiPass = async () => {
     return pass;
 };
 
+/**
+ * Check if current time is above setted
+ */
+const checkTimer = timer => {
+    return moment().diff(timer, 'minutes') > REPEAT_ALARM;
+};
+
 module.exports = {
+    checkTimer,
     convertToArray,
     currentDate,
     get,

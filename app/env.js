@@ -1,7 +1,5 @@
 // remove "Automatic enabling of cancellation of promises is deprecated"
 process.env.NTBA_FIX_319 = true;
-// remove "In the future, content-type of files you send will default to "application/octet-stream"
-process.env.NTBA_FIX_350 = true;
 
 process.env.NODE_ENV = 'production';
 
@@ -14,6 +12,7 @@ module.exports = {
     lastfmUserMad: process.env.LAST_FM_MAD,
     lastfmUserKnpl: process.env.LAST_FM_KNPL,
     myChat: process.env.MY_CHAT,
+    piholeUrl: process.env.PIHOLE_URL,
     proxy: process.env.PROXY_PAC,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
     wifiCred: process.env.WIFI_CRED,

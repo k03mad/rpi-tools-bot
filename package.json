@@ -19,7 +19,7 @@
     "got": "8.3.1",
     "moment": "2.22.2",
     "node-telegram-bot-api": "0.30.0",
-    "oui": "7.0.42",
+    "oui": "8.0.0",
     "pac-proxy-agent": "3.0.0",
     "require-all": "2.2.0",
     "schedule": "0.1.0"
@@ -40,7 +40,7 @@
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "oui": "oui --update || true",
     "readme": "node app/bot/lib/readme && git add README.md",
-    "setup": "npm i && npm run cleanlog && npm run oui",
+    "setup": "npm i && npm run oui && npm run cleanlog",
     "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspberry-tools/forever.log index.js",
     "stop": "forever stop -t raspi || true"
   },

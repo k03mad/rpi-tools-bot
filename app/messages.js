@@ -50,6 +50,7 @@ const msg = {
         noData:                        `${currentDate()} data from sensors is empty`,
         bme:        ex              => `${currentDate()} cannot get data from bme: ${ex}`,
         mhz:        ex              => `${currentDate()} cannot get data from mhz: ${ex}`,
+        warning:    ppm             => `Ventilate the room! Too high ppm: ${ppm}`,
     },
     send: {
         norm:       ex              => `${currentDate()} sending normal message: ${ex}`,

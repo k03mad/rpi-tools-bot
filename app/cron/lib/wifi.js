@@ -1,8 +1,11 @@
 const {answer} = require('../../bot/lib/chat');
 const {knownDevices, myChat} = require('../../env');
-const {MAC_RE, sendToInflux} = require('../../utils');
+const {MAC_RE, sendToInflux, checkTimer} = require('../../utils');
 const {msg} = require('../../messages');
 const getDevices = require('../../bot/lib/commands/wifi/devices');
+const moment = require('moment');
+
+let unknownDeviceTimer = moment();
 
 /**
  * Send connected devices and warn about unknown
@@ -41,9 +44,10 @@ const sendConnectedWiFiDevices = async bot => {
                 }
             });
 
-            // send unknown device warning
-            if (unknown.length > 0) {
+            // send unknown device warning every N minutes
+            if (unknown.length > 0 && checkTimer(unknownDeviceTimer)) {
                 answer(bot, {chat: {id: myChat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
+                unknownDeviceTimer = moment();
             }
 
             // send online devices

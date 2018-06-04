@@ -10,7 +10,7 @@ const sendSensorsData = require('./lib/sensors');
  * Bot crons
  */
 const cron = bot => {
-    every('1m').do(() => sendSensorsData());
+    every('1m').do(() => sendSensorsData(bot));
     every('5m').do(() => sendConnectedWiFiDevices(bot));
 
     every('10m').do(() => sendDnsQueries());
