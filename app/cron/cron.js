@@ -1,10 +1,6 @@
 const {every} = require('schedule');
 const c = require('require-all')(`${__dirname}/lib`);
 
-console.log('​-----');
-console.log('​c', c);
-console.log('​-----');
-
 /**
  * Bot crons
  */

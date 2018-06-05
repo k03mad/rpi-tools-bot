@@ -38,7 +38,7 @@ const sendTemp = async () => {
     }
 
     const TAG = 'stat=temp';
-    sendToInflux(TAG, `cpu=${temp[0]}i,gpu=${temp[1]}i`).catch(err => console.log(msg.common.influx(TAG, err)));
+    sendToInflux(TAG, `cpu=${temp[0]},gpu=${temp[1]}`).catch(err => console.log(msg.common.influx(TAG, err)));
 };
 
 module.exports = sendTemp;
