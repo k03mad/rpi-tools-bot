@@ -59,6 +59,7 @@ const msg = {
     stats: {
         temp:       ex              => `${currentDate()} get pi temp: ${ex}`,
         usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
+        version:    ex              => `${currentDate()} get pi versions: ${ex}`,
     },
 };
 
