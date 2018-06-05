@@ -7,7 +7,7 @@ const {promisify} = require('util');
 
 const readFile = promisify(fs.readFile);
 
-// all alarm will be repeated each N minutes
+// all alarms will be repeated each N minutes
 const REPEAT_ALARM = 30;
 
 /**

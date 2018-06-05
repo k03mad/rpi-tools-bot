@@ -9,7 +9,6 @@ const commands = [
     '',
     '/pi_reboot - reboot pi',
     '/pi_shutdown - shutdown pi',
-    '/pi_stat - some usage stats',
     '',
     '/wifi_devices - wifi connected devices list',
     '/wifi_reboot - wifi spot reboot',
