@@ -56,6 +56,10 @@ const msg = {
         photo:      ex              => `${currentDate()} sending photo message: ${ex}`,
         typing:     ex              => `${currentDate()} sending typing message: ${ex}`,
     },
+    stats: {
+        temp:       ex              => `${currentDate()} get pi temp: ${ex}`,
+        usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
+    },
 };
 
 module.exports = {commands, msg};
