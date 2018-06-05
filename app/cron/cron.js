@@ -15,8 +15,6 @@ const cron = bot => {
     every('10m').do(() => c.dnsQueries());
     every('10m').do(() => c.dnsTop());
 
-    every('15m').do(() => c.lastfm());
-
     every('1h').do(() => c.adblockErrors());
 
     every('5h').do(() => c.raspUpdate(bot));

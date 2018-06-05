@@ -32,7 +32,6 @@ const msg = {
         dns:        (log, ex)       => `${currentDate()} get dns queries: ${ex}, log: ${log}`,
         dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,
         dnsTop:     ex              => `${currentDate()} get pihole top hosts: ${ex}`,
-        lastfm:     ex              => `${currentDate()} get lastfm top artists: ${ex}`,
         updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`,
     },
