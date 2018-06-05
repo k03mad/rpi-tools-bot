@@ -8,7 +8,7 @@ const {run} = require('../../utils');
  */
 const gpuTemp = async () => {
     const gpu = await run('vcgencmd measure_temp');
-    return gpu.replace('temp=', '');
+    return gpu.replace(/temp=|'C\n/g, '');
 };
 
 /**
