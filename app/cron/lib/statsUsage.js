@@ -29,20 +29,33 @@ const diskUsage = async () => {
 };
 
 /**
+ * Get CPU usage
+ *
+ * bash log:
+ * cpu  22118 0 3669 658313 3087 0 119 0 0 0
+ */
+const cpuUsage = async () => {
+    let cpu = await run('grep \'cpu \' /proc/stat');
+    cpu = cpu.split(' ').map(elem => Number(elem));
+    cpu = (cpu[2] + cpu[4]) * 100 / (cpu[2] + cpu[4] + cpu[5]);
+    return cpu.toFixed(2);
+};
+
+/**
  * Send disk and ram usage
  */
 const sendUsage = async () => {
     let usage;
 
     try {
-        usage = await Promise.all([diskUsage(), ramUsage()]);
+        usage = await Promise.all([diskUsage(), ramUsage(), cpuUsage()]);
     } catch (err) {
         console.log(msg.stats.usage(err));
         return;
     }
 
     const TAG = 'stat=usage';
-    sendToInflux(TAG, `disk=${usage[0]},ram=${usage[1]}i`).catch(err => console.log(msg.common.influx(TAG, err)));
+    sendToInflux(TAG, `disk=${usage[0]},ram=${usage[1]}i,cpu=${usage[2]}`).catch(err => console.log(msg.common.influx(TAG, err)));
 };
 
 module.exports = sendUsage;
