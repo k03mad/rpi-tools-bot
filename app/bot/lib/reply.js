@@ -14,7 +14,6 @@ const replies = bot => {
 
     reply(bot, 'pi_reboot', c.pi.reboot);
     reply(bot, 'pi_shutdown', c.pi.shutdown);
-    reply(bot, 'pi_stat', c.pi.stat, null, {parse_mode: 'Markdown'});
 
     reply(bot, 'wifi_devices', msg.common.choose, null, keyboard(['/wifi_devices_home', '/wifi_devices_knpl']));
     reply(bot, 'wifi_devices_home', c.wifi.devices, 'mad');
@@ -23,8 +22,6 @@ const replies = bot => {
     reply(bot, 'wifi_reboot', msg.common.choose, null, keyboard(['/wifi_reboot_home', '/wifi_reboot_knpl']));
     reply(bot, 'wifi_reboot_home', c.wifi.reboot, 'mad');
     reply(bot, 'wifi_reboot_knpl', c.wifi.reboot, 'knpl');
-
-    reply(bot, 'wifi_spots', c.wifi.spots, null, {parse_mode: 'Markdown'});
 };
 
 module.exports = replies;

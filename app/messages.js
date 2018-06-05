@@ -9,7 +9,6 @@ const commands = [
     '',
     '/pi_reboot - reboot pi',
     '/pi_shutdown - shutdown pi',
-    '/pi_stat - some usage stats',
     '',
     '/wifi_devices - wifi connected devices list',
     '/wifi_reboot - wifi spot reboot',
@@ -56,6 +55,10 @@ const msg = {
         norm:       ex              => `${currentDate()} sending normal message: ${ex}`,
         photo:      ex              => `${currentDate()} sending photo message: ${ex}`,
         typing:     ex              => `${currentDate()} sending typing message: ${ex}`,
+    },
+    stats: {
+        temp:       ex              => `${currentDate()} get pi temp: ${ex}`,
+        usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
     },
 };
 

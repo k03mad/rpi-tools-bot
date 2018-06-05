@@ -2,17 +2,19 @@ const {get, getPiHoleApiPass, sendToInflux} = require('../../utils');
 const {msg} = require('../../messages');
 const {piholeUrl} = require('../../env');
 
+let auth;
+
 /**
  * Send dns top hosts
  */
 const sendDnsTop = async () => {
-    let auth;
-
-    try {
-        auth = await getPiHoleApiPass();
-    } catch (err) {
-        console.log(msg.cron.dnsVar(err));
-        return;
+    if (!auth) {
+        try {
+            auth = await getPiHoleApiPass();
+        } catch (err) {
+            console.log(msg.cron.dnsVar(err));
+            return;
+        }
     }
 
     let body;
