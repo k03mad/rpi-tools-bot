@@ -38,7 +38,7 @@ const cpuUsage = async () => {
     let cpu = await run('grep \'cpu \' /proc/stat');
     cpu = cpu.split(' ').map(elem => Number(elem));
     cpu = (cpu[2] + cpu[4]) * 100 / (cpu[2] + cpu[4] + cpu[5]);
-    return cpu.toFixed(2);
+    return cpu.toFixed(0);
 };
 
 /**
