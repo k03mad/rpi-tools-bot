@@ -4,7 +4,7 @@ const moment = require('moment');
  * Get current date
  */
 const currentDate = () => {
-    return moment().format('YYYY.MM.DD HH:mm:ss');
+    return `\n${moment().format('YYYY.MM.DD HH:mm:ss')}`;
 };
 
 const commands = [
