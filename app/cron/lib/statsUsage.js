@@ -43,7 +43,7 @@ const sendUsage = async () => {
         return;
     }
 
-    const TAG = 'stat=usage';
+    const TAG = 'stats=usage';
     sendToInflux(TAG, {disk: usage[0], ram: usage[1], cpu: usage[2]});
 };
 
