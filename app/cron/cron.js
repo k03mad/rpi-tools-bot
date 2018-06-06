@@ -9,6 +9,7 @@ const cron = bot => {
     every('1m').do(() => c.sensorsData(bot));
     every('1m').do(() => c.statsTemp());
     every('1m').do(() => c.statsUsage());
+    every('1m').do(() => c.owmData());
 
     every('5m').do(() => c.wifiDevices(bot));
 

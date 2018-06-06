@@ -124,9 +124,18 @@ const checkTimer = (timer, repeat = 30) => {
     return moment().diff(timer, 'minutes') > repeat;
 };
 
+/**
+ * Convert hPa to mm Hg
+ * @param {Number} hPa
+ */
+const convertToMm = hPa => {
+    return Math.round(hPa * 0.75006375541921);
+};
+
 module.exports = {
     checkTimer,
     convertToArray,
+    convertToMm,
     currentDate,
     get,
     getPiHoleApiPass,

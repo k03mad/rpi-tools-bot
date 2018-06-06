@@ -1,0 +1,30 @@
+const {get, sendToInflux, convertToMm} = require('../../utils');
+const {msg} = require('../../messages');
+const {owmCityId, owmToken} = require('../../env');
+
+/**
+ * Send openweathermap data
+ */
+const sendOwmData = async () => {
+    let data;
+
+    try {
+        const {body} = await get('http://api.openweathermap.org/data/2.5/weather', {
+            query: {
+                appid: owmToken,
+                id: owmCityId,
+                units: 'metric',
+            },
+            json: true,
+        });
+
+        data = `temp=${body.main.temp}i,press=${convertToMm(body.main.pressure)}i,hum=${body.main.humidity}i,wind=${body.wind.speed}i`;
+    } catch (err) {
+        console.log(msg.cron.owm(err));
+    }
+
+    const TAG = 'owm=weather';
+    sendToInflux(TAG, data).catch(err => console.log(msg.common.influx(TAG, err)));
+};
+
+module.exports = sendOwmData;

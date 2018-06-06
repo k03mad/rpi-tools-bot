@@ -12,6 +12,8 @@ module.exports = {
     lastfmUserMad: process.env.LAST_FM_MAD,
     lastfmUserKnpl: process.env.LAST_FM_KNPL,
     myChat: process.env.MY_CHAT,
+    owmCityId: process.env.OWM_CITY_ID,
+    owmToken: process.env.OWM_TOKEN,
     piholeUrl: process.env.PIHOLE_URL,
     proxy: process.env.PROXY_PAC,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
