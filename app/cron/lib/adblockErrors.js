@@ -12,9 +12,7 @@ const stat = promisify(fs.stat);
 const sendAdbErrors = async () => {
     try {
         await stat(path.join(appRoot.path, '..', 'adblock-hosts-list/output/error.log'));
-
-        const TAG = 'adblock=error';
-        sendToInflux(TAG, {errors: 1});
+        sendToInflux('adblock=error', {errors: 1});
     } catch (err) {}
 };
 

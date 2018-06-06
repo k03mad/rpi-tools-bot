@@ -21,8 +21,7 @@ const sendDnsQueries = async () => {
         return;
     }
 
-    const TAG = 'dns=queries';
-    sendToInflux(TAG, data);
+    sendToInflux('dns=queries', data);
 };
 
 module.exports = sendDnsQueries;

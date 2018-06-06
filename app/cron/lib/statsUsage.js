@@ -42,8 +42,7 @@ const sendUsage = async () => {
         return;
     }
 
-    const TAG = 'stats=usage';
-    sendToInflux(TAG, {disk: usage[0], ram: usage[1], cpu: usage[2]});
+    sendToInflux('stats=usage', {disk: usage[0], ram: usage[1], cpu: usage[2]});
 };
 
 module.exports = sendUsage;

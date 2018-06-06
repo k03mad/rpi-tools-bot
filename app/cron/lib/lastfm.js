@@ -33,12 +33,7 @@ const sendLastFm = async () => {
         }
     }));
 
-    users.forEach(user => {
-        if (Object.keys(data[user]).length > 0) {
-            const tag = `lastfm=topartist${user}`;
-            sendToInflux(tag, data[user]);
-        }
-    });
+    users.forEach(user => sendToInflux(`lastfm=topartist${user}`, data[user]));
 };
 
 module.exports = sendLastFm;

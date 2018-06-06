@@ -52,9 +52,8 @@ const sendConnectedWiFiDevices = async bot => {
             }
 
             // send online devices
-            if (data.length > 0) {
-                const tag = `wifi=devices${place}`;
-                sendToInflux(tag, data);
+            if (Object.keys(data).length > 0) {
+                sendToInflux(`wifi=devices${place}`, data);
             }
 
         }

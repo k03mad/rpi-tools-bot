@@ -22,8 +22,7 @@ bot.on('polling_error', ex => {
     // send polling errors to database every N minute
     if (checkTimer(pollingTimer, 1)) {
         pollingTimer = moment();
-        const TAG = 'bot=polling';
-        sendToInflux(TAG, {pollErr: 1});
+        sendToInflux('bot=polling', {pollErr: 1});
     }
 });
 

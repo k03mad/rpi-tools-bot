@@ -39,15 +39,8 @@ const sendDnsTop = async () => {
         queries[topQueries[i]] = body.top_queries[topQueries[i]];
     }
 
-    if (ads.length > 0) {
-        const TAG = 'dns=topBlock';
-        sendToInflux(TAG, ads);
-    }
-
-    if (queries.length > 0) {
-        const TAG = 'dns=topQueries';
-        sendToInflux(TAG, queries);
-    }
+    sendToInflux('dns=topBlock', ads);
+    sendToInflux('dns=topQueries', queries);
 };
 
 module.exports = sendDnsTop;

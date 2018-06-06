@@ -31,8 +31,7 @@ const sendTemp = async () => {
         return;
     }
 
-    const TAG = 'stats=temp';
-    sendToInflux(TAG, {cpu: temp[0], gpu: temp[1]});
+    sendToInflux('stats=temp', {cpu: temp[0], gpu: temp[1]});
 };
 
 module.exports = sendTemp;

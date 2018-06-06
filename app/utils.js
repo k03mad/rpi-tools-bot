@@ -73,6 +73,11 @@ const get = async (url, opts = {}) => {
  * @param {Object} data to send
  */
 const sendToInflux = (tag, data) => {
+    if (Object.keys(data).length === 0) {
+        console.log(msg.common.influx(tag, 'empty data', ''));
+        return;
+    }
+
     const dataToObject = [];
 
     for (const key in data) {

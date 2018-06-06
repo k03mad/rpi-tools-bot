@@ -17,20 +17,14 @@ const sendSensorsData = async bot => {
 
     const data = await sensors();
 
-    if (Object.keys(data).length === 0) {
-        console.log(msg.sensor.noData);
-    } else {
+    sendToInflux('sensors=weather', data);
 
-        const TAG = 'sensors=weather';
-        sendToInflux(TAG, data);
-
-        // send warning every REPEAT_ALARM minutes until ppm drop
-        if (data.ppm > PPM_WARNING && checkTimer(ppmTimer)) {
-            answer(bot, {chat: {id: myChat}}, msg.sensor.warning(data.ppm));
-            ppmTimer = moment();
-        }
-
+    // send warning every REPEAT_ALARM minutes until ppm drop
+    if (Object.keys(data).length > 0 && data.ppm > PPM_WARNING && checkTimer(ppmTimer)) {
+        answer(bot, {chat: {id: myChat}}, msg.sensor.warning(data.ppm));
+        ppmTimer = moment();
     }
+
 };
 
 module.exports = sendSensorsData;
