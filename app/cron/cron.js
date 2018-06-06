@@ -2,7 +2,8 @@ const {every} = require('schedule');
 const c = require('require-all')(`${__dirname}/lib`);
 
 /**
- * Bot crons
+ * Schedule crons
+ * @param {Object} bot telegram node api
  */
 const cron = bot => {
     every('1m').do(() => c.sensorsData(bot));
@@ -13,6 +14,8 @@ const cron = bot => {
 
     every('10m').do(() => c.dnsQueries());
     every('10m').do(() => c.dnsTop());
+
+    every('15m').do(() => c.lastfm());
 
     every('1h').do(() => c.adblockErrors());
 

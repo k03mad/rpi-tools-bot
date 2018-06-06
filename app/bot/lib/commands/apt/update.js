@@ -2,13 +2,13 @@ const {run} = require('../../../../utils');
 const {msg} = require('../../../../messages');
 
 /**
- * Updates count
+ * Check updates
  *
  * bash log:
  * Inst poppler-utils [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf]) []
  * Inst libpoppler64 [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf])
  */
-const updates = async () => {
+const update = async () => {
     const grepUpdates = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
 
     if (grepUpdates) {
@@ -28,4 +28,4 @@ const updates = async () => {
     return msg.common.updates;
 };
 
-module.exports = updates;
+module.exports = update;

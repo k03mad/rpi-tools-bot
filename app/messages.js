@@ -30,10 +30,13 @@ const msg = {
     },
     cron: {
         dns:        (log, ex)       => `${currentDate()} get dns queries: ${ex}, log: ${log}`,
-        dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,
         dnsTop:     ex              => `${currentDate()} get pihole top hosts: ${ex}`,
-        updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
+        dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,
+        lastfm:     ex              => `${currentDate()} get lastfm top artists: ${ex}`,
+        temp:       ex              => `${currentDate()} get pi temp: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`,
+        updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
+        usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
     },
     readme: {
         badges: [
@@ -54,10 +57,6 @@ const msg = {
         norm:       ex              => `${currentDate()} sending normal message: ${ex}`,
         photo:      ex              => `${currentDate()} sending photo message: ${ex}`,
         typing:     ex              => `${currentDate()} sending typing message: ${ex}`,
-    },
-    stats: {
-        temp:       ex              => `${currentDate()} get pi temp: ${ex}`,
-        usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
     },
 };
 

@@ -4,9 +4,6 @@ const {sendToInflux} = require('../../utils');
 
 /**
  * Get GPU temperature
- *
- * bash log:
- * temp=50.5'C
  */
 const gpuTemp = async () => {
     const gpu = await run('vcgencmd measure_temp');
@@ -15,9 +12,6 @@ const gpuTemp = async () => {
 
 /**
  * Get CPU temperature
- *
- * bash log:
- * temp=50.5'C
  */
 const cpuTemp = async () => {
     const cpu = await run('cat /sys/class/thermal/thermal_zone0/temp');
@@ -33,7 +27,7 @@ const sendTemp = async () => {
     try {
         temp = await Promise.all([cpuTemp(), gpuTemp()]);
     } catch (err) {
-        console.log(msg.stats.temp(err));
+        console.log(msg.cron.temp(err));
         return;
     }
 

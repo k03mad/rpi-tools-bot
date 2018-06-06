@@ -7,11 +7,9 @@ const {promisify} = require('util');
 
 const readFile = promisify(fs.readFile);
 
-// all alarms will be repeated each N minutes
-const REPEAT_ALARM = 30;
-
 /**
  * Send command to bash
+ * @param {String} str send command to terminal
  */
 const run = async str => {
     const {stdout, stderr} = await exec.quiet(str);
@@ -20,6 +18,7 @@ const run = async str => {
 
 /**
  * Convert anything to array
+ * @param {*} elem to convert
  */
 const convertToArray = elem => {
     return Array.isArray(elem) ? elem : [elem];
@@ -27,6 +26,7 @@ const convertToArray = elem => {
 
 /**
  * Wait for some time
+ * @param {Number} time in ms
  */
 const nowWait = time => {
     return new Promise(resolve => setTimeout(resolve, time));
@@ -34,6 +34,8 @@ const nowWait = time => {
 
 /**
  * Send request
+ * @param {String} url request url
+ * @param {Object} opts request options
  */
 const get = async (url, opts = {}) => {
     // turn off default retries only with timeout catch
@@ -66,6 +68,8 @@ const get = async (url, opts = {}) => {
 
 /**
  * Store data to influxdb
+ * @param {String} tag to add
+ * @param {String} data to send
  */
 const sendToInflux = (tag, data) => {
     return get(influxUrl, {
@@ -81,6 +85,7 @@ const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
 
 /**
  * Return router credentials
+ * @param {String} place select router
  */
 const router = place => {
     return place === 'knpl'
@@ -112,9 +117,11 @@ const getPiHoleApiPass = async () => {
 
 /**
  * Check if current time is above setted
+ * @param {*} timer moment time
+ * @param {*} repeat alarm every N minutes
  */
-const checkTimer = timer => {
-    return moment().diff(timer, 'minutes') > REPEAT_ALARM;
+const checkTimer = (timer, repeat = 30) => {
+    return moment().diff(timer, 'minutes') > repeat;
 };
 
 module.exports = {

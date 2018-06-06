@@ -9,6 +9,7 @@ let unknownDeviceTimer = moment();
 
 /**
  * Send connected devices and warn about unknown
+ * @param {Object} bot telegram node api
  */
 const sendConnectedWiFiDevices = async bot => {
     const places = {};

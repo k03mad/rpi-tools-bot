@@ -3,7 +3,7 @@ const {run} = require('../../../../utils');
 /**
  * Install updates
  */
-const upgrades = async () => {
+const upgrade = async () => {
     const msg = [];
 
     const commands = [
@@ -20,4 +20,4 @@ const upgrades = async () => {
     return msg.join('\n\n');
 };
 
-module.exports = upgrades;
+module.exports = upgrade;

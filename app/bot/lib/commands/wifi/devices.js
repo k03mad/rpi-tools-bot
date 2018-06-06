@@ -4,7 +4,8 @@ const cheerio = require('cheerio');
 const oui = require('oui');
 
 /**
- * Get device list from router
+ * Get connected devices list from router
+ * @param {String} place select router
  */
 const getDeviceList = async place => {
     const host = `http://${router(place).ip}`;
@@ -26,7 +27,8 @@ const getDeviceList = async place => {
 };
 
 /**
- * Pretty device list and add mac vendor
+ * Prettify device list
+ * @param {String} place select router
  */
 const prettyDeviceList = async place => {
     let list;

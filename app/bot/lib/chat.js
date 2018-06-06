@@ -6,6 +6,8 @@ const MAX_MSG_LENGTH = 4096;
 
 /**
  * Split long string by \n into array of strings
+ * @param {String} str to split
+ * @param {Number} l max string length
  */
 const splitString = (str, l) => {
     const strs = [];
@@ -29,7 +31,11 @@ const splitString = (str, l) => {
 };
 
 /**
- * Send message to user
+ * Send message to telegram user
+ * @param {Object} bot telegram node api
+ * @param {Object} mes telegram api message object
+ * @param {String|String[]} sends something to send
+ * @param {Object} opts telegram api options
  */
 const answer = async (bot, mes, sends, opts) => {
     for (const send of convertToArray(sends)) {
@@ -62,6 +68,11 @@ const answer = async (bot, mes, sends, opts) => {
 
 /**
  * Reply on command text
+ * @param {Object} bot telegram node api
+ * @param {String} enteredText received command
+ * @param {Function} cmd prepare answer with function
+ * @param {String|String[]} args answer function arguments
+ * @param {Object} opts telegram api options
  */
 const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
@@ -74,6 +85,7 @@ const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
 
 /**
  * Return keyboard options
+ * @param {String[]} arr commands to show and send
  */
 const keyboard = arr => {
     return {

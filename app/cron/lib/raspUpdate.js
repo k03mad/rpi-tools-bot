@@ -5,6 +5,7 @@ const getUpdate = require('../../bot/lib/commands/apt/update');
 
 /**
  * Check system updates with apt-get update
+ * @param {Object} bot telegram node api
  */
 const checkRaspberryUpdates = async bot => {
     let updates;

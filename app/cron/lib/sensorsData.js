@@ -8,7 +8,8 @@ const sensors = require('../../sensors/sensors');
 let ppmTimer = moment();
 
 /**
- *  Send sensor data and warn about high ppm
+ * Send sensor data and warn about high ppm
+ * @param {Object} bot telegram node api
  */
 const sendSensorsData = async bot => {
     // send warning if ppm above this count

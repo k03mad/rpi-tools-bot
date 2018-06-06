@@ -1,6 +1,6 @@
 const {msg} = require('../messages');
 const {proxy, telegramToken} = require('../env');
-const {sendToInflux} = require('../utils');
+const {sendToInflux, checkTimer} = require('../utils');
 const moment = require('moment');
 const PacProxyAgent = require('pac-proxy-agent');
 const TelegramBot = require('node-telegram-bot-api');
@@ -14,14 +14,13 @@ const bot = new TelegramBot(telegramToken, {
     request: {agent},
 });
 
-const POLLING_REPEAT_ALARM = 60000;
 let pollingTimer = moment();
 
 bot.on('polling_error', ex => {
     console.log(msg.common.polling(ex));
 
-    // send polling errors to database every POLLING_REPEAT_ALARM
-    if (moment().diff(pollingTimer) > POLLING_REPEAT_ALARM) {
+    // send polling errors to database every N minute
+    if (checkTimer(pollingTimer, 1)) {
         pollingTimer = moment();
         const TAG = 'bot=polling';
         sendToInflux(TAG, 'pollErr=1i').catch(err => console.log(msg.common.influx(TAG, err)));

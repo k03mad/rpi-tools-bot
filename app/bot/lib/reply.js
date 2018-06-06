@@ -4,6 +4,7 @@ const {msg} = require('../../messages');
 
 /**
  * Bot commands
+ * @param {Object} bot telegram node api
  */
 const replies = bot => {
     reply(bot, 'help', c.help, 'bot');
