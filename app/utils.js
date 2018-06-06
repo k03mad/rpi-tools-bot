@@ -76,7 +76,7 @@ const sendToInflux = (tag, data) => {
     const dataToObject = [];
 
     for (const key in data) {
-        dataToObject.push(`${key}=${data[key]}`);
+        dataToObject.push(`${key}=${Math.round(data[key])}i`);
     }
 
     const send = dataToObject.join();
