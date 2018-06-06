@@ -136,7 +136,7 @@ const checkTimer = (timer, repeat = 30) => {
  * @param {String} unit name
  * @param {String|Number} value
  */
-const convertUnit = (unit, value) => {
+const convertToMetric = (unit, value) => {
     value = Number(value);
 
     switch (unit) {
@@ -159,7 +159,7 @@ const convertUnit = (unit, value) => {
 module.exports = {
     checkTimer,
     convertToArray,
-    convertUnit,
+    convertToMetric,
     get,
     getPiHoleApiPass,
     MAC_RE,

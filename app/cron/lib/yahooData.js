@@ -1,4 +1,4 @@
-const {get, sendToInflux, convertUnit} = require('../../utils');
+const {get, sendToInflux, convertToMetric} = require('../../utils');
 const {msg} = require('../../messages');
 
 /**
@@ -24,10 +24,10 @@ const sendYahooData = async () => {
         const {channel} = body.query.results;
 
         data = {
-            temp: convertUnit('F', channel.item.condition.temp),
-            press: convertUnit('hPa', channel.atmosphere.pressure),
+            temp: convertToMetric('F', channel.item.condition.temp),
+            press: convertToMetric('hPa', channel.atmosphere.pressure),
             hum: channel.atmosphere.humidity,
-            wind: convertUnit('mph', channel.wind.speed),
+            wind: convertToMetric('mph', channel.wind.speed),
         };
     } catch (err) {
         console.log(msg.cron.yahoo(err));
