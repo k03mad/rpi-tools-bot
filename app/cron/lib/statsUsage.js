@@ -44,7 +44,7 @@ const sendUsage = async () => {
     }
 
     const TAG = 'stat=usage';
-    sendToInflux(TAG, `disk=${usage[0]},ram=${usage[1]}i,cpu=${usage[2]}`).catch(err => console.log(msg.common.influx(TAG, err)));
+    sendToInflux(TAG, {disk: usage[0], ram: usage[1], cpu: usage[2]}).catch(err => console.log(msg.common.influx(TAG, err)));
 };
 
 module.exports = sendUsage;

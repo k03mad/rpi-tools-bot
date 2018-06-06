@@ -29,7 +29,7 @@ const sendConnectedWiFiDevices = async bot => {
 
             const known = Object.values(knownDevices).join();
 
-            const data = [];
+            const data = {};
             const unknown = [];
 
             places[place].forEach((elem, index) => {
@@ -40,7 +40,7 @@ const sendConnectedWiFiDevices = async bot => {
                 for (const mac in knownDevices) {
                     // if device is not offline and from known list
                     if (!elem.split('\n').includes('-') && knownDevices[mac] === elem.match(MAC_RE)[0]) {
-                        data.push(`${mac}=${index + 1}i`);
+                        data[mac] = index + 1;
                     }
                 }
             });
@@ -54,7 +54,7 @@ const sendConnectedWiFiDevices = async bot => {
             // send online devices
             if (data.length > 0) {
                 const tag = `wifi=devices${place}`;
-                sendToInflux(tag, data.join()).catch(err => console.log(msg.common.influx(tag, err)));
+                sendToInflux(tag, data).catch(err => console.log(msg.common.influx(tag, err)));
             }
 
         }

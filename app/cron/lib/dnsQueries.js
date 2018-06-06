@@ -12,7 +12,10 @@ const sendDnsQueries = async () => {
         log = await run('pihole -c -j');
 
         const parsedLog = JSON.parse(log);
-        data = `today=${parsedLog.dns_queries_today}i,blocked=${parsedLog.ads_blocked_today}i`;
+        data = {
+            today: parsedLog.dns_queries_today,
+            blocked: parsedLog.ads_blocked_today,
+        };
     } catch (err) {
         console.log(msg.cron.dns(log, err));
         return;

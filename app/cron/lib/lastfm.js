@@ -23,10 +23,10 @@ const sendLastFm = async () => {
                 json: true,
             });
 
-            data[user] = [];
+            data[user] = {};
 
             body.topartists.artist.forEach(artist => {
-                data[user].push(`${artist.name.replace(' ', '\\ ')}=${artist.playcount}i`);
+                data[user][artist.name.replace(' ', '\\ ')] = artist.playcount;
             });
         } catch (err) {
             console.log(msg.cron.lastfm(err));
@@ -34,9 +34,9 @@ const sendLastFm = async () => {
     }));
 
     users.forEach(user => {
-        if (data[user].length > 0) {
+        if (Object.keys(data[user]).length > 0) {
             const tag = `lastfm=topartist${user}`;
-            sendToInflux(tag, data[user].join()).catch(err => console.log(msg.common.influx(tag, err)));
+            sendToInflux(tag, data[user]).catch(err => console.log(msg.common.influx(tag, err)));
         }
     });
 };

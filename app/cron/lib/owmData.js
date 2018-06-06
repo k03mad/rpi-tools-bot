@@ -18,7 +18,12 @@ const sendOwmData = async () => {
             json: true,
         });
 
-        data = `temp=${body.main.temp}i,press=${convertToMm(body.main.pressure)}i,hum=${body.main.humidity}i,wind=${body.wind.speed}i`;
+        data = {
+            temp: body.main.temp,
+            press: convertToMm(body.main.pressure),
+            hum: body.main.humidity,
+            wind: body.wind.speed,
+        };
     } catch (err) {
         console.log(msg.cron.owm(err));
     }

@@ -29,24 +29,24 @@ const sendDnsTop = async () => {
         return;
     }
 
-    const ads = [];
-    const queries = [];
+    const ads = {};
+    const queries = {};
 
     const [topAds, topQueries] = [Object.keys(body.top_ads), Object.keys(body.top_queries)];
 
     for (let i = 0; i < 10; i++) {
-        ads.push(`${topAds[i]}=${body.top_ads[topAds[i]]}i`);
-        queries.push(`${topQueries[i]}=${body.top_queries[topQueries[i]]}i`);
+        ads[topAds[i]] = body.top_ads[topAds[i]];
+        queries[topQueries[i]] = body.top_queries[topQueries[i]];
     }
 
     if (ads.length > 0) {
         const TAG = 'dns=topBlock';
-        sendToInflux(TAG, ads.join()).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, ads).catch(err => console.log(msg.common.influx(TAG, err)));
     }
 
     if (queries.length > 0) {
         const TAG = 'dns=topQueries';
-        sendToInflux(TAG, queries.join()).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, queries).catch(err => console.log(msg.common.influx(TAG, err)));
     }
 };
 

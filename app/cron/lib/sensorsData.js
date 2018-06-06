@@ -21,14 +21,8 @@ const sendSensorsData = async bot => {
         console.log(msg.sensor.noData);
     } else {
 
-        const send = [];
-
-        for (const key in data) {
-            send.push(`${key}=${data[key]}i`);
-        }
-
         const TAG = 'sensors=weather';
-        sendToInflux(TAG, send.join()).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, data).catch(err => console.log(msg.common.influx(TAG, err)));
 
         // send warning every REPEAT_ALARM minutes until ppm drop
         if (data.ppm > PPM_WARNING && checkTimer(ppmTimer)) {

@@ -72,9 +72,15 @@ const get = async (url, opts = {}) => {
  * @param {String} data to send
  */
 const sendToInflux = (tag, data) => {
+    const send = [];
+
+    for (const key in data) {
+        send.push(`${key}=${Math.round(data[key])}i`);
+    }
+
     return get(influxUrl, {
         query: {db: influxDb},
-        body: `${influxMeas},${tag} ${data}`,
+        body: `${influxMeas},${tag} ${send.join()}`,
     });
 };
 
@@ -129,7 +135,7 @@ const checkTimer = (timer, repeat = 30) => {
  * @param {Number} hPa
  */
 const convertToMm = hPa => {
-    return Math.round(hPa * 0.75006375541921);
+    return hPa * 0.75006375541921;
 };
 
 module.exports = {
