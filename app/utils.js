@@ -124,8 +124,8 @@ const getPiHoleApiPass = async () => {
 
 /**
  * Check if current time is above setted
- * @param {*} timer moment time
- * @param {*} repeat alarm every N minutes
+ * @param {String} timer moment time
+ * @param {Number} repeat alarm every N minutes
  */
 const checkTimer = (timer, repeat = 30) => {
     return moment().diff(timer, 'minutes') > repeat;
