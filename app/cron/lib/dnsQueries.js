@@ -22,7 +22,7 @@ const sendDnsQueries = async () => {
     }
 
     const TAG = 'dns=queries';
-    sendToInflux(TAG, data).catch(err => console.log(msg.common.influx(TAG, err)));
+    sendToInflux(TAG, data);
 };
 
 module.exports = sendDnsQueries;

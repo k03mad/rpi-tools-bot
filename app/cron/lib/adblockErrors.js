@@ -1,4 +1,3 @@
-const {msg} = require('../../messages');
 const {promisify} = require('util');
 const {sendToInflux} = require('../../utils');
 const appRoot = require('app-root-path');
@@ -15,7 +14,7 @@ const sendAdbErrors = async () => {
         await stat(path.join(appRoot.path, '..', 'adblock-hosts-list/output/error.log'));
 
         const TAG = 'adblock=error';
-        sendToInflux(TAG, {errors: 1}).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, {errors: 1});
     } catch (err) {}
 };
 

@@ -1,4 +1,11 @@
-const {currentDate} = require('./utils');
+const moment = require('moment');
+
+/**
+ * Get current date
+ */
+const currentDate = () => {
+    return moment().format('YYYY.MM.DD HH:mm:ss');
+};
 
 const commands = [
     '/help - this list',
@@ -19,7 +26,7 @@ const msg = {
     common: {
         choose:     ()              => 'Choose network',
         emptyLog:                      'Log is empty',
-        influx:     (db, ex)        => `${currentDate()} sending ${db} to influx: ${ex}`,
+        influx:     (tag, data, ex) => `${currentDate()} sending "${tag}" with "${data}" to influx: ${ex}`,
         noDev:                         'No devices available',
         noVendor:   (mac, ex)       => `${currentDate()} get ${mac} mac vendor: ${ex}`,
         errDev:     (place, ex)     => `${currentDate()} get ${place} devices: ${ex}`,

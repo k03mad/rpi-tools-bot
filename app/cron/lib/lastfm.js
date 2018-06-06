@@ -36,7 +36,7 @@ const sendLastFm = async () => {
     users.forEach(user => {
         if (Object.keys(data[user]).length > 0) {
             const tag = `lastfm=topartist${user}`;
-            sendToInflux(tag, data[user]).catch(err => console.log(msg.common.influx(tag, err)));
+            sendToInflux(tag, data[user]);
         }
     });
 };

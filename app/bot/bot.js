@@ -23,7 +23,7 @@ bot.on('polling_error', ex => {
     if (checkTimer(pollingTimer, 1)) {
         pollingTimer = moment();
         const TAG = 'bot=polling';
-        sendToInflux(TAG, {pollErr: 1}).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, {pollErr: 1});
     }
 });
 

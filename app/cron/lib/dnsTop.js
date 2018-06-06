@@ -41,12 +41,12 @@ const sendDnsTop = async () => {
 
     if (ads.length > 0) {
         const TAG = 'dns=topBlock';
-        sendToInflux(TAG, ads).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, ads);
     }
 
     if (queries.length > 0) {
         const TAG = 'dns=topQueries';
-        sendToInflux(TAG, queries).catch(err => console.log(msg.common.influx(TAG, err)));
+        sendToInflux(TAG, queries);
     }
 };
 

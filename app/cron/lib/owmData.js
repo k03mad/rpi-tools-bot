@@ -29,7 +29,7 @@ const sendOwmData = async () => {
     }
 
     const TAG = 'owm=weather';
-    sendToInflux(TAG, data).catch(err => console.log(msg.common.influx(TAG, err)));
+    sendToInflux(TAG, data);
 };
 
 module.exports = sendOwmData;

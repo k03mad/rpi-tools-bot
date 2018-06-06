@@ -1,9 +1,10 @@
 const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
+const {msg} = require('./messages');
+const {promisify} = require('util');
 const exec = require('executive');
+const fs = require('fs');
 const got = require('got');
 const moment = require('moment');
-const fs = require('fs');
-const {promisify} = require('util');
 
 const readFile = promisify(fs.readFile);
 
@@ -69,19 +70,21 @@ const get = async (url, opts = {}) => {
 /**
  * Store data to influxdb
  * @param {String} tag to add
- * @param {String} data to send
+ * @param {Object} data to send
  */
 const sendToInflux = (tag, data) => {
-    const send = [];
+    const dataToObject = [];
 
     for (const key in data) {
-        send.push(`${key}=${Math.round(data[key])}i`);
+        dataToObject.push(`${key}=${Math.round(data[key])}i`);
     }
+
+    const send = dataToObject.join();
 
     return get(influxUrl, {
         query: {db: influxDb},
-        body: `${influxMeas},${tag} ${send.join()}`,
-    });
+        body: `${influxMeas},${tag} ${send}`,
+    }).catch(err => console.log(msg.common.influx(tag, send, err)));
 };
 
 /**
@@ -103,13 +106,6 @@ const router = place => {
             ip: wifiIP,
             cred: wifiCred,
         };
-};
-
-/**
- * Get current date
- */
-const currentDate = () => {
-    return moment().format('YYYY.MM.DD HH:mm:ss');
 };
 
 /**
@@ -142,7 +138,6 @@ module.exports = {
     checkTimer,
     convertToArray,
     convertToMm,
-    currentDate,
     get,
     getPiHoleApiPass,
     MAC_RE,
