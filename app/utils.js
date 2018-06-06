@@ -81,7 +81,7 @@ const sendToInflux = (tag, data) => {
     const dataToObject = [];
 
     for (const key in data) {
-        dataToObject.push(`${key}=${Math.round(data[key])}i`);
+        dataToObject.push(`${key}=${Math.round(Number(data[key]))}i`);
     }
 
     const send = dataToObject.join();
@@ -132,17 +132,34 @@ const checkTimer = (timer, repeat = 30) => {
 };
 
 /**
- * Convert hPa to mm Hg
- * @param {Number} hPa
+ * Convert units
+ * @param {String} unit name
+ * @param {String|Number} value
  */
-const convertToMm = hPa => {
-    return hPa * 0.75006375541921;
+const convertUnit = (unit, value) => {
+    value = Number(value);
+
+    switch (unit) {
+        case 'hPa':
+            return value * 0.75006375541921;
+
+        case 'mph':
+            return value * 0.44704;
+
+        case 'F':
+            return (value - 32) / 1.8;
+
+        default:
+            console.log(msg.common.converter(unit));
+            return value;
+    }
+
 };
 
 module.exports = {
     checkTimer,
     convertToArray,
-    convertToMm,
+    convertUnit,
     get,
     getPiHoleApiPass,
     MAC_RE,

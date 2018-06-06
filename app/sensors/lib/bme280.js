@@ -1,5 +1,5 @@
 const BME280 = require('bme-sensor-nolog');
-const {convertToMm} = require('../../utils');
+const {convertUnit} = require('../../utils');
 
 /**
  * Get data from bme280
@@ -22,7 +22,7 @@ const getBme280 = async () => {
         throw new Error(`wrong hum count: ${hum}`);
     }
 
-    const press = convertToMm(data.pressure_hPa);
+    const press = convertUnit('hPa', data.pressure_hPa);
 
     if (press < 700 || press > 800) {
         throw new Error(`wrong press count: ${press}`);
