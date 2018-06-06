@@ -132,9 +132,9 @@ const checkTimer = (timer, repeat = 30) => {
 };
 
 /**
- * Convert units
+ * Convert units to metric system
  * @param {String} unit name
- * @param {String|Number} value
+ * @param {String|Number} value to convert
  */
 const convertToMetric = (unit, value) => {
     value = Number(value);
