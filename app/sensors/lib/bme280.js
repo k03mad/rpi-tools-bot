@@ -10,13 +10,13 @@ const getBme280 = async () => {
 
     const data = await bme280.readSensorData();
 
-    const temp = Math.round(data.temperature_C);
+    const temp = data.temperature_C;
 
     if (temp < -50 || temp > 50) {
         throw new Error(`wrong temp count: ${temp}`);
     }
 
-    const hum = Math.round(data.humidity);
+    const hum = data.humidity;
 
     if (hum < 0 || hum > 100) {
         throw new Error(`wrong hum count: ${hum}`);
