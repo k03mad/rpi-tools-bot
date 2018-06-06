@@ -22,7 +22,7 @@ const commands = [
 ];
 
 const msg = {
-    /* eslint-disable key-spacing, no-multi-spaces, indent */
+    /* eslint-disable key-spacing, no-multi-spaces */
     common: {
         choose:     ()              => 'Choose network',
         converter:  unit            => `${currentDate()} no units "${unit}" found in converter`,
