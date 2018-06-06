@@ -41,7 +41,7 @@
     "oui": "oui --update || true",
     "readme": "node app/bot/lib/readme && git add README.md",
     "setup": "npm i && npm run oui && npm run cleanlog && npm audit fix",
-    "start": "forever start -a --uid raspi --minUptime 5000 --spinSleepTime 60000 -l ../git/raspberry-tools/forever.log index.js",
+    "start": "forever start -a --uid raspi --minUptime 1000 --spinSleepTime 10000 -l ../git/raspberry-tools/forever.log index.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [
