@@ -10,7 +10,7 @@ const readFile = promisify(fs.readFile);
 
 /**
  * Send command to bash
- * @param {String} str send command to terminal
+ * @param {String} str to send
  */
 const run = async str => {
     const {stdout, stderr} = await exec.quiet(str);
