@@ -86,7 +86,7 @@ const get = async (url, opts = {}) => {
             const res = await got(url, opts);
             time = new Date().getTime() - start;
 
-            const host = url.replace(/(http(s)?:\/\/)|(www\.)|(\/.*)/g, '');
+            const host = url.replace(/(http(s)?:\/\/)|(www\.)|(\/$)/g, '').replace(/\//g, '|');
             sendToInflux('requests=got', {[host]: time});
 
             return res;
