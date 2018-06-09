@@ -2,6 +2,7 @@ const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCr
 const {msg} = require('./messages');
 const {promisify} = require('util');
 const exec = require('executive');
+const filenamifyUrl = require('filenamify-url');
 const fs = require('fs');
 const got = require('got');
 const moment = require('moment');
@@ -34,6 +35,31 @@ const nowWait = time => {
 };
 
 /**
+ * Store data to influxdb
+ * @param {String} tag to add
+ * @param {Object} data to send
+ */
+const sendToInflux = (tag, data) => {
+    if (Object.keys(data).length === 0) {
+        console.log(msg.common.influx(tag, 'empty data', ''));
+        return;
+    }
+
+    const dataToObject = [];
+
+    for (const key in data) {
+        dataToObject.push(`${key}=${Math.round(Number(data[key]))}i`);
+    }
+
+    const send = dataToObject.join();
+
+    return got(influxUrl, {
+        query: {db: influxDb},
+        body: `${influxMeas},${tag} ${send}`,
+    }).catch(err => console.log(msg.common.influx(tag, send, err)));
+};
+
+/**
  * Send request
  * @param {String} url request url
  * @param {Object} opts request options
@@ -53,10 +79,18 @@ const get = async (url, opts = {}) => {
     }
 
     let error;
+    let time;
 
     for (let i = 0; i < RETRIES; i++) {
         try {
-            return await got(url, opts);
+            const start = new Date().getTime();
+            const res = await got(url, opts);
+            time = new Date().getTime() - start;
+
+            const prettyUrl = filenamifyUrl(url, {replacement: '-'});
+            sendToInflux('requests=got', {[prettyUrl]: time});
+
+            return res;
         } catch (err) {
             error = err;
         }
@@ -65,31 +99,6 @@ const get = async (url, opts = {}) => {
     }
 
     throw error;
-};
-
-/**
- * Store data to influxdb
- * @param {String} tag to add
- * @param {Object} data to send
- */
-const sendToInflux = (tag, data) => {
-    if (Object.keys(data).length === 0) {
-        console.log(msg.common.influx(tag, 'empty data', ''));
-        return;
-    }
-
-    const dataToObject = [];
-
-    for (const key in data) {
-        dataToObject.push(`${key}=${Math.round(Number(data[key]))}i`);
-    }
-
-    const send = dataToObject.join();
-
-    return get(influxUrl, {
-        query: {db: influxDb},
-        body: `${influxMeas},${tag} ${send}`,
-    }).catch(err => console.log(msg.common.influx(tag, send, err)));
 };
 
 /**

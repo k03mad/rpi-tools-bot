@@ -15,6 +15,7 @@
     "cheerio": "1.0.0-rc.2",
     "colors": "1.3.0",
     "executive": "1.5.13",
+    "filenamify-url": "1.0.0",
     "forever": "0.15.3",
     "got": "8.3.1",
     "moment": "2.22.2",
