@@ -1,6 +1,6 @@
 {
   "name": "raspberry-tools",
-  "version": "4.2.1",
+  "version": "4.3.0",
   "description": "Raspberry Pi 3 Tools",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
@@ -15,7 +15,6 @@
     "cheerio": "1.0.0-rc.2",
     "colors": "1.3.0",
     "executive": "1.5.13",
-    "filenamify-url": "1.0.0",
     "forever": "0.15.3",
     "got": "8.3.1",
     "moment": "2.22.2",

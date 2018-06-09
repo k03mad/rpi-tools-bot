@@ -6,13 +6,16 @@ const {msg} = require('../../../../messages');
  * @param {String} place select router
  */
 const reboot = async place => {
-    const host = `http://${router(place).ip}`;
+    const host = `http://${router(place).ip}/cgi-bin/timepro.cgi`;
     const auth = router(place).cred;
 
-    const PATH = '/cgi-bin/timepro.cgi?tmenu=background&smenu=reboot&act=&commit=reboot';
-
     try {
-        await get(host + PATH, {auth});
+        await get(host, {auth, query: {
+            tmenu: 'background',
+            smenu: 'reboot',
+            act: '',
+            commit: 'reboot',
+        }});
     } catch (err) {
         return err.toString();
     }

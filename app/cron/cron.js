@@ -11,7 +11,7 @@ const cron = bot => {
 
     every('1m').do(() => c.statsTemp());
     every('1m').do(() => c.statsUsage());
-    
+
     every('1m').do(() => c.wifiDevices(bot));
 
     every('1m').do(() => c.dnsQueries());

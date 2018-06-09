@@ -2,7 +2,6 @@ const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCr
 const {msg} = require('./messages');
 const {promisify} = require('util');
 const exec = require('executive');
-const filenamifyUrl = require('filenamify-url');
 const fs = require('fs');
 const got = require('got');
 const moment = require('moment');
@@ -87,8 +86,8 @@ const get = async (url, opts = {}) => {
             const res = await got(url, opts);
             time = new Date().getTime() - start;
 
-            const prettyUrl = filenamifyUrl(url, {replacement: '-'});
-            sendToInflux('requests=got', {[prettyUrl]: time});
+            const host = url.replace(/(http(s)?:\/\/)|(www\.)|(\/.*)/g, '');
+            sendToInflux('requests=got', {[host]: time});
 
             return res;
         } catch (err) {

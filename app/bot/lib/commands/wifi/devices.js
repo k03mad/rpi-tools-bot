@@ -8,13 +8,13 @@ const oui = require('oui');
  * @param {String} place select router
  */
 const getDeviceList = async place => {
-    const host = `http://${router(place).ip}`;
-    const PATH = '/cgi-bin/timepro.cgi?tmenu=netconf&smenu=laninfo';
+    const host = `http://${router(place).ip}/cgi-bin/timepro.cgi`;
 
     const SELECTOR = '.menu_content_list_table tr';
 
-    const {body} = await get(host + PATH, {
+    const {body} = await get(host, {
         auth: router(place).cred,
+        query: {tmenu: 'netconf', smenu: 'laninfo'},
     });
 
     const $ = cheerio.load(body);
