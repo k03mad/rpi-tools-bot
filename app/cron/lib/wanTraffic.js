@@ -29,6 +29,8 @@ const getWanTraffic = async () => {
                 const text = $(elem).text();
                 let textArr = text.split('\n');
 
+                // one of routers has additional tr element
+                // remove first empty element from array
                 if (!textArr[0]) {
                     textArr = textArr.splice(1, 2);
                 }
