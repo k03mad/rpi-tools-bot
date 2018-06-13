@@ -27,12 +27,24 @@ const getWanTraffic = async () => {
 
             query.each((i, elem) => {
                 const text = $(elem).text();
-                const textArr = text.split('\n').filter(x => Boolean(x));
+                let textArr = text.split('\n');
+
+                if (!textArr[0]) {
+                    textArr = textArr.splice(1, 2);
+                }
 
                 if (textArr[0] === 'Rx-Bytes') {
-                    [, data[`in${place}`]] = textArr;
+                    const bytes = Number(textArr[1]);
+
+                    if (bytes) {
+                        data[`in${place}`] = bytes;
+                    }
                 } else if (textArr[0] === 'Tx-Bytes') {
-                    [, data[`out${place}`]] = textArr;
+                    const bytes = Number(textArr[1]);
+
+                    if (bytes) {
+                        data[`out${place}`] = bytes;
+                    }
                 }
             });
         } catch (err) {
