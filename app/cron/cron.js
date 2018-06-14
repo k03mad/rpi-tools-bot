@@ -21,6 +21,8 @@ const cron = bot => {
 
     every('1m').do(() => c.lastfm.top());
 
+    every('1m').do(() => c.myshows.episodes());
+
     every('1h').do(() => c.adblock.errors());
 };
 
