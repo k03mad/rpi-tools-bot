@@ -39,7 +39,7 @@ const nowWait = time => {
  * @param {Object} data to send
  */
 const sendToInflux = (tag, data) => {
-    if (!data && Object.keys(data).length === 0) {
+    if (!data || Object.keys(data).length === 0) {
         console.log(msg.common.influx(tag, 'empty data', ''));
         return;
     }
