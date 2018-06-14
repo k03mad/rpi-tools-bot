@@ -1,6 +1,6 @@
-const {get, router} = require('../../utils');
-const {msg} = require('../../messages');
-const {sendToInflux} = require('../../utils');
+const {get, router} = require('../../../utils');
+const {msg} = require('../../../messages');
+const {sendToInflux} = require('../../../utils');
 const cheerio = require('cheerio');
 
 const prevData = {};
@@ -86,7 +86,7 @@ const getWanTraffic = async () => {
         }
     }));
 
-    sendToInflux('wan=traffic', sendData);
+    sendToInflux('router=traffic', sendData);
 };
 
 module.exports = getWanTraffic;

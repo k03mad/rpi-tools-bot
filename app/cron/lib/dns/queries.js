@@ -1,5 +1,5 @@
-const {run, sendToInflux} = require('../../utils');
-const {msg} = require('../../messages');
+const {run, sendToInflux} = require('../../../utils');
+const {msg} = require('../../../messages');
 
 /**
  * Send blocked queries by local dns
