@@ -1,5 +1,5 @@
-const {get, sendToInflux, convertToMetric} = require('../../utils');
-const {msg} = require('../../messages');
+const {get, sendToInflux, convertToMetric} = require('../../../utils');
+const {msg} = require('../../../messages');
 
 /**
  * Send Yahoo weather data

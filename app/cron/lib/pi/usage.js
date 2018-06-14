@@ -1,6 +1,6 @@
-const {msg} = require('../../messages');
-const {run} = require('../../utils');
-const {sendToInflux} = require('../../utils');
+const {msg} = require('../../../messages');
+const {run} = require('../../../utils');
+const {sendToInflux} = require('../../../utils');
 
 /**
  * Get RAM usage
@@ -42,7 +42,7 @@ const sendUsage = async () => {
         return;
     }
 
-    sendToInflux('stats=usage', {disk: usage[0], ram: usage[1], cpu: usage[2]});
+    sendToInflux('pi=usage', {disk: usage[0], ram: usage[1], cpu: usage[2]});
 };
 
 module.exports = sendUsage;

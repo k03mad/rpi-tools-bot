@@ -1,6 +1,6 @@
-const {lastfmToken, lastfmUserMad, lastfmUserKnpl} = require('../../env');
-const {get, sendToInflux} = require('../../utils');
-const {msg} = require('../../messages');
+const {lastfmToken, lastfmUserMad, lastfmUserKnpl} = require('../../../env');
+const {get, sendToInflux} = require('../../../utils');
+const {msg} = require('../../../messages');
 
 /**
  * Send last fm top artists

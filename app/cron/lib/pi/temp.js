@@ -1,6 +1,6 @@
-const {msg} = require('../../messages');
-const {run} = require('../../utils');
-const {sendToInflux} = require('../../utils');
+const {msg} = require('../../../messages');
+const {run} = require('../../../utils');
+const {sendToInflux} = require('../../../utils');
 
 /**
  * Get GPU temperature
@@ -31,7 +31,7 @@ const sendTemp = async () => {
         return;
     }
 
-    sendToInflux('stats=temp', {cpu: temp[0], gpu: temp[1]});
+    sendToInflux('pi=temp', {cpu: temp[0], gpu: temp[1]});
 };
 
 module.exports = sendTemp;

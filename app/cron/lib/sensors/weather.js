@@ -1,9 +1,9 @@
-const {answer} = require('../../bot/lib/chat');
-const {msg} = require('../../messages');
-const {myChat} = require('../../env');
-const {sendToInflux, checkTimer} = require('../../utils');
+const {answer} = require('../../../bot/lib/chat');
+const {msg} = require('../../../messages');
+const {myChat} = require('../../../env');
+const {sendToInflux, checkTimer} = require('../../../utils');
 const moment = require('moment');
-const sensors = require('../../sensors/sensors');
+const sensors = require('../../../sensors/sensors');
 
 let ppmTimer = moment();
 

@@ -1,5 +1,5 @@
 const {promisify} = require('util');
-const {sendToInflux} = require('../../utils');
+const {sendToInflux} = require('../../../utils');
 const appRoot = require('app-root-path');
 const fs = require('fs');
 const path = require('path');
@@ -12,7 +12,7 @@ const stat = promisify(fs.stat);
 const sendAdbErrors = async () => {
     try {
         await stat(path.join(appRoot.path, '..', 'adblock-hosts-list/output/error.log'));
-        sendToInflux('adblock=error', {errors: 1});
+        sendToInflux('adblock=errors', {errors: 1});
     } catch (err) {}
 };
 

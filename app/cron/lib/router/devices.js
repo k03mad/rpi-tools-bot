@@ -1,8 +1,8 @@
-const {answer} = require('../../bot/lib/chat');
-const {knownDevices, myChat} = require('../../env');
-const {MAC_RE, sendToInflux, checkTimer} = require('../../utils');
-const {msg} = require('../../messages');
-const getDevices = require('../../bot/lib/commands/wifi/devices');
+const {answer} = require('../../../bot/lib/chat');
+const {knownDevices, myChat} = require('../../../env');
+const {MAC_RE, sendToInflux, checkTimer} = require('../../../utils');
+const {msg} = require('../../../messages');
+const getDevices = require('../../../bot/lib/commands/wifi/devices');
 const moment = require('moment');
 
 let unknownDeviceTimer = moment();
@@ -53,7 +53,7 @@ const sendConnectedWiFiDevices = async bot => {
 
             // send online devices
             if (Object.keys(data).length > 0) {
-                sendToInflux(`wifi=devices${place}`, data);
+                sendToInflux(`router=devices${place}`, data);
             }
 
         }
