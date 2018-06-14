@@ -11,7 +11,7 @@ const sendYahooData = async () => {
         const {body} = await get('https://query.yahooapis.com/v1/public/yql', {
             body: {
                 q: `
-                    select wind.speed, atmosphere.humidity, atmosphere.pressure, item.condition.temp
+                    select atmosphere.humidity, item.condition.temp
                     from weather.forecast
                     where woeid = 2014899
                 `,
@@ -25,9 +25,7 @@ const sendYahooData = async () => {
 
         data = {
             temp: convertToMetric('F', channel.item.condition.temp),
-            press: convertToMetric('hPa', channel.atmosphere.pressure),
             hum: channel.atmosphere.humidity,
-            wind: convertToMetric('mph', channel.wind.speed),
         };
     } catch (err) {
         console.log(msg.cron.yahoo(err));
