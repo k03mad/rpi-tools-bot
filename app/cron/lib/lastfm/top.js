@@ -26,7 +26,7 @@ const sendLastFm = async () => {
             data[user] = {};
 
             body.topartists.artist.forEach(artist => {
-                data[user][artist.name.replace(' ', '\\ ')] = artist.playcount;
+                data[user][artist.name.replace(/ /g, '\\ ')] = artist.playcount;
             });
         } catch (err) {
             console.log(msg.cron.lastfm(err));
