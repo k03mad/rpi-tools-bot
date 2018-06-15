@@ -13,8 +13,8 @@ const prevData = {};
  * @param {Object} sendData final object
  */
 const generateData = (textArr, direction, place, sendData) => {
-    // ~10 gb
-    const TRAFFIC_JUMP_BYTES = 10000000000;
+    // 5 gb
+    const TRAFFIC_JUMP_BYTES = 5368709120;
 
     const bytes = Number(textArr[1]);
     const tag = direction + place;
