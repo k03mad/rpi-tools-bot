@@ -13,32 +13,15 @@ const prevData = {};
  * @param {Object} sendData final object
  */
 const generateData = (textArr, direction, place, sendData) => {
-    // 5 gb
-    const TRAFFIC_JUMP_BYTES = 5368709120;
-
     const bytes = Number(textArr[1]);
     const tag = direction + place;
-    const prevDataPoint = prevData[tag];
 
-    // if no current value and previous value is saved before
-    // send previous data point
-    if (!bytes && prevDataPoint) {
-        sendData[tag] = prevDataPoint;
-        return;
-    } else if (!bytes) {
+    if (!bytes) {
         return;
     }
 
-    // check for strange bytes jump
-    // sometimes router returns increased bytes count by 12 figures
-    const isJump = prevDataPoint
-        ? bytes - prevDataPoint > TRAFFIC_JUMP_BYTES
-        : false;
-
-    sendData[tag] = !isJump || !prevDataPoint
-        ? bytes
-        : prevDataPoint;
-
+    // send min value due to random strange bytes count increase
+    sendData[tag] = prevData[tag] ? Math.min(bytes, prevData[tag]) : bytes;
     prevData[tag] = bytes;
 };
 
