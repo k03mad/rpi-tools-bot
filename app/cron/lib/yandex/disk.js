@@ -7,7 +7,7 @@ const {sendToInflux} = require('../../../utils');
  */
 const filesCount = async () => {
     const files = await run('find /media/yandexdisk/ -type f | wc -l');
-    return files.split('\n');
+    return files.split('\n')[0];
 };
 
 /**
@@ -15,7 +15,7 @@ const filesCount = async () => {
  */
 const diskSize = async () => {
     const size = await run('du -s /media/yandexdisk/');
-    return size.split('\t');
+    return size.split('\t')[0];
 };
 
 /**
