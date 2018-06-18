@@ -22,16 +22,17 @@ const cpuTemp = async () => {
  * Send cpu and gpu temp
  */
 const sendTemp = async () => {
-    let temp;
+    let cpu;
+    let gpu;
 
     try {
-        temp = await Promise.all([cpuTemp(), gpuTemp()]);
+        [cpu, gpu] = await Promise.all([cpuTemp(), gpuTemp()]);
     } catch (err) {
         console.log(msg.cron.temp(err));
         return;
     }
 
-    sendToInflux('pi=temp', {cpu: temp[0], gpu: temp[1]});
+    sendToInflux('pi=temp', {cpu, gpu});
 };
 
 module.exports = sendTemp;

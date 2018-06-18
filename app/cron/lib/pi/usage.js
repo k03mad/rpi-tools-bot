@@ -33,16 +33,18 @@ const cpuUsage = async () => {
  * Send disk and ram usage
  */
 const sendUsage = async () => {
-    let usage;
+    let disk;
+    let ram;
+    let cpu;
 
     try {
-        usage = await Promise.all([diskUsage(), ramUsage(), cpuUsage()]);
+        [disk, ram, cpu] = await Promise.all([diskUsage(), ramUsage(), cpuUsage()]);
     } catch (err) {
         console.log(msg.cron.usage(err));
         return;
     }
 
-    sendToInflux('pi=usage', {disk: usage[0], ram: usage[1], cpu: usage[2]});
+    sendToInflux('pi=usage', {disk, ram, cpu});
 };
 
 module.exports = sendUsage;
