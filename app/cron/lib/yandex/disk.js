@@ -5,32 +5,33 @@ const {sendToInflux} = require('../../../utils');
 /**
  * Get Yandex Disk files count
  */
-const filesCount = () => run('find /media/yandexdisk/ -type f | wc -l');
+const filesCount = async () => {
+    const files = await run('find /media/yandexdisk/ -type f | wc -l');
+    return files.split('\n');
+};
 
 /**
  * Get Yandex Disk total size
  */
 const diskSize = async () => {
     const size = await run('du -s /media/yandexdisk/');
-    return size;
+    return size.split('\t');
 };
 
 /**
  * Send disk data
  */
 const sendData = async () => {
-    let data;
+    let files;
+    let size;
 
     try {
-        data = await Promise.all([filesCount(), diskSize()]);
+        [files, size] = await Promise.all([filesCount(), diskSize()]);
     } catch (err) {
         console.log(msg.cron.yandex(err));
-
     }
 
-    console.log(data);
-    // sendToInflux('yandex=disk', {files: data[0], size: data[1]});
+    sendToInflux('yandex=disk', {files, size});
 };
 
-sendData().then();
 module.exports = sendData;
