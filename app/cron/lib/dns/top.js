@@ -17,11 +17,12 @@ const sendDnsTop = async () => {
         }
     }
 
+    const SEND_ITEMS = 10;
     let body;
 
     try {
         ({body} = await get(piholeUrl, {
-            query: {topItems: 10, auth},
+            query: {topItems: SEND_ITEMS, auth},
             json: true,
         }));
     } catch (err) {
@@ -34,9 +35,15 @@ const sendDnsTop = async () => {
 
     const [topAds, topQueries] = [Object.keys(body.top_ads), Object.keys(body.top_queries)];
 
-    for (let i = 0; i < 10; i++) {
-        ads[topAds[i]] = body.top_ads[topAds[i]];
-        queries[topQueries[i]] = body.top_queries[topQueries[i]];
+    for (let i = 0; i < SEND_ITEMS; i++) {
+        const adElem = topAds[i];
+        const queElem = topQueries[i];
+        if (adElem) {
+            ads[adElem] = body.top_ads[adElem];
+        }
+        if (queElem) {
+            queries[queElem] = body.top_queries[queElem];
+        }
     }
 
     sendToInflux('dns=topBlock', ads);
