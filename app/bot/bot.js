@@ -1,6 +1,4 @@
-const {msg} = require('../messages');
 const {proxy, telegramToken} = require('../env');
-const {sendToInflux} = require('../utils');
 const PacProxyAgent = require('pac-proxy-agent');
 const TelegramBot = require('node-telegram-bot-api');
 
@@ -13,10 +11,8 @@ const bot = new TelegramBot(telegramToken, {
     request: {agent},
 });
 
-bot.on('polling_error', ex => {
-    console.log(msg.common.polling(ex));
-    sendToInflux('bot=polling', {pollErr: 1});
-});
+require('./lib/events/polling')(bot);
+require('./lib/events/message')(bot);
 
 require('./lib/reply')(bot);
 

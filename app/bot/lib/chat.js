@@ -76,7 +76,7 @@ const answer = async (bot, mes, sends, opts) => {
  */
 const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
-        if ([myChat].includes(String(mes.chat.id))) {
+        if (myChat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(msg.send.typing(err)));
             answer(bot, mes, await cmd(...convertToArray(args)), opts);
         }

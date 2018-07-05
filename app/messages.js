@@ -21,7 +21,6 @@ const msg = {
         converter:  unit            => `${currentDate()} no units "${unit}" found in converter`,
         emptyLog:                      'Log is empty',
         errDev:     (place, ex)     => `${currentDate()} get ${place} devices: ${ex}`,
-        influx:     (tag, data, ex) => `${currentDate()} sending "${tag}" with "${data}" to influx: ${ex}`,
         noDev:                         'No devices available',
         noVendor:   (mac, ex)       => `${currentDate()} get ${mac} mac vendor: ${ex}`,
         polling:    ex              => `${currentDate()} polling: ${ex}`,
@@ -43,6 +42,10 @@ const msg = {
         usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
         yahoo:      ex              => `${currentDate()} get yahoo weather data: ${ex}`,
         yandex:     ex              => `${currentDate()} get yandex disk stats: ${ex}`,
+    },
+    influx: {
+        get:        (tag, data, ex) => `${currentDate()} getting "${tag}" with "${data}" from influx: ${ex}`,
+        send:       (tag, data, ex) => `${currentDate()} sending "${tag}" with "${data}" to influx: ${ex}`,
     },
     readme: {
         badges:                        ['![Dependencies](https://david-dm.org/k03mad/raspberry-tools.svg)'],

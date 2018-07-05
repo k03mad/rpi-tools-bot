@@ -51,9 +51,9 @@ const nowWait = time => {
  * @param {String} tag to add
  * @param {Object} data to send
  */
-const sendToInflux = (tag, data) => {
+const sendToInflux = async (tag, data) => {
     if (!data || Object.keys(data).length === 0) {
-        console.log(msg.common.influx(tag, 'empty data', ''));
+        console.log(msg.influx.send(tag, 'empty data', ''));
         return;
     }
 
@@ -65,11 +65,15 @@ const sendToInflux = (tag, data) => {
 
     const send = dataToObject.join();
 
-    return got(influxUrl, {
-        query: {db: influxDb},
-        body: `${influxMeas},${tag} ${send}`,
-        timeout: REQUEST_TIMEOUTS,
-    }).catch(err => console.log(msg.common.influx(tag, send, err)));
+    try {
+        await got(`${influxUrl}/write`, {
+            query: {db: influxDb},
+            body: `${influxMeas},${tag} ${send}`,
+            timeout: REQUEST_TIMEOUTS,
+        });
+    } catch (err) {
+        console.log(msg.influx.send(tag, send, err));
+    }
 };
 
 /**
@@ -108,6 +112,28 @@ const get = async (url, opts = {}) => {
     }
 
     throw error;
+};
+
+/**
+ * Get last measurement data from influxdb
+ * @param {String} tag to get
+ * @param {String} data to get
+ */
+const getFromInflux = async (tag, data) => {
+    const [tagName, tagValue] = tag.split('=');
+
+    const {body} = await get(`${influxUrl}/query`, {
+        query: {
+            db: influxDb,
+            q: `SELECT LAST("${data}") FROM "pi3" WHERE "${tagName}"='${tagValue}'`,
+        },
+        json: true,
+    });
+
+    console.log('​----------------------------');
+    console.log('​getFromInflux -> body', body.results[0].series[0]);
+    console.log('​----------------------------');
+    return body.results[0].series[0].values[0][1];
 };
 
 /**
@@ -180,8 +206,10 @@ module.exports = {
     convertToMetric,
     currentDate,
     get,
+    getFromInflux,
     getPiHoleApiPass,
     MAC_RE,
+    nowWait,
     router,
     run,
     sendToInflux,
