@@ -1,4 +1,4 @@
-const {currentDate} = require('./utils');
+const moment = require('moment');
 
 const commands = [
     '/help - this list',
@@ -13,6 +13,11 @@ const commands = [
     '/wifi_devices - wifi connected devices list',
     '/wifi_reboot - wifi spot reboot',
 ];
+
+/**
+ * Get current date
+ */
+const currentDate = () => `\n${moment().format('YYYY.MM.DD HH:mm:ss')}`;
 
 const msg = {
     /* eslint-disable key-spacing, no-multi-spaces */
