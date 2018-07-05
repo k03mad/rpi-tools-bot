@@ -15,6 +15,13 @@ const REQUEST_TIMEOUTS = {
 };
 
 /**
+ * Get current date
+ */
+const currentDate = () => {
+    return `\n${moment().format('YYYY.MM.DD HH:mm:ss')}`;
+};
+
+/**
  * Send command to bash
  * @param {String} str to send
  */
@@ -171,6 +178,7 @@ module.exports = {
     checkTimer,
     convertToArray,
     convertToMetric,
+    currentDate,
     get,
     getPiHoleApiPass,
     MAC_RE,

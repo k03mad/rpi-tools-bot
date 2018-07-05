@@ -1,11 +1,4 @@
-const moment = require('moment');
-
-/**
- * Get current date
- */
-const currentDate = () => {
-    return `\n${moment().format('YYYY.MM.DD HH:mm:ss')}`;
-};
+const {currentDate} = require('./utils');
 
 const commands = [
     '/help - this list',
