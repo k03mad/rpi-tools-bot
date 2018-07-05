@@ -2,12 +2,21 @@ const {msg} = require('../../../messages');
 const {run} = require('../../../utils');
 const {sendToInflux} = require('../../../utils');
 
+const MIN_SIZE = 1000000; // 1gb
+const MIN_FILES = 1000;
+
 /**
  * Get Yandex Disk files count
  */
 const filesCount = async () => {
     const files = await run('find /media/yandexdisk/ -type f | wc -l');
-    return files.split('\n')[0];
+    const count = Number(files.split('\n')[0]);
+
+    if (count < MIN_FILES) {
+        throw new Error(`Current count: ${count}, expected above ${MIN_FILES}`);
+    } else {
+        return count;
+    }
 };
 
 /**
@@ -15,7 +24,13 @@ const filesCount = async () => {
  */
 const diskSize = async () => {
     const size = await run('du -s /media/yandexdisk/');
-    return size.split('\t')[0];
+    const count = Number(size.split('\t')[0]);
+
+    if (count < MIN_SIZE) {
+        throw new Error(`Current size: ${count}, expected above ${MIN_FILES}`);
+    } else {
+        return count;
+    }
 };
 
 /**
