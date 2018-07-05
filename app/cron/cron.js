@@ -9,10 +9,11 @@ const cron = bot => {
     every('1m').do(() => c.pi.temp());
     every('1m').do(() => c.pi.usage());
     every('1m').do(() => c.router.devices(bot));
-    every('1m').do(() => c.router.traffic());
     every('1m').do(() => c.sensors.weather(bot));
 
     every('3m').do(() => c.yahoo.weather());
+
+    every('4m').do(() => c.router.traffic());
 
     every('5m').do(() => c.dns.queries());
     every('5m').do(() => c.dns.top());
