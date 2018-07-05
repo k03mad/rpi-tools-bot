@@ -1,7 +1,6 @@
 const {msg} = require('../messages');
 const {proxy, telegramToken} = require('../env');
-const {sendToInflux, checkTimer} = require('../utils');
-const moment = require('moment');
+const {sendToInflux} = require('../utils');
 const PacProxyAgent = require('pac-proxy-agent');
 const TelegramBot = require('node-telegram-bot-api');
 
@@ -14,16 +13,9 @@ const bot = new TelegramBot(telegramToken, {
     request: {agent},
 });
 
-let pollingTimer = moment();
-
 bot.on('polling_error', ex => {
     console.log(msg.common.polling(ex));
-
-    // send polling errors to database every N minute
-    if (checkTimer(pollingTimer, 1)) {
-        pollingTimer = moment();
-        sendToInflux('bot=polling', {pollErr: 1});
-    }
+    sendToInflux('bot=polling', {pollErr: 1});
 });
 
 require('./lib/reply')(bot);
