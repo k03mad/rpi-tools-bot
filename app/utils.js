@@ -8,6 +8,12 @@ const moment = require('moment');
 
 const readFile = promisify(fs.readFile);
 
+const REQUEST_TIMEOUTS = {
+    connect: 7000,
+    socket: 8000,
+    request: 10000,
+};
+
 /**
  * Send command to bash
  * @param {String} str to send
@@ -55,6 +61,7 @@ const sendToInflux = (tag, data) => {
     return got(influxUrl, {
         query: {db: influxDb},
         body: `${influxMeas},${tag} ${send}`,
+        timeout: REQUEST_TIMEOUTS,
     }).catch(err => console.log(msg.common.influx(tag, send, err)));
 };
 
@@ -70,11 +77,7 @@ const get = async (url, opts = {}) => {
     const RETRIES = 3;
 
     if (!opts.timeout) {
-        opts.timeout = {
-            connect: 15000,
-            socket: 20000,
-            request: 30000,
-        };
+        opts.timeout = REQUEST_TIMEOUTS;
     }
 
     let error;

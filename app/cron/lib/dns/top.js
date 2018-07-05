@@ -38,9 +38,11 @@ const sendDnsTop = async () => {
     for (let i = 0; i < SEND_ITEMS; i++) {
         const adElem = topAds[i];
         const queElem = topQueries[i];
+
         if (adElem) {
             ads[adElem] = body.top_ads[adElem];
         }
+
         if (queElem) {
             queries[queElem] = body.top_queries[queElem];
         }
