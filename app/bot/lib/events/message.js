@@ -9,7 +9,7 @@ const {myGroup} = require('../../../env');
 const event = bot => {
     bot.on('message', async mes => {
         if (mes.chat.id === myGroup) {
-            const tag = `telegram=${mes.chat.title}`;
+            const tag = `telegram=${mes.chat.id}`;
             const user = mes.from.username || mes.from.first_name;
 
             let lastCount;
