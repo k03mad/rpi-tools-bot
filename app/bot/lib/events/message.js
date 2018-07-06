@@ -12,7 +12,7 @@ const event = bot => {
 
         if (mes.chat.id === myGroup) {
             const TAG = 'telegram=family';
-            const user = mes.from.username;
+            const user = mes.from.username || mes.from.first_name;
 
             let lastCount;
 
