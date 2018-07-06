@@ -11,15 +11,15 @@ const event = bot => {
         console.log(mes);
 
         if (mes.chat.id === myGroup) {
-            const TAG = 'telegram=family';
+            const tag = `telegram=${mes.chat.title}`;
             const user = mes.from.username || mes.from.first_name;
 
             let lastCount;
 
             try {
-                lastCount = await getFromInflux(TAG, user);
+                lastCount = await getFromInflux(tag, user);
             } catch (err) {
-                console.log(msg.influx.get(TAG, user));
+                console.log(msg.influx.get(tag, user));
 
                 if (err.message === 'Cannot read property \'0\' of undefined') {
                     lastCount = 0;
@@ -28,7 +28,7 @@ const event = bot => {
                 }
             }
 
-            sendToInflux(TAG, {[user]: ++lastCount});
+            sendToInflux(tag, {[user]: ++lastCount});
         }
     });
 };
