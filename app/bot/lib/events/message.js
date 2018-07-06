@@ -8,6 +8,8 @@ const {myGroup} = require('../../../env');
  */
 const event = bot => {
     bot.on('message', async mes => {
+        console.log(mes);
+
         if (mes.chat.id === myGroup) {
             const TAG = 'telegram=family';
             const user = mes.from.username;
