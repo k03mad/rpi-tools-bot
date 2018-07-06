@@ -123,9 +123,6 @@ const getFromInflux = async (tag, data) => {
         json: true,
     });
 
-    console.log('​----------------------------');
-    console.log('​getFromInflux -> body', body.results[0].series[0]);
-    console.log('​----------------------------');
     return body.results[0].series[0].values[0][1];
 };
 
