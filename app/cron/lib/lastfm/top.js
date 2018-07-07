@@ -27,7 +27,7 @@ const sendLastFm = async () => {
 
             body.topartists.artist.forEach(artist => {
                 const artistName = artist.name
-                    .replace(/^ /, '')
+                    .replace(/ ?, ?/g, ' & ')
                     .replace(/ /g, '\\ ');
                 data[user][artistName] = artist.playcount;
             });
