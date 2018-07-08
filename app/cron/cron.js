@@ -11,20 +11,19 @@ const cron = bot => {
     every('1m').do(() => c.router.devices(bot));
     every('1m').do(() => c.sensors.weather(bot));
 
+    every('3m').do(() => c.router.traffic());
     every('3m').do(() => c.yahoo.weather());
-
-    every('4m').do(() => c.router.traffic());
 
     every('5m').do(() => c.dns.queries());
     every('5m').do(() => c.dns.top());
 
     every('7m').do(() => c.lastfm.top());
 
-    every('15m').do(() => c.air.quality());
-
+    every('20m').do(() => c.air.quality());
     every('20m').do(() => c.myshows.episodes());
 
     every('50m').do(() => c.yandex.disk());
+
     every('55m').do(() => c.adblock.errors());
 
     every('1h').do(() => c.air.pollen());
