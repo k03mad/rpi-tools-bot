@@ -41,6 +41,7 @@ const msg = {
         lastfm:     ex              => `${currentDate()} get lastfm top artists: ${ex}`,
         msToken:    ex              => `${currentDate()} get myshows token: ${ex}`,
         msStats:    ex              => `${currentDate()} get myshows stats: ${ex}`,
+        pollen:     ex              => `${currentDate()} get pollen index: ${ex}`,
         temp:       ex              => `${currentDate()} get pi temp: ${ex}`,
         traffic:    ex              => `${currentDate()} get router wan traffic: ${ex}`,
         unknownDev: (place, dev)    => `Unknown device connected to the ${place} router:\n\n${dev}`,

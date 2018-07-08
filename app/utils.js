@@ -27,6 +27,14 @@ const convertToArray = elem => {
 };
 
 /**
+ * Cut numbers from stirng
+ * @param {String} str
+ */
+const cutNumbers = str => {
+    return Number(str.replace(/\D/gim, ''));
+};
+
+/**
  * Wait for some time
  * @param {Number} time in ms
  */
@@ -184,6 +192,7 @@ module.exports = {
     checkTimer,
     convertToArray,
     convertToMetric,
+    cutNumbers,
     get,
     getFromInflux,
     getPiHoleApiPass,
