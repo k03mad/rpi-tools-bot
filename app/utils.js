@@ -1,5 +1,6 @@
 const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
 const {msg} = require('./messages');
+const {REQUEST_TIMEOUTS} = require('./const');
 const {promisify} = require('util');
 const exec = require('executive');
 const fs = require('fs');
@@ -7,12 +8,6 @@ const got = require('got');
 const moment = require('moment');
 
 const readFile = promisify(fs.readFile);
-
-const REQUEST_TIMEOUTS = {
-    connect: 7000,
-    socket: 8000,
-    request: 10000,
-};
 
 /**
  * Send command to bash
@@ -127,11 +122,6 @@ const getFromInflux = async (tag, data) => {
 };
 
 /**
- * MAC address RegExp
- */
-const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
-
-/**
  * Return router credentials
  * @param {String} place select router
  */
@@ -197,7 +187,6 @@ module.exports = {
     get,
     getFromInflux,
     getPiHoleApiPass,
-    MAC_RE,
     nowWait,
     router,
     run,

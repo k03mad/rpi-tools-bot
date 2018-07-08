@@ -1,4 +1,5 @@
-const {get, router, MAC_RE} = require('../../../../utils');
+const {get, router} = require('../../../../utils');
+const {MAC_RE} = require('../../../../const');
 const {msg} = require('../../../../messages');
 const cheerio = require('cheerio');
 const oui = require('oui');

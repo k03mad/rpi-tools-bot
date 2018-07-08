@@ -34,6 +34,7 @@ const msg = {
         vendor:     (mac, ex)       => `${currentDate()} get ${mac} vendor: ${ex}`,
     },
     cron: {
+        aqi:        ex              => `${currentDate()} get air quality: ${ex}`,
         dns:        (log, ex)       => `${currentDate()} get dns queries: ${ex}, log: ${log}`,
         dnsTop:     ex              => `${currentDate()} get pihole top hosts: ${ex}`,
         dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,

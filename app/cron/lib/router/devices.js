@@ -1,6 +1,7 @@
 const {answer} = require('../../../bot/lib/chat');
 const {knownDevices, myChat} = require('../../../env');
-const {MAC_RE, sendToInflux, checkTimer} = require('../../../utils');
+const {sendToInflux, checkTimer} = require('../../../utils');
+const {MAC_RE} = require('../../../const');
 const {msg} = require('../../../messages');
 const getDevices = require('../../../bot/lib/commands/wifi/devices');
 const moment = require('moment');

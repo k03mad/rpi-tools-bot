@@ -4,6 +4,9 @@ process.env.NTBA_FIX_319 = true;
 process.env.NODE_ENV = 'production';
 
 module.exports = {
+    aqiLat: process.env.AQI_LAT,
+    aqiLon: process.env.AQI_LON,
+    aqiToken: process.env.AQI_TOKEN,
     influxDb: process.env.INFLUX_DB,
     influxMeas: process.env.INFLUX_MEAS,
     influxUrl: process.env.INFLUX_URL,

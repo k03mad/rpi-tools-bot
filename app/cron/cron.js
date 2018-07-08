@@ -12,6 +12,7 @@ const cron = bot => {
     every('1m').do(() => c.sensors.weather(bot));
 
     every('3m').do(() => c.yahoo.weather());
+    every('3m').dp(() => c.air.quality());
 
     every('4m').do(() => c.router.traffic());
 
