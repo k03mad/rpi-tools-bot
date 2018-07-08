@@ -48,7 +48,6 @@ const msg = {
         updErr:     ex              => `${currentDate()} get pi updates: ${ex}`,
         usage:      ex              => `${currentDate()} get pi usage: ${ex}`,
         yahoo:      ex              => `${currentDate()} get yahoo weather data: ${ex}`,
-        yandex:     ex              => `${currentDate()} get yandex disk stats: ${ex}`,
     },
     influx: {
         get:        (tag, data, ex) => `${currentDate()} getting "${tag}" with "${data}" from influx: ${ex}`,
