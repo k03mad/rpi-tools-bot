@@ -25,8 +25,6 @@ const cron = bot => {
 
     every('50m').do(() => c.adblock.errors());
 
-    every('1h').do(() => c.air.pollen());
-
     every('5h').do(() => c.pi.update(bot));
 };
 
