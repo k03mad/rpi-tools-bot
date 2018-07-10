@@ -17,7 +17,7 @@ const sendDnsTop = async () => {
         }
     }
 
-    const SEND_ITEMS = 10;
+    const SEND_ITEMS = 15;
     let body;
 
     try {
