@@ -13,12 +13,12 @@ const cron = bot => {
 
     every('3m').do(() => c.router.traffic());
 
+    every('5m').do(() => c.air.quality());
     every('5m').do(() => c.dns.queries());
     every('5m').do(() => c.dns.top());
 
     every('7m').do(() => c.lastfm.top());
 
-    every('15m').do(() => c.air.quality());
     every('15m').do(() => c.yahoo.weather());
 
     every('20m').do(() => c.myshows.episodes());
