@@ -13,6 +13,7 @@ const sendDnsQueries = async () => {
 
         const parsedLog = JSON.parse(log);
         data = {
+            domains: parsedLog.domains_being_blocked,
             today: parsedLog.dns_queries_today,
             blocked: parsedLog.ads_blocked_today,
         };
