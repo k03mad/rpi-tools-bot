@@ -19,13 +19,13 @@
     "got": "8.3.2",
     "moment": "2.22.2",
     "node-telegram-bot-api": "0.30.0",
-    "oui": "8.0.2",
+    "oui": "8.0.3",
     "pac-proxy-agent": "3.0.0",
     "require-all": "3.0.0",
     "schedule": "0.1.0"
   },
   "devDependencies": {
-    "eslint": "5.0.1",
+    "eslint": "5.1.0",
     "eslint-config-k03mad": "0.3.2",
     "eslint-plugin-const-case": "1.0.4",
     "eslint-plugin-node": "6.0.1",

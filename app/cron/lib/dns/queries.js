@@ -6,23 +6,18 @@ const {msg} = require('../../../messages');
  */
 const sendDnsQueries = async () => {
     let log;
-    let data;
 
     try {
         log = await run('pihole -c -j');
 
         const parsedLog = JSON.parse(log);
-        data = {
-            domains: parsedLog.domains_being_blocked,
+        sendToInflux('dns=queries', {
             today: parsedLog.dns_queries_today,
             blocked: parsedLog.ads_blocked_today,
-        };
+        });
     } catch (err) {
         console.log(msg.cron.dns(log, err));
-        return;
     }
-
-    sendToInflux('dns=queries', data);
 };
 
 module.exports = sendDnsQueries;
