@@ -7,7 +7,7 @@ const {msg} = require('../../../messages');
 const sendDnsDomains = async () => {
     let log;
 
-    await run('cd ../adblock-hosts-list && npm run deploy');
+    await run('cd ../adblock-hosts-list && git pull && npm run setup && npm run deploy');
     await run('pihole -g');
 
     try {
