@@ -13,6 +13,8 @@ const replies = bot => {
     reply(bot, 'apt_update', c.apt.update);
     reply(bot, 'apt_upgrade', c.apt.upgrade);
 
+    reply(bot, 'dns_update', c.dns.update);
+
     reply(bot, 'pi_reboot', c.pi.reboot);
     reply(bot, 'pi_shutdown', c.pi.shutdown);
 
