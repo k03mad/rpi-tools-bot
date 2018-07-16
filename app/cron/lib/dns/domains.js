@@ -1,5 +1,6 @@
 const {run, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
+const dnsUpdate = require('../../../bot/lib/commands/dns/update');
 
 /**
  * Send blocked domains count by local dns
@@ -8,8 +9,7 @@ const sendDnsDomains = async () => {
     let log;
 
     try {
-        log = await run('cd ../adblock-hosts-list && git pull && npm run setup && npm run deploy');
-        log = await run('pihole -g');
+        await dnsUpdate();
         log = await run('pihole -c -j');
 
         const parsedLog = JSON.parse(log);
