@@ -41,6 +41,7 @@ const msg = {
         dnsDomains: (log, ex)       => `${currentDate()} get dns blocked domains: ${ex}, log: ${log}`,
         dnsTop:     ex              => `${currentDate()} get pihole top hosts: ${ex}`,
         dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,
+        jam:        ex              => `${currentDate()} get traffic jam: ${ex}`,
         lastfm:     ex              => `${currentDate()} get lastfm top artists: ${ex}`,
         msToken:    ex              => `${currentDate()} get myshows token: ${ex}`,
         msStats:    ex              => `${currentDate()} get myshows stats: ${ex}`,

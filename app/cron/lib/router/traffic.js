@@ -1,6 +1,5 @@
-const {get, router} = require('../../../utils');
+const {get, router, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
-const {sendToInflux} = require('../../../utils');
 const cheerio = require('cheerio');
 
 const prevData = {};

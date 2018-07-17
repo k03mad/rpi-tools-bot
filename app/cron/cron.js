@@ -18,6 +18,7 @@ const cron = bot => {
 
     every('10m').do(() => c.lastfm.top());
     every('10m').do(() => c.yahoo.weather());
+    every('10m').do(() => c.yandex.jam());
 
     every('30m').do(() => c.myshows.episodes());
 
