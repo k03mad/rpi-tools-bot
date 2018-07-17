@@ -7,7 +7,7 @@ const update = async () => {
     const msg = [];
 
     const commands = [
-        'cd ../adblock-hosts-list && git pull && npm run setup && npm run deploy',
+        'cd ../adblock-hosts-list && npm run deploy',
         'pihole -g',
     ];
 
