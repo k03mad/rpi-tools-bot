@@ -1,4 +1,4 @@
-const {get, sendToInflux, cutNumbers} = require('../../../utils');
+const {get, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
 const cheerio = require('cheerio');
 
@@ -7,7 +7,7 @@ const cheerio = require('cheerio');
  */
 const getTrafficJam = async () => {
     const HOST = 'https://yandex.ru';
-    const SELECTOR = 'i.b-ico.traffic__icon.b-ico-traffic-gn';
+    const SELECTOR = '.traffic__rate-text';
 
     try {
         const {body} = await get(HOST);
@@ -15,7 +15,7 @@ const getTrafficJam = async () => {
         const $ = cheerio.load(body);
         const query = $(SELECTOR);
 
-        const data = {traffic: cutNumbers(query['0'].next.data)};
+        const data = {traffic: query.text()};
         sendToInflux('yandex=jam', data);
     } catch (err) {
         console.log(msg.cron.jam(err));
