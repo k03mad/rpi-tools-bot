@@ -1,19 +1,17 @@
 const {get, sendToInflux, scrape} = require('../../../utils');
 const {msg} = require('../../../messages');
+const {probUrl, probSel, probUa, probName} = require('../../../env');
 
 /**
- * Get moscow traffic jam
+ * Get traffic jam
  */
 const getTrafficJam = async () => {
-    const HOST = 'https://yandex.ru';
-    const SELECTOR = '#traffic .num';
-
     try {
-        const {body} = await get(HOST, {headers: {'user-agent': 'NetFront/3.3'}});
+        const {body} = await get(probUrl, {headers: {'user-agent': probUa}});
 
-        const scraped = scrape(body, SELECTOR);
+        const scraped = scrape(body, probSel);
         const data = {traffic: scraped[0]};
-        sendToInflux('yandex=jam', data);
+        sendToInflux(`${probName}=jam`, data);
     } catch (err) {
         console.log(msg.cron.jam(err));
     }
