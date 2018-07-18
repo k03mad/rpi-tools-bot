@@ -7,10 +7,10 @@ const cheerio = require('cheerio');
  */
 const getTrafficJam = async () => {
     const HOST = 'https://yandex.ru';
-    const SELECTOR = '.traffic__rate-text';
+    const SELECTOR = '#traffic .num';
 
     try {
-        const {body} = await get(HOST);
+        const {body} = await get(HOST, {headers: {'user-agent': 'NetFront/3.3'}});
 
         const $ = cheerio.load(body);
         const query = $(SELECTOR);
