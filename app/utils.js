@@ -1,7 +1,8 @@
 const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
 const {msg} = require('./messages');
-const {REQUEST_TIMEOUTS} = require('./const');
 const {promisify} = require('util');
+const {REQUEST_TIMEOUTS} = require('./const');
+const cheerio = require('cheerio');
 const exec = require('executive');
 const fs = require('fs');
 const got = require('got');
@@ -188,6 +189,25 @@ const convertToMetric = (unit, value) => {
 
 };
 
+/**
+ * Scrape text from sites
+ */
+const scrape = (body, selector) => {
+    const $ = cheerio.load(body);
+    const query = $(selector);
+
+    const output = [];
+    query.each((i, elem) => {
+        const text = $(elem).text();
+
+        if (text) {
+            output.push(text);
+        }
+    });
+
+    return output;
+};
+
 module.exports = {
     checkTimer,
     convertToArray,
@@ -199,5 +219,6 @@ module.exports = {
     nowWait,
     router,
     run,
+    scrape,
     sendToInflux,
 };

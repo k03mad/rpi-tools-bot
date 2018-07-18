@@ -1,6 +1,5 @@
-const {get, sendToInflux} = require('../../../utils');
+const {get, sendToInflux, scrape} = require('../../../utils');
 const {msg} = require('../../../messages');
-const cheerio = require('cheerio');
 
 /**
  * Get moscow traffic jam
@@ -12,10 +11,8 @@ const getTrafficJam = async () => {
     try {
         const {body} = await get(HOST, {headers: {'user-agent': 'NetFront/3.3'}});
 
-        const $ = cheerio.load(body);
-        const query = $(SELECTOR);
-
-        const data = {traffic: query.text()};
+        const scraped = scrape(body, SELECTOR);
+        const data = {traffic: scraped[0]};
         sendToInflux('yandex=jam', data);
     } catch (err) {
         console.log(msg.cron.jam(err));

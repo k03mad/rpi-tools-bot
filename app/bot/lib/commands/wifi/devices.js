@@ -1,7 +1,6 @@
-const {get, router} = require('../../../../utils');
+const {get, router, scrape} = require('../../../../utils');
 const {MAC_RE} = require('../../../../const');
 const {msg} = require('../../../../messages');
-const cheerio = require('cheerio');
 const oui = require('oui');
 
 /**
@@ -18,13 +17,7 @@ const getDeviceList = async place => {
         query: {tmenu: 'netconf', smenu: 'laninfo'},
     });
 
-    const $ = cheerio.load(body);
-    const query = $(SELECTOR);
-
-    const output = [];
-    query.each((i, elem) => output.push($(elem).text()));
-
-    return output;
+    return scrape(body, SELECTOR);
 };
 
 /**

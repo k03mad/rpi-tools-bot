@@ -1,6 +1,5 @@
-const {get, router, sendToInflux} = require('../../../utils');
+const {get, router, sendToInflux, scrape} = require('../../../utils');
 const {msg} = require('../../../messages');
-const cheerio = require('cheerio');
 
 const prevData = {};
 
@@ -43,12 +42,9 @@ const getWanTraffic = async () => {
                 query: {tmenu: 'trafficconf', smenu: 'linksetup'},
             });
 
-            const $ = cheerio.load(body);
-            const query = $(SELECTOR);
-
-            query.each((_, elem) => {
-                const text = $(elem).text();
-                let textArr = text.split('\n');
+            const scraped = scrape(body, SELECTOR);
+            scraped.forEach(elem => {
+                let textArr = elem.split('\n');
 
                 // one of the routers has additional tr element
                 // remove first empty element from array
