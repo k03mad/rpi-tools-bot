@@ -38,6 +38,7 @@ const msg = {
     cron: {
         aqi:        ex              => `${currentDate()} get air quality: ${ex}`,
         dns:        (log, ex)       => `${currentDate()} get dns queries: ${ex}, log: ${log}`,
+        dnsClients: ex              => `${currentDate()} get pihole top clients: ${ex}`,
         dnsDomains: (log, ex)       => `${currentDate()} get dns blocked domains: ${ex}, log: ${log}`,
         dnsTop:     ex              => `${currentDate()} get pihole top hosts: ${ex}`,
         dnsVar:     ex              => `${currentDate()} get pihole password var: ${ex}`,
