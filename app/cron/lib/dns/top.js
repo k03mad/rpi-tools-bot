@@ -8,6 +8,8 @@ let auth;
  * Send dns top hosts
  */
 const sendDnsTop = async () => {
+    const SEND_ITEMS = 20;
+
     if (!auth) {
         try {
             auth = await getPiHoleApiPass();
@@ -17,7 +19,6 @@ const sendDnsTop = async () => {
         }
     }
 
-    const SEND_ITEMS = 10;
     let body;
 
     try {
