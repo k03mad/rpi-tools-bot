@@ -43,7 +43,7 @@ const sendClientsTop = async () => {
         }
     }
 
-    sendToInflux('dns=topBlock', top);
+    sendToInflux('dns=topClients', top);
 };
 
 module.exports = sendClientsTop;
