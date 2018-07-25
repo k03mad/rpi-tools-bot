@@ -1,6 +1,6 @@
 const {answer} = require('../../../bot/lib/chat');
 const {msg} = require('../../../messages');
-const {myChat} = require('../../../env');
+const {my} = require('../../../env');
 const {sendToInflux, checkTimer} = require('../../../utils');
 const moment = require('moment');
 const sensors = require('../../../sensors/sensors');
@@ -21,7 +21,7 @@ const sendSensorsData = async bot => {
 
     // send warning every REPEAT_ALARM minutes until ppm drop
     if (Object.keys(data).length > 0 && data.ppm > PPM_WARNING && checkTimer(ppmTimer)) {
-        answer(bot, {chat: {id: myChat}}, msg.sensor.warning(data.ppm));
+        answer(bot, {chat: {id: my.chat}}, msg.sensor.warning(data.ppm));
         ppmTimer = moment();
     }
 

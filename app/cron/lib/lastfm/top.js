@@ -1,4 +1,4 @@
-const {lastfmToken, lastfmUserMad, lastfmUserKnpl} = require('../../../env');
+const {lastfm} = require('../../../env');
 const {get, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
 
@@ -6,14 +6,14 @@ const {msg} = require('../../../messages');
  * Send last fm top artists
  */
 const sendLastFm = async () => {
-    const users = [lastfmUserMad, lastfmUserKnpl];
+    const users = [lastfm.user.mad, lastfm.user.knpl];
     const data = {};
 
     await Promise.all(users.map(async user => {
         try {
             const {body} = await get('http://ws.audioscrobbler.com/2.0/', {
                 query: {
-                    api_key: lastfmToken,
+                    api_key: lastfm.token,
                     format: 'json',
                     limit: 10,
                     method: 'user.gettopartists',

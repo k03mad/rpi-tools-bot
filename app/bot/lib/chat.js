@@ -1,6 +1,6 @@
 const {convertToArray} = require('../../utils');
 const {msg} = require('../../messages');
-const {myChat} = require('../../env');
+const {my} = require('../../env');
 
 const MAX_MSG_LENGTH = 4096;
 
@@ -76,7 +76,7 @@ const answer = async (bot, mes, sends, opts) => {
  */
 const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
-        if (myChat === mes.chat.id) {
+        if (my.chat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(msg.send.typing(err)));
             answer(bot, mes, await cmd(...convertToArray(args)), opts);
         }

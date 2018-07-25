@@ -1,17 +1,17 @@
 const {get, sendToInflux, scrape} = require('../../../utils');
 const {msg} = require('../../../messages');
-const {probUrl, probSel, probUa, probName} = require('../../../env');
+const {prob} = require('../../../env');
 
 /**
  * Get traffic jam
  */
 const getTrafficJam = async () => {
     try {
-        const {body} = await get(probUrl, {headers: {'user-agent': probUa}});
+        const {body} = await get(prob.url, {headers: {'user-agent': prob.ua}});
 
-        const scraped = scrape(body, probSel);
+        const scraped = scrape(body, prob.sel);
         const data = {traffic: scraped[0]};
-        sendToInflux(`${probName}=jam`, data);
+        sendToInflux(`${prob.name}=jam`, data);
     } catch (err) {
         console.log(msg.cron.jam(err));
     }

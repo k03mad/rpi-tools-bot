@@ -1,6 +1,6 @@
 const {sendToInflux, getFromInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
-const {myGroup} = require('../../../env');
+const {my} = require('../../../env');
 
 /**
  * on message event
@@ -8,7 +8,7 @@ const {myGroup} = require('../../../env');
  */
 const event = bot => {
     bot.on('message', async mes => {
-        if (mes.chat.id === myGroup) {
+        if (mes.chat.id === my.group) {
             const tag = `telegram=${mes.chat.id}`;
             const user = mes.from.username || mes.from.first_name;
 

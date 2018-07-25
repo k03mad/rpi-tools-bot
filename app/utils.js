@@ -1,4 +1,4 @@
-const {influxMeas, influxDb, influxUrl, wifiIP, wifiCred, wifiKnplIP, wifiKnplCred} = require('./env');
+const {influx, wifi} = require('./env');
 const {msg} = require('./messages');
 const {promisify} = require('util');
 const {REQUEST_TIMEOUTS} = require('./const');
@@ -63,9 +63,9 @@ const sendToInflux = async (tag, data) => {
     const send = dataToObject.join();
 
     try {
-        await got(`${influxUrl}/write`, {
-            query: {db: influxDb},
-            body: `${influxMeas},${tag} ${send}`,
+        await got(`${influx.url}/write`, {
+            query: {db: influx.db},
+            body: `${influx.meas},${tag} ${send}`,
             timeout: REQUEST_TIMEOUTS,
         });
     } catch (err) {
@@ -119,9 +119,9 @@ const get = async (url, opts = {}) => {
 const getFromInflux = async (tag, data) => {
     const [tagName, tagValue] = tag.split('=');
 
-    const {body} = await get(`${influxUrl}/query`, {
+    const {body} = await get(`${influx.url}/query`, {
         query: {
-            db: influxDb,
+            db: influx.db,
             q: `SELECT LAST("${data}") FROM "pi3" WHERE "${tagName}"='${tagValue}'`,
         },
         json: true,
@@ -137,12 +137,12 @@ const getFromInflux = async (tag, data) => {
 const router = place => {
     return place === 'knpl'
         ? {
-            ip: wifiKnplIP,
-            cred: wifiKnplCred,
+            ip: wifi.knpl.ip,
+            cred: wifi.knpl.cred,
         }
         : {
-            ip: wifiIP,
-            cred: wifiCred,
+            ip: wifi.mad.ip,
+            cred: wifi.knpl.cred,
         };
 };
 

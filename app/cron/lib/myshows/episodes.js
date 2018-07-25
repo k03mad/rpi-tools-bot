@@ -1,6 +1,6 @@
 const {get, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
-const {myShowsClientId, myShowsClientSecret, myShowsUserName, myShowsPassword} = require('../../../env');
+const {myShows} = require('../../../env');
 
 /**
  * Send Myshows.me episodes left count
@@ -13,13 +13,7 @@ const sendMyshowsData = async () => {
 
     try {
         const {body} = await get('https://myshows.me/oauth/token', {
-            body: {
-                grant_type: 'password',
-                client_id: myShowsClientId,
-                client_secret: myShowsClientSecret,
-                username: myShowsUserName,
-                password: myShowsPassword,
-            },
+            body: myShows,
             json: true,
         });
 
@@ -36,7 +30,7 @@ const sendMyshowsData = async () => {
                 id: 1,
                 jsonrpc: '2.0',
                 method: 'profile.Get',
-                params: {login: myShowsUserName},
+                params: {login: myShows.username},
             },
             json: true,
         });

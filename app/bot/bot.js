@@ -1,14 +1,16 @@
 const {proxy, telegramToken} = require('../env');
-const PacProxyAgent = require('pac-proxy-agent');
+const Agent = require('socks5-https-client/lib/Agent');
 const TelegramBot = require('node-telegram-bot-api');
 
-const agent = new PacProxyAgent(proxy);
 const bot = new TelegramBot(telegramToken, {
     polling: {
         interval: 3000,
         params: {allowed_updates: ['message']},
     },
-    request: {agent},
+    request: {
+        agentClass: Agent,
+        agentOptions: proxy,
+    },
 });
 
 require('./lib/events/polling')(bot);

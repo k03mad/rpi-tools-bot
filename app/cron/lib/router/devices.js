@@ -1,5 +1,5 @@
 const {answer} = require('../../../bot/lib/chat');
-const {knownDevices, myChat} = require('../../../env');
+const {knownDevices, my} = require('../../../env');
 const {sendToInflux, checkTimer} = require('../../../utils');
 const {MAC_RE} = require('../../../const');
 const {msg} = require('../../../messages');
@@ -48,7 +48,7 @@ const sendConnectedWiFiDevices = async bot => {
 
             // send unknown device warning every N minutes
             if (unknown.length > 0 && checkTimer(unknownDeviceTimer)) {
-                answer(bot, {chat: {id: myChat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
+                answer(bot, {chat: {id: my.chat}}, msg.cron.unknownDev(place, unknown.join('\n\n')));
                 unknownDeviceTimer = moment();
             }
 
