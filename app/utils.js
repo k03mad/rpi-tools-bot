@@ -142,7 +142,7 @@ const router = place => {
         }
         : {
             ip: wifi.mad.ip,
-            cred: wifi.knpl.cred,
+            cred: wifi.mad.cred,
         };
 };
 
