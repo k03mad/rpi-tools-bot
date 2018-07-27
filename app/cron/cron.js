@@ -23,8 +23,9 @@ const cron = bot => {
 
     every('30m').do(() => c.myshows.episodes());
 
-    every('55m').do(() => c.dns.domains());
     every('60m').do(() => c.adblock.errors());
+    every('60m').do(() => c.dns.domains());
+    every('60m').do(() => c.rfpl.table());
 
     every('5h').do(() => c.pi.update(bot));
 };

@@ -35,7 +35,6 @@ module.exports = {
     prob: {
         name: process.env.PROB_NAME,
         sel: process.env.PROB_SEL,
-        ua: process.env.PROB_UA,
         url: process.env.PROB_URL,
     },
     wifi: {
@@ -55,6 +54,8 @@ module.exports = {
         socksPassword: process.env.PROXY_PASS,
     },
 
+    rfplUrl: process.env.RFPL_URL,
+    oldUa: process.env.OLD_UA,
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
     piholeUrl: process.env.PIHOLE_URL,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
