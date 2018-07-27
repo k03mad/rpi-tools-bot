@@ -13,7 +13,7 @@ const getRfplTable = async () => {
         const club = scrape(body, 'td.club p')
             .map(elem => elem.replace(' ', '\\ '));
         const place = scrape(body, 'td.place')
-            .map(elem => cutNumbers(elem))
+            .map(elem => `-${cutNumbers(elem)}`)
             .filter(Boolean);
 
         const data = {};
