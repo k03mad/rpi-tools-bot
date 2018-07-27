@@ -15,9 +15,9 @@ const ramUsage = async () => {
  * Get disk usage
  */
 const diskUsage = async () => {
-    const disk = await run('df -h');
-    const [, diskUsed] = disk.match(/\/dev\/root +\d+. +([\d,]+)/);
-    return diskUsed.replace(',', '.');
+    const disk = await run('df');
+    const [, diskUsed] = disk.match(/\/dev\/root +\d+ +([\d]+)/);
+    return diskUsed;
 };
 
 /**
