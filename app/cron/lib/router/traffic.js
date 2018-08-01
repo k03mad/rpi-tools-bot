@@ -14,7 +14,8 @@ const generateData = (textArr, direction, place, sendData) => {
     const bytes = Number(textArr[1]);
     const tag = direction + place;
 
-    if (!bytes) {
+    // 1 Tb
+    if (!bytes || bytes > 1099511627776) {
         return;
     }
 
