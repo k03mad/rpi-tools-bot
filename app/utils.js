@@ -1,7 +1,7 @@
 const {influx, wifi} = require('./env');
 const {msg} = require('./messages');
 const {promisify} = require('util');
-const {REQUEST_TIMEOUTS} = require('./const');
+const {REQUEST_TIMEOUT} = require('./const');
 const cheerio = require('cheerio');
 const exec = require('executive');
 const fs = require('fs');
@@ -66,7 +66,7 @@ const sendToInflux = async (tag, data) => {
         await got(`${influx.url}/write`, {
             query: {db: influx.db},
             body: `${influx.meas},${tag} ${send}`,
-            timeout: REQUEST_TIMEOUTS,
+            timeout: REQUEST_TIMEOUT,
         });
     } catch (err) {
         console.log(msg.influx.send(tag, send, err));
@@ -80,12 +80,12 @@ const sendToInflux = async (tag, data) => {
  */
 const get = async (url, opts = {}) => {
     // turn off default retries only with timeout catch
-    opts.retries = 0;
+    opts.retry = 0;
     // retries for any errors catch
     const RETRIES = 3;
 
     if (!opts.timeout) {
-        opts.timeout = REQUEST_TIMEOUTS;
+        opts.timeout = REQUEST_TIMEOUT;
     }
 
     let error;
