@@ -9,6 +9,9 @@ module.exports = {
         meas: process.env.INFLUX_MEAS,
         url: process.env.INFLUX_URL,
     },
+    my: {
+        chat: Number(process.env.MY_CHAT),
+    },
     myShows: {
         grant_type: process.env.MYSHOWS_GRANT_TYPE,
         client_id: process.env.MYSHOWS_CLIENT_ID,
