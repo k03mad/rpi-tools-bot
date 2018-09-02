@@ -1,4 +1,4 @@
-const {request, router, scrape, MAC_RE} = require('../../../../utils');
+const {request, routerHost, scrape, MAC_RE} = require('../../../../utils');
 const {msg} = require('../../../../messages');
 const oui = require('oui');
 
@@ -7,16 +7,13 @@ const oui = require('oui');
  * @param {String} place select router
  */
 const getDeviceList = async place => {
-    const host = `http://${router(place).ip}/cgi-bin/timepro.cgi`;
-
     const SELECTOR = '.menu_content_list_table tr';
 
-    const {body} = await request()
-        .get(host)
-        .auth(router(place).cred)
+    const {text} = await request()
+        .get(routerHost(place))
         .query({tmenu: 'netconf', smenu: 'laninfo'});
 
-    return scrape(body, SELECTOR);
+    return scrape(text, SELECTOR);
 };
 
 /**

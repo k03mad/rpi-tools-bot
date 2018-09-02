@@ -104,19 +104,13 @@ const getFromInflux = async (tag, data) => {
 };
 
 /**
- * Return router credentials
+ * Return router host
  * @param {String} place select router
  */
-const router = place => {
-    return place === 'knpl'
-        ? {
-            ip: wifi.knpl.ip,
-            cred: wifi.knpl.cred,
-        }
-        : {
-            ip: wifi.mad.ip,
-            cred: wifi.mad.cred,
-        };
+const routerHost = place => {
+    /* eslint-disable require-jsdoc */
+    const url = router => `http://${router.cred}@${router.ip}/cgi-bin/timepro.cgi`;
+    return place === 'knpl' ? url(wifi.knpl) : url(wifi.mad);
 };
 
 /**
@@ -191,7 +185,7 @@ module.exports = {
     MAC_RE,
     nowWait,
     request,
-    router,
+    routerHost,
     run,
     scrape,
     sendToInflux,
