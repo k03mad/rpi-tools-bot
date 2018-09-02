@@ -1,5 +1,4 @@
-const {get, router, scrape} = require('../../../../utils');
-const {MAC_RE} = require('../../../../const');
+const {request, router, scrape, MAC_RE} = require('../../../../utils');
 const {msg} = require('../../../../messages');
 const oui = require('oui');
 
@@ -12,10 +11,10 @@ const getDeviceList = async place => {
 
     const SELECTOR = '.menu_content_list_table tr';
 
-    const {body} = await get(host, {
-        auth: router(place).cred,
-        query: {tmenu: 'netconf', smenu: 'laninfo'},
-    });
+    const {body} = await request()
+        .get(host)
+        .auth(router(place).cred)
+        .query({tmenu: 'netconf', smenu: 'laninfo'});
 
     return scrape(body, SELECTOR);
 };

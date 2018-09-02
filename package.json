@@ -16,13 +16,13 @@
     "colors": "1.3.2",
     "executive": "1.6.3",
     "forever": "0.15.3",
-    "got": "9.2.0",
     "moment": "2.22.2",
     "node-telegram-bot-api": "0.30.0",
     "oui": "9.0.1",
     "require-all": "3.0.0",
     "schedule": "0.1.0",
-    "socks5-https-client": "1.2.1"
+    "socks5-https-client": "1.2.1",
+    "superagent": "3.8.3"
   },
   "devDependencies": {
     "eslint": "5.5.0",

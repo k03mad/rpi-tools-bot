@@ -1,4 +1,4 @@
-const {get, router} = require('../../../../utils');
+const {request, router} = require('../../../../utils');
 const {msg} = require('../../../../messages');
 
 /**
@@ -7,15 +7,17 @@ const {msg} = require('../../../../messages');
  */
 const reboot = async place => {
     const host = `http://${router(place).ip}/cgi-bin/timepro.cgi`;
-    const auth = router(place).cred;
 
     try {
-        await get(host, {auth, query: {
-            tmenu: 'background',
-            smenu: 'reboot',
-            act: '',
-            commit: 'reboot',
-        }});
+        await request()
+            .get(host)
+            .auth(router(place).cred)
+            .query({
+                tmenu: 'background',
+                smenu: 'reboot',
+                act: '',
+                commit: 'reboot',
+            });
     } catch (err) {
         return err.toString();
     }
