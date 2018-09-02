@@ -7,10 +7,10 @@ const upgrade = async () => {
     const msg = [];
 
     const commands = [
-        'sudo apt-get update',
-        'sudo apt-get upgrade -y',
-        'sudo apt-get autoremove -y',
-        'sudo apt-get autoclean',
+        'sudo apt-fast update',
+        'sudo apt-fast upgrade -y',
+        'sudo apt-fast autoremove -y',
+        'sudo apt-fast autoclean',
     ];
 
     for (const cmd of commands) {

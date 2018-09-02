@@ -1,6 +1,6 @@
 {
   "name": "raspberry-tools",
-  "version": "5.0.0",
+  "version": "5.1.0",
   "description": "Raspberry Pi 3 Tools",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
@@ -13,24 +13,24 @@
     "app-root-path": "2.1.0",
     "bme-sensor-nolog": "0.1.6",
     "cheerio": "1.0.0-rc.2",
-    "colors": "1.3.0",
+    "colors": "1.3.2",
     "executive": "1.6.3",
     "forever": "0.15.3",
-    "got": "8.3.2",
+    "got": "9.2.0",
     "moment": "2.22.2",
     "node-telegram-bot-api": "0.30.0",
-    "oui": "8.0.3",
+    "oui": "9.0.1",
     "require-all": "3.0.0",
     "schedule": "0.1.0",
     "socks5-https-client": "1.2.1"
   },
   "devDependencies": {
-    "eslint": "5.1.0",
-    "eslint-config-k03mad": "0.3.2",
+    "eslint": "5.5.0",
+    "eslint-config-k03mad": "0.3.3",
     "eslint-plugin-const-case": "1.0.4",
-    "eslint-plugin-node": "6.0.1",
-    "eslint-plugin-promise": "3.8.0",
-    "eslint-plugin-unicorn": "4.0.3",
+    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-promise": "4.0.0",
+    "eslint-plugin-unicorn": "6.0.0",
     "pre-commit": "1.2.2"
   },
   "scripts": {

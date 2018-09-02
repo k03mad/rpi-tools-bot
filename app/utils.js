@@ -44,6 +44,36 @@ const nowWait = time => {
 };
 
 /**
+ * Send request
+ * @param {String} url request url
+ * @param {Object} opts request options
+ */
+const get = async (url, opts = {}) => {
+    // turn off default retries only with timeout catch
+    opts.retry = 0;
+    // retries for any errors catch
+    const RETRIES = 3;
+
+    if (!opts.timeout) {
+        opts.timeout = REQUEST_TIMEOUT;
+    }
+
+    let error;
+
+    for (let i = 0; i < RETRIES; i++) {
+        try {
+            return await got(url, opts);
+        } catch (err) {
+            error = err;
+        }
+
+        await nowWait(1000);
+    }
+
+    throw error;
+};
+
+/**
  * Store data to influxdb
  * @param {String} tag to add
  * @param {Object} data to send
@@ -63,52 +93,13 @@ const sendToInflux = async (tag, data) => {
     const send = dataToObject.join();
 
     try {
-        await got(`${influx.url}/write`, {
+        await get(`${influx.url}/write`, {
             query: {db: influx.db},
             body: `${influx.meas},${tag} ${send}`,
-            timeout: REQUEST_TIMEOUT,
         });
     } catch (err) {
         console.log(msg.influx.send(tag, send, err));
     }
-};
-
-/**
- * Send request
- * @param {String} url request url
- * @param {Object} opts request options
- */
-const get = async (url, opts = {}) => {
-    // turn off default retries only with timeout catch
-    opts.retry = 0;
-    // retries for any errors catch
-    const RETRIES = 3;
-
-    if (!opts.timeout) {
-        opts.timeout = REQUEST_TIMEOUT;
-    }
-
-    let error;
-    let time;
-
-    for (let i = 0; i < RETRIES; i++) {
-        try {
-            const start = new Date().getTime();
-            const res = await got(url, opts);
-            time = new Date().getTime() - start;
-
-            const host = url.replace(/(http(s)?:\/\/)|(www\.)|(\/$)/g, '');
-            sendToInflux('requests=got', {[host]: time});
-
-            return res;
-        } catch (err) {
-            error = err;
-        }
-
-        await nowWait(1000);
-    }
-
-    throw error;
 };
 
 /**

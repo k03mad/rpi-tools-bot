@@ -4,26 +4,10 @@ process.env.NTBA_FIX_319 = true;
 process.env.NODE_ENV = 'production';
 
 module.exports = {
-    aqi: {
-        lat: process.env.AQI_LAT,
-        lon: process.env.AQI_LON,
-        token: process.env.AQI_TOKEN,
-    },
     influx: {
         db: process.env.INFLUX_DB,
         meas: process.env.INFLUX_MEAS,
         url: process.env.INFLUX_URL,
-    },
-    lastfm: {
-        token: process.env.LAST_FM,
-        user: {
-            knpl: process.env.LAST_FM_KNPL,
-            mad: process.env.LAST_FM_MAD,
-        },
-    },
-    my: {
-        chat: Number(process.env.MY_CHAT),
-        group: Number(process.env.MY_GROUP),
     },
     myShows: {
         grant_type: process.env.MYSHOWS_GRANT_TYPE,
@@ -31,11 +15,6 @@ module.exports = {
         client_secret: process.env.MYSHOWS_CLIENT_SECRET,
         username: process.env.MYSHOWS_USERNAME,
         password: process.env.MYSHOWS_PASSWORD,
-    },
-    prob: {
-        name: process.env.PROB_NAME,
-        sel: process.env.PROB_SEL,
-        url: process.env.PROB_URL,
     },
     wifi: {
         mad: {
@@ -54,8 +33,6 @@ module.exports = {
         socksPassword: process.env.PROXY_PASS,
     },
 
-    rfplUrl: process.env.RFPL_URL,
-    oldUa: process.env.OLD_UA,
     knownDevices: JSON.parse(process.env.KNOWN_DEVICES),
     piholeUrl: process.env.PIHOLE_URL,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
