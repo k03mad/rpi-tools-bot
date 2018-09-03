@@ -1,4 +1,4 @@
-const {get, sendToInflux} = require('../../../utils');
+const {request, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
 const {myShows} = require('../../../env');
 
@@ -12,10 +12,9 @@ const sendMyshowsData = async () => {
     let remainingEpisodes;
 
     try {
-        const {body} = await get('https://myshows.me/oauth/token', {
-            body: myShows,
-            json: true,
-        });
+        const {body} = await request()
+            .post('https://myshows.me/oauth/token')
+            .send(myShows);
 
         ({access_token, token_type} = body);
     } catch (err) {
@@ -24,16 +23,15 @@ const sendMyshowsData = async () => {
     }
 
     try {
-        const {body} = await get('https://api.myshows.me/v2/rpc/', {
-            Authorization: [token_type, access_token].join(' '),
-            body: {
+        const {body} = await request()
+            .post('https://api.myshows.me/v2/rpc/')
+            .auth(token_type, access_token)
+            .send({
                 id: 1,
                 jsonrpc: '2.0',
                 method: 'profile.Get',
                 params: {login: myShows.username},
-            },
-            json: true,
-        });
+            });
 
         ({remainingEpisodes} = body.result.stats);
     } catch (err) {

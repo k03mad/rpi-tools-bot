@@ -1,4 +1,4 @@
-const {get, getPiHoleApiPass, sendToInflux} = require('../../../utils');
+const {request, getPiHoleApiPass, sendToInflux} = require('../../../utils');
 const {msg} = require('../../../messages');
 const {piholeUrl} = require('../../../env');
 
@@ -22,10 +22,10 @@ const sendClientsTop = async () => {
     let body;
 
     try {
-        ({body} = await get(piholeUrl, {
-            query: {topClients: SEND_ITEMS, auth},
-            json: true,
-        }));
+        ({body} = await request()
+            .get(piholeUrl)
+            .query({topClients: SEND_ITEMS, auth}));
+
     } catch (err) {
         console.log(msg.cron.dnsClients(err));
         return;

@@ -1,14 +1,26 @@
 const {influx, wifi} = require('./env');
 const {msg} = require('./messages');
 const {promisify} = require('util');
-const {REQUEST_TIMEOUT} = require('./const');
 const cheerio = require('cheerio');
 const exec = require('executive');
 const fs = require('fs');
-const got = require('got');
 const moment = require('moment');
+const superagent = require('superagent');
 
 const readFile = promisify(fs.readFile);
+
+const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
+
+/**
+ * Superagent default params
+ */
+const request = () => {
+    const agent = superagent.agent()
+        .retry(3)
+        .timeout({response: 5000, deadline: 10000});
+
+    return agent;
+};
 
 /**
  * Send command to bash
@@ -44,36 +56,6 @@ const nowWait = time => {
 };
 
 /**
- * Send request
- * @param {String} url request url
- * @param {Object} opts request options
- */
-const get = async (url, opts = {}) => {
-    // turn off default retries only with timeout catch
-    opts.retry = 0;
-    // retries for any errors catch
-    const RETRIES = 3;
-
-    if (!opts.timeout) {
-        opts.timeout = REQUEST_TIMEOUT;
-    }
-
-    let error;
-
-    for (let i = 0; i < RETRIES; i++) {
-        try {
-            return await got(url, opts);
-        } catch (err) {
-            error = err;
-        }
-
-        await nowWait(1000);
-    }
-
-    throw error;
-};
-
-/**
  * Store data to influxdb
  * @param {String} tag to add
  * @param {Object} data to send
@@ -93,10 +75,11 @@ const sendToInflux = async (tag, data) => {
     const send = dataToObject.join();
 
     try {
-        await get(`${influx.url}/write`, {
-            query: {db: influx.db},
-            body: `${influx.meas},${tag} ${send}`,
-        });
+        await request()
+            .post(`${influx.url}/write`)
+            .query({db: influx.db})
+            .send(`${influx.meas},${tag} ${send}`);
+
     } catch (err) {
         console.log(msg.influx.send(tag, send, err));
     }
@@ -110,31 +93,24 @@ const sendToInflux = async (tag, data) => {
 const getFromInflux = async (tag, data) => {
     const [tagName, tagValue] = tag.split('=');
 
-    const {body} = await get(`${influx.url}/query`, {
-        query: {
+    const {body} = await request()
+        .post(`${influx.url}/query`)
+        .query({
             db: influx.db,
             q: `SELECT LAST("${data}") FROM "pi3" WHERE "${tagName}"='${tagValue}'`,
-        },
-        json: true,
-    });
+        });
 
     return body.results[0].series[0].values[0][1];
 };
 
 /**
- * Return router credentials
+ * Return router host
  * @param {String} place select router
  */
-const router = place => {
-    return place === 'knpl'
-        ? {
-            ip: wifi.knpl.ip,
-            cred: wifi.knpl.cred,
-        }
-        : {
-            ip: wifi.mad.ip,
-            cred: wifi.mad.cred,
-        };
+const routerHost = place => {
+    /* eslint-disable require-jsdoc */
+    const url = router => `http://${router.cred}@${router.ip}/cgi-bin/timepro.cgi`;
+    return place === 'knpl' ? url(wifi.knpl) : url(wifi.mad);
 };
 
 /**
@@ -188,7 +164,7 @@ const scrape = (body, selector) => {
     const query = $(selector);
 
     const output = [];
-    query.each((i, elem) => {
+    query.each((_, elem) => {
         const text = $(elem).text();
 
         if (text) {
@@ -204,11 +180,12 @@ module.exports = {
     convertToArray,
     convertToMetric,
     cutNumbers,
-    get,
     getFromInflux,
     getPiHoleApiPass,
+    MAC_RE,
     nowWait,
-    router,
+    request,
+    routerHost,
     run,
     scrape,
     sendToInflux,
