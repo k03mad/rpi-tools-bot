@@ -10,7 +10,7 @@ const sendDnsDomains = async () => {
 
     try {
         await dnsUpdate();
-        await nowWait(10000);
+        await nowWait(20000);
 
         log = await run('pihole -c -j');
 
