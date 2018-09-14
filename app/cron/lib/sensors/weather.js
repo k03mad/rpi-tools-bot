@@ -13,7 +13,7 @@ let ppmTimer = moment();
  */
 const sendSensorsData = async bot => {
     // send warning if ppm above this count
-    const PPM_WARNING = 1000;
+    const PPM_WARNING = 1500;
 
     const data = await sensors();
 
