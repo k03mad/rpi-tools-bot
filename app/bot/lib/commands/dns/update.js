@@ -9,7 +9,6 @@ const update = async () => {
     const commands = [
         [
             'cd ../adblock-hosts-list',
-            'git checkout HEAD -- output',
             'git pull',
             'npm run setup',
             'npm run deploy',
