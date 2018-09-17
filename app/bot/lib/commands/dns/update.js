@@ -8,11 +8,10 @@ const update = async () => {
 
     const commands = [
         'cd ../adblock-hosts-list',
-'rm -rf output',
-'git reset --hard',
-'git pull',
-'npm run setup',
-'npm run deploy',
+        'git checkout HEAD -- output',
+        'git pull',
+        'npm run setup',
+        'npm run deploy',
         'pihole -g',
     ];
 
