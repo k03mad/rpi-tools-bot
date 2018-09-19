@@ -6,6 +6,6 @@ const {run} = require('../../../../utils');
 const update = () => run([
     'cd ../adblock-hosts-list && npm run deploy',
     'pihole -g',
-]);
+], true);
 
 module.exports = update;

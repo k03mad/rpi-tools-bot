@@ -8,7 +8,7 @@ const sendDnsQueries = async () => {
     let log;
 
     try {
-        log = await run('pihole -c -j', true);
+        log = await run('pihole -c -j');
 
         const parsedLog = JSON.parse(log);
         sendToInflux('dns=queries', {

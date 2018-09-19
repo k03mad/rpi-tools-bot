@@ -8,6 +8,6 @@ const upgrade = () => run([
     'sudo apt-fast upgrade -y',
     'sudo apt-fast autoremove -y',
     'sudo apt-fast autoclean',
-]);
+], true);
 
 module.exports = upgrade;
