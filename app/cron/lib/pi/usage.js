@@ -6,7 +6,7 @@ const {sendToInflux} = require('../../../utils');
  * Get RAM usage
  */
 const ramUsage = async () => {
-    const ram = await run('free -m');
+    const ram = await run('free -m', true);
     const [, ramUsed] = ram.match(/Mem: +\d+ +(\d+)/);
     return ramUsed;
 };
@@ -24,7 +24,7 @@ const diskUsage = async () => {
  * Get CPU usage
  */
 const cpuUsage = async () => {
-    let cpu = await run('grep \'cpu \' /proc/stat');
+    let cpu = await run('grep \'cpu \' /proc/stat', true);
     cpu = cpu.split(' ').map(elem => Number(elem));
     return (cpu[2] + cpu[4]) * 100 / (cpu[2] + cpu[4] + cpu[5]);
 };
@@ -33,7 +33,7 @@ const cpuUsage = async () => {
  * Get CPU temperature
  */
 const cpuTemp = async () => {
-    const cpu = await run('cat /sys/class/thermal/thermal_zone0/temp');
+    const cpu = await run('cat /sys/class/thermal/thermal_zone0/temp', true);
     return (Number(cpu) / 1000).toFixed(1);
 };
 
@@ -41,7 +41,7 @@ const cpuTemp = async () => {
  * Get GPU temperature
  */
 const gpuTemp = async () => {
-    const gpu = await run('vcgencmd measure_temp');
+    const gpu = await run('vcgencmd measure_temp', true);
     return gpu.replace(/temp=|'C\n/g, '');
 };
 
