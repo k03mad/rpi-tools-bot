@@ -30,21 +30,35 @@ const cpuUsage = async () => {
 };
 
 /**
+ * Get GPU temperature
+ */
+const gpuTemp = async () => {
+    const gpu = await run('vcgencmd measure_temp');
+    return gpu.replace(/temp=|'C\n/g, '');
+};
+
+/**
+ * Get CPU temperature
+ */
+const cpuTemp = async () => {
+    const cpu = await run('cat /sys/class/thermal/thermal_zone0/temp');
+    return (Number(cpu) / 1000).toFixed(1);
+};
+
+/**
  * Send disk and ram usage
  */
 const sendUsage = async () => {
-    let disk;
-    let ram;
-    let cpu;
+    let usage;
 
     try {
-        [disk, ram, cpu] = await Promise.all([diskUsage(), ramUsage(), cpuUsage()]);
+        usage = await Promise.all([diskUsage(), ramUsage(), cpuUsage(), cpuTemp(), gpuTemp()]);
     } catch (err) {
         console.log(msg.cron.usage(err));
         return;
     }
 
-    sendToInflux('pi=usage', {disk, ram, cpu});
+    sendToInflux('pi=usage', {disk: usage[0], ram: usage[1], cpuUs: usage[2], cpuTm: usage[3], gpu: usage[4]});
 };
 
 module.exports = sendUsage;

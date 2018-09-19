@@ -1,6 +1,6 @@
 const {convertToArray} = require('../../utils');
 const {msg} = require('../../messages');
-const {my} = require('../../env');
+const {chat} = require('../../env');
 
 const MAX_MSG_LENGTH = 4096;
 
@@ -76,29 +76,11 @@ const answer = async (bot, mes, sends, opts) => {
  */
 const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
-        if (my.chat === mes.chat.id) {
+        if (chat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(msg.send.typing(err)));
             answer(bot, mes, await cmd(...convertToArray(args)), opts);
         }
     });
 };
 
-/**
- * Return keyboard options
- * @param {String[]} arr commands to show and send
- */
-const keyboard = arr => {
-    return {
-        reply_markup: {
-            keyboard: [arr],
-            resize_keyboard: true,
-            one_time_keyboard: true,
-        },
-    };
-};
-
-module.exports = {
-    answer,
-    reply,
-    keyboard,
-};
+module.exports = {answer, reply};

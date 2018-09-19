@@ -8,7 +8,7 @@ let auth;
  * Send dns top clients
  */
 const sendClientsTop = async () => {
-    const SEND_ITEMS = 20;
+    const SEND_ITEMS = 30;
 
     if (!auth) {
         try {
@@ -32,7 +32,6 @@ const sendClientsTop = async () => {
     }
 
     const top = {};
-
     const topClients = Object.keys(body.top_sources);
 
     for (let i = 0; i < SEND_ITEMS; i++) {

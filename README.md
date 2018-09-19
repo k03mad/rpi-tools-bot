@@ -1,5 +1,5 @@
 ![Dependencies](https://david-dm.org/k03mad/raspberry-tools.svg)
 
-Run Telegram bot, execute crons, send sensors data to Grafana
+Telegram bot, crons, influx data writer, etc
 
 (⌐■_■)

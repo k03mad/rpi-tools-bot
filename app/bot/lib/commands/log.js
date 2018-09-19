@@ -9,11 +9,8 @@ const readFile = promisify(fs.readFile);
  * Get forever log
  */
 const getLogMessage = async () => {
-    const logfile = `${appRoot}/forever.log`;
-
     try {
-        const log = await readFile(logfile);
-
+        const log = await readFile(`${appRoot}/forever.log`);
         return log.length > 1 ? log.toString() : msg.common.emptyLog;
     } catch (err) {
         return err.message;

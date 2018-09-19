@@ -55,14 +55,9 @@ const msg = {
     readme: {
         badges:                        ['![Dependencies](https://david-dm.org/k03mad/raspberry-tools.svg)'],
         footer:                        '(⌐■_■)',
-        header:                        'Run Telegram bot, execute crons, send sensors data to Grafana',
+        header:                        'Telegram bot, crons, influx data writer, etc',
         md:                            'README.md generated',
         txt:                           'commands.txt generated',
-    },
-    sensor: {
-        bme:        ex              => `${currentDate()} cannot get data from bme: ${ex}`,
-        mhz:        ex              => `${currentDate()} cannot get data from mhz: ${ex}`,
-        warning:    ppm             => `Ventilate the room! Too high ppm: ${ppm}`,
     },
     send: {
         norm:       ex              => `${currentDate()} sending normal message: ${ex}`,

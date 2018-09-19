@@ -1,5 +1,5 @@
 const {answer} = require('../../../bot/lib/chat');
-const {my} = require('../../../env');
+const {chat} = require('../../../env');
 const {msg} = require('../../../messages');
 const getUpdate = require('../../../bot/lib/commands/apt/update');
 
@@ -18,7 +18,7 @@ const checkRaspberryUpdates = async bot => {
     }
 
     if (updates !== msg.common.updates) {
-        answer(bot, {chat: {id: my.chat}}, updates);
+        answer(bot, {chat: {id: chat}}, updates);
     }
 };
 

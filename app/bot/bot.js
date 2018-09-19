@@ -13,7 +13,6 @@ const bot = new TelegramBot(telegramToken, {
     },
 });
 
-require('./lib/events/polling')(bot);
 require('./lib/reply')(bot);
 
 module.exports = bot;

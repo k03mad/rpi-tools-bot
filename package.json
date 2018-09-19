@@ -1,6 +1,6 @@
 {
   "name": "raspberry-tools",
-  "version": "5.1.0",
+  "version": "6.0.0",
   "description": "Raspberry Pi 3 Tools",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
@@ -11,36 +11,32 @@
   },
   "dependencies": {
     "app-root-path": "2.1.0",
-    "bme-sensor-nolog": "0.1.6",
-    "cheerio": "1.0.0-rc.2",
     "colors": "1.3.2",
     "executive": "1.6.3",
     "forever": "0.15.3",
     "moment": "2.22.2",
     "node-telegram-bot-api": "0.30.0",
-    "oui": "9.0.1",
     "require-all": "3.0.0",
-    "schedule": "0.1.0",
+    "schedule": "0.5.0",
     "socks5-https-client": "1.2.1",
-    "superagent": "3.8.3"
+    "superagent": "4.0.0-beta.5"
   },
   "devDependencies": {
-    "eslint": "5.5.0",
+    "eslint": "5.6.0",
     "eslint-config-k03mad": "0.3.3",
     "eslint-plugin-const-case": "1.0.4",
     "eslint-plugin-node": "7.0.1",
-    "eslint-plugin-promise": "4.0.0",
-    "eslint-plugin-unicorn": "6.0.0",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-unicorn": "6.0.1",
     "pre-commit": "1.2.2"
   },
   "scripts": {
     "bot": "npm run stop && npm run start",
     "clean": "rm -rf ./node_modules || true",
-    "cleanlog": "rm -rf ./forever.log || true",
+    "clean:log": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --cache --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
-    "oui": "oui --update || true",
     "readme": "node app/bot/lib/readme && git add README.md",
-    "setup": "npm i && npm run oui && npm run cleanlog",
+    "setup": "npm i && npm run clean:log",
     "start": "forever start -a --uid raspi --minUptime 1000 --spinSleepTime 10000 -l ../git/raspberry-tools/forever.log index.js",
     "stop": "forever stop -t raspi || true"
   },

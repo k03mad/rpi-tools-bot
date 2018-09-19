@@ -1,15 +1,11 @@
-const {influx, wifi} = require('./env');
+const {influx} = require('./env');
 const {msg} = require('./messages');
 const {promisify} = require('util');
-const cheerio = require('cheerio');
 const exec = require('executive');
 const fs = require('fs');
-const moment = require('moment');
 const superagent = require('superagent');
 
 const readFile = promisify(fs.readFile);
-
-const MAC_RE = /([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})/;
 
 /**
  * Superagent default params
@@ -23,20 +19,30 @@ const request = () => {
 };
 
 /**
- * Send command to bash
- * @param {String} str to send
- */
-const run = async str => {
-    const {stdout, stderr} = await exec.quiet(str);
-    return stdout || stderr;
-};
-
-/**
  * Convert anything to array
  * @param {*} elem to convert
  */
 const convertToArray = elem => {
     return Array.isArray(elem) ? elem : [elem];
+};
+
+/**
+ * Send command to bash
+ * @param {String} str to send
+ */
+const run = async cmds => {
+    const message = [];
+
+    for (const cmd of convertToArray(cmds)) {
+        const {stdout, stderr} = await exec.quiet(cmd);
+
+        message.push(stdout
+            ? `[${cmd}]\n\n${stdout}`
+            : `[ERROR: ${cmd}]\n\n${stderr}`
+        );
+    }
+
+    return message.join('\n\n');
 };
 
 /**
@@ -69,7 +75,7 @@ const sendToInflux = async (tag, data) => {
     const dataToObject = [];
 
     for (const key in data) {
-        dataToObject.push(`${key}=${Math.round(Number(data[key]))}i`);
+        dataToObject.push(`${key}=${Number.parseFloat(data[key]).toFixed(2)}`);
     }
 
     const send = dataToObject.join();
@@ -86,34 +92,6 @@ const sendToInflux = async (tag, data) => {
 };
 
 /**
- * Get last measurement data from influxdb
- * @param {String} tag to get
- * @param {String} data to get
- */
-const getFromInflux = async (tag, data) => {
-    const [tagName, tagValue] = tag.split('=');
-
-    const {body} = await request()
-        .post(`${influx.url}/query`)
-        .query({
-            db: influx.db,
-            q: `SELECT LAST("${data}") FROM "pi3" WHERE "${tagName}"='${tagValue}'`,
-        });
-
-    return body.results[0].series[0].values[0][1];
-};
-
-/**
- * Return router host
- * @param {String} place select router
- */
-const routerHost = place => {
-    /* eslint-disable require-jsdoc */
-    const url = router => `http://${router.cred}@${router.ip}/cgi-bin/timepro.cgi`;
-    return place === 'knpl' ? url(wifi.knpl) : url(wifi.mad);
-};
-
-/**
  * Read pi-hole web api password
  */
 const getPiHoleApiPass = async () => {
@@ -122,71 +100,12 @@ const getPiHoleApiPass = async () => {
     return pass;
 };
 
-/**
- * Check if current time is above setted
- * @param {String} timer moment time
- * @param {Number} repeat alarm every N minutes
- */
-const checkTimer = (timer, repeat = 60) => {
-    return moment().diff(timer, 'minutes') > repeat;
-};
-
-/**
- * Convert units to metric system
- * @param {String} unit name
- * @param {String|Number} value to convert
- */
-const convertToMetric = (unit, value) => {
-    value = Number(value);
-
-    switch (unit) {
-        case 'hPa':
-            return value * 0.75006375541921;
-
-        case 'mph':
-            return value * 0.44704;
-
-        case 'F':
-            return (value - 32) / 1.8;
-
-        default:
-            console.log(msg.common.converter(unit));
-            return value;
-    }
-
-};
-
-/**
- * Scrape text from sites
- */
-const scrape = (body, selector) => {
-    const $ = cheerio.load(body);
-    const query = $(selector);
-
-    const output = [];
-    query.each((_, elem) => {
-        const text = $(elem).text();
-
-        if (text) {
-            output.push(text);
-        }
-    });
-
-    return output;
-};
-
 module.exports = {
-    checkTimer,
     convertToArray,
-    convertToMetric,
     cutNumbers,
-    getFromInflux,
     getPiHoleApiPass,
-    MAC_RE,
     nowWait,
     request,
-    routerHost,
     run,
-    scrape,
     sendToInflux,
 };

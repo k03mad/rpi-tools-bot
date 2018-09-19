@@ -14,6 +14,7 @@ const sendDnsQueries = async () => {
         sendToInflux('dns=queries', {
             today: parsedLog.dns_queries_today,
             blocked: parsedLog.ads_blocked_today,
+            domains: parsedLog.domains_being_blocked,
         });
     } catch (err) {
         console.log(msg.cron.dns(log, err));
