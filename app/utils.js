@@ -75,7 +75,7 @@ const sendToInflux = async (tag, data) => {
     const dataToObject = [];
 
     for (const key in data) {
-        dataToObject.push(`${key}=${Number.parseFloat(data[key]).toFixed(2)}`);
+        dataToObject.push(`${key}=${Number(data[key]).toFixed(2)}`);
     }
 
     const send = dataToObject.join();
