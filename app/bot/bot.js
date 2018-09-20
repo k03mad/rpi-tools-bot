@@ -14,5 +14,6 @@ const bot = new TelegramBot(telegramToken, {
 });
 
 require('./lib/reply')(bot);
+console.log(new Date(), ' started');
 
 module.exports = bot;
