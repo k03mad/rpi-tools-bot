@@ -1,8 +1,8 @@
 const {influx} = require('./env');
-const {msg} = require('./errors');
 const {promisify} = require('util');
 const exec = require('executive');
 const fs = require('fs');
+const msg = require('./errors');
 const superagent = require('superagent');
 
 const readFile = promisify(fs.readFile);
