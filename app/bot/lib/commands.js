@@ -7,8 +7,6 @@ module.exports = [
     '',
     '/dns_update - update dns filter',
     '',
-    '/nvm_update - update node.js',
-    '',
     '/pi_reboot - reboot pi',
     '/pi_shutdown - shutdown pi',
 ];

@@ -3,15 +3,9 @@ const {msg} = require('./errors');
 const {promisify} = require('util');
 const exec = require('executive');
 const fs = require('fs');
-const moment = require('moment');
 const superagent = require('superagent');
 
 const readFile = promisify(fs.readFile);
-
-/**
- * Get current date
- */
-const currentDate = () => `\n${moment().format('YYYY.MM.DD HH:mm:ss')}`;
 
 /**
  * Superagent default params
@@ -107,7 +101,6 @@ const getPiHoleApiPass = async () => {
 module.exports = {
     convertToArray,
     cutNumbers,
-    currentDate,
     getPiHoleApiPass,
     nowWait,
     request,

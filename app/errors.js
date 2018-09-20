@@ -1,4 +1,7 @@
-const {currentDate} = require('./utils');
+/**
+ * Get current date
+ */
+const currentDate = () => `[${(new Date()).toString().replace(' GMT+0300 (GMT+03:00)', '')}]`;
 
 module.exports = {
     /* eslint-disable key-spacing, no-multi-spaces */
