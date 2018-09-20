@@ -31,6 +31,7 @@
     "pre-commit": "1.2.2"
   },
   "scripts": {
+    "autorun": "git pull && npm run setup && npm run bot",
     "bot": "npm run stop && npm run start",
     "clean": "rm -rf ./node_modules || true",
     "clean:log": "rm -rf ./forever.log || true",
