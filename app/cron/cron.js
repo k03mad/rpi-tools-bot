@@ -22,8 +22,8 @@ const run = bot => {
     // every 5 hours
     cron.schedule('0 */5 * * *', () => c.pi.update(bot));
 
-    // every day at 04:30
-    cron.schedule('27 0 * * *', () => b.pi.reboot());
+    // every day at 04:55
+    cron.schedule('55 4 * * *', () => b.pi.reboot());
 };
 
 module.exports = run;
