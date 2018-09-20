@@ -3,4 +3,4 @@ const cron = require('./app/cron/cron');
 
 cron(bot);
 
-console.log(`[${(new Date()).toString()}]`, 'pi started');
+console.log((new Date()).toString(), 'pi started');
