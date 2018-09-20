@@ -1,11 +1,17 @@
 const {influx} = require('./env');
-const {msg} = require('./messages');
+const {msg} = require('./errors');
 const {promisify} = require('util');
 const exec = require('executive');
 const fs = require('fs');
+const moment = require('moment');
 const superagent = require('superagent');
 
 const readFile = promisify(fs.readFile);
+
+/**
+ * Get current date
+ */
+const currentDate = () => `\n${moment().format('YYYY.MM.DD HH:mm:ss')}`;
 
 /**
  * Superagent default params
@@ -51,17 +57,13 @@ const run = async (cmds, addtitle) => {
  * Cut numbers from stirng
  * @param {String} str
  */
-const cutNumbers = str => {
-    return Number(str.replace(/\D/gim, ''));
-};
+const cutNumbers = str => Number(str.replace(/\D/gim, ''));
 
 /**
  * Wait for some time
  * @param {Number} time in ms
  */
-const nowWait = time => {
-    return new Promise(resolve => setTimeout(resolve, time));
-};
+const nowWait = time => new Promise(resolve => setTimeout(resolve, time));
 
 /**
  * Store data to influxdb
@@ -105,6 +107,7 @@ const getPiHoleApiPass = async () => {
 module.exports = {
     convertToArray,
     cutNumbers,
+    currentDate,
     getPiHoleApiPass,
     nowWait,
     request,

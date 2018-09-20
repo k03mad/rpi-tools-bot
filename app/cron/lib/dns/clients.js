@@ -1,6 +1,6 @@
-const {request, getPiHoleApiPass, sendToInflux} = require('../../../utils');
-const {msg} = require('../../../messages');
 const {piholeUrl} = require('../../../env');
+const {request, getPiHoleApiPass, sendToInflux} = require('../../../utils');
+const msg = require('../../../errors');
 
 let auth;
 

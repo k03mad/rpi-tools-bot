@@ -1,7 +1,7 @@
-const {msg} = require('../../../messages');
 const {promisify} = require('util');
 const appRoot = require('app-root-path');
 const fs = require('fs');
+const msg = require('../../errors');
 
 const readFile = promisify(fs.readFile);
 

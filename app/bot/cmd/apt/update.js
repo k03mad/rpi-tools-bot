@@ -1,5 +1,5 @@
-const {run} = require('../../../../utils');
-const {msg} = require('../../../../messages');
+const {run} = require('../../../utils');
+const msg = require('../../../errors');
 
 /**
  * Check updates

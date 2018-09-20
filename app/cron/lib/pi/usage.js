@@ -1,6 +1,5 @@
-const {msg} = require('../../../messages');
-const {run} = require('../../../utils');
-const {sendToInflux} = require('../../../utils');
+const {run, sendToInflux} = require('../../../utils');
+const msg = require('../../../errors');
 
 /**
  * Get RAM usage

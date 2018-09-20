@@ -1,7 +1,7 @@
 const {answer} = require('../../../bot/lib/chat');
 const {chat} = require('../../../env');
-const {msg} = require('../../../messages');
-const getUpdate = require('../../../bot/lib/commands/apt/update');
+const msg = require('../../../errors');
+const getUpdate = require('../../../bot/cmd/apt/update');
 
 /**
  * Check system updates with apt-get update

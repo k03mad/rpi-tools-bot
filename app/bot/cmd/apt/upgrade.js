@@ -1,13 +1,11 @@
-const {run} = require('../../../../utils');
+const {run} = require('../../../utils');
 
 /**
  * Install updates
  */
-const upgrade = () => run([
+module.exports = () => run([
     'sudo apt-fast update',
     'sudo apt-fast upgrade -y',
     'sudo apt-fast autoremove -y',
     'sudo apt-fast autoclean',
 ], true);
-
-module.exports = upgrade;

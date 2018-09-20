@@ -1,4 +1,4 @@
-const {run} = require('../../../../utils');
+const {run} = require('../../../utils');
 
 /**
  * Update dns filter
