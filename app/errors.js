@@ -1,7 +1,7 @@
 const date = (new Date()).toString().replace(' GMT+0300 (GMT+03:00)', '');
 
 /**
- * GPrint message with datestamp
+ * Print message with datestamp
  */
 const printMsg = msg => `[${date}]\n${msg}\n`;
 
