@@ -10,7 +10,7 @@ const run = bot => {
     // every minute
     cron.schedule('* * * * *', () => c.pi.usage());
 
-    // every 5 minutes
+    // every N minutes
     cron.schedule('*/5 * * * *', () => {
         c.dns.clients();
         c.dns.queries();
@@ -19,10 +19,10 @@ const run = bot => {
 
     // every hour
     cron.schedule('0 * * * *', () => b.dns.update());
-    // every 5 hours
-    cron.schedule('0 */5 * * *', () => c.pi.update(bot));
+    // every day at
+    cron.schedule('0 20 * * *', () => c.pi.update(bot));
 
-    // every day at 5:05
+    // every day at
     cron.schedule('05 5 * * *', () => b.pi.reboot());
 };
 
