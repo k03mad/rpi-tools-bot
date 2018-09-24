@@ -5,16 +5,24 @@ const msg = require('../../../errors');
  * Send blocked queries by local dns
  */
 const sendDnsQueries = async () => {
-    let log;
-    let parsedLog;
-    let error;
+    let blocked, domains, error, log, parsedLog, today;
 
-    // sometimes pihole not returns values
+    // sometimes pihole doesn't return values
     for (let i = 0; i < 3; i++) {
         try {
             log = await run('pihole -c -j');
             parsedLog = JSON.parse(log);
-            break;
+
+            domains = parsedLog.domains_being_blocked;
+            today = parsedLog.dns_queries_today;
+            blocked = parsedLog.ads_blocked_today;
+
+            if (domains > 0) {
+                break;
+            } else {
+                throw new Error('Returned 0 domains in blacklist');
+            }
+
         } catch (err) {
             error = err;
         }
@@ -25,9 +33,9 @@ const sendDnsQueries = async () => {
     error
         ? console.log(msg.cron.dns(log, error))
         : sendToInflux('dns=queries', {
-            today: parsedLog.dns_queries_today,
-            blocked: parsedLog.ads_blocked_today,
-            domains: parsedLog.domains_being_blocked,
+            today,
+            blocked,
+            domains,
         });
 };
 
