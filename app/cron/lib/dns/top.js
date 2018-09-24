@@ -8,7 +8,7 @@ let auth;
  * Send dns top hosts
  */
 const sendDnsTop = async () => {
-    const SEND_ITEMS = 30;
+    const SEND_ITEMS = 15;
 
     if (!auth) {
         try {
