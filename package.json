@@ -12,6 +12,7 @@
   "dependencies": {
     "app-root-path": "2.1.0",
     "colors": "1.3.2",
+    "date-fns": "1.29.0",
     "executive": "1.6.3",
     "forever": "0.15.3",
     "node-cron": "2.0.1",
