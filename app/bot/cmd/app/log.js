@@ -1,7 +1,6 @@
 const {promisify} = require('util');
 const appRoot = require('app-root-path');
 const fs = require('fs');
-const msg = require('../../errors');
 
 const readFile = promisify(fs.readFile);
 
@@ -11,7 +10,7 @@ const readFile = promisify(fs.readFile);
 const getLogMessage = async () => {
     try {
         const log = await readFile(`${appRoot}/forever.log`);
-        return log.length > 1 ? log.toString() : msg.common.emptyLog;
+        return log.length > 1 ? log.toString() : 'Log is empty';
     } catch (err) {
         return err.message;
     }

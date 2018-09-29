@@ -1,6 +1,7 @@
 module.exports = [
     '/help - this list',
-    '/log - print forever log',
+    '',
+    '/app_log - print forever log',
     '',
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
@@ -9,4 +10,7 @@ module.exports = [
     '',
     '/pi_reboot - reboot pi',
     '/pi_shutdown - shutdown pi',
+    '',
+    '/ufw_log - get ufw logs',
+    '/ufw_clean - clean system log',
 ];

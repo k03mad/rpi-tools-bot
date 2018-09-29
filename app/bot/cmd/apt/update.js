@@ -1,5 +1,4 @@
 const {run} = require('../../../utils');
-const msg = require('../../../errors');
 
 /**
  * Check updates
@@ -25,7 +24,7 @@ const update = async () => {
             : `${MSG} ${packages[0]}`;
     }
 
-    return msg.common.updates;
+    return 'No updates available';
 };
 
 module.exports = update;
