@@ -38,16 +38,11 @@ const splitString = (str, l) => {
  * @param {Object} opts telegram api options
  */
 const answer = async (bot, mes, sends, opts) => {
-    for (const send of convertToArray(sends)) {
+    for (let send of convertToArray(sends)) {
+        // remove bash colors
+        send = send.replace(/\[\d{1,3}m/g, '');
 
-        if (Buffer.isBuffer(send)) {
-            try {
-                await bot.sendPhoto(mes.chat.id, send, opts);
-            } catch (err) {
-                console.log(msg.send.photo(err));
-            }
-
-        } else if (send.length > MAX_MSG_LENGTH) {
+        if (send.length > MAX_MSG_LENGTH) {
             // split by new lines
             const longStringArr = splitString(send, MAX_MSG_LENGTH);
 
