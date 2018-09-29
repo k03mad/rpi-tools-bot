@@ -1,11 +1,7 @@
 const {influx} = require('./env');
-const {promisify} = require('util');
 const exec = require('executive');
-const fs = require('fs');
 const msg = require('./errors');
 const superagent = require('superagent');
-
-const readFile = promisify(fs.readFile);
 
 /**
  * Superagent default params
@@ -89,19 +85,9 @@ const sendToInflux = async (tag, data) => {
     }
 };
 
-/**
- * Read pi-hole web api password
- */
-const getPiHoleApiPass = async () => {
-    const file = await readFile('/etc/pihole/setupVars.conf');
-    const [, pass] = file.toString().match(/WEBPASSWORD=(.+)\n/);
-    return pass;
-};
-
 module.exports = {
     convertToArray,
     cutNumbers,
-    getPiHoleApiPass,
     nowWait,
     request,
     run,

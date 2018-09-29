@@ -32,11 +32,7 @@ const sendDnsQueries = async () => {
 
     error
         ? console.log(msg.cron.dns(log, error))
-        : sendToInflux('dns=queries', {
-            today,
-            blocked,
-            domains,
-        });
+        : sendToInflux('dns=queries', {today, blocked, domains});
 };
 
 module.exports = sendDnsQueries;

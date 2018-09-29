@@ -17,7 +17,7 @@ const checkRaspberryUpdates = async bot => {
         return;
     }
 
-    if (updates !== 'No updates available') {
+    if (updates.includes('\n')) {
         answer(bot, {chat: {id: chat}}, updates);
     }
 };

@@ -15,8 +15,10 @@ module.exports = {
         socksUsername: process.env.PROXY_USER,
         socksPassword: process.env.PROXY_PASS,
     },
-
+    pihole: {
+        url: process.env.PIHOLE_URL,
+        pass: process.env.PIHOLE_PASSWORD,
+    },
     chat: Number(process.env.MY_CHAT),
-    piholeUrl: process.env.PIHOLE_URL,
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
 };
