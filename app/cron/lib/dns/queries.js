@@ -27,7 +27,7 @@ const sendDnsQueries = async () => {
             error = err;
         }
 
-        await nowWait(2000);
+        await nowWait(3000);
     }
 
     error
