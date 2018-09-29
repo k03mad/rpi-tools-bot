@@ -1,4 +1,4 @@
-const {pihole: {url, pass}} = require('../../../env');
+const {pihole: {url, auth}} = require('../../../env');
 const {request, sendToInflux} = require('../../../utils');
 const msg = require('../../../errors');
 
@@ -13,7 +13,7 @@ const sendDnsTop = async () => {
     try {
         ({body} = await request()
             .get(url)
-            .query({topItems: SEND_ITEMS, pass}));
+            .query({topItems: SEND_ITEMS, auth}));
 
     } catch (err) {
         console.log(msg.cron.dnsTop(err));

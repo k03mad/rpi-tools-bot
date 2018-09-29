@@ -17,7 +17,7 @@ module.exports = {
     },
     pihole: {
         url: process.env.PIHOLE_URL,
-        pass: process.env.PIHOLE_PASSWORD,
+        auth: process.env.PIHOLE_PASSWORD,
     },
     chat: Number(process.env.MY_CHAT),
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
