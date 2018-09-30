@@ -15,7 +15,7 @@ const bot = new TelegramBot(telegramToken, {
     },
 });
 
-reply(bot, 'help', c.help, 'bot');
+reply(bot, 'help', c.help);
 
 reply(bot, 'app_log', c.app.log);
 

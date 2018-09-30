@@ -68,11 +68,11 @@ const answer = async (bot, mes, sends, opts) => {
  * @param {String|String[]} args answer function arguments
  * @param {Object} opts telegram api options
  */
-const reply = (bot, enteredText, cmd, args = [], opts = {}) => {
+const reply = (bot, enteredText, cmd, opts = {}) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
         if (chat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(msg.send.typing(err)));
-            answer(bot, mes, await cmd(...convertToArray(args)), opts);
+            answer(bot, mes, await cmd(), opts);
         }
     });
 };
