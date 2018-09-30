@@ -18,9 +18,16 @@ const run = bot => {
     });
 
     // every hour
-    cron.schedule('0 * * * *', () => b.dns.update());
+    cron.schedule('0 * * * *', () => {
+        b.dns.update();
+        c.ufw.status(bot);
+    });
+
     // every day at
-    cron.schedule('0 20 * * *', () => c.pi.update(bot));
+    cron.schedule('0 20 * * *', () => {
+        c.pi.update(bot);
+        c.ufw.log(bot);
+    });
 
     // every day at
     cron.schedule('05 5 * * *', () => b.pi.reboot());

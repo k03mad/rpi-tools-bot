@@ -19,6 +19,7 @@ module.exports = {
         url: process.env.PIHOLE_URL,
         auth: process.env.PIHOLE_PASS,
     },
+    wanIp: process.env.WAN_IP,
     chat: Number(process.env.MY_CHAT),
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
 };
