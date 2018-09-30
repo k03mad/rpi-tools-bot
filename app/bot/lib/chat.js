@@ -37,8 +37,8 @@ const splitString = (str, l) => {
  * @param {String|String[]} sends something to send
  * @param {Object} opts telegram api options
  */
-const answer = async (bot, mes, sends) => {
-    const opts = {parse_mode: 'Markdown', disable_web_page_preview: true};
+const answer = async (bot, mes, sends, markdown) => {
+    const opts = markdown ? {parse_mode: 'Markdown', disable_web_page_preview: true} : {};
 
     for (let send of convertToArray(sends)) {
         // remove bash colors
@@ -70,11 +70,11 @@ const answer = async (bot, mes, sends) => {
  * @param {String|String[]} args answer function arguments
  * @param {Object} opts telegram api options
  */
-const reply = (bot, enteredText, cmd) => {
+const reply = (bot, enteredText, cmd, markdown) => {
     bot.onText(new RegExp(`^/${enteredText}($|@[a-z_]+$)`), async mes => {
         if (chat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(msg.send.typing(err)));
-            answer(bot, mes, await cmd());
+            answer(bot, mes, await cmd(), markdown);
         }
     });
 };

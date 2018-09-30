@@ -14,7 +14,6 @@ module.exports = {
     },
     send: {
         norm:       ex              => printMsg(`sending normal message:\n${ex}`),
-        photo:      ex              => printMsg(`sending photo message:\n${ex}`),
         typing:     ex              => printMsg(`sending typing message:\n${ex}`),
     },
 };
