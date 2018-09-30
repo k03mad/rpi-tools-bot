@@ -37,7 +37,11 @@ const splitString = (str, l) => {
  * @param {String|String[]} sends something to send
  * @param {Object} opts telegram api options
  */
-const answer = async (bot, mes, sends, opts) => {
+const answer = async (bot, mes, sends, opts = {}, markdown) => {
+    if (markdown) {
+        opts.parse_mode = 'Markdown';
+    }
+
     for (let send of convertToArray(sends)) {
         // remove bash colors
         send = send.replace(/\[\d{1,3}m/g, '');
