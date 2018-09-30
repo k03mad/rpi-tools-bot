@@ -20,6 +20,7 @@ const run = bot => {
     // every hour
     cron.schedule('0 * * * *', () => {
         b.dns.update();
+        c.sys.ip(bot);
         c.ufw.status(bot);
     });
 
