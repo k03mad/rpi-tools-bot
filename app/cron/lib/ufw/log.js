@@ -10,7 +10,7 @@ const checkUfwLog = async bot => {
     const log = await getLog();
 
     if (log.includes('.')) {
-        answer(bot, {chat: {id: chat}}, log, {parse_mode: 'Markdown'});
+        answer(bot, {chat: {id: chat}}, log, {parse_mode: 'Markdown', disable_web_page_preview: true});
     }
 };
 
