@@ -26,8 +26,8 @@ module.exports = async () => {
     const output = [];
 
     for (const elem in counts) {
-        output.push(`${elem} (${counts[elem]} tries)`);
+        output.push(`${counts[elem]}: ${elem}`);
     }
 
-    return output.join('\n');
+    return output.sort().reverse().join('\n');
 };
