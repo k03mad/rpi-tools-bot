@@ -9,8 +9,8 @@ const {run} = require('../../../utils');
 const ufwStatus = async bot => {
     const status = await run('sudo ufw status');
 
-    if (!status.includes('tun0')) {
-        answer(bot, {chat: {id: chat}}, 'UFW is inactive!');
+    if (!status.includes('.')) {
+        answer(bot, {chat: {id: chat}}, `UFW is inactive!\n\n${status}`);
     }
 };
 
