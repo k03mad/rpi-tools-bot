@@ -3,6 +3,8 @@ const exec = require('executive');
 const msg = require('./errors');
 const superagent = require('superagent');
 
+const UFW_LOG = '/var/log/ufw.log';
+
 /**
  * Superagent default params
  */
@@ -92,4 +94,5 @@ module.exports = {
     request,
     run,
     sendToInflux,
+    UFW_LOG,
 };

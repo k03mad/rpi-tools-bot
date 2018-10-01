@@ -15,7 +15,7 @@ const bot = new TelegramBot(telegramToken, {
     },
 });
 
-reply(bot, 'help', c.help, 'bot');
+reply(bot, 'help', c.help);
 
 reply(bot, 'app_log', c.app.log);
 
@@ -28,6 +28,6 @@ reply(bot, 'pi_reboot', c.pi.reboot);
 reply(bot, 'pi_shutdown', c.pi.shutdown);
 
 reply(bot, 'ufw_clean', c.ufw.clean);
-reply(bot, 'ufw_log', c.ufw.log);
+reply(bot, 'ufw_log', c.ufw.log, 'markdown');
 
 module.exports = bot;

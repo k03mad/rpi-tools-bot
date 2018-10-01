@@ -9,8 +9,8 @@ const getLog = require('../../../bot/cmd/ufw/log');
 const checkUfwLog = async bot => {
     const log = await getLog();
 
-    if (log.includes('UFW')) {
-        answer(bot, {chat: {id: chat}}, log);
+    if (log.includes('.')) {
+        answer(bot, {chat: {id: chat}}, log, 'markdown');
     }
 };
 
