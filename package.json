@@ -43,6 +43,5 @@
   "pre-commit": [
     "lint",
     "readme"
-  ],
-  "license": "MIT"
+  ]
 }
