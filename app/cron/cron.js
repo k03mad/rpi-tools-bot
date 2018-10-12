@@ -8,7 +8,7 @@ const b = require('require-all')(`${__dirname}/../bot/cmd`);
  */
 const run = bot => {
     // every N minutes
-    cron.schedule('*/1 * * * *', () => {
+    cron.schedule('*/10 * * * *', () => {
         c.dns.clients();
         c.dns.queries();
         c.dns.top();
