@@ -1,7 +1,8 @@
+const {printMsg} = require('../date');
 const {proxy, telegramToken} = require('../env');
 const {reply} = require('./lib/chat');
-const c = require('require-all')(`${__dirname}/cmd`);
 const Agent = require('socks5-https-client/lib/Agent');
+const c = require('require-all')(`${__dirname}/cmd`);
 const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(telegramToken, {
@@ -29,5 +30,7 @@ reply(bot, 'pi_shutdown', c.pi.shutdown);
 
 reply(bot, 'ufw_clean', c.ufw.clean);
 reply(bot, 'ufw_log', c.ufw.log, 'markdown');
+
+bot.on('polling_error', error => console.log(printMsg(error)));
 
 module.exports = bot;
