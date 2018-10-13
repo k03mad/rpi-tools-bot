@@ -2,7 +2,7 @@ const {printMsg} = require('../date');
 const {proxy, telegramToken} = require('../env');
 const {reply} = require('./lib/chat');
 const Agent = require('socks5-https-client/lib/Agent');
-const c = require('require.all')('./cmd');
+const c = require('require-all')(`${__dirname}/cmd`);
 const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(telegramToken, {
