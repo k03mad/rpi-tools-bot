@@ -27,18 +27,19 @@ const convertToArray = elem => {
 /**
  * Send command to bash
  * @param {String} str to send
- * @param {Boolean} notitle do not add title to output
+ * @param {Object} opts
+ * @param {Boolean} opts.titles add titles to output
  */
-const run = async (cmds, addtitle) => {
+const run = async (cmds, opts = {}) => {
     const message = [];
 
     for (const cmd of convertToArray(cmds)) {
         const {stdout, stderr} = await exec.quiet(cmd);
 
         if (stdout) {
-            message.push(addtitle ? `[${cmd}]\n\n${stdout}` : stdout);
+            message.push(opts.titles ? `[${cmd}]\n\n${stdout}` : stdout);
         } else {
-            message.push(addtitle ? `[ERROR: ${cmd}]\n\n${stderr}` : stderr);
+            message.push(opts.titles ? `[ERROR: ${cmd}]\n\n${stderr}` : stderr);
         }
     }
 
