@@ -27,6 +27,11 @@ const run = bot => {
         c.ufw.log(bot);
     });
 
+    // every n hours
+    cron.schedule('0 */6 * * *', () => {
+        c.bal.update();
+    });
+
     // every day at
     cron.schedule('05 5 * * *', () => b.pi.reboot());
 };

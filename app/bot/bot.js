@@ -23,6 +23,8 @@ reply(bot, 'app_log', c.app.log);
 reply(bot, 'apt_update', c.apt.update);
 reply(bot, 'apt_upgrade', c.apt.upgrade);
 
+reply(bot, 'bal_update', c.bal.update);
+
 reply(bot, 'dns_update', c.dns.update);
 
 reply(bot, 'pi_reboot', c.pi.reboot);

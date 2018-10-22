@@ -6,6 +6,8 @@ module.exports = [
     '/apt_update - check for updates',
     '/apt_upgrade - install updates',
     '',
+    '/bal_update - update balance data',
+    '',
     '/dns_update - update dns filter',
     '',
     '/pi_reboot - reboot pi',
