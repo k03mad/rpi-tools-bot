@@ -28,7 +28,7 @@ const run = bot => {
     });
 
     // every n hours
-    cron.schedule('0 */6 * * *', () => {
+    cron.schedule('0 */3 * * *', () => {
         c.bal.update();
     });
 
