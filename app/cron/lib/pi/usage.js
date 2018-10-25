@@ -13,8 +13,8 @@ const sendUsage = async () => {
 
     const cpuUsage = uptime.match(/average: (.+)/)[1].split(', ').map(elem => Number(elem.replace(',', '.')));
     const cpuTemp = Number(temp) / 1000;
-    const [, diskUsed] = disk.match(/\/dev\/root +\d+ +([\d]+)/);
-    const [, ramUsed] = ram.match(/Mem: +\d+ +(\d+)/);
+    const diskUsed = Number(disk.match(/\/dev\/root +\d+ +([\d]+)/)[1]);
+    const ramUsed = Number(ram.match(/Mem: +\d+ +(\d+)/)[1]);
 
     // sendToInflux('pi=usage', {
     //     cpu1: cpuUsage[0], cpu5: cpuUsage[1], cpu15: cpuUsage[2],
