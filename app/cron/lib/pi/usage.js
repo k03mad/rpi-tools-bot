@@ -30,4 +30,5 @@ const sendUsage = async () => {
     }));
 };
 
+sendUsage().then();
 module.exports = sendUsage;
