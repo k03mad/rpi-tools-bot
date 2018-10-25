@@ -7,6 +7,9 @@ const b = require('require-all')(`${__dirname}/../bot/cmd`);
  * @param {Object} bot telegram node api
  */
 const run = bot => {
+    // every minute
+    cron.schedule('* * * * *', () => c.pi.usage());
+
     // every N minutes
     cron.schedule('*/10 * * * *', () => {
         c.dns.clients();

@@ -1,4 +1,4 @@
-const {run} = require('../../../utils');
+const {run, sendToInflux} = require('../../../utils');
 
 /**
  * Send pi usage
@@ -16,19 +16,12 @@ const sendUsage = async () => {
     const diskUsed = Number(disk.match(/\/dev\/root +\d+ +([\d]+)/)[1]);
     const ramUsed = Number(ram.match(/Mem: +\d+ +(\d+)/)[1]);
 
-    // sendToInflux('pi=usage', {
-    //     cpu1: cpuUsage[0], cpu5: cpuUsage[1], cpu15: cpuUsage[2],
-    //     cpuTemp,
-    //     diskUsed,
-    //     ramUsed,
-    // });
-    console.log(JSON.stringify({
+    sendToInflux('pi=usage', {
         cpu1: cpuUsage[0], cpu5: cpuUsage[1], cpu15: cpuUsage[2],
         cpuTemp,
         diskUsed,
         ramUsed,
-    }));
+    });
 };
 
-sendUsage().then();
 module.exports = sendUsage;
