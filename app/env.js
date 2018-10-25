@@ -4,11 +4,6 @@ process.env.NTBA_FIX_319 = true;
 process.env.NODE_ENV = 'production';
 
 module.exports = {
-    influx: {
-        db: process.env.INFLUX_DB,
-        meas: process.env.INFLUX_MEAS,
-        url: process.env.INFLUX_URL,
-    },
     proxy: {
         socksHost: process.env.PROXY_HOST,
         socksPort: process.env.PROXY_PORT,

@@ -38,8 +38,8 @@ const sendDnsTop = async () => {
         }
     }
 
-    sendToInflux('dns=topBlock', ads);
-    sendToInflux('dns=topQueries', queries);
+    sendToInflux({tags: {dns: 'topBlock'}, values: ads});
+    sendToInflux({tags: {dns: 'topQueries'}, values: queries});
 };
 
 module.exports = sendDnsTop;

@@ -31,7 +31,7 @@ const sendClientsTop = async () => {
         }
     }
 
-    sendToInflux('dns=topClients', top);
+    sendToInflux({tags: {dns: 'topClients'}, values: top});
 };
 
 module.exports = sendClientsTop;

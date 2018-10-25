@@ -28,7 +28,7 @@ const sendDnsQueries = async () => {
 
     error
         ? console.log(msg.cron.dns(log, error))
-        : sendToInflux('dns=queries', parsedLog);
+        : sendToInflux({tags: {dns: 'queries'}, values: parsedLog});
 };
 
 module.exports = sendDnsQueries;

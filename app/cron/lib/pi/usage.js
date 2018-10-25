@@ -16,11 +16,13 @@ const sendUsage = async () => {
     const diskUsed = Number(disk.match(/\/dev\/root +\d+ +([\d]+)/)[1]);
     const ramUsed = Number(ram.match(/Mem: +\d+ +(\d+)/)[1]);
 
-    sendToInflux('pi=usage', {
-        cpu1: cpuUsage[0], cpu5: cpuUsage[1], cpu15: cpuUsage[2],
-        cpuTemp,
-        diskUsed,
-        ramUsed,
+    sendToInflux({
+        db: 'sys',
+        tags: {pi: 'usage'},
+        values: {
+            cpu1: cpuUsage[0], cpu5: cpuUsage[1], cpu15: cpuUsage[2],
+            cpuTemp, diskUsed, ramUsed,
+        },
     });
 };
 

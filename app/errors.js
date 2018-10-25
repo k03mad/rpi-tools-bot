@@ -10,7 +10,7 @@ module.exports = {
         usage:      ex              => printMsg(`get pi usage:\n${ex}`),
     },
     influx: {
-        send:       (tag, data, ex) => printMsg(`sending "${tag}" with "${data}" to influx:\n${ex}`),
+        send:       ex              => printMsg(ex),
     },
     send: {
         norm:       ex              => printMsg(`sending normal message:\n${ex}`),

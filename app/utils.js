@@ -1,7 +1,7 @@
-const {influx} = require('./env');
 const exec = require('executive');
 const msg = require('./errors');
 const superagent = require('superagent');
+const {writeToInflux} = require('simple-influx-http');
 
 const UFW_LOG = '/var/log/ufw.log';
 
@@ -60,31 +60,19 @@ const nowWait = time => new Promise(resolve => setTimeout(resolve, time));
 
 /**
  * Store data to influxdb
- * @param {String} tag to add
  * @param {Object} data to send
  */
-const sendToInflux = async (tag, data) => {
-    if (!data || Object.keys(data).length === 0) {
-        console.log(msg.influx.send(tag, 'empty data', ''));
-        return;
-    }
-
-    const dataToObject = [];
-
-    for (const key in data) {
-        dataToObject.push(`${key}=${Number(data[key]).toFixed(2)}`);
-    }
-
-    const send = dataToObject.join();
-
+const sendToInflux = async data => {
     try {
-        await request()
-            .post(`${influx.url}/write`)
-            .query({db: influx.db})
-            .send(`${influx.meas},${tag} ${send}`);
-
+        await writeToInflux({
+            url: 'http://192.168.1.100:8086',
+            meas: 'pi3',
+            db: data.db || 'hole',
+            tags: data.tags,
+            values: data.values,
+        });
     } catch (err) {
-        console.log(msg.influx.send(tag, send, err));
+        console.log(msg.influx.send(err));
     }
 };
 
