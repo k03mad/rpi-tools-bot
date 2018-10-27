@@ -11,7 +11,6 @@ module.exports = {
         socksPassword: process.env.PROXY_PASS,
     },
     pihole: {
-        url: process.env.PIHOLE_URL,
         auth: process.env.PIHOLE_PASS,
     },
     wanIp: process.env.WAN_IP,

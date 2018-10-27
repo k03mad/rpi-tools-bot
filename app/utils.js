@@ -4,6 +4,7 @@ const superagent = require('superagent');
 const {writeToInflux} = require('simple-influx-http');
 
 const UFW_LOG = '/var/log/ufw.log';
+const PIHOLE_URL = 'http://localhost/admin/api.php';
 
 /**
  * Superagent default params
@@ -65,7 +66,7 @@ const nowWait = time => new Promise(resolve => setTimeout(resolve, time));
 const sendToInflux = async data => {
     try {
         await writeToInflux({
-            url: 'http://192.168.1.100:8086',
+            url: 'http://localhost:8086',
             meas: 'pi3',
             db: data.db || 'hole',
             tags: data.tags,
@@ -83,5 +84,6 @@ module.exports = {
     request,
     run,
     sendToInflux,
+    PIHOLE_URL,
     UFW_LOG,
 };
