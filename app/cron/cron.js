@@ -8,7 +8,9 @@ const b = require('require-all')(`${__dirname}/../bot/cmd`);
  */
 const run = bot => {
     // every minute
-    cron.schedule('* * * * *', () => c.pi.usage());
+    cron.schedule('* * * * *', () => {
+        c.pi.usage();
+    });
 
     // every N minutes
     cron.schedule('*/10 * * * *', () => {
@@ -31,10 +33,14 @@ const run = bot => {
     });
 
     // every day at
-    cron.schedule('03 5 * * *', () => b.bal.update());
+    cron.schedule('03 5 * * *', () => {
+        b.bal.update();
+    });
 
     // every day at
-    cron.schedule('05 5 * * *', () => b.pi.reboot());
+    cron.schedule('05 5 * * *', () => {
+        b.pi.reboot();
+    });
 };
 
 module.exports = run;
