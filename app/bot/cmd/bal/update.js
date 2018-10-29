@@ -1,8 +1,5 @@
 const {run} = require('../../../utils');
 
-/**
- * Update balance data
- */
 module.exports = () => run([
     'cd ../get-balance-providers',
     'git reset --hard',

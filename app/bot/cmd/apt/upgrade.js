@@ -1,8 +1,5 @@
 const {run} = require('../../../utils');
 
-/**
- * Install updates
- */
 module.exports = () => run([
     'sudo apt-get update',
     'sudo apt-get upgrade -y',

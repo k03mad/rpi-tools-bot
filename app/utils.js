@@ -8,6 +8,7 @@ const PIHOLE_URL = 'http://localhost/admin/api.php';
 
 /**
  * Superagent default params
+ * @returns {Promise}
  */
 const request = () => {
     const agent = superagent.agent()
@@ -20,6 +21,7 @@ const request = () => {
 /**
  * Convert anything to array
  * @param {*} elem to convert
+ * @returns {Array} elem to convert
  */
 const convertToArray = elem => {
     return Array.isArray(elem) ? elem : [elem];
@@ -27,9 +29,10 @@ const convertToArray = elem => {
 
 /**
  * Send command to bash
- * @param {String} str to send
- * @param {Object} opts
- * @param {Boolean} opts.titles add titles to output
+ * @param {string} cmds to send
+ * @param {Object} opts options to pass
+ * @param {boolean} opts.titles add titles to output
+ * @returns {Promise}
  */
 const run = async (cmds, opts = {}) => {
     const message = [];
@@ -49,13 +52,15 @@ const run = async (cmds, opts = {}) => {
 
 /**
  * Cut numbers from stirng
- * @param {String} str
+ * @param {string} str to cut
+ * @returns {number}
  */
 const cutNumbers = str => Number(str.replace(/\D/gim, ''));
 
 /**
  * Wait for some time
- * @param {Number} time in ms
+ * @param {number} time in ms
+ * @returns {Promise}
  */
 const nowWait = time => new Promise(resolve => setTimeout(resolve, time));
 

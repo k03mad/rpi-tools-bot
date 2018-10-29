@@ -18,15 +18,15 @@
     "node-cron": "2.0.3",
     "node-telegram-bot-api": "0.30.0",
     "require-all": "3.0.0",
-    "simple-influx-http": "0.0.6",
+    "simple-influx-http": "0.0.7",
     "socks5-https-client": "1.2.1",
     "superagent": "3.8.3"
   },
   "devDependencies": {
-    "eslint": "5.7.0",
-    "eslint-config-k03mad": "0.3.4",
+    "eslint": "5.8.0",
+    "eslint-config-k03mad": "0.4.5",
     "eslint-plugin-const-case": "1.0.4",
-    "eslint-plugin-node": "7.0.1",
+    "eslint-plugin-node": "8.0.0",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-unicorn": "6.0.1",
     "pre-commit": "1.2.2"

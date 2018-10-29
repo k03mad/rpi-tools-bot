@@ -25,13 +25,13 @@ reply(bot, 'apt_upgrade', c.apt.upgrade);
 
 reply(bot, 'bal_update', c.bal.update);
 
-reply(bot, 'dns_update', c.dns.update);
+reply(bot, 'dns_update', c.dns.update, {nocolor: true});
 
 reply(bot, 'pi_reboot', c.pi.reboot);
 reply(bot, 'pi_shutdown', c.pi.shutdown);
 
 reply(bot, 'ufw_clean', c.ufw.clean);
-reply(bot, 'ufw_log', c.ufw.log, 'markdown');
+reply(bot, 'ufw_log', c.ufw.log, {markdown: true});
 
 bot.on('polling_error', error => console.log(printMsg(error)));
 
