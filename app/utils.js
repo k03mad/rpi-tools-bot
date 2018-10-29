@@ -51,6 +51,22 @@ const run = async (cmds, opts = {}) => {
 };
 
 /**
+ * Open repo and run script
+ * @param {string} repo to change dir
+ * @param {string} script to run
+ * @returns {string}
+ */
+const runRepoScript = (repo, script) => {
+    return [
+        `cd ~/git/${repo}`,
+        'git reset --hard',
+        'git pull',
+        'npm run setup',
+        `npm run ${script}`,
+    ].join(' && ');
+};
+
+/**
  * Cut numbers from stirng
  * @param {string} str to cut
  * @returns {number}
@@ -88,6 +104,7 @@ module.exports = {
     nowWait,
     request,
     run,
+    runRepoScript,
     sendToInflux,
     PIHOLE_URL,
     UFW_LOG,

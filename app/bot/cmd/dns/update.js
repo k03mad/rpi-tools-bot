@@ -1,13 +1,8 @@
-const {run} = require('../../../utils');
+const {run, runRepoScript} = require('../../../utils');
 
 module.exports = () => run([
-    [
-        'cd ../adblock-hosts-list',
-        'git reset --hard',
-        'git pull',
-        'npm run setup',
-        'npm run deploy',
-    ].join(' && '),
-
+    runRepoScript('adblock-hosts-list', 'deploy'),
     'pihole -g',
-], {titles: true});
+], {
+    titles: true,
+});

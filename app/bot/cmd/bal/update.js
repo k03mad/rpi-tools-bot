@@ -1,9 +1,5 @@
-const {run} = require('../../../utils');
+const {run, runRepoScript} = require('../../../utils');
 
-module.exports = () => run([
-    'cd ../get-balance-providers',
-    'git reset --hard',
-    'git pull',
-    'npm run setup',
-    'npm run start',
-].join(' && '));
+module.exports = () => run(
+    runRepoScript('get-balance-providers', 'start')
+);
