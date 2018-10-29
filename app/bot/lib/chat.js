@@ -40,9 +40,9 @@ const splitString = (str, l) => {
 const answer = async (bot, mes, sends, markdown) => {
     const opts = markdown ? {parse_mode: 'Markdown', disable_web_page_preview: true} : {};
 
-    for (let send of convertToArray(sends)) {
+    for (const send of convertToArray(sends)) {
         // remove bash colors
-        send = send.replace(/\[\d{1,3}m/g, '');
+        // send = send.replace(/\[\d{1,3}m/g, '');
 
         if (send.length > MAX_MSG_LENGTH) {
             // split by new lines
