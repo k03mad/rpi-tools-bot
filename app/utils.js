@@ -23,9 +23,7 @@ const request = () => {
  * @param {*} elem to convert
  * @returns {Array} elem to convert
  */
-const convertToArray = elem => {
-    return Array.isArray(elem) ? elem : [elem];
-};
+const convertToArray = elem => Array.isArray(elem) ? elem : [elem];
 
 /**
  * Send command to bash
@@ -56,15 +54,13 @@ const run = async (cmds, opts = {}) => {
  * @param {string} script to run
  * @returns {string}
  */
-const runRepoScript = (repo, script) => {
-    return [
-        `cd ~/git/${repo}`,
-        'git reset --hard',
-        'git pull',
-        'npm run setup',
-        `npm run ${script}`,
-    ].join(' && ');
-};
+const runRepoScript = (repo, script) => [
+    `cd ~/git/${repo}`,
+    'git reset --hard',
+    'git pull',
+    'npm run setup',
+    `npm run ${script}`,
+].join(' && ');
 
 /**
  * Cut numbers from stirng
