@@ -60,7 +60,7 @@ const answer = async (bot, mes, sends, opts = {}) => {
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, send, opts).catch(err => console.log(msg.send.norm(err)));
+            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => console.log(msg.send.norm(err)));
         }
     }
 };
