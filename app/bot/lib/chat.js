@@ -44,7 +44,7 @@ const answer = async (bot, mes, sends, opts = {}) => {
     for (let send of convertToArray(sends)) {
         if (opts.nocolor) {
             // remove bash colors
-            send = send.replace(/ ?\[\d+m/g, '');
+            send = send.replace(/ {1,2}?\[\d+m/g, '');
         }
 
         if (send.length > MAX_MSG_LENGTH) {
