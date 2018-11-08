@@ -4,6 +4,10 @@ process.env.NTBA_FIX_319 = true;
 process.env.NODE_ENV = 'production';
 
 module.exports = {
+    lastfm: {
+        token: process.env.LASTFM_TOKEN,
+        users: process.env.LASTFM_USERS.split(','),
+    },
     proxy: {
         socksHost: process.env.PROXY_HOST,
         socksPort: process.env.PROXY_PORT,

@@ -83,7 +83,7 @@ const nowWait = time => new Promise(resolve => setTimeout(resolve, time));
 const sendToInflux = async data => {
     try {
         await writeToInflux({
-            url: 'http://localhost:8086',
+            url: 'http://192.168.1.100:8086',
             meas: 'pi3',
             db: data.db || 'hole',
             tags: data.tags,

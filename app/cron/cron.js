@@ -19,6 +19,11 @@ const run = bot => {
         c.dns.top();
     });
 
+    // every N minutes
+    cron.schedule('*/30 * * * *', () => {
+        c.lastfm.top();
+    });
+
     // every hour
     cron.schedule('0 * * * *', () => {
         b.dns.update();
