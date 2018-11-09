@@ -25,7 +25,7 @@ reply(bot, 'apt_upgrade', c.apt.upgrade);
 
 reply(bot, 'bal_update', c.bal.update);
 
-reply(bot, 'dns_update', c.dns.update, {nocolor: true});
+reply(bot, 'dns_update', c.dns.update);
 
 reply(bot, 'pi_reboot', c.pi.reboot);
 reply(bot, 'pi_shutdown', c.pi.shutdown);
