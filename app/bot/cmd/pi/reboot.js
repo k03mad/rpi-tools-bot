@@ -1,3 +1,3 @@
-const {run} = require('../../../utils');
+const {shell} = require('utils-mad');
 
-module.exports = () => run('sudo shutdown -r +1');
+module.exports = () => shell.run('sudo shutdown -r +1');

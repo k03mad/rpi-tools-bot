@@ -1,14 +1,15 @@
-const {run, sendToInflux} = require('../../../utils');
+const {sendToInflux} = require('../../../utils');
+const {shell} = require('utils-mad');
 
 /**
  * Send pi usage
  */
 const sendUsage = async () => {
     const [load, temp, disk, ram] = await Promise.all([
-        run('cat /proc/loadavg'),
-        run('cat /sys/class/thermal/thermal_zone0/temp'),
-        run('df'),
-        run('free -m'),
+        shell.run('cat /proc/loadavg'),
+        shell.run('cat /sys/class/thermal/thermal_zone0/temp'),
+        shell.run('df'),
+        shell.run('free -m'),
     ]);
 
     const cpuUsage = load.split(' ').map(x => Number(x));

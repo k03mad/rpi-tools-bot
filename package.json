@@ -11,20 +11,17 @@
   },
   "dependencies": {
     "app-root-path": "2.1.0",
-    "colors": "1.3.2",
-    "date-fns": "1.29.0",
-    "executive": "1.6.3",
+    "colorette": "1.0.7",
     "forever": "0.15.3",
     "node-cron": "2.0.3",
     "node-telegram-bot-api": "0.30.0",
     "require-all": "3.0.0",
-    "simple-influx-http": "0.0.7",
     "socks5-https-client": "1.2.1",
-    "superagent": "3.8.3"
+    "utils-mad": "1.1.1"
   },
   "devDependencies": {
-    "eslint": "5.8.0",
-    "eslint-config-k03mad": "0.5.1",
+    "eslint": "5.9.0",
+    "eslint-config-k03mad": "1.0.4",
     "eslint-plugin-const-case": "1.0.4",
     "eslint-plugin-node": "8.0.0",
     "eslint-plugin-promise": "4.0.1",

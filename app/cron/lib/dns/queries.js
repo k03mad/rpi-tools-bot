@@ -1,5 +1,6 @@
-const {run, sendToInflux, nowWait} = require('../../../utils');
+const {sendToInflux} = require('../../../utils');
 const msg = require('../../../errors');
+const {shell, promise} = require('utils-mad');
 
 /**
  * Send blocked queries by local dns
@@ -10,7 +11,7 @@ const sendDnsQueries = async () => {
     // sometimes pihole doesn't return values
     for (let i = 0; i < 5; i++) {
         try {
-            log = await run('pihole -c -j');
+            log = await shell.run('pihole -c -j');
             parsedLog = JSON.parse(log);
 
             if (parsedLog.domains_being_blocked > 0) {
@@ -23,7 +24,7 @@ const sendDnsQueries = async () => {
             error = err;
         }
 
-        await nowWait(5000);
+        await promise.delay(5000);
     }
 
     error

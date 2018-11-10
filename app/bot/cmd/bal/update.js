@@ -1,5 +1,4 @@
-const {run, runRepoScript} = require('../../../utils');
+const {runRepoScript} = require('../../../utils');
+const {shell} = require('utils-mad');
 
-module.exports = () => run(
-    runRepoScript('get-balance-providers', 'start')
-);
+module.exports = () => shell.run(runRepoScript('get-balance-providers', 'start'));
