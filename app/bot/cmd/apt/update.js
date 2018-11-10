@@ -1,4 +1,4 @@
-const {run} = require('../../../utils');
+const {shell} = require('utils-mad');
 
 /**
  * Check updates
@@ -8,7 +8,7 @@ const {run} = require('../../../utils');
  * Inst libpoppler64 [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf])
  */
 const update = async () => {
-    const grepUpdates = await run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
+    const grepUpdates = await shell.run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
 
     if (grepUpdates) {
         const MSG = 'Updates available:';

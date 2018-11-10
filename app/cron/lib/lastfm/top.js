@@ -1,6 +1,7 @@
 const {lastfm} = require('../../../env');
-const {request, sendToInflux} = require('../../../utils');
+const {sendToInflux} = require('../../../utils');
 const {msg} = require('../../../errors');
+const {request} = require('utils-mad');
 
 const data = [
     {
@@ -34,16 +35,17 @@ const sendLastFm = async () => {
             try {
                 const output = {};
 
-                const {body} = await request()
-                    .get('http://ws.audioscrobbler.com/2.0/')
-                    .query({
+                const {body} = await request.got('http://ws.audioscrobbler.com/2.0/', {
+                    query: {
                         api_key: lastfm.token,
                         format: 'json',
                         limit: 10,
                         method: elem.method,
                         period: '1month',
                         user,
-                    });
+                    },
+                    json: true,
+                });
 
                 body[elem.obj][elem.child].forEach(res => {
                     let name;

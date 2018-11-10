@@ -1,4 +1,4 @@
-const colors = require('colors/safe');
+const {magenta, yellow} = require('colorette');
 const fs = require('fs');
 const commands = require('./commands');
 
@@ -9,11 +9,11 @@ const data = [
 ];
 
 fs.writeFile('README.md', data.join('\n\n'), err => {
-    console.log(colors.yellow(err || 'README.md generated'));
+    console.log(yellow(err || 'README.md generated'));
 });
 
 fs.writeFile('commands.txt', commands
     .filter(elem => elem)
     .map(elem => elem.replace('/', ''))
-    .join('\n'), err => console.log(colors.magenta(err || 'commands.txt generated'))
+    .join('\n'), err => console.log(magenta(err || 'commands.txt generated'))
 );

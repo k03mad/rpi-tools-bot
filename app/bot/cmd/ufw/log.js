@@ -1,10 +1,11 @@
-const {run, UFW_LOG} = require('../../../utils');
+const {UFW_LOG} = require('../../../utils');
+const {shell} = require('utils-mad');
 
 /**
  * Get UFW logs
  */
 module.exports = async () => {
-    const log = await run(`cat ${UFW_LOG}`);
+    const log = await shell.run(`cat ${UFW_LOG}`);
 
     if (!log) {
         return 'Log is empty';

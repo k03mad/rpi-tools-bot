@@ -1,35 +1,8 @@
 const {chat} = require('../../env');
-const {convertToArray} = require('../../utils');
 const msg = require('../../errors');
+const {array, string} = require('utils-mad');
 
 const MAX_MSG_LENGTH = 4096;
-
-/**
- * Split long string by \n into array of strings
- * @param {string} str to split
- * @param {number} l max string length
- * @returns {string[]}
- */
-const splitString = (str, l) => {
-    const strs = [];
-
-    while (str.length > l) {
-        let pos = str.substring(0, l).lastIndexOf('\n');
-        pos = pos <= 0 ? l : pos;
-        strs.push(str.substring(0, pos));
-
-        let i = str.indexOf('\n', pos) + 1;
-
-        if (i < pos || i > pos + l) {
-            i = pos;
-        }
-
-        str = str.substring(i);
-    }
-
-    strs.push(str);
-    return strs;
-};
 
 /**
  * Send message to telegram user
@@ -41,10 +14,10 @@ const splitString = (str, l) => {
 const answer = async (bot, mes, sends, opts = {}) => {
     const sendOpts = opts.markdown ? {parse_mode: 'Markdown', disable_web_page_preview: true} : {};
 
-    for (const send of convertToArray(sends)) {
+    for (const send of array.convert(sends)) {
         if (send.length > MAX_MSG_LENGTH) {
             // split by new lines
-            const longStringArr = splitString(send, MAX_MSG_LENGTH);
+            const longStringArr = string.split(send, MAX_MSG_LENGTH);
 
             for (const elemPart of longStringArr) {
                 try {
