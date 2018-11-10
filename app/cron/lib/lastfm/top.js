@@ -41,7 +41,7 @@ const sendLastFm = async () => {
                         format: 'json',
                         limit: 10,
                         method: elem.method,
-                        period: '1month',
+                        period: '3month',
                         user,
                     },
                     json: true,
