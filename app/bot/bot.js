@@ -2,7 +2,7 @@ const {printMsg} = require('../date');
 const {proxy, telegramToken} = require('../env');
 const {reply} = require('./lib/chat');
 const Agent = require('socks5-https-client/lib/Agent');
-const c = require('require-all')(`${__dirname}/cmd`);
+const b = require('require-all')(`${__dirname}/cmd`);
 const TelegramBot = require('node-telegram-bot-api');
 
 const bot = new TelegramBot(telegramToken, {
@@ -16,22 +16,25 @@ const bot = new TelegramBot(telegramToken, {
     },
 });
 
-reply(bot, 'help', c.help);
+reply(bot, 'help', b.help);
 
-reply(bot, 'app_log', c.app.log);
+reply(bot, 'app_log', b.app.log);
 
-reply(bot, 'apt_update', c.apt.update);
-reply(bot, 'apt_upgrade', c.apt.upgrade);
+reply(bot, 'apt_update', b.apt.update);
+reply(bot, 'apt_upgrade', b.apt.upgrade);
 
-reply(bot, 'bal_update', c.bal.update);
+reply(bot, 'bal_update', b.bal.update);
 
-reply(bot, 'dns_update', c.dns.update);
+reply(bot, 'dns_update', b.dns.update);
 
-reply(bot, 'pi_reboot', c.pi.reboot);
-reply(bot, 'pi_shutdown', c.pi.shutdown);
+reply(bot, 'mus_unavail', b.mus.unavail);
+reply(bot, 'mus_dups', b.mus.dups);
 
-reply(bot, 'ufw_clean', c.ufw.clean);
-reply(bot, 'ufw_log', c.ufw.log, {markdown: true});
+reply(bot, 'pi_reboot', b.pi.reboot);
+reply(bot, 'pi_shutdown', b.pi.shutdown);
+
+reply(bot, 'ufw_clean', b.ufw.clean);
+reply(bot, 'ufw_log', b.ufw.log, {markdown: true});
 
 bot.on('polling_error', error => console.log(printMsg(error)));
 

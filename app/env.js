@@ -4,6 +4,10 @@ process.env.NTBA_FIX_319 = true;
 process.env.NODE_ENV = 'production';
 
 module.exports = {
+    yandex: {
+        login: process.env.YANDEX_LOGIN,
+        password: process.env.YANDEX_PASS,
+    },
     lastfm: {
         token: process.env.LASTFM_TOKEN,
         users: process.env.LASTFM_USERS.split(','),
