@@ -8,6 +8,7 @@ module.exports = [
     '',
     '/bal_update - update balance data',
     '',
+    '/dns_query - query dns filter',
     '/dns_update - update dns filter',
     '',
     '/mus_unavail - find unavailable tracks in playlist',
