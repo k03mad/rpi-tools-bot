@@ -25,8 +25,9 @@ reply(bot, 'apt_upgrade', b.apt.upgrade);
 
 reply(bot, 'bal_update', b.bal.update);
 
-reply(bot, 'dns_update', b.dns.update);
+reply(bot, 'dns_check', b.dns.check);
 reply(bot, 'dns_query', b.dns.query);
+reply(bot, 'dns_update', b.dns.update);
 
 reply(bot, 'mus_unavail', b.mus.unavail);
 reply(bot, 'mus_dups', b.mus.dups);
