@@ -37,7 +37,6 @@ const sendToInflux = async data => {
 };
 
 module.exports = {
-    run,
     runRepoScript,
     sendToInflux,
     PIHOLE_URL,
