@@ -1,6 +1,6 @@
-const {magenta, yellow} = require('colorette');
-const fs = require('fs');
 const commands = require('./commands');
+const fs = require('fs');
+const {magenta, yellow} = require('colorette');
 
 const data = [
     '![Dependencies](https://david-dm.org/k03mad/raspberry-tools.svg)',

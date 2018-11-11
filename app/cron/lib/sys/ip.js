@@ -1,7 +1,7 @@
 const {answer} = require('../../../bot/lib/chat');
 const {chat} = require('../../../env');
-const {wanIp} = require('../../../env');
 const {shell} = require('utils-mad');
+const {wanIp} = require('../../../env');
 
 /**
  * Check WAN IP changed

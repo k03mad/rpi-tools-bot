@@ -1,7 +1,7 @@
-const {pihole: {auth}} = require('../../../env');
-const {sendToInflux, PIHOLE_URL} = require('../../../utils');
 const msg = require('../../../errors');
+const {pihole: {auth}} = require('../../../env');
 const {request} = require('utils-mad');
+const {sendToInflux, PIHOLE_URL} = require('../../../utils');
 
 /**
  * Send dns top hosts

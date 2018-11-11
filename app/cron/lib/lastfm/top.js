@@ -1,7 +1,7 @@
 const {lastfm} = require('../../../env');
-const {sendToInflux} = require('../../../utils');
 const {msg} = require('../../../errors');
 const {request} = require('utils-mad');
+const {sendToInflux} = require('../../../utils');
 
 const data = [
     {

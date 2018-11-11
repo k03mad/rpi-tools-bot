@@ -1,5 +1,5 @@
-const {sendToInflux} = require('../../../utils');
 const msg = require('../../../errors');
+const {sendToInflux} = require('../../../utils');
 const {shell, promise} = require('utils-mad');
 
 /**

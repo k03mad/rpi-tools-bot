@@ -1,6 +1,6 @@
+const getLog = require('../../../bot/cmd/ufw/log');
 const {answer} = require('../../../bot/lib/chat');
 const {chat} = require('../../../env');
-const getLog = require('../../../bot/cmd/ufw/log');
 
 /**
  * Check UFW block log

@@ -14,7 +14,7 @@ const sendUsage = async () => {
 
     const cpuUsage = load.split(' ').map(x => Number(x));
     const cpuTemp = Number(temp) / 1000;
-    const diskUsed = Number(disk.match(/\/dev\/root +\d+ +([\d]+)/)[1]);
+    const diskUsed = Number(disk.match(/\/dev\/root +\d+ +(\d+)/)[1]);
     const ramUsed = Number(ram.match(/Mem: +\d+ +(\d+)/)[1]);
 
     sendToInflux({

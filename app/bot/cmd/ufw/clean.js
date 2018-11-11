@@ -1,5 +1,5 @@
-const {UFW_LOG} = require('../../../utils');
 const {shell} = require('utils-mad');
+const {UFW_LOG} = require('../../../utils');
 
 /**
  * Clean system log

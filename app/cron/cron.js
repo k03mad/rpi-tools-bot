@@ -1,6 +1,6 @@
-const cron = require('node-cron');
-const c = require('require-all')(`${__dirname}/lib`);
 const b = require('require-all')(`${__dirname}/../bot/cmd`);
+const c = require('require-all')(`${__dirname}/lib`);
+const cron = require('node-cron');
 
 /**
  * Schedule crons
