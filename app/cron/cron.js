@@ -38,12 +38,12 @@ const run = bot => {
     });
 
     // every day at
-    cron.schedule('03 5 * * *', () => {
+    cron.schedule('0 5 * * *', () => {
         b.bal.update();
     });
 
     // every day at
-    cron.schedule('05 5 * * *', () => {
+    cron.schedule('0 6 * * *', () => {
         b.pi.reboot();
     });
 };
