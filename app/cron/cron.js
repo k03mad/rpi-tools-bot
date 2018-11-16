@@ -24,7 +24,6 @@ const run = bot => {
         c.lastfm.top();
         c.sys.ip(bot);
         c.ufw.alarm(bot);
-        c.ufw.status(bot);
     });
 
     // every hour
