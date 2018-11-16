@@ -30,5 +30,5 @@ module.exports = async () => {
         output.push(`${counts[elem]}: ${elem}`);
     }
 
-    return output.join('\n');
+    return output.sort().join('\n');
 };

@@ -22,30 +22,28 @@ const run = bot => {
     // every N minutes
     cron.schedule('*/30 * * * *', () => {
         c.lastfm.top();
+        c.sys.ip(bot);
+        c.ufw.alarm(bot);
+        c.ufw.status(bot);
     });
 
     // every hour
     cron.schedule('0 * * * *', () => {
         b.dns.update();
-        c.sys.ip(bot);
-        c.ufw.status(bot);
     });
 
     // every day at
     cron.schedule('0 20 * * *', () => {
         c.pi.update(bot);
-        c.ufw.log(bot);
+        b.ufw.clean();
     });
 
     // every day at
-    cron.schedule('0 5 * * *', () => {
-        b.bal.update();
+    cron.schedule('0 4 * * *', () => {
+        // eslint-disable-next-line promise/catch-or-return
+        b.bal.update().then(() => b.pi.reboot());
     });
 
-    // every day at
-    cron.schedule('0 6 * * *', () => {
-        b.pi.reboot();
-    });
 };
 
 module.exports = run;
