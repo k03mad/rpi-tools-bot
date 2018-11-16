@@ -6,7 +6,6 @@ module.exports = {
         dns:        (log, ex)          => printMsg(`get dns queries:\n${ex}\nlog:\n${log}`),
         dnsClients: ex                 => printMsg(`get pihole top clients:\n${ex}`),
         dnsTop:     ex                 => printMsg(`get pihole top hosts:\n${ex}`),
-        lastfm:     (user, method, ex) => printMsg(`get ${user} lastfm ${method}:\n${ex}`),
         updErr:     ex                 => printMsg(`get pi updates:\n${ex}`),
         usage:      ex                 => printMsg(`get pi usage:\n${ex}`),
     },

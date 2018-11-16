@@ -8,10 +8,6 @@ module.exports = {
         login: process.env.YANDEX_LOGIN,
         password: process.env.YANDEX_PASS,
     },
-    lastfm: {
-        token: process.env.LASTFM_TOKEN,
-        users: process.env.LASTFM_USERS.split(','),
-    },
     proxy: {
         socksHost: process.env.PROXY_HOST,
         socksPort: process.env.PROXY_PORT,
