@@ -9,7 +9,7 @@ const {chat} = require('../../../env');
 const alarmUfwLog = async bot => {
     const log = await getLog();
 
-    if (/\d: /.test(log)) {
+    if (/\d{2,}: /.test(log)) {
         answer(bot, {chat: {id: chat}}, log, {markdown: true});
     }
 };
