@@ -21,7 +21,6 @@ const run = bot => {
 
     // every N minutes
     cron.schedule('*/30 * * * *', () => {
-        c.lastfm.top();
         c.sys.ip(bot);
         c.ufw.alarm(bot);
     });
