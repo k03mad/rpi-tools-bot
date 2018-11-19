@@ -37,7 +37,7 @@ const run = bot => {
     });
 
     // every day at
-    cron.schedule('0 4 * * *', () => {
+    cron.schedule('0 5 * * *', () => {
         // eslint-disable-next-line promise/catch-or-return
         b.bal.update().then(() => b.pi.reboot());
     });
