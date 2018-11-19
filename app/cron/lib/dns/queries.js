@@ -1,4 +1,5 @@
 const msg = require('../../../errors');
+const parseJson = require('json-parse-better-errors');
 const {sendToInflux} = require('../../../utils');
 const {shell, promise} = require('utils-mad');
 
@@ -12,7 +13,7 @@ const sendDnsQueries = async () => {
     for (let i = 0; i < 5; i++) {
         try {
             log = await shell.run('pihole -c -j');
-            parsedLog = JSON.parse(log);
+            parsedLog = parseJson(log);
 
             if (parsedLog.domains_being_blocked > 0) {
                 break;
