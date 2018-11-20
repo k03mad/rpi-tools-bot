@@ -8,38 +8,44 @@ const cron = require('node-cron');
  */
 const run = bot => {
     // every minute
-    cron.schedule('* * * * *', () => {
-        c.pi.usage();
+    cron.schedule('* * * * *', async () => {
+        await c.pi.usage();
     });
 
     // every N minutes
-    cron.schedule('*/10 * * * *', () => {
-        c.dns.clients();
-        c.dns.queries();
-        c.dns.top();
+    cron.schedule('*/10 * * * *', async () => {
+        await Promise.all([
+            c.dns.clients(),
+            c.dns.queries(),
+            c.dns.top(),
+        ]);
     });
 
     // every N minutes
-    cron.schedule('*/30 * * * *', () => {
-        c.sys.ip(bot);
-        c.ufw.alarm(bot);
+    cron.schedule('*/30 * * * *', async () => {
+        await Promise.all([
+            c.sys.ip(bot),
+            c.ufw.alarm(bot),
+        ]);
     });
 
     // every hour
-    cron.schedule('0 * * * *', () => {
-        b.dns.update();
+    cron.schedule('0 * * * *', async () => {
+        await b.dns.update();
     });
 
     // every day at
-    cron.schedule('0 20 * * *', () => {
-        c.pi.update(bot);
-        b.ufw.clean();
+    cron.schedule('0 20 * * *', async () => {
+        await Promise.all([
+            c.pi.update(bot),
+            b.ufw.clean(),
+        ]);
     });
 
     // every day at
-    cron.schedule('0 5 * * *', () => {
-        // eslint-disable-next-line promise/catch-or-return
-        b.bal.update().then(() => b.pi.reboot());
+    cron.schedule('0 5 * * *', async () => {
+        await b.bal.update();
+        await b.pi.reboot();
     });
 
 };
