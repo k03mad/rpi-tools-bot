@@ -17,6 +17,10 @@ module.exports = {
     pihole: {
         auth: process.env.PIHOLE_PASS,
     },
+    lastfm: {
+        token: process.env.LASTFM_TOKEN,
+        users: process.env.LASTFM_USERS.split(','),
+    },
     wanIp: process.env.WAN_IP,
     chat: Number(process.env.MY_CHAT),
     telegramToken: process.env.RP_TELEGRAM_TOKEN,
