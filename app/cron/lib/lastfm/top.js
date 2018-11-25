@@ -5,13 +5,6 @@ const {sendToInflux} = require('../../../utils');
 
 const data = [
     {
-        method: 'user.getTopAlbums',
-        obj: 'topalbums',
-        child: 'album',
-        main: 'name',
-        extra: ['artist', 'name'],
-    },
-    {
         method: 'user.getTopArtists',
         obj: 'topartists',
         child: 'artist',
