@@ -10,6 +10,7 @@ const run = bot => {
     // every minute
     cron.schedule('* * * * *', () => {
         c.pi.usage();
+        c.sens.data();
     });
 
     // every N minutes
