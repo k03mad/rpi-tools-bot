@@ -25,7 +25,7 @@ const runRepoScript = (repo, script) => [
 const sendToInflux = async data => {
     try {
         await influx.write({
-            url: 'http://192.168.1.100:8086',
+            url: 'http://localhost:8086',
             meas: 'pi3',
             db: data.db || 'hole',
             tags: data.tags,
