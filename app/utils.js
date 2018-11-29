@@ -19,7 +19,7 @@ const runRepoScript = (repo, script) => [
 ];
 
 /**
- * Store data to influxdb
+ * Store data to InfluxDB
  * @param {Object} data to send
  */
 const sendToInflux = async data => {
