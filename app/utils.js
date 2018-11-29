@@ -27,7 +27,7 @@ const sendToInflux = async data => {
         await influx.write({
             url: 'http://localhost:8086',
             meas: 'pi3',
-            db: data.db || 'hole',
+            db: data.db,
             tags: data.tags,
             values: data.values,
         });

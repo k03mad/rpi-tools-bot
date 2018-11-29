@@ -40,8 +40,8 @@ const sendDnsTop = async () => {
         }
     }
 
-    sendToInflux({tags: {dns: 'topBlock'}, values: ads});
-    sendToInflux({tags: {dns: 'topQueries'}, values: queries});
+    sendToInflux({db: 'hole', tags: {dns: 'topBlock'}, values: ads});
+    sendToInflux({db: 'hole', tags: {dns: 'topQueries'}, values: queries});
 };
 
 module.exports = sendDnsTop;

@@ -33,7 +33,7 @@ const sendClientsTop = async () => {
         }
     }
 
-    sendToInflux({tags: {dns: 'topClients'}, values: top});
+    sendToInflux({db: 'hole', tags: {dns: 'topClients'}, values: top});
 };
 
 module.exports = sendClientsTop;
