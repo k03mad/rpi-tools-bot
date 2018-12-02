@@ -2,7 +2,7 @@ app_log - print forever log
 apt_update - check for updates
 apt_upgrade - install updates
 dns_check - check whitelisted hosts from ad block filters
-dns_lastpush — get last push to adblock lists repo
+dns_lastpush - get last push to adblock lists repo
 dns_query - query dns filter
 dns_update - update dns filter
 mus_dups - find duplicate tracks in ya.music playlist
