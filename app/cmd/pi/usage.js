@@ -13,11 +13,15 @@ const usage = async () => {
         shell.run('free -m'),
     ]);
 
+    const [, matchLoad] = load.match(/((?:[\d.]+ ){3})/);
+    const [, matchDisk] = disk.match(/\/dev\/root +\d+ +(\d+)/);
+    const [, matchRam] = ram.match(/Mem: +\d+ +(\d+)/);
+
     return [
-        `cpu load: ${load.match(/((?:[\d.]+ ){2}[\d.]+)/)[1]}`,
-        `cpu temp: ${Number(temp) / 1000} °C`,
-        `disk usage: ${disk.match(/\/dev\/root +\d+ +(\d+)/)[1] * 1.0E-6} GB`,
-        `ram usage: ${ram.match(/Mem: +\d+ +(\d+)/)[1]} MB`,
+        `cpu load: ${matchLoad}`,
+        `cpu temp: ${temp / 1000} °C`,
+        `disk usage: ${(matchDisk * 1.0E-6).toFixed(3)} GB`,
+        `ram usage: ${matchRam} MB`,
     ].join('\n');
 };
 
