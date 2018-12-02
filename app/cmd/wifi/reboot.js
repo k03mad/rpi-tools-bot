@@ -15,7 +15,10 @@ const reboot = async () => {
                 act: '',
                 commit: 'reboot',
             },
-            auth: router,
+            auth: [
+                router.login,
+                router.password,
+            ].join(':'),
         });
     } catch (err) {
         return err.message;
