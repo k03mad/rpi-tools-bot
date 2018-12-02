@@ -14,10 +14,10 @@ const usage = async () => {
     ]);
 
     return [
-        `cpu load: ${load}`,
-        `cpu temp: ${Number(temp) / 1000}`,
-        `disk usage: ${Number(disk.match(/\/dev\/root +\d+ +(\d+)/)[1])}`,
-        `ram usage: ${Number(ram.match(/Mem: +\d+ +(\d+)/)[1])}`,
+        `cpu load: ${load.match(/((?:[\d.]+ ){2}[\d.]+)/)[1]}`,
+        `cpu temp: ${Number(temp) / 1000} °C`,
+        `disk usage: ${disk.match(/\/dev\/root +\d+ +(\d+)/)[1] * 1.0E-6} GB`,
+        `ram usage: ${ram.match(/Mem: +\d+ +(\d+)/)[1]} MB`,
     ].join('\n');
 };
 
