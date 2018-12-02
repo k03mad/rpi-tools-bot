@@ -1,6 +1,8 @@
-const bot = require('./app/bot/bot');
-const cron = require('./app/cron/cron');
-const {printMsg} = require('./app/date');
+'use strict';
+
+const bot = require('./app/bot');
+const cron = require('./app/cron');
+const {printMsg} = require('./app/lib/utils');
 
 cron(bot);
 

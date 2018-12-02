@@ -1,6 +1,6 @@
 {
   "name": "raspberry-tools",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "Raspberry Pi 3 Tools",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "eslint": "5.9.0",
-    "eslint-config-k03mad": "1.2.1",
+    "eslint-config-k03mad": "2.0.0",
     "eslint-plugin-const-case": "1.0.4",
     "eslint-plugin-node": "8.0.0",
     "eslint-plugin-optimize-regex": "1.1.6",
@@ -36,14 +36,12 @@
     "clean": "rm -rf ./node_modules || true",
     "clean:log": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --cache --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
-    "readme": "node app/bot/lib/readme && git add README.md",
     "setup": "npm i && npm run clean:log",
     "start": "forever start -a --uid raspi --minUptime 1000 --spinSleepTime 10000 -l ../git/raspberry-tools/forever.log index.js",
     "stop": "forever stop -t raspi || true"
   },
   "pre-commit": [
-    "lint",
-    "readme"
+    "lint"
   ],
   "license": "Unlicense"
 }
