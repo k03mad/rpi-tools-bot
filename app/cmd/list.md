@@ -9,4 +9,4 @@ mus_unavail - find unavailable tracks in ya.music playlist
 pi_reboot - reboot pi
 pi_shutdown - shutdown pi
 pi_usage - pi system usage
-wifi_reboot — router reboot
+wifi_reboot - router reboot
