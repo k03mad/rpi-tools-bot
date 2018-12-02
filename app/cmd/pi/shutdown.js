@@ -2,4 +2,4 @@
 
 const {shell} = require('utils-mad');
 
-module.exports = () => shell.run('sudo shutdown -h +1');
+module.exports = () => shell.run('sudo shutdown -h +1').catch(err => err);

@@ -5,13 +5,13 @@ const {shell} = require('utils-mad');
 /**
  * Get pi usage
  */
-const usage = async () => {
+module.exports = async () => {
     const [load, temp, disk, ram] = await Promise.all([
         shell.run('cat /proc/loadavg'),
         shell.run('cat /sys/class/thermal/thermal_zone0/temp'),
         shell.run('df'),
         shell.run('free -m'),
-    ]);
+    ]).catch(err => err);
 
     const [, matchLoad] = load.match(/((?:[\d.]+ ){3})/);
     const [, matchDisk] = disk.match(/\/dev\/root +\d+ +(\d+)/);
@@ -24,5 +24,3 @@ const usage = async () => {
         `ram usage: ${matchRam} MB`,
     ].join('\n');
 };
-
-module.exports = usage;
