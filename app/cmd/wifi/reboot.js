@@ -3,10 +3,7 @@
 const {request} = require('utils-mad');
 const {router} = require('../../../env');
 
-/**
- * Reboot router
- */
-const reboot = async () => {
+module.exports = async () => {
     try {
         await request.got('http://192.168.1.133/cgi-bin/timepro.cgi', {
             query: {
@@ -26,5 +23,3 @@ const reboot = async () => {
 
     return 'Router going to reboot';
 };
-
-module.exports = reboot;

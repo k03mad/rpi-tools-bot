@@ -9,7 +9,7 @@ const {shell} = require('utils-mad');
  * Inst poppler-utils [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf]) []
  * Inst libpoppler64 [0.48.0-2] (0.48.0-2+deb9u1 Raspbian:stable [armhf])
  */
-const update = async () => {
+module.exports = async () => {
     try {
         const grepUpdates = await shell.run('sudo apt-get update > /dev/null; apt-get upgrade -u -s | grep -P "^Inst"');
         const MSG = 'Updates available:';
@@ -27,5 +27,3 @@ const update = async () => {
         return 'No updates available';
     }
 };
-
-module.exports = update;

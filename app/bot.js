@@ -24,6 +24,7 @@ reply(bot, 'apt_update', b.apt.update);
 reply(bot, 'apt_upgrade', b.apt.upgrade);
 
 reply(bot, 'dns_check', b.dns.check);
+reply(bot, 'dns_lastpush', b.dns.lastpush);
 reply(bot, 'dns_query', b.dns.query);
 reply(bot, 'dns_update', b.dns.update);
 
