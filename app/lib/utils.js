@@ -12,8 +12,14 @@ const MAX_MSG_LENGTH = 4096;
  * @returns {string}
  */
 const printMsg = msg => {
-    console.log(`\n[${date.now()}]\n${msg}`);
-    return msg;
+    const dateMsg = `\n[${date.now()}]\n`;
+
+    const prettyMsg = typeof msg === 'object'
+        ? JSON.stringify(msg, null, 4)
+        : msg;
+
+    console.log(dateMsg + prettyMsg);
+    return prettyMsg;
 };
 
 /**
