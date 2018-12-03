@@ -11,7 +11,10 @@ const MAX_MSG_LENGTH = 4096;
  * @param {string} msg to add time
  * @returns {string}
  */
-const printMsg = msg => `\n[${date.now()}]\n${msg}`;
+const printMsg = msg => {
+    console.log(`\n[${date.now()}]\n${msg}`);
+    return msg;
+};
 
 /**
  * Open repo and run script
@@ -51,7 +54,7 @@ const answer = async (bot, mes, sends, opts = {}) => {
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => console.log(printMsg(err)));
+            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => printMsg(err));
         }
     }
 };
@@ -68,7 +71,7 @@ const reply = (bot, enteredText, cmd, opts = {}) => {
 
     bot.onText(textRe, async (mes, match) => {
         if (chat === mes.chat.id) {
-            bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.log(printMsg(err)));
+            bot.sendChatAction(mes.chat.id, 'typing').catch(err => printMsg(err));
             answer(bot, mes, await cmd(match[2]), opts);
         }
     });
