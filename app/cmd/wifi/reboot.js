@@ -18,9 +18,8 @@ module.exports = async () => {
                 router.password,
             ].join(':'),
         });
+        return 'Router going to reboot';
     } catch (err) {
         return printMsg(err);
     }
-
-    return 'Router going to reboot';
 };
