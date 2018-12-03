@@ -6,4 +6,4 @@ const {printMsg} = require('./app/lib/utils');
 
 cron(bot);
 
-console.log(printMsg('pi started'));
+printMsg('pi started');
