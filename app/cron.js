@@ -16,8 +16,8 @@ const run = bot => {
         b.dns.lastpush(bot);
     });
 
-    cron.schedule('0 5 * * *', () => b.pi.reboot());
     cron.schedule('30 5 * * *', () => b.wifi.reboot());
+    cron.schedule('40 5 * * *', () => b.pi.reboot());
 
 };
 
