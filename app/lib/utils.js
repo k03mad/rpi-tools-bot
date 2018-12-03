@@ -13,10 +13,7 @@ const MAX_MSG_LENGTH = 4096;
  */
 const printMsg = msg => {
     const dateMsg = `\n[${date.now()}]\n`;
-
-    const prettyMsg = typeof msg === 'object'
-        ? JSON.stringify(msg, null, 4)
-        : msg;
+    const prettyMsg = typeof msg === 'string' ? msg : msg.toString();
 
     console.log(dateMsg + prettyMsg);
     return prettyMsg;
