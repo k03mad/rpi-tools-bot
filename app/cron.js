@@ -11,9 +11,9 @@ const run = bot => {
 
     cron.schedule('0 * * * *', () => b.dns.update());
 
-    cron.schedule('0 20 * * *', () => {
-        b.apt.update(bot);
-        b.dns.lastpush(bot);
+    cron.schedule('0 20 * * *', async () => {
+        await b.apt.update(bot);
+        await b.dns.lastpush(bot);
     });
 
     cron.schedule('30 5 * * *', () => b.pi.reboot());
