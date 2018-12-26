@@ -1,9 +1,8 @@
 'use strict';
 
-const bot = require('./app/bot');
-const cron = require('./app/cron');
 const {printMsg} = require('./app/lib/utils');
 
-cron(bot);
+require('./app/bot');
+require('./app/cron');
 
 printMsg('pi started');

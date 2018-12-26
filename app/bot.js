@@ -38,5 +38,3 @@ reply(bot, 'pi_usage', b.pi.usage);
 reply(bot, 'wifi_reboot', b.wifi.reboot);
 
 bot.on('polling_error', error => printMsg(error));
-
-module.exports = bot;
