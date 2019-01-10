@@ -9,7 +9,7 @@ const {reply} = require('./lib/utils');
 
 const bot = new TelegramBot(telegramToken, {
     polling: {
-        interval: 10000,
+        interval: 3000,
         params: {allowed_updates: ['message']},
     },
     request: {
