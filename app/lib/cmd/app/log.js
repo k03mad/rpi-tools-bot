@@ -9,8 +9,12 @@ const readFile = promisify(fs.readFile);
 
 module.exports = async () => {
     try {
-        const log = await readFile(`${appRoot}/forever.log`);
-        return log.length > 1 ? log.toString() : 'Log is empty';
+        const log = [
+            await readFile(`${appRoot}/forever.log`),
+            await readFile(`${appRoot}/../rpi-tools-cron/forever.log`),
+        ];
+
+        return log.map(elem => elem.toString()).join('\n---------\n');
     } catch (err) {
         return printMsg(err);
     }
