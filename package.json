@@ -1,20 +1,17 @@
 {
-  "name": "raspberry-tools",
-  "version": "7.0.0",
-  "description": "Raspberry Pi 3 Tools",
+  "name": "rpi-tools-bot",
+  "version": "8.0.0",
+  "description": "Raspberry Pi 3 Telegram Bot",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
   ],
-  "repository": "k03mad/raspberry-tools",
+  "repository": "k03mad/rpi-tools-bot",
   "engines": {
     "node": ">=10"
   },
   "dependencies": {
     "app-root-path": "2.1.0",
-    "colorette": "1.0.7",
     "forever": "0.15.3",
-    "json-parse-better-errors": "1.0.2",
-    "node-cron": "2.0.3",
     "node-telegram-bot-api": "0.30.0",
     "require-all": "3.0.0",
     "socks5-https-client": "1.2.1",
@@ -38,8 +35,8 @@
     "clean:log": "rm -rf ./forever.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --cache --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "setup": "npm i && npm run clean:log",
-    "start": "forever start -a --uid raspi --minUptime 1000 --spinSleepTime 10000 -l ../git/raspberry-tools/forever.log index.js",
-    "stop": "forever stop -t raspi || true"
+    "start": "forever start -a --uid rpibot --minUptime 1000 --spinSleepTime 10000 -l ../git/rpi-tools-bot/forever.log index.js",
+    "stop": "forever stop -t rpibot || true"
   },
   "pre-commit": [
     "lint"

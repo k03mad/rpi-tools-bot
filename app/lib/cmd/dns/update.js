@@ -1,7 +1,7 @@
 'use strict';
 
-const {printMsg} = require('../../lib/utils');
-const {runRepoScript} = require('../../lib/utils');
+const {printMsg} = require('../../utils');
+const {runRepoScript} = require('../../utils');
 const {shell} = require('utils-mad');
 
 module.exports = () => shell.run(runRepoScript(

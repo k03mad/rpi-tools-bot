@@ -33,7 +33,6 @@ reply(bot, 'mus_unavail', b.mus.unavail);
 
 reply(bot, 'pi_reboot', b.pi.reboot);
 reply(bot, 'pi_shutdown', b.pi.shutdown);
-reply(bot, 'pi_usage', b.pi.usage);
 
 reply(bot, 'wifi_reboot', b.wifi.reboot);
 

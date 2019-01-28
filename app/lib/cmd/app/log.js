@@ -2,7 +2,7 @@
 
 const appRoot = require('app-root-path');
 const fs = require('fs');
-const {printMsg} = require('../../lib/utils');
+const {printMsg} = require('../../utils');
 const {promisify} = require('util');
 
 const readFile = promisify(fs.readFile);

@@ -1,8 +1,8 @@
 'use strict';
 
-const {printMsg} = require('../../lib/utils');
+const {printMsg} = require('../../utils');
 const {request} = require('utils-mad');
-const {router} = require('../../../env');
+const {router} = require('../../../../env');
 
 module.exports = async () => {
     try {
