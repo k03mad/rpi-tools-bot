@@ -9,10 +9,10 @@ const readFile = promisify(fs.readFile);
 
 module.exports = async () => {
     try {
-        const log = [
-            await readFile(`${appRoot}/forever.log`),
-            await readFile(`${appRoot}/../rpi-tools-cron/forever.log`),
-        ];
+        const log = await Promise.all([
+            readFile(`${appRoot}/forever.log`),
+            readFile(`${appRoot}/../rpi-tools-cron/forever.log`),
+        ]);
 
         return log.map(elem => elem.toString()).join('\n---------\n');
     } catch (err) {
