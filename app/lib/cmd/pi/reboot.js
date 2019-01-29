@@ -1,6 +1,5 @@
 'use strict';
 
-const {printMsg} = require('../../utils');
-const {shell} = require('utils-mad');
+const {log, shell} = require('utils-mad');
 
-module.exports = () => shell.run('sudo shutdown -r +1').catch(err => printMsg(err));
+module.exports = () => shell.run('sudo shutdown -r +1').catch(err => log.print(err));

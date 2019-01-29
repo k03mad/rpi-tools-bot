@@ -1,7 +1,6 @@
 'use strict';
 
-const {printMsg} = require('../../utils');
-const {request} = require('utils-mad');
+const {log, request} = require('utils-mad');
 const {router} = require('../../../../env');
 
 module.exports = async () => {
@@ -20,6 +19,6 @@ module.exports = async () => {
         });
         return 'Router going to reboot';
     } catch (err) {
-        return printMsg(err);
+        return log.print(err);
     }
 };

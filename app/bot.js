@@ -3,7 +3,7 @@
 const Agent = require('socks5-https-client/lib/Agent');
 const b = require('require-all')(`${__dirname}/lib/cmd`);
 const TelegramBot = require('node-telegram-bot-api');
-const {printMsg} = require('./lib/utils');
+const {log} = require('utils-mad');
 const {proxy, telegramToken} = require('../env');
 const {reply} = require('./lib/utils');
 
@@ -36,4 +36,4 @@ reply(bot, 'pi_shutdown', b.pi.shutdown);
 
 reply(bot, 'wifi_reboot', b.wifi.reboot);
 
-bot.on('polling_error', error => printMsg(error));
+bot.on('polling_error', error => log.print(error));

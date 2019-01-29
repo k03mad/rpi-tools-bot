@@ -1,23 +1,9 @@
 'use strict';
 
-const {array, string} = require('utils-mad');
 const {chat} = require('../../env');
-const {date} = require('utils-mad');
+const {log, array, string} = require('utils-mad');
 
 const MAX_MSG_LENGTH = 4096;
-
-/**
- * Print message with datestamp
- * @param {string} msg to add time
- * @returns {string}
- */
-const printMsg = msg => {
-    const dateMsg = `\n[${date.now()}]\n`;
-    const prettyMsg = typeof msg === 'string' ? msg : msg.toString();
-
-    console.log(dateMsg + prettyMsg);
-    return prettyMsg;
-};
 
 /**
  * Open repo and run script
@@ -52,12 +38,12 @@ const answer = async (bot, mes, sends, opts = {}) => {
                 try {
                     await bot.sendMessage(mes.chat.id, elemPart, sendOpts);
                 } catch (err) {
-                    console.log(printMsg(err));
+                    console.log(log.print(err));
                 }
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => printMsg(err));
+            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => log.print(err));
         }
     }
 };
@@ -74,14 +60,13 @@ const reply = (bot, enteredText, cmd, opts = {}) => {
 
     bot.onText(textRe, async (mes, match) => {
         if (chat === mes.chat.id) {
-            bot.sendChatAction(mes.chat.id, 'typing').catch(err => printMsg(err));
+            bot.sendChatAction(mes.chat.id, 'typing').catch(err => log.print(err));
             answer(bot, mes, await cmd(match[2]), opts);
         }
     });
 };
 
 module.exports = {
-    printMsg,
     runRepoScript,
     reply,
 };

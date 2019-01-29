@@ -1,7 +1,7 @@
 'use strict';
 
-const {printMsg} = require('./app/lib/utils');
+const {log} = require('utils-mad');
 
 require('./app/bot');
 
-printMsg(`Started: ${__dirname}`);
+log.print('App started');
