@@ -5,7 +5,7 @@ const {router} = require('../../../../env');
 
 module.exports = async () => {
     try {
-        await request.got('http://192.168.1.133/cgi-bin/timepro.cgi', {
+        await request.got(router.url, {
             query: {
                 tmenu: 'background',
                 smenu: 'reboot',
