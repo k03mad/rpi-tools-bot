@@ -18,28 +18,29 @@ const bot = new TelegramBot(telegramToken, {
     },
 });
 
-const replies = {
-    app_log: b.app.log,
+const replies = [
+    'app_log',
 
-    apt_update: b.apt.update,
-    apt_upgrade: b.apt.upgrade,
+    'apt_update',
+    'apt_upgrade',
 
-    dns_check: b.dns.check,
-    dns_lastpush: b.dns.lastpush,
-    dns_query: b.dns.query,
-    dns_update: b.dns.update,
+    'dns_check',
+    'dns_lastpush',
+    'dns_query',
+    'dns_update',
 
-    mus_dups: b.mus.dups,
-    mus_unavail: b.mus.unavail,
+    'mus_dups',
+    'mus_unavail',
 
-    pi_reboot: b.pi.reboot,
-    pi_shutdown: b.pi.shutdown,
+    'pi_reboot',
+    'pi_shutdown',
 
-    wifi_reboot: b.wifi.reboot,
-};
+    'wifi_reboot',
+];
 
-for (const [key, value] of Object.entries(replies)) {
-    reply(bot, key, value);
+for (const command of replies) {
+    const [section, name] = command.split('_');
+    reply(bot, command, b[section][name]);
 }
 
 bot.on('polling_error', error => log.print(error));
