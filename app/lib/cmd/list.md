@@ -9,4 +9,3 @@ mus_dups - find duplicate tracks in ya.music playlist
 mus_unavail - find unavailable tracks in ya.music playlist
 pi_reboot - reboot pi
 pi_shutdown - shutdown pi
-wifi_reboot - router reboot
