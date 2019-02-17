@@ -34,8 +34,6 @@ const replies = [
 
     'pi_reboot',
     'pi_shutdown',
-
-    'wifi_reboot',
 ];
 
 for (const command of replies) {
