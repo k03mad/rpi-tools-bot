@@ -25,7 +25,6 @@ const replies = [
     'apt_upgrade',
 
     'dns_check',
-    'dns_lastpush',
     'dns_query',
     'dns_update',
 
