@@ -1,10 +1,10 @@
 'use strict';
 
 const Agent = require('socks5-https-client/lib/Agent');
-const b = require('require-all')(`${__dirname}/lib/cmd`);
+const b = require('require-all')(`${__dirname}/cmd`);
 const TelegramBot = require('node-telegram-bot-api');
 const {log} = require('utils-mad');
-const {proxy, telegramToken} = require('../env');
+const {proxy, telegramToken} = require('./lib/env');
 const {reply} = require('./lib/utils');
 
 const bot = new TelegramBot(telegramToken, {

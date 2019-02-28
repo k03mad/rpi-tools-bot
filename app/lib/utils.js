@@ -1,6 +1,6 @@
 'use strict';
 
-const {chat} = require('../../env');
+const {chat} = require('./env');
 const {log, array, string} = require('utils-mad');
 
 const MAX_MSG_LENGTH = 4096;
