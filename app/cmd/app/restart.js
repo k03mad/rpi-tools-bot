@@ -3,6 +3,6 @@
 const {shell} = require('utils-mad');
 
 module.exports = () => {
-    shell.run('source ~/.autorunrc');
+    shell.run('. ~/.autorunrc');
     return 'Launch autorun...';
 };
