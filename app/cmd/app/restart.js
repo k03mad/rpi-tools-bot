@@ -1,8 +1,8 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const {spawn} = require('child_process');
 
 module.exports = () => {
-    shell.run('. ~/.autorunrc');
+    spawn('source', ['~/.autorunrc']);
     return 'Launch autorun...';
 };
