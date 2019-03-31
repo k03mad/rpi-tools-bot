@@ -21,7 +21,6 @@ const bot = new TelegramBot(telegramToken, {
 const replies = [
     'app_log',
 
-    'apt_update',
     'apt_upgrade',
 
     'dns_check',
