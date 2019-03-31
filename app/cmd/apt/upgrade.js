@@ -3,8 +3,8 @@
 const {log, shell} = require('utils-mad');
 
 module.exports = () => shell.run([
-    'sudo apt update',
-    'sudo apt full-upgrade -y',
-    'sudo apt autoremove -y',
-    'sudo apt autoclean',
+    'sudo apt-get update',
+    'sudo apt-get dist-upgrade -y',
+    'sudo apt-get autoremove -y',
+    'sudo apt-get autoclean',
 ]).catch(err => log.print(err));
