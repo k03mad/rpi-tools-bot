@@ -15,16 +15,16 @@
     "node-telegram-bot-api": "0.30.0",
     "require-all": "3.0.0",
     "socks5-https-client": "1.2.1",
-    "utils-mad": "1.5.1"
+    "utils-mad": "1.6.0"
   },
   "devDependencies": {
     "eslint": "5.16.0",
     "eslint-config-k03mad": "2.2.2",
     "eslint-plugin-const-case": "1.0.4",
-    "eslint-plugin-jsdoc": "4.6.0",
+    "eslint-plugin-jsdoc": "4.7.0",
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-optimize-regex": "1.1.6",
-    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-promise": "4.1.0",
     "eslint-plugin-sort-requires": "2.1.0",
     "eslint-plugin-unicorn": "8.0.1",
     "pre-commit": "1.2.2"

@@ -1,10 +1,9 @@
 'use strict';
 
-const {log, shell} = require('utils-mad');
-const {runRepoScript} = require('../../lib/utils');
-const {yandex} = require('../../lib/env');
+const {shell} = require('utils-mad');
+const {yandex} = require('../../../env');
 
-module.exports = () => shell.run(runRepoScript(
+module.exports = () => shell.script(
     'print-unavailable-yamusic',
     `search --login=${yandex.login} --pass=${yandex.password}`
-)).catch(err => log.print(err));
+);

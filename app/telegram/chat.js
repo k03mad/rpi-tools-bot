@@ -1,23 +1,10 @@
 'use strict';
 
-const {chat} = require('./env');
+const b = require('require-all')(`${__dirname}/../cmd`);
+const {chat} = require('../../env');
 const {log, array, string} = require('utils-mad');
 
 const MAX_MSG_LENGTH = 4096;
-
-/**
- * Open repo and run script
- * @param {string} repo to change dir
- * @param {string} script to run
- * @returns {string}
- */
-const runRepoScript = (repo, script) => [
-    `cd ~/git/${repo}`,
-    'git reset --hard',
-    'git pull',
-    'npm run setup',
-    `npm run ${script}`,
-];
 
 /**
  * Send message to telegram user
@@ -38,7 +25,7 @@ const answer = async (bot, mes, sends, opts = {}) => {
                 try {
                     await bot.sendMessage(mes.chat.id, elemPart, sendOpts);
                 } catch (err) {
-                    console.log(log.print(err));
+                    log.print(err);
                 }
             }
 
@@ -58,15 +45,28 @@ const answer = async (bot, mes, sends, opts = {}) => {
 const reply = (bot, enteredText, cmd, opts = {}) => {
     const textRe = new RegExp(`^/${enteredText}(@[a-z_]+)? ?(.+)?`);
 
-    bot.onText(textRe, async (mes, match) => {
+    bot.onText(textRe, (mes, match) => {
         if (chat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => log.print(err));
-            answer(bot, mes, await cmd(match[2]), opts);
+            const response = cmd(match[2]).catch(err => log.print(err));
+            answer(bot, mes, response, opts);
         }
     });
 };
 
+/**
+ * Wait for bot text
+ * @param {Object} bot telegram api
+ * @param {string[]} replies commands
+ */
+const executeReplies = (bot, replies) => {
+    for (const command of replies) {
+        const [section, name] = command.split('_');
+        reply(bot, command, b[section][name]);
+    }
+};
+
 module.exports = {
-    runRepoScript,
     reply,
+    executeReplies,
 };
