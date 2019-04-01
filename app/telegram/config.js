@@ -1,5 +1,7 @@
 'use strict';
 
+process.env.NTBA_FIX_319 = true;
+
 const Agent = require('socks5-https-client/lib/Agent');
 const TelegramBot = require('node-telegram-bot-api');
 const {proxy, telegramToken} = require('../../env');
