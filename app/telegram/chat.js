@@ -45,10 +45,17 @@ const answer = async (bot, mes, sends, opts = {}) => {
 const reply = (bot, enteredText, cmd, opts = {}) => {
     const textRe = new RegExp(`^/${enteredText}(@[a-z_]+)? ?(.+)?`);
 
-    bot.onText(textRe, (mes, match) => {
+    bot.onText(textRe, async (mes, match) => {
         if (chat === mes.chat.id) {
             bot.sendChatAction(mes.chat.id, 'typing').catch(err => log.print(err));
-            const response = cmd(match[2]).catch(err => log.print(err));
+            let response;
+
+            try {
+                response = await cmd(match[2]);
+            } catch (err) {
+                response = log.print(err);
+            }
+
             answer(bot, mes, response, opts);
         }
     });
