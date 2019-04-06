@@ -14,6 +14,8 @@ executeReplies(bot, [
     'dns_query',
     'dns_update',
 
+    'mik_piswitch',
+
     'mus_dups',
     'mus_unavail',
 

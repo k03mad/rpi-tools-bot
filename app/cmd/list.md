@@ -4,6 +4,7 @@ apt_upgrade - install updates
 dns_check - check whitelisted hosts from ad block filters
 dns_query - query dns filter
 dns_update - update dns filter
+mik_piswitch - mikrotik switch pihole nat rules
 mus_dups - find duplicate tracks in ya.music playlist
 mus_unavail - find unavailable tracks in ya.music playlist
 pi_reboot - reboot pi

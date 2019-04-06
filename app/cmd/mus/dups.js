@@ -5,5 +5,5 @@ const {yandex} = require('../../../env');
 
 module.exports = () => shell.script(
     'print-unavailable-yamusic',
-    `search --login=${yandex.login} --pass=${yandex.password} --dups`
+    `search --login=${yandex.login} --pass=${yandex.password} --dups`,
 );
