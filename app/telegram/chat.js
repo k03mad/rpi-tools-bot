@@ -68,8 +68,8 @@ const reply = (bot, enteredText, cmd, opts = {}) => {
  */
 const executeReplies = (bot, replies) => {
     for (const command of replies) {
-        const [section, name] = command.split('_');
-        reply(bot, command, b[section][name]);
+        const [section, ...name] = command.split('_');
+        reply(bot, command, b[section][name.join('_')]);
     }
 };
 

@@ -10,5 +10,5 @@ module.exports = async () => {
     const status = pihole[0].disabled === 'false' ? 'disable' : 'enable';
     await mikrotik.get([...ids.map(id => [`/ip/firewall/nat/${status}`, `=.id=${id}`])]);
 
-    return status;
+    return `${status}d`;
 };

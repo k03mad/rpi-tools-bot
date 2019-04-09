@@ -14,7 +14,9 @@ executeReplies(bot, [
     'dns_query',
     'dns_update',
 
-    'mik_piswitch',
+    'mik_pi_switch',
+    'mik_wlan1_switch',
+    'mik_wlan2_switch',
 
     'mus_dups',
     'mus_unavail',
