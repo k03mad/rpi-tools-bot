@@ -2,4 +2,4 @@
 
 const {mikrotik} = require('utils-mad');
 
-module.exports = () => mikrotik.interface.switch('wlan2');
+module.exports = () => mikrotik.switch('/interface', 'wlan2');

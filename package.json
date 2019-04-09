@@ -15,7 +15,7 @@
     "node-telegram-bot-api": "0.30.0",
     "require-all": "3.0.0",
     "socks5-https-client": "1.2.1",
-    "utils-mad": "1.7.1"
+    "utils-mad": "1.7.2"
   },
   "devDependencies": {
     "eslint": "5.16.0",

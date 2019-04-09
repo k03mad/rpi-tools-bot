@@ -14,7 +14,8 @@ executeReplies(bot, [
     'dns_query',
     'dns_update',
 
-    'mik_pi_switch',
+    'mik_dhcp_switch',
+    'mik_nat_pi_switch',
     'mik_wlan1_switch',
     'mik_wlan2_switch',
 
