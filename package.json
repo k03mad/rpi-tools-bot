@@ -15,11 +15,11 @@
     "node-telegram-bot-api": "0.30.0",
     "require-all": "3.0.0",
     "socks5-https-client": "1.2.1",
-    "utils-mad": "1.8.2"
+    "utils-mad": "1.8.3"
   },
   "devDependencies": {
     "eslint": "5.16.0",
-    "eslint-config-k03mad": "2.2.4",
+    "eslint-config-k03mad": "2.3.0",
     "eslint-plugin-const-case": "1.0.4",
     "eslint-plugin-jsdoc": "4.8.3",
     "eslint-plugin-node": "9.0.0",
