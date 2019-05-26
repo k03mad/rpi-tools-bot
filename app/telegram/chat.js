@@ -8,10 +8,11 @@ const MAX_MSG_LENGTH = 4096;
 
 /**
  * Send message to telegram user
- * @param {Object} bot telegram node api
- * @param {Object} mes telegram api message object
+ * @param {object} bot telegram node api
+ * @param {object} mes telegram api message object
  * @param {string|string[]} sends something to send
- * @param {Object} opts telegram api options
+ * @param {object} opts telegram api options
+ * @returns {undefined|string}
  */
 const answer = async (bot, mes, sends, opts = {}) => {
     const sendOpts = opts.markdown ? {parse_mode: 'Markdown', disable_web_page_preview: true} : {};
@@ -37,10 +38,10 @@ const answer = async (bot, mes, sends, opts = {}) => {
 
 /**
  * Reply on command text
- * @param {Object} bot telegram node api
+ * @param {object} bot telegram node api
  * @param {string} enteredText received command
  * @param {Function} cmd prepare answer with function
- * @param {Object} opts telegram api options
+ * @param {object} opts telegram api options
  */
 const reply = (bot, enteredText, cmd, opts = {}) => {
     const textRe = new RegExp(`^/${enteredText}(@[a-z_]+)? ?(.+)?`);
@@ -63,7 +64,7 @@ const reply = (bot, enteredText, cmd, opts = {}) => {
 
 /**
  * Wait for bot text
- * @param {Object} bot telegram api
+ * @param {object} bot telegram api
  * @param {string[]} replies commands
  */
 const executeReplies = (bot, replies) => {
