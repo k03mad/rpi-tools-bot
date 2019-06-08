@@ -22,6 +22,8 @@ executeReplies(bot, [
     'mus_dups',
     'mus_unavail',
 
+    'parse_update',
+
     'pi_reboot',
     'pi_shutdown',
 ]);
