@@ -5,6 +5,4 @@ node_modules
 npm-debug.log
 forever.log
 
-package-lock.json
-
 .eslintcache
