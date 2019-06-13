@@ -1,8 +1,8 @@
 'use strict';
 
 const b = require('require-all')(`${__dirname}/../cmd`);
+const {array, string, print} = require('utils-mad');
 const {chat} = require('../../env');
-const {date, array, string} = require('utils-mad');
 
 const MAX_MSG_LENGTH = 4096;
 
@@ -26,12 +26,12 @@ const answer = async (bot, mes, sends, opts = {}) => {
                 try {
                     await bot.sendMessage(mes.chat.id, elemPart, sendOpts);
                 } catch (err) {
-                    console.error(`${date.now()}\n${err}`);
+                    print.ex(err);
                 }
             }
 
         } else {
-            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => console.error(`${date.now()}\n${err}`));
+            bot.sendMessage(mes.chat.id, send, sendOpts).catch(err => print.ex(err));
         }
     }
 };
@@ -48,13 +48,13 @@ const reply = (bot, enteredText, cmd, opts = {}) => {
 
     bot.onText(textRe, async (mes, match) => {
         if (chat === mes.chat.id) {
-            bot.sendChatAction(mes.chat.id, 'typing').catch(err => console.error(`${date.now()}\n${err}`));
+            bot.sendChatAction(mes.chat.id, 'typing').catch(err => print.ex(err));
             let response;
 
             try {
                 response = await cmd(match[2]);
             } catch (err) {
-                response = `${date.now()}\n${err}`;
+                response = err.toString();
             }
 
             answer(bot, mes, response, opts);

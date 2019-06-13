@@ -1,8 +1,8 @@
 'use strict';
 
 const bot = require('./telegram/config');
-const {date} = require('utils-mad');
 const {executeReplies} = require('./telegram/chat');
+const {print} = require('utils-mad');
 
 executeReplies(bot, [
     'app_log',
@@ -28,4 +28,4 @@ executeReplies(bot, [
     'pi_shutdown',
 ]);
 
-bot.on('polling_error', err => console.error(`${date.now()}\n${err}`));
+bot.on('polling_error', err => print.ex(err));
