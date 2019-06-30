@@ -5,7 +5,7 @@ const fs = require('fs');
 const {promisify} = require('util');
 
 const readFile = promisify(fs.readFile);
-const repo = ['rpi-tools-bot', 'rpi-tools-cron', 'grammar-tlgrm-bot'];
+const repo = ['rpi-tools-bot', 'rpi-tools-cron'];
 
 module.exports = async () => {
     const forever = await Promise.all(
