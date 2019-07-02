@@ -10,6 +10,7 @@ mik_wlan1_switch - mikrotik switch wifi 2.4
 mik_wlan2_switch - mikrotik switch wifi 5
 mus_dups - find duplicate tracks in ya.music playlist
 mus_unavail - find unavailable tracks in ya.music playlist
-parse_update - update parser
+parse_films - update films parser
+parse_shows - update shows parser
 pi_reboot - reboot pi
 pi_shutdown - shutdown pi
