@@ -22,7 +22,8 @@ executeReplies(bot, [
     'mus_dups',
     'mus_unavail',
 
-    'parse_update',
+    'parse_films',
+    'parse_shows',
 
     'pi_reboot',
     'pi_shutdown',
