@@ -7,7 +7,7 @@
   ],
   "repository": "k03mad/rpi-tools-bot",
   "engines": {
-    "node": ">=11.14"
+    "node": ">=12"
   },
   "dependencies": {
     "app-root-path": "2.2.1",
