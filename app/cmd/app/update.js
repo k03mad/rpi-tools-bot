@@ -3,7 +3,7 @@
 const {repo} = require('utils-mad');
 
 module.exports = async () => {
-    const repos = ['rpi-tools-bot', 'rpi-tools-cron'];
+    const repos = ['rpi-tools-cron', 'rpi-tools-bot'];
     const logs = [];
 
     for (const elem of repos) {

@@ -4,7 +4,7 @@ const appRoot = require('app-root-path');
 const {promises: fs} = require('fs');
 
 module.exports = async () => {
-    const repos = ['rpi-tools-bot', 'rpi-tools-cron'];
+    const repos = ['rpi-tools-cron', 'rpi-tools-bot'];
 
     const logs = await Promise.all(
         repos.map(async elem => {
