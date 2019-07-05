@@ -1,4 +1,5 @@
 app_log - print forever log
+app_update - update rpi node apps
 apt_update - check for updates
 apt_upgrade - install updates
 dns_check - check whitelisted hosts from ad block filters

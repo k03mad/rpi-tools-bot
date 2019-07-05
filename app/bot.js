@@ -6,6 +6,7 @@ const {print} = require('utils-mad');
 
 executeReplies(bot, [
     'app_log',
+    'app_update',
 
     'apt_update',
     'apt_upgrade',

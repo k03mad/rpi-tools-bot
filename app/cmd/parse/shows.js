@@ -1,8 +1,5 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const {repo} = require('utils-mad');
 
-module.exports = () => shell.script(
-    'magnet-shows',
-    'update',
-);
+module.exports = () => repo.run('magnet-shows', 'update');

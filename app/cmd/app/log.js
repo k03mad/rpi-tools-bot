@@ -1,19 +1,17 @@
 'use strict';
 
 const appRoot = require('app-root-path');
-const fs = require('fs');
-const {promisify} = require('util');
-
-const readFile = promisify(fs.readFile);
-const repo = ['rpi-tools-bot', 'rpi-tools-cron'];
+const {promises: fs} = require('fs');
 
 module.exports = async () => {
-    const forever = await Promise.all(
-        repo.map(async elem => {
-            const log = await readFile(`${appRoot}/../${elem}/pm2.log`);
+    const repos = ['rpi-tools-bot', 'rpi-tools-cron'];
+
+    const logs = await Promise.all(
+        repos.map(async elem => {
+            const log = await fs.readFile(`${appRoot}/../${elem}/pm2.log`);
             return `${elem}\n\n${log.toString()}`;
         }),
     );
 
-    return forever.join('\n---------\n');
+    return logs.join('\n---------\n');
 };

@@ -1,8 +1,8 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const {repo} = require('utils-mad');
 
-module.exports = () => shell.script(
+module.exports = () => repo.run(
     'adblock-hosts-list',
     'check',
 );
