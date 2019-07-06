@@ -1,33 +1,14 @@
 'use strict';
 
+const all = require('require-all')(`${__dirname}/cmd`);
 const bot = require('./telegram/config');
-const {executeReplies} = require('./telegram/chat');
 const {print} = require('utils-mad');
+const {reply} = require('./telegram/chat');
 
-executeReplies(bot, [
-    'app_log',
-    'app_update',
-
-    'apt_update',
-    'apt_upgrade',
-
-    'dns_check',
-    'dns_query',
-    'dns_update',
-
-    'mik_dhcp_switch',
-    'mik_nat_pi_switch',
-    'mik_wlan1_switch',
-    'mik_wlan2_switch',
-
-    'mus_dups',
-    'mus_unavail',
-
-    'parse_films',
-    'parse_shows',
-
-    'pi_reboot',
-    'pi_shutdown',
-]);
+Object.entries(all).forEach(([folder, cmds]) => {
+    Object.keys(cmds).forEach(cmd => {
+        reply(bot, `${folder}_${cmd}`, all[folder][cmd]);
+    });
+});
 
 bot.on('polling_error', err => print.ex(err));

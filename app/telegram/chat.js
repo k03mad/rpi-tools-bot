@@ -1,6 +1,5 @@
 'use strict';
 
-const b = require('require-all')(`${__dirname}/../cmd`);
 const {array, string, print} = require('utils-mad');
 const {chat} = require('../../env');
 
@@ -62,19 +61,4 @@ const reply = (bot, enteredText, cmd, opts = {}) => {
     });
 };
 
-/**
- * Wait for bot text
- * @param {object} bot telegram api
- * @param {string[]} replies commands
- */
-const executeReplies = (bot, replies) => {
-    for (const command of replies) {
-        const [section, ...name] = command.split('_');
-        reply(bot, command, b[section][name.join('_')]);
-    }
-};
-
-module.exports = {
-    reply,
-    executeReplies,
-};
+module.exports = {reply};
