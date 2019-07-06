@@ -5,6 +5,5 @@
   "watch": true,
   "watch_delay": 120,
 
-  "node_args": "--no-deprecation",
-  "log_file": "pm2.log"
+  "node_args": "--no-deprecation"
 }
