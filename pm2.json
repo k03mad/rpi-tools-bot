@@ -4,6 +4,7 @@
 
   "watch": true,
   "watch_delay": 120,
+  "exp_backoff_restart_delay": 100,
 
   "node_args": "--no-deprecation"
 }
