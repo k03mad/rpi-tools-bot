@@ -31,11 +31,9 @@
     "pre-commit": "1.2.2"
   },
   "scripts": {
-    "clean": "rm -rf ./node_modules || true",
-    "clean:log": "rm -rf ./pm2.log || true",
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "setup": "npm i",
-    "start": "npm run clean:log && pm2 start app/bot.js -l ./pm2.log --watch --watch-delay 120"
+    "start": "pm2 flush && pm2 start pm2.json"
   },
   "pre-commit": [
     "lint"
