@@ -3,7 +3,7 @@
   "script": "app/bot.js",
 
   "watch": true,
-  "watch_delay": 120,
+  "watch_delay": 180,
   "exp_backoff_restart_delay": 100,
 
   "node_args": "--no-deprecation"
