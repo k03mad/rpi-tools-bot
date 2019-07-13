@@ -33,7 +33,7 @@
   "scripts": {
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
     "setup": "npm i",
-    "start": "pm2 flush && pm2 start pm2.json"
+    "start": "pm2 start pm2.json"
   },
   "pre-commit": [
     "lint"
