@@ -5,7 +5,9 @@
   "watch": true,
   "watch_delay": 180,
   "exp_backoff_restart_delay": 100,
+
   "max_memory_restart": "70M",
+  "cron_restart": "0 3 * * *",
 
   "node_args": "--no-deprecation"
 }
