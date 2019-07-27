@@ -29,7 +29,7 @@ module.exports = (bot, enteredText, cmd, opts) => {
             for (const send of array.convert(response)) {
                 for (const msgPart of string.split(send, MAX_MSG_LENGTH)) {
                     try {
-                        await bot.sendMessage(id, `\`\`\`\n${msgPart}\`\`\``, opts);
+                        await bot.sendMessage(id, `\`\`\`\n${msgPart}\n\`\`\``, opts);
                     } catch (err) {
                         print.ex(err, {exit: true});
                     }
