@@ -1,15 +1,11 @@
 'use strict';
 
+const restart = require('../pm/restart');
 const {repo} = require('utils-mad');
 
-module.exports = async () => {
-    const repos = ['rpi-tools-cron', 'rpi-tools-bot'];
-    const logs = [];
-
-    for (const elem of repos) {
-        const log = await repo.update(elem);
-        logs.push(`${elem}\n\n${log}`);
-    }
-
-    return logs.join('\n---------\n');
-};
+module.exports = async () => [
+    await repo.update('rpi-tools-bot'),
+    await repo.update('rpi-tools-cron'),
+    await repo.update('magnet-server'),
+    await restart(),
+];
