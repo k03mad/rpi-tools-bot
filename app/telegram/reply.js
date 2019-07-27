@@ -9,7 +9,7 @@ const {chat} = require('../../env');
  * @param {string} enteredText received command
  * @param {Function} cmd prepare answer with function
  */
-const reply = (bot, enteredText, cmd) => {
+module.exports = (bot, enteredText, cmd) => {
 
     const MAX_MSG_LENGTH = 4096;
     const textRe = new RegExp(`^/${enteredText}(@[a-z_]+)? ?(.+)?`);
@@ -30,12 +30,10 @@ const reply = (bot, enteredText, cmd) => {
                     try {
                         await bot.sendMessage(id, msgPart);
                     } catch (err) {
-                        print.ex(err);
+                        print.ex(err, {exit: true});
                     }
                 }
             }
         }
     });
 };
-
-module.exports = {reply};
