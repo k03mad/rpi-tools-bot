@@ -6,7 +6,12 @@ const reply = require('./telegram/reply');
 const {print} = require('utils-mad');
 
 Object.entries(all).forEach(([folder, cmds]) => {
-    Object.keys(cmds).forEach(cmd => reply(bot, `${folder}_${cmd}`, all[folder][cmd]));
+    Object.keys(cmds).forEach(cmd => reply(
+        bot,
+        `${folder}_${cmd}`,
+        all[folder][cmd],
+        {parse_mode: 'Markdown', disable_web_page_preview: true},
+    ));
 });
 
 bot.on('polling_error', err => print.ex(err, {exit: true}));
