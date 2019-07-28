@@ -3,7 +3,7 @@
 const {shell} = require('utils-mad');
 
 module.exports = async () => {
-    const allApps = ['cron', 'magnet-server'];
+    const allApps = ['magnet-server', 'cron'];
     const currentApps = ['bot'];
 
     for (const app of allApps) {
