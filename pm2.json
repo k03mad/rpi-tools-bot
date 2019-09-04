@@ -4,6 +4,7 @@
 
   "exp_backoff_restart_delay": 1000,
   "max_memory_restart": "100M",
+  "cron_restart": "0 */6 * * *",
 
   "node_args": "--no-deprecation"
 }
