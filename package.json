@@ -1,42 +1,40 @@
 {
-  "name": "rpi-tools-bot",
-  "version": "8.0.0",
-  "description": "Raspberry Pi 3 Telegram Bot",
-  "maintainers": [
-    "Kirill Molchanov <k03.mad@gmail.com"
-  ],
-  "repository": "k03mad/rpi-tools-bot",
-  "engines": {
-    "node": ">=12"
-  },
-  "dependencies": {
-    "app-root-path": "2.2.1",
-    "node-telegram-bot-api": "0.30.0",
-    "pm2": "3.5.1",
-    "require-all": "3.0.0",
-    "socks5-https-client": "1.2.1",
-    "utils-mad": "2.0.0"
-  },
-  "devDependencies": {
-    "eslint": "6.4.0",
-    "eslint-config-k03mad": "3.0.0",
-    "eslint-plugin-const-case": "1.2.2",
-    "eslint-plugin-jsdoc": "15.9.2",
-    "eslint-plugin-node": "10.0.0",
-    "eslint-plugin-optimize-regex": "1.1.6",
-    "eslint-plugin-promise": "4.2.1",
-    "eslint-plugin-sonarjs": "0.4.0",
-    "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "10.0.0",
-    "pre-commit": "1.2.2"
-  },
-  "scripts": {
-    "lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
-    "setup": "npm i",
-    "start": "pm2 start pm2.json"
-  },
-  "pre-commit": [
-    "lint"
-  ],
-  "license": "Unlicense"
+	"name": "rpi-tools-bot",
+	"version": "8.0.0",
+	"description": "Raspberry Pi 3 Telegram Bot",
+	"maintainers": [
+		"Kirill Molchanov <k03.mad@gmail.com"
+	],
+	"repository": "k03mad/rpi-tools-bot",
+	"engines": {
+		"node": ">=12"
+	},
+	"dependencies": {
+		"require-all": "3.0.0",
+		"utils-mad": "2.1.4",
+		"socks5-https-client": "1.2.1",
+		"node-telegram-bot-api": "0.30.0"
+	},
+	"devDependencies": {
+		"eslint": "6.4.0",
+		"eslint-config-k03mad": "3.0.0",
+		"eslint-plugin-const-case": "1.2.2",
+		"eslint-plugin-jsdoc": "15.9.2",
+		"eslint-plugin-node": "10.0.0",
+		"eslint-plugin-optimize-regex": "1.1.6",
+		"eslint-plugin-promise": "4.2.1",
+		"eslint-plugin-sonarjs": "0.4.0",
+		"eslint-plugin-sort-requires": "2.1.0",
+		"eslint-plugin-unicorn": "11.0.1",
+		"pre-commit": "1.2.2"
+	},
+	"scripts": {
+		"lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
+		"setup": "npm i",
+		"start": "pm2 start pm2.json"
+	},
+	"pre-commit": [
+		"lint"
+	],
+	"license": "Unlicense"
 }
