@@ -4,7 +4,7 @@ const restart = require('../pm/restart');
 const {repo} = require('utils-mad');
 
 module.exports = async () => {
-    const apps = ['rpi-tools-bot', 'rpi-tools-cron', 'magnet-server'];
+    const apps = ['rpi-tools-bot', 'rpi-tools-cron', 'magnet-co-parser'];
     const logs = [];
 
     for (const app of apps) {

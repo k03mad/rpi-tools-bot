@@ -9,11 +9,10 @@ mik_wlan1_switch - mikrotik switch wifi 2.4
 mik_wlan2_switch - mikrotik switch wifi 5
 mus_dups - find duplicate tracks in ya.music playlist
 mus_unavail - find unavailable tracks in ya.music playlist
-parse_films - update films parser
-parse_shows - update shows parser
 pi_reboot - reboot pi
 pi_shutdown - shutdown pi
 pm_flush - flush logs
 pm_log - print logs
 pm_restart - restart node apps
+tools_parse - run parser
 tools_update - update rpi node apps
