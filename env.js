@@ -1,10 +1,6 @@
 'use strict';
 
 module.exports = {
-    yandex: {
-        login: process.env.YANDEX_LOGIN,
-        password: process.env.YANDEX_PASS,
-    },
     proxy: {
         socksHost: process.env.PROXY_HOST,
         socksPort: process.env.PROXY_PORT,
