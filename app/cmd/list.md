@@ -1,7 +1,6 @@
 apt_update - check for updates
 apt_upgrade - install updates
 dns_check - check whitelisted hosts from ad block filters
-dns_query - query dns filter
 dns_update - update dns filter
 mik_dhcp_switch - mikrotik switch dhcp server
 mik_nat_pi_switch - mikrotik switch pihole nat rules
