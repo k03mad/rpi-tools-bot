@@ -4,5 +4,5 @@ const {repo} = require('utils-mad');
 
 module.exports = () => repo.run(
     'adblock-hosts-list',
-    'deploy && pihole -g',
+    'deploy',
 );
