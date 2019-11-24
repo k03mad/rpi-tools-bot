@@ -11,21 +11,21 @@
 	},
 	"dependencies": {
 		"require-all": "3.0.0",
-		"utils-mad": "2.4.9",
+		"utils-mad": "2.5.1",
 		"socks5-https-client": "1.2.1",
 		"node-telegram-bot-api": "0.40.0"
 	},
 	"devDependencies": {
-		"eslint": "6.6.0",
+		"eslint": "6.7.0",
 		"eslint-config-k03mad": "3.0.0",
 		"eslint-plugin-const-case": "1.2.2",
-		"eslint-plugin-jsdoc": "17.1.1",
+		"eslint-plugin-jsdoc": "18.1.4",
 		"eslint-plugin-node": "10.0.0",
 		"eslint-plugin-optimize-regex": "1.1.7",
 		"eslint-plugin-promise": "4.2.1",
 		"eslint-plugin-sonarjs": "0.5.0",
 		"eslint-plugin-sort-requires": "2.1.0",
-		"eslint-plugin-unicorn": "12.1.0",
+		"eslint-plugin-unicorn": "13.0.0",
 		"pre-commit": "1.2.2"
 	},
 	"scripts": {
