@@ -1,5 +1,4 @@
 apt_upgrade - install updates
-dns_update - update dns filter
 mik_dhcp_switch - mikrotik switch dhcp server
 mik_nat_pi_switch - mikrotik switch pi nat rules
 mik_wlan1_switch - mikrotik switch wifi 2.4
