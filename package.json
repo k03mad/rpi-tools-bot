@@ -19,7 +19,7 @@
 		"eslint": "6.8.0",
 		"eslint-config-k03mad": "3.3.0",
 		"eslint-plugin-const-case": "1.2.2",
-		"eslint-plugin-jsdoc": "18.4.4",
+		"eslint-plugin-jsdoc": "18.6.2",
 		"eslint-plugin-node": "11.0.0",
 		"eslint-plugin-optimize-regex": "1.1.7",
 		"eslint-plugin-promise": "4.2.1",
