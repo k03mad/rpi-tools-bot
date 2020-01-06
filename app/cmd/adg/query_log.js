@@ -9,7 +9,7 @@ module.exports = async () => {
 
     data.forEach(elem => {
         if (!domains[elem.question.host]) {
-            domains[elem.question.host] = elem.status + moment(elem.time).format('HH:mm');
+            domains[elem.question.host] = elem.reason + moment(elem.time).format('HH:mm');
         }
     });
 
@@ -18,12 +18,16 @@ module.exports = async () => {
     for (const [key, value] of Object.entries(domains)) {
         let valueChar = value;
 
-        if (value.startsWith('NOERROR')) {
-            valueChar = value.replace('NOERROR', '  ');
+        if (value.startsWith('NotFilteredNotFound')) {
+            valueChar = value.replace('NotFilteredNotFound', '  ');
         }
 
-        if (value.startsWith('NXDOMAIN')) {
-            valueChar = value.replace('NXDOMAIN', '- ');
+        if (value.startsWith('FilteredBlackList')) {
+            valueChar = value.replace('FilteredBlackList', '- ');
+        }
+
+        if (value.startsWith('NotFilteredWhiteList')) {
+            valueChar = value.replace('NotFilteredWhiteList', '+ ');
         }
 
         message.push(`${valueChar} ${key}`);
