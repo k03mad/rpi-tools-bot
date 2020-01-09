@@ -1,3 +1,5 @@
+# @BotFather /setcommands
+
 adg_query_log - adguard: get last queried domains
 adg_switch_state - adguard: switch blocking state
 adg_update_filters - adguard: update filters
