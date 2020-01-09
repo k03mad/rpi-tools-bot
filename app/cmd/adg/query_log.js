@@ -3,8 +3,15 @@
 const moment = require('moment');
 const {adg} = require('utils-mad');
 
-module.exports = async () => {
-    const {data} = await adg.query('querylog');
+module.exports = async status => {
+    const {data} = await adg.query('querylog', {
+        gotOpts: {
+            searchParams: {
+                filter_response_status: status || '',
+            },
+        },
+    });
+
     const domains = {};
 
     data.forEach(elem => {
