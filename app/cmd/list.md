@@ -1,5 +1,6 @@
-adg_update_filters - adguard: update filters
 adg_query_log - adguard: get last queried domains
+adg_switch_state - adguard: switch blocking state
+adg_update_filters - adguard: update filters
 mik_switch_dhcp - mikrotik: switch dhcp server
 mik_switch_nat_pi - mikrotik: switch pi nat rules
 mik_switch_wlan1 - mikrotik: switch wifi 2.4
