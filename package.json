@@ -13,7 +13,6 @@
 		"moment": "2.24.0",
 		"node-telegram-bot-api": "0.40.0",
 		"require-all": "3.0.0",
-		"socks5-https-client": "1.2.1",
 		"utils-mad": "4.3.3"
 	},
 	"devDependencies": {
