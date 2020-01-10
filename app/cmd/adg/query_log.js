@@ -4,11 +4,9 @@ const moment = require('moment');
 const {adg} = require('utils-mad');
 
 module.exports = async status => {
-    const {data} = await adg.query('querylog', {
-        gotOpts: {
-            searchParams: {
-                filter_response_status: status || '',
-            },
+    const {data} = await adg.get('querylog', {
+        searchParams: {
+            filter_response_status: status || '',
         },
     });
 

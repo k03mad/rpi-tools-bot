@@ -2,11 +2,4 @@
 
 const {adg} = require('utils-mad');
 
-module.exports = () => adg.query(
-    'filtering/refresh', {
-        gotOpts: {
-            method: 'POST',
-            responseType: 'text',
-        },
-    },
-);
+module.exports = () => adg.post('filtering/refresh');
