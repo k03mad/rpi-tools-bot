@@ -1,6 +1,12 @@
 'use strict';
 
+const Agent = require('socks5-https-client/lib/Agent');
 const TelegramBot = require('node-telegram-bot-api');
-const {telegramToken} = require('../../env');
+const {proxy, telegramToken} = require('../../env');
 
-module.exports = new TelegramBot(telegramToken, {polling: true});
+module.exports = new TelegramBot(telegramToken, {
+    request: {
+        agentClass: Agent,
+        agentOptions: proxy,
+    },
+});
