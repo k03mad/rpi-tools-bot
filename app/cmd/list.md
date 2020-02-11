@@ -2,6 +2,7 @@
 
 adg_query_log - adguard: get last queried domains
 adg_switch_state - adguard: switch blocking state
+adg_unique_not_filtered - adguard: get unique not filtered domains log
 adg_update_filters - adguard: update filters
 mik_switch_dhcp - mikrotik: switch dhcp server
 mik_switch_nat_pi - mikrotik: switch pi nat rules
