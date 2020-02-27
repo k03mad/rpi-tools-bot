@@ -13,6 +13,7 @@
 		"moment": "2.24.0",
 		"node-telegram-bot-api": "0.40.0",
 		"require-all": "3.0.0",
+		"socks5-https-client": "1.2.1",
 		"utils-mad": "6.4.3"
 	},
 	"devDependencies": {
@@ -29,7 +30,7 @@
 		"pre-commit": "1.2.2"
 	},
 	"scripts": {
-		"lint": "eslint --report-unused-disable-directives ./ --format codeframe",
+		"lint": "eslint --report-unused-disable-directives ./ --format codeframe && echo '\n\\033[34mESLinted!\\033[39m\n'",
 		"setup": "pnpm i",
 		"start": "pm2 start pm2.json"
 	},

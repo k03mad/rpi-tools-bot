@@ -2,6 +2,7 @@ dependencies:
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   require-all: 3.0.0
+  socks5-https-client: 1.2.1
   utils-mad: 6.4.3
 devDependencies:
   eslint: 6.8.0
@@ -1282,6 +1283,16 @@ packages:
       node: '>=6.0.0'
     resolution:
       integrity: sha512-Bu5Td5+j11sCkqfqmUTiwv+tWisMtP0L7Q8WrqA2C/BbBhy1YTdFrvjjlrKq8oagA/tLQBski2Gcx/Sqyi2qSQ==
+  /ip-address/6.1.0:
+    dependencies:
+      jsbn: 1.1.0
+      lodash: 4.17.15
+      sprintf-js: 1.1.2
+    dev: false
+    engines:
+      node: '>= 0.10'
+    resolution:
+      integrity: sha512-u9YYtb1p2fWSbzpKmZ/b3QXWA+diRYPxc2c4y5lFB/MMk5WZ7wNZv8S3CFcIGVJ5XtlaCAl/FQy/D3eQ2XtdOA==
   /is-arrayish/0.2.1:
     dev: true
     resolution:
@@ -1391,6 +1402,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
+  /jsbn/1.1.0:
+    dev: false
+    resolution:
+      integrity: sha1-sBMHyym2GKHtJux56RH4A8TaAEA=
   /jsdoctypeparser/6.1.0:
     dev: true
     engines:
@@ -2193,6 +2208,22 @@ packages:
       node: '>=6'
     resolution:
       integrity: sha512-Qu+VC3EwYLldKa1fCxuuvULvSJOKEgk9pi8dZeCVK7TqBfUNTH4sFkk4joj8afVSfAYgJoSOetjx9QWOJ5mYoQ==
+  /socks5-client/1.2.8:
+    dependencies:
+      ip-address: 6.1.0
+    dev: false
+    engines:
+      node: '>= 6.4.0'
+    resolution:
+      integrity: sha512-js8WqQ/JjZS3IQwUxRwSThvXzcRIHE8sde8nE5q7nqxiFGb8EoHmNJ9SF2lXqn3ux6pUV3+InH7ng7mANK6XfA==
+  /socks5-https-client/1.2.1:
+    dependencies:
+      socks5-client: 1.2.8
+    dev: false
+    engines:
+      node: '>= 6.4.0'
+    resolution:
+      integrity: sha512-FbZ/X/2Xq3DAMhuRA4bnN0jy1QxaPTVPLFvyv6CEj0QDKSTdWp9yRxo1JhqXmWKhPQeJyUMajHJB2UjT43pFcw==
   /spawn-sync/1.0.15:
     dependencies:
       concat-stream: 1.6.2
@@ -2227,6 +2258,10 @@ packages:
     dev: true
     resolution:
       integrity: sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
+  /sprintf-js/1.1.2:
+    dev: false
+    resolution:
+      integrity: sha512-VE0SOVEHCk7Qc8ulkWw3ntAzXuqf7S2lvwQaDLRnUeIEaKNQJzV6BwmLKhOqT61aGhfUMrXeaBk+oDGCzvhcug==
   /sshpk/1.16.1:
     dependencies:
       asn1: 0.2.4
@@ -2541,4 +2576,5 @@ specifiers:
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
   require-all: 3.0.0
+  socks5-https-client: 1.2.1
   utils-mad: 6.4.3
