@@ -15,6 +15,5 @@ pi_update - pi: apt install updates
 pm_flush - pm2: flush logs
 pm_log - pm2: print logs
 pm_restart - pm2: restart apps
-tools_adlist - tools: generate adlists
 tools_parse - tools: run magnet parser
 tools_update - tools: git pull node apps updates
