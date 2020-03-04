@@ -2,7 +2,7 @@ dependencies:
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   require-all: 3.0.0
-  utils-mad: 7.0.1
+  utils-mad: 7.0.2
 devDependencies:
   eslint: 6.8.0
   eslint-config-k03mad: 3.3.1_d790d305902bc58dc2d21dc49fbb1cd8
@@ -2437,7 +2437,7 @@ packages:
   /util-deprecate/1.0.2:
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/7.0.1:
+  /utils-mad/7.0.2:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.1.0
@@ -2457,7 +2457,7 @@ packages:
     engines:
       node: '>=13'
     resolution:
-      integrity: sha512-rxPxwp4LDdmtQ/tSLLYuJoL+51fxWjqdMqjJcLRzvPrub6aihkEHO/yJh/jTDO9ujgAe9lH0FpRO2RdQov8oHg==
+      integrity: sha512-XFNoWnuJfzQQD7BZuAYo/sdsA2UlLhvoDQ0QodIsRs0FLqNYoqLjd8KtKCF15zVCRZPzKfBQpChpvm5XN2CQRg==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2541,4 +2541,4 @@ specifiers:
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
   require-all: 3.0.0
-  utils-mad: 7.0.1
+  utils-mad: 7.0.2
