@@ -2,12 +2,12 @@ dependencies:
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   require-all: 3.0.0
-  utils-mad: 6.4.5
+  utils-mad: 7.0.1
 devDependencies:
   eslint: 6.8.0
-  eslint-config-k03mad: 3.3.1_c8a177c37290e00274d1191f67c7a01c
+  eslint-config-k03mad: 3.3.1_d790d305902bc58dc2d21dc49fbb1cd8
   eslint-plugin-const-case: 1.2.2
-  eslint-plugin-jsdoc: 21.0.0_eslint@6.8.0
+  eslint-plugin-jsdoc: 22.0.0_eslint@6.8.0
   eslint-plugin-node: 11.0.0_eslint@6.8.0
   eslint-plugin-optimize-regex: 1.1.7
   eslint-plugin-promise: 4.2.1
@@ -660,11 +660,11 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/3.3.1_c8a177c37290e00274d1191f67c7a01c:
+  /eslint-config-k03mad/3.3.1_d790d305902bc58dc2d21dc49fbb1cd8:
     dependencies:
       eslint: 6.8.0
       eslint-plugin-const-case: 1.2.2
-      eslint-plugin-jsdoc: 21.0.0_eslint@6.8.0
+      eslint-plugin-jsdoc: 22.0.0_eslint@6.8.0
       eslint-plugin-node: 11.0.0_eslint@6.8.0
       eslint-plugin-optimize-regex: 1.1.7
       eslint-plugin-promise: 4.2.1
@@ -704,7 +704,7 @@ packages:
       eslint: '>=4.19.1'
     resolution:
       integrity: sha512-6/Jb/J/ZvSebydwbBJO1R9E5ky7YeElfK56Veh7e4QGFHCXoIXGH9HhVz+ibJLM3XJ1XjP+T7rKBLUa/Y7eIng==
-  /eslint-plugin-jsdoc/21.0.0_eslint@6.8.0:
+  /eslint-plugin-jsdoc/22.0.0_eslint@6.8.0:
     dependencies:
       comment-parser: 0.7.2
       debug: 4.1.1
@@ -718,9 +718,9 @@ packages:
     engines:
       node: '>=8'
     peerDependencies:
-      eslint: ^5.0.0 || ^6.0.0
+      eslint: ^6.0.0
     resolution:
-      integrity: sha512-CdLGe2oyw5YAX9rxq9bVz7H2PK+r8PVwdGuvYGMBstpbVD/66yUAgRFQRsJwAsRKLmReo58Lw1jFdNcxdOc4eg==
+      integrity: sha512-dLqUtIL6tvOoV+9IDdP3FqOnQ/sxklzs4hxZa91kt0TGI2o1fSqIuc6wa71oWtWKEyvaQj7m6CnzQxcBC9CEsg==
   /eslint-plugin-node/11.0.0_eslint@6.8.0:
     dependencies:
       eslint: 6.8.0
@@ -2437,7 +2437,7 @@ packages:
   /util-deprecate/1.0.2:
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/6.4.5:
+  /utils-mad/7.0.1:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.1.0
@@ -2457,7 +2457,7 @@ packages:
     engines:
       node: '>=13'
     resolution:
-      integrity: sha512-9htXdMdZP91ij9OcVn3HcdejdVbb+v0xwRQ657fbWS/nCA1pjW4puudL8wR3/s7AI9JUFMZSTGGnmOnIxge2Ew==
+      integrity: sha512-rxPxwp4LDdmtQ/tSLLYuJoL+51fxWjqdMqjJcLRzvPrub6aihkEHO/yJh/jTDO9ujgAe9lH0FpRO2RdQov8oHg==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2530,7 +2530,7 @@ specifiers:
   eslint: 6.8.0
   eslint-config-k03mad: 3.3.1
   eslint-plugin-const-case: 1.2.2
-  eslint-plugin-jsdoc: 21.0.0
+  eslint-plugin-jsdoc: 22.0.0
   eslint-plugin-node: 11.0.0
   eslint-plugin-optimize-regex: 1.1.7
   eslint-plugin-promise: 4.2.1
@@ -2541,4 +2541,4 @@ specifiers:
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
   require-all: 3.0.0
-  utils-mad: 6.4.5
+  utils-mad: 7.0.1
