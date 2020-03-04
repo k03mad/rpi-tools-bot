@@ -31,7 +31,8 @@
 	"scripts": {
 		"lint": "eslint --report-unused-disable-directives ./ --format codeframe",
 		"setup": "pnpm i && pnpm prune",
-		"start": "pm2 start pm2.json"
+    "start": "pm2 start pm2.json",
+    "runner": "DEBUG=utils-mad* node runner"
 	},
 	"pre-commit": [
 		"lint"
