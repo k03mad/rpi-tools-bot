@@ -6,7 +6,7 @@ const {repo} = require('utils-mad');
 module.exports = async () => {
     const apps = [
         'rpi-tools-bot', 'rpi-tools-cron', 'magnet-co-parser',
-        'adguard-home-lists', 'mikrotik-pptp-hidemy-ip', 'utils-mad',
+        'adguard-home-lists-my', 'mikrotik-pptp-hidemy-ip', 'utils-mad',
     ];
 
     const logs = [];
