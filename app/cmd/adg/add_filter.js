@@ -3,6 +3,10 @@
 const {adg, repo, promise} = require('utils-mad');
 
 module.exports = async opts => {
+    if (!opts) {
+        return 'No params found, example: white|black yandex.ru';
+    }
+
     const [list, url] = opts.split(/\s+/);
 
     const urlTrim = url.trim();
@@ -12,7 +16,7 @@ module.exports = async opts => {
     }
 
     if (!['white', 'black'].includes(list)) {
-        throw new Error(`Something wrong with List: ${list}`);
+        throw new Error(`Something wrong with LIST: ${list}`);
     }
 
     const logAdd = await repo.run('adguard-home-lists-my', `${list} --${urlTrim}`);
