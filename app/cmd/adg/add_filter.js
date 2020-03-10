@@ -8,15 +8,14 @@ module.exports = async opts => {
     }
 
     const [list, url] = opts.split(/\s+/);
-
     const urlTrim = (url || '').trim();
 
-    if (!url || !url.includes('.')) {
-        throw new Error(`Something wrong with URL: ${urlTrim}`);
-    }
-
-    if (!['white', 'black'].includes(list)) {
-        throw new Error(`Something wrong with LIST: ${list}`);
+    if (
+        !url
+        || !url.includes('.')
+        || !['white', 'black'].includes(list)
+    ) {
+        throw new Error(`Something wrong with params\nURL: "${urlTrim}"\nLIST: "${list}"`);
     }
 
     const logAdd = await repo.run('adguard-home-lists-my', `${list} --${urlTrim}`, {skipReset: true});
