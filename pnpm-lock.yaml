@@ -5,15 +5,14 @@ dependencies:
   utils-mad: 7.2.2
 devDependencies:
   eslint: 6.8.0
-  eslint-config-k03mad: 3.3.1_2a8d0fff955fc4e42c55d00ff78a53c6
+  eslint-config-k03mad: 4.0.0_e59f1c05a056505530ca9221db891a63
   eslint-plugin-const-case: 1.2.2
   eslint-plugin-jsdoc: 22.0.0_eslint@6.8.0
   eslint-plugin-node: 11.0.0_eslint@6.8.0
-  eslint-plugin-optimize-regex: 1.1.7
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0_eslint@6.8.0
   eslint-plugin-sort-requires: 2.1.0
-  eslint-plugin-unicorn: 17.0.1_eslint@6.8.0
+  eslint-plugin-unicorn: 17.1.0_eslint@6.8.0
   pre-commit: 1.2.2
 lockfileVersion: 5.1
 packages:
@@ -660,30 +659,28 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/3.3.1_2a8d0fff955fc4e42c55d00ff78a53c6:
+  /eslint-config-k03mad/4.0.0_e59f1c05a056505530ca9221db891a63:
     dependencies:
       eslint: 6.8.0
       eslint-plugin-const-case: 1.2.2
       eslint-plugin-jsdoc: 22.0.0_eslint@6.8.0
       eslint-plugin-node: 11.0.0_eslint@6.8.0
-      eslint-plugin-optimize-regex: 1.1.7
       eslint-plugin-promise: 4.2.1
       eslint-plugin-sonarjs: 0.5.0_eslint@6.8.0
       eslint-plugin-sort-requires: 2.1.0
-      eslint-plugin-unicorn: 17.0.1_eslint@6.8.0
+      eslint-plugin-unicorn: 17.1.0_eslint@6.8.0
     dev: true
     peerDependencies:
       eslint: '>=6.8.0'
       eslint-plugin-const-case: '>=1.2.2'
-      eslint-plugin-jsdoc: '>=20.3.0'
+      eslint-plugin-jsdoc: '>=22.0.0'
       eslint-plugin-node: '>=11.0.0'
-      eslint-plugin-optimize-regex: '>=1.1.7'
       eslint-plugin-promise: '>=4.2.1'
       eslint-plugin-sonarjs: '>=0.5.0'
       eslint-plugin-sort-requires: '>=2.1.0'
-      eslint-plugin-unicorn: '>=15.0.1'
+      eslint-plugin-unicorn: '>=17.1.0'
     resolution:
-      integrity: sha512-3hsLnMXi7YTqMsExxmJUgFYcgdOm7Yt1oIO1gR/ZNDBXONddPVD7zYCvD0L0irI/9kK9oc65triuoZ5XVQQT4A==
+      integrity: sha512-t6Af9RUr2dKQuVJZRM8ypnLtmQDxhcfvaqT7OueasyRJBb0lg/cskuf4qpduOzLEtg0FNbLWOwGMTgtqfNpfCw==
   /eslint-plugin-const-case/1.2.2:
     dependencies:
       requireindex: 1.2.0
@@ -737,14 +734,6 @@ packages:
       eslint: '>=5.16.0'
     resolution:
       integrity: sha512-chUs/NVID+sknFiJzxoN9lM7uKSOEta8GC8365hw1nDfwIPIjjpRSwwPvQanWv8dt/pDe9EV4anmVSwdiSndNg==
-  /eslint-plugin-optimize-regex/1.1.7:
-    dependencies:
-      regexp-tree: 0.1.11
-    dev: true
-    engines:
-      node: '>=6'
-    resolution:
-      integrity: sha512-YiMp9uerCHqG+EhfQhCNNDyjWkaya2L8ggg0+ou5f1oVu51IK+ziE1VlzaILFVTrhU1llAQw+vNn7cOd73VtwQ==
   /eslint-plugin-promise/4.2.1:
     dev: true
     engines:
@@ -765,7 +754,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-PvrZSNyDeYIZ6An1QGfEDlVESGE=
-  /eslint-plugin-unicorn/17.0.1_eslint@6.8.0:
+  /eslint-plugin-unicorn/17.1.0_eslint@6.8.0:
     dependencies:
       ci-info: 2.0.0
       clean-regexp: 1.0.0
@@ -785,7 +774,7 @@ packages:
     peerDependencies:
       eslint: '>=6.7.1'
     resolution:
-      integrity: sha512-50PXADghwZxRUJ3xOTfWFAsrbPkryrslludMABWExICGheRrYiBQMldeeZpFQU6u1d4pB87zY31cQA/Ut8GIRQ==
+      integrity: sha512-yYNgXXSnFY73yvcaAB3z32SOY4km5NDzbY1mCSc6gVrKXgvGdU7K1IMJqQpoOrj2+QzdA1Mz0qLYn/ITGuNSFg==
   /eslint-scope/5.0.0:
     dependencies:
       esrecurse: 4.2.1
@@ -1933,11 +1922,6 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
-  /regexp-tree/0.1.11:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-7/l/DgapVVDzZobwMCCgMlqiqyLFJ0cduo/j+3BcDJIB+yJdsYCfKuI3l/04NV+H/rfNRdPIDbXNZHM9XvQatg==
   /regexp-tree/0.1.20:
     dev: true
     hasBin: true
@@ -2503,15 +2487,14 @@ packages:
       integrity: sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 specifiers:
   eslint: 6.8.0
-  eslint-config-k03mad: 3.3.1
+  eslint-config-k03mad: 4.0.0
   eslint-plugin-const-case: 1.2.2
   eslint-plugin-jsdoc: 22.0.0
   eslint-plugin-node: 11.0.0
-  eslint-plugin-optimize-regex: 1.1.7
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0
   eslint-plugin-sort-requires: 2.1.0
-  eslint-plugin-unicorn: 17.0.1
+  eslint-plugin-unicorn: 17.1.0
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
