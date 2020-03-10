@@ -1,40 +1,40 @@
 {
-	"name": "rpi-tools-bot",
-	"version": "8.0.0",
-	"description": "Raspberry Pi 3 Telegram Bot",
-	"maintainers": [
-		"Kirill Molchanov <k03.mad@gmail.com"
-	],
-	"repository": "k03mad/rpi-tools-bot",
-	"engines": {
-		"node": ">=13"
-	},
-	"dependencies": {
-		"moment": "2.24.0",
-		"node-telegram-bot-api": "0.40.0",
-		"require-all": "3.0.0",
-		"utils-mad": "7.3.0"
-	},
-	"devDependencies": {
-		"eslint": "6.8.0",
-		"eslint-config-k03mad": "4.0.0",
-		"eslint-plugin-const-case": "1.2.2",
-		"eslint-plugin-jsdoc": "22.0.0",
-		"eslint-plugin-node": "11.0.0",
-		"eslint-plugin-promise": "4.2.1",
-		"eslint-plugin-sonarjs": "0.5.0",
-		"eslint-plugin-sort-requires": "2.1.0",
-		"eslint-plugin-unicorn": "17.1.0",
-		"pre-commit": "1.2.2"
-	},
-	"scripts": {
-		"lint": "eslint --report-unused-disable-directives ./ --format codeframe",
-		"setup": "pnpm i && pnpm prune",
+  "name": "rpi-tools-bot",
+  "version": "8.0.0",
+  "description": "Raspberry Pi 3 Telegram Bot",
+  "maintainers": [
+    "Kirill Molchanov <k03.mad@gmail.com"
+  ],
+  "repository": "k03mad/rpi-tools-bot",
+  "engines": {
+    "node": ">=13"
+  },
+  "dependencies": {
+    "moment": "2.24.0",
+    "node-telegram-bot-api": "0.40.0",
+    "require-all": "3.0.0",
+    "utils-mad": "7.3.0"
+  },
+  "devDependencies": {
+    "eslint": "6.8.0",
+    "eslint-config-k03mad": "4.0.0",
+    "eslint-plugin-const-case": "1.2.2",
+    "eslint-plugin-jsdoc": "22.0.0",
+    "eslint-plugin-node": "11.0.0",
+    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-sonarjs": "0.5.0",
+    "eslint-plugin-sort-requires": "2.1.0",
+    "eslint-plugin-unicorn": "17.1.0",
+    "pre-commit": "1.2.2"
+  },
+  "scripts": {
+    "lint": "eslint --report-unused-disable-directives ./ --format codeframe",
+    "setup": "pnpm i && pnpm prune",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
-	},
-	"pre-commit": [
-		"lint"
-	],
-	"license": "Unlicense"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "license": "Unlicense"
 }
