@@ -9,7 +9,7 @@ module.exports = async opts => {
 
     const [list, url] = opts.split(/\s+/);
 
-    const urlTrim = url.trim();
+    const urlTrim = (url || '').trim();
 
     if (!url || !url.includes('.')) {
         throw new Error(`Something wrong with URL: ${urlTrim}`);
@@ -19,8 +19,8 @@ module.exports = async opts => {
         throw new Error(`Something wrong with LIST: ${list}`);
     }
 
-    const logAdd = await repo.run('adguard-home-lists-my', `${list} --${urlTrim}`);
-    const logUpdate = await repo.run('adguard-home-lists-my', 'update');
+    const logAdd = await repo.run('adguard-home-lists-my', `${list} --${urlTrim}`, {skipReset: true});
+    const logUpdate = await repo.run('adguard-home-lists-my', 'update', {skipReset: true});
 
     await promise.delay(5000);
     const logRefresh = await adg.post('filtering/refresh');
