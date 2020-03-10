@@ -18,7 +18,7 @@ module.exports = async opts => {
         throw new Error(`Something wrong with params\nURL: "${urlTrim}"\nLIST: "${list}"`);
     }
 
-    const logAdd = await repo.run('adguard-home-lists-my', `${list} --${urlTrim}`, {skipReset: true});
+    const logAdd = await repo.run('adguard-home-lists-my', `${list} --${urlTrim}`);
     const logUpdate = await repo.run('adguard-home-lists-my', 'update', {skipReset: true});
 
     await promise.delay(5000);
