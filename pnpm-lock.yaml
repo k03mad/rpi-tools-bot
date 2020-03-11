@@ -5,7 +5,7 @@ dependencies:
   utils-mad: 7.3.0
 devDependencies:
   eslint: 6.8.0
-  eslint-config-k03mad: 4.1.0_e59f1c05a056505530ca9221db891a63
+  eslint-config-k03mad: 4.1.1_e59f1c05a056505530ca9221db891a63
   eslint-plugin-const-case: 1.2.2
   eslint-plugin-jsdoc: 22.0.0_eslint@6.8.0
   eslint-plugin-node: 11.0.0_eslint@6.8.0
@@ -659,7 +659,7 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/4.1.0_e59f1c05a056505530ca9221db891a63:
+  /eslint-config-k03mad/4.1.1_e59f1c05a056505530ca9221db891a63:
     dependencies:
       eslint: 6.8.0
       eslint-plugin-const-case: 1.2.2
@@ -680,7 +680,7 @@ packages:
       eslint-plugin-sort-requires: '>=2.1.0'
       eslint-plugin-unicorn: '>=17.1.0'
     resolution:
-      integrity: sha512-BS9rKj+o5SP8O65q1aAJ5lvLEFm6SFRLTK/n1rbhfhFc+XFJEsnB6jiL1FnRJvw296z0nxwqU8gIAd/o7CRJzQ==
+      integrity: sha512-yMO5WJt+8PAwp7ytWAiQKJuznfdYB4eXWie/vSmO9C63zlTPbyA2zhyjk+TtfH+HpbikicbGW5Q110JuI98gcg==
   /eslint-plugin-const-case/1.2.2:
     dependencies:
       requireindex: 1.2.0
@@ -2487,7 +2487,7 @@ packages:
       integrity: sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 specifiers:
   eslint: 6.8.0
-  eslint-config-k03mad: 4.1.0
+  eslint-config-k03mad: 4.1.1
   eslint-plugin-const-case: 1.2.2
   eslint-plugin-jsdoc: 22.0.0
   eslint-plugin-node: 11.0.0
