@@ -22,7 +22,7 @@ module.exports = async opts => {
     const logUpdate = await repo.run('adguard-home-lists-my', 'update', {skipReset: true});
 
     await promise.delay(5000);
-    const logRefresh = await adg.post('filtering/refresh');
+    const logRefresh = await adg.post('filtering/refresh', {json: {whitelist: true}});
 
     return [logAdd, logUpdate, logRefresh, `"${urlTrim}" added to ${list}list`].join('\n\n');
 };
