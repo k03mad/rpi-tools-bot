@@ -9,5 +9,5 @@ module.exports = async () => {
     await promise.delay(5000);
     const logRefresh = await adg.post('filtering/refresh', {json: {whitelist: true}});
 
-    return [logMy, logConverted, logRefresh].join('\n\n');
+    return [logMy, logConverted, `Updated: ${logRefresh.updated} filters`].join('\n\n');
 };
