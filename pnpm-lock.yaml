@@ -2,17 +2,17 @@ dependencies:
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   require-all: 3.0.0
-  utils-mad: 7.3.0
+  utils-mad: 7.4.0
 devDependencies:
   eslint: 6.8.0
-  eslint-config-k03mad: 4.1.1_570d1317bf5c5f81a07711001941258c
+  eslint-config-k03mad: 4.2.0_e6239fa9b0f9e30719347ab9f9f7a003
   eslint-plugin-const-case: 1.2.2
-  eslint-plugin-jsdoc: 22.0.1_eslint@6.8.0
-  eslint-plugin-node: 11.0.0_eslint@6.8.0
+  eslint-plugin-jsdoc: 22.1.0_eslint@6.8.0
+  eslint-plugin-node: 11.1.0_eslint@6.8.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0_eslint@6.8.0
   eslint-plugin-sort-requires: 2.1.0
-  eslint-plugin-unicorn: 17.2.0_eslint@6.8.0
+  eslint-plugin-unicorn: 18.0.1_eslint@6.8.0
   pre-commit: 1.2.2
 lockfileVersion: 5.1
 packages:
@@ -659,28 +659,28 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/4.1.1_570d1317bf5c5f81a07711001941258c:
+  /eslint-config-k03mad/4.2.0_e6239fa9b0f9e30719347ab9f9f7a003:
     dependencies:
       eslint: 6.8.0
       eslint-plugin-const-case: 1.2.2
-      eslint-plugin-jsdoc: 22.0.1_eslint@6.8.0
-      eslint-plugin-node: 11.0.0_eslint@6.8.0
+      eslint-plugin-jsdoc: 22.1.0_eslint@6.8.0
+      eslint-plugin-node: 11.1.0_eslint@6.8.0
       eslint-plugin-promise: 4.2.1
       eslint-plugin-sonarjs: 0.5.0_eslint@6.8.0
       eslint-plugin-sort-requires: 2.1.0
-      eslint-plugin-unicorn: 17.2.0_eslint@6.8.0
+      eslint-plugin-unicorn: 18.0.1_eslint@6.8.0
     dev: true
     peerDependencies:
       eslint: '>=6.8.0'
       eslint-plugin-const-case: '>=1.2.2'
-      eslint-plugin-jsdoc: '>=22.0.0'
+      eslint-plugin-jsdoc: '>=22.1.0'
       eslint-plugin-node: '>=11.0.0'
       eslint-plugin-promise: '>=4.2.1'
       eslint-plugin-sonarjs: '>=0.5.0'
       eslint-plugin-sort-requires: '>=2.1.0'
-      eslint-plugin-unicorn: '>=17.1.0'
+      eslint-plugin-unicorn: '>=17.2.0'
     resolution:
-      integrity: sha512-yMO5WJt+8PAwp7ytWAiQKJuznfdYB4eXWie/vSmO9C63zlTPbyA2zhyjk+TtfH+HpbikicbGW5Q110JuI98gcg==
+      integrity: sha512-LbHit4SRgTNn1/w37FJDciHli1Q/wGIdZCCxBC2DPa/Fx3bUDrmRy1/X7Z4iR8Lm+OJvrR1NmTi/slumCjAktA==
   /eslint-plugin-const-case/1.2.2:
     dependencies:
       requireindex: 1.2.0
@@ -701,7 +701,7 @@ packages:
       eslint: '>=4.19.1'
     resolution:
       integrity: sha512-6/Jb/J/ZvSebydwbBJO1R9E5ky7YeElfK56Veh7e4QGFHCXoIXGH9HhVz+ibJLM3XJ1XjP+T7rKBLUa/Y7eIng==
-  /eslint-plugin-jsdoc/22.0.1_eslint@6.8.0:
+  /eslint-plugin-jsdoc/22.1.0_eslint@6.8.0:
     dependencies:
       comment-parser: 0.7.2
       debug: 4.1.1
@@ -717,8 +717,8 @@ packages:
     peerDependencies:
       eslint: ^6.0.0
     resolution:
-      integrity: sha512-lqQgGtd+roOhd5lSdIK4P3mlDmTVmVdcehj/r8nY25CGB2yi4Tk6JVwETCPBGnRKd40JkllkchyZmt0tFN+5pw==
-  /eslint-plugin-node/11.0.0_eslint@6.8.0:
+      integrity: sha512-54NdbICM7KrxsGUqQsev9aIMqPXyvyBx2218Qcm0TQ16P9CtBI+YY4hayJR6adrxlq4Ej0JLpgfUXWaQVFqmQg==
+  /eslint-plugin-node/11.1.0_eslint@6.8.0:
     dependencies:
       eslint: 6.8.0
       eslint-plugin-es: 3.0.0_eslint@6.8.0
@@ -733,7 +733,7 @@ packages:
     peerDependencies:
       eslint: '>=5.16.0'
     resolution:
-      integrity: sha512-chUs/NVID+sknFiJzxoN9lM7uKSOEta8GC8365hw1nDfwIPIjjpRSwwPvQanWv8dt/pDe9EV4anmVSwdiSndNg==
+      integrity: sha512-oUwtPJ1W0SKD0Tr+wqu92c5xuCeQqB3hSCHasn/ZgjFdA9iDGNkNf2Zi9ztY7X+hNuMib23LNGRm6+uN+KLE3g==
   /eslint-plugin-promise/4.2.1:
     dev: true
     engines:
@@ -754,7 +754,7 @@ packages:
     dev: true
     resolution:
       integrity: sha1-PvrZSNyDeYIZ6An1QGfEDlVESGE=
-  /eslint-plugin-unicorn/17.2.0_eslint@6.8.0:
+  /eslint-plugin-unicorn/18.0.1_eslint@6.8.0:
     dependencies:
       ci-info: 2.0.0
       clean-regexp: 1.0.0
@@ -764,7 +764,7 @@ packages:
       import-modules: 2.0.0
       lodash: 4.17.15
       read-pkg-up: 7.0.1
-      regexp-tree: 0.1.20
+      regexp-tree: 0.1.21
       reserved-words: 0.1.2
       safe-regex: 2.1.1
       semver: 7.1.3
@@ -772,9 +772,9 @@ packages:
     engines:
       node: '>=10'
     peerDependencies:
-      eslint: '>=6.7.1'
+      eslint: '>=6.8.0'
     resolution:
-      integrity: sha512-0kYjrywf0kQxevFz571KrDfYMIRZ5Kq6dDgPU1EEBFeC181r+fAaPatBScWX+/hisKJ4+eCRFebxTeVylsSYmw==
+      integrity: sha512-Y4bgygek4x4ogeMcSHr6MZi3frBPZ80eIpMOsxew7jAblb53OYflpRh0an62Z6jv/fw7D3TkXauqLOBWbT9adg==
   /eslint-scope/5.0.0:
     dependencies:
       esrecurse: 4.2.1
@@ -1922,11 +1922,11 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
-  /regexp-tree/0.1.20:
+  /regexp-tree/0.1.21:
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-gSiH74kc00oTbQkN7tZogZe0ttKwyxyDVLAnU20aWoarbLE9AypbJHRlZ567h4Zi19q3cPVRWDYbfECElrHgsQ==
+      integrity: sha512-kUUXjX4AnqnR8KRTCrayAo9PzYMRKmVoGgaz2tBuz0MF3g1ZbGebmtW0yFHfFK9CmBjQKeYIgoL22pFLBJY7sw==
   /regexpp/2.0.1:
     dev: true
     engines:
@@ -2091,7 +2091,7 @@ packages:
       integrity: sha512-fZEwUGbVl7kouZs1jCdMLdt95hdIv0ZeHg6L7qPeciMZhZ+/gdesW4wgTARkrFWEpspjEATAzUGPG8N2jJiwbg==
   /safe-regex/2.1.1:
     dependencies:
-      regexp-tree: 0.1.20
+      regexp-tree: 0.1.21
     dev: true
     resolution:
       integrity: sha512-rx+x8AMzKb5Q5lQ95Zoi6ZbJqwCLkqi3XuJXp5P3rT8OEc6sZCJG5AE5dU3lsgRr/F4Bs31jSlVN+j5KrsGu9A==
@@ -2396,7 +2396,7 @@ packages:
   /util-deprecate/1.0.2:
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/7.3.0:
+  /utils-mad/7.4.0:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.1.0
@@ -2416,7 +2416,7 @@ packages:
     engines:
       node: '>=13'
     resolution:
-      integrity: sha512-TWFz/swjK+Yl7azl+k1d1d5erz73I40ASYnr+XxOIomtrEEVOdEtwiNdE4rUOy/0F7+eub2pSvpFm06BZv7FoQ==
+      integrity: sha512-jO4c2UCcQuI0BD3VC719Weoau/SiaLzaCD6nmk7Ns/+XapCka89toheW+QQl6UrQetF6yyOnQLB9TBBejVx0zg==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2487,16 +2487,16 @@ packages:
       integrity: sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 specifiers:
   eslint: 6.8.0
-  eslint-config-k03mad: 4.1.1
+  eslint-config-k03mad: 4.2.0
   eslint-plugin-const-case: 1.2.2
-  eslint-plugin-jsdoc: 22.0.1
-  eslint-plugin-node: 11.0.0
+  eslint-plugin-jsdoc: 22.1.0
+  eslint-plugin-node: 11.1.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0
   eslint-plugin-sort-requires: 2.1.0
-  eslint-plugin-unicorn: 17.2.0
+  eslint-plugin-unicorn: 18.0.1
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
   require-all: 3.0.0
-  utils-mad: 7.3.0
+  utils-mad: 7.4.0
