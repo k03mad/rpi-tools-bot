@@ -9,12 +9,8 @@ module.exports = async () => {
         'mikrotik-pptp-hidemy-ip', 'utils-mad',
     ];
 
-    const logs = [];
-
-    for (const app of apps) {
-        logs.push(await repo.update(app));
-    }
-
+    const logs = await Promise.all(apps.map(app => repo.update(app)));
     logs.push(await restart());
+
     return logs;
 };
