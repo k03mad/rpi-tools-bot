@@ -19,7 +19,7 @@
     "eslint": "6.8.0",
     "eslint-config-k03mad": "4.2.0",
     "eslint-plugin-const-case": "1.2.2",
-    "eslint-plugin-jsdoc": "22.1.0",
+    "eslint-plugin-jsdoc": "23.0.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sonarjs": "0.5.0",
