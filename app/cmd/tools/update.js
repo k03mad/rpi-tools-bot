@@ -7,6 +7,7 @@ module.exports = async () => {
     const apps = [
         'rpi-tools-bot', 'rpi-tools-cron', 'magnet-co-parser',
         'mikrotik-pptp-hidemy-ip', 'utils-mad',
+        'adguard-home-lists-my',
     ];
 
     const logs = await Promise.all(apps.map(app => repo.update(app)));
