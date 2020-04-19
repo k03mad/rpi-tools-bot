@@ -14,5 +14,15 @@ Object.entries(all).forEach(([folder, cmds]) => {
     ));
 });
 
-bot.on('polling_error', err => print.ex(err, {before: 'err::polling', exit: true}));
+let pollingErrors = 0;
+
+bot.on('polling_error', err => {
+    pollingErrors++;
+
+    if (pollingErrors > 5) {
+        print.ex(err, {before: 'err::polling', exit: true});
+        pollingErrors = 0;
+    }
+});
+
 bot.on('uncaughtException', err => print.ex(err, {before: 'err::uncaught', exit: true}));
