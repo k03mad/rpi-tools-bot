@@ -8,7 +8,7 @@ module.exports = bot => {
     bot.on('polling_error', err => {
         pollingErrors++;
 
-        if (pollingErrors > 5) {
+        if (pollingErrors >= 10) {
             print.ex(err, {
                 before: `onPollingErr (count: ${pollingErrors})`,
                 exit: true,
