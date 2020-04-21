@@ -24,5 +24,9 @@ module.exports = async opts => {
     await promise.delay(5000);
     const logRefresh = await adg.post('filtering/refresh', {json: {whitelist: true}});
 
-    return [logAdd, logUpdate, logRefresh, `"${urlTrim}" added to ${list}list`].join('\n\n');
+    return [
+        logAdd, logUpdate,
+        JSON.stringify(logRefresh),
+        `"${urlTrim}" added to ${list}list`,
+    ].join('\n\n');
 };
