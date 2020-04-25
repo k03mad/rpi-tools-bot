@@ -2,7 +2,7 @@ dependencies:
   moment: 2.24.0
   node-telegram-bot-api: 0.40.0
   require-all: 3.0.0
-  utils-mad: 7.5.2
+  utils-mad: 7.5.3
 devDependencies:
   eslint: 6.8.0
   eslint-config-k03mad: 4.2.0_0ea31b157615ddf4fb28296a5132fbd8
@@ -1087,7 +1087,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-7dUi7RvCoT/xast/o/dLN53oqND4yk0nsHkhRgn9w65C4PofCLOoJ39iSOg+qVDdWQPIEj+eszMHQ+aLVwwQSg==
-  /got/11.0.1:
+  /got/11.0.2:
     dependencies:
       '@sindresorhus/is': 2.1.0
       '@szmarczak/http-timer': 4.0.5
@@ -1097,7 +1097,7 @@ packages:
       cacheable-request: 7.0.1
       decompress-response: 5.0.0
       get-stream: 5.1.0
-      http2-wrapper: 1.0.0-beta.4.3
+      http2-wrapper: 1.0.0-beta.4.4
       lowercase-keys: 2.0.0
       p-cancelable: 2.0.0
       responselike: 2.0.0
@@ -1105,7 +1105,7 @@ packages:
     engines:
       node: '>=10.19.0'
     resolution:
-      integrity: sha512-yxoJ0Mo8IV0bcrDaT9OaQ3dB514e26r+0V16TK7cqbcotbAwuOq5IIr2WJl75CvZ3oIRtpHVftYAQLF1lqrC5A==
+      integrity: sha512-zOanxiJs1LaBAiKsV43UUw/oRlyRNtJFeuATahfi4c3MTremj09eAeJBSJ7GR2oEMhrLLRSJpz8fQaojVDijjw==
   /graceful-fs/4.2.3:
     dev: false
     resolution:
@@ -1175,15 +1175,15 @@ packages:
       npm: '>=1.3.7'
     resolution:
       integrity: sha1-muzZJRFHcvPZW2WmCruPfBj7rOE=
-  /http2-wrapper/1.0.0-beta.4.3:
+  /http2-wrapper/1.0.0-beta.4.4:
     dependencies:
       quick-lru: 5.1.0
       resolve-alpn: 1.0.0
     dev: false
     engines:
-      node: '>=10'
+      node: '>=10.19.0'
     resolution:
-      integrity: sha512-r0Rr4+g7RF0RHBuArwOYHvFFcD2GchoXk4Q331K4h1IQ0kXqowXNBR0n71jQGzav2GHg9BnNYMC1dFxAr66rIg==
+      integrity: sha512-CHpjljc2VeZQ1Lk02dwAfOq0k7uY+MSmt9or0zQiyPr++BIngUKIDRoy/MfX0jVZbpG/GjGVZK3K9ac5pBS//A==
   /iconv-lite/0.4.24:
     dependencies:
       safer-buffer: 2.1.2
@@ -1474,14 +1474,14 @@ packages:
     dev: true
     resolution:
       integrity: sha512-sWZlbEP2OsHNkXrMl5GYk/jKk70MBng6UU4YI/qGDYbgf6YbP4EvmqISbXCoJiRKs+1bSpFHVgQxvJ17F2li5g==
-  /make-dir/3.0.2:
+  /make-dir/3.1.0:
     dependencies:
       semver: 6.3.0
     dev: false
     engines:
       node: '>=8'
     resolution:
-      integrity: sha512-rYKABKutXa6vXTXhoV18cBE7PaewPXHe/Bdq4v+ZLMhxbWApkFFplT0LcbMW+6BbjnQXzZ/sAvSE/JdguApG5w==
+      integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==
   /merge2/1.3.0:
     dev: false
     engines:
@@ -2373,15 +2373,15 @@ packages:
   /util-deprecate/1.0.2:
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/7.5.2:
+  /utils-mad/7.5.3:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.1.0
       debug: 4.1.1
       del: 5.1.0
-      got: 11.0.1
+      got: 11.0.2
       json-cycle: 1.3.0
-      make-dir: 3.0.2
+      make-dir: 3.1.0
       moment: 2.24.0
       nano-time: 1.0.0
       node-routeros: 1.6.8
@@ -2391,9 +2391,9 @@ packages:
       xml-js: 1.6.11
     dev: false
     engines:
-      node: '>=13'
+      node: '>=14'
     resolution:
-      integrity: sha512-MzitUf9kXdvlGJghQ7USWGtq+aREACVZFdNPDnuGS+MgstOBO6+hbUkia0fUsjnlbshM6qqy4L7oVvXUWQ3s7w==
+      integrity: sha512-WoVn/ebPJz16/5J7iuFObijYtLE7RduTBPb4slyHvKFC9+7UETaqF/xwyo5sGeetdZ0nWbSOG8AvSmtM5s79Dg==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2476,4 +2476,4 @@ specifiers:
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
   require-all: 3.0.0
-  utils-mad: 7.5.2
+  utils-mad: 7.5.3
