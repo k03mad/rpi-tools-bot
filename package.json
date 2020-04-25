@@ -7,13 +7,13 @@
   ],
   "repository": "k03mad/rpi-tools-bot",
   "engines": {
-    "node": ">=13"
+    "node": ">=14"
   },
   "dependencies": {
     "moment": "2.24.0",
     "node-telegram-bot-api": "0.40.0",
     "require-all": "3.0.0",
-    "utils-mad": "7.4.6"
+    "utils-mad": "7.5.2"
   },
   "devDependencies": {
     "eslint": "6.8.0",
@@ -24,7 +24,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sonarjs": "0.5.0",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "18.0.1",
+    "eslint-plugin-unicorn": "19.0.0",
     "pre-commit": "1.2.2"
   },
   "scripts": {
