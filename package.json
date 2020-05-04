@@ -13,7 +13,7 @@
     "moment": "2.25.3",
     "node-telegram-bot-api": "0.40.0",
     "require-all": "3.0.0",
-    "utils-mad": "7.6.2"
+    "utils-mad": "7.6.3"
   },
   "devDependencies": {
     "eslint": "6.8.0",
@@ -29,7 +29,7 @@
   },
   "scripts": {
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe",
-    "setup": "pnpm i",
+    "setup": "npm i",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
   },
