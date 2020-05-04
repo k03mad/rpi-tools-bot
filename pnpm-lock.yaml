@@ -2476,4 +2476,4 @@ specifiers:
   node-telegram-bot-api: 0.40.0
   pre-commit: 1.2.2
   require-all: 3.0.0
-  utils-mad: 7.6.1
+  utils-mad: 7.6.2
