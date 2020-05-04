@@ -3,7 +3,6 @@
 adg_add_filter - adguard: add domain to white or black list
 adg_query_log - adguard: get last queried domains
 adg_switch_state - adguard: switch blocking state
-adg_unique_not_filtered - adguard: get unique not filtered domains log
 adg_update_filters - adguard: update filters
 mik_change_pptp_server - mikrotik: change pptp server
 mik_switch_dhcp - mikrotik: switch dhcp server
