@@ -1,5 +1,3 @@
-# @BotFather /setcommands
-
 adg_add_filter - adguard: add domain to white or black list
 adg_query_log - adguard: get last queried domains
 adg_switch_state - adguard: switch blocking state

@@ -10,6 +10,7 @@
     "node": ">=14"
   },
   "dependencies": {
+    "app-root-path": "3.0.0",
     "moment": "2.25.3",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
