@@ -18,14 +18,15 @@ module.exports = async opts => {
         throw new Error(`Something wrong with params\nURL: "${urlTrim}"\nLIST: "${list}"`);
     }
 
+    const logUpdate = await repo.update('adguard-home-lists-my');
     const logAdd = await repo.run('adguard-home-lists-my', `${list} --url=${urlTrim}`);
-    const logUpdate = await repo.run('adguard-home-lists-my', 'update', {skipReset: true});
+    const logCommit = await repo.run('adguard-home-lists-my', 'update', {skipReset: true});
 
     await promise.delay(5000);
     const logRefresh = await adg.post('filtering/refresh', {json: {whitelist: true}});
 
     return [
-        logAdd, logUpdate,
+        logUpdate, logAdd, logCommit,
         JSON.stringify(logRefresh),
         `"${urlTrim}" added to ${list}list`,
     ].join('\n\n');
