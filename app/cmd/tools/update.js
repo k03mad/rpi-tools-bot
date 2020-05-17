@@ -8,7 +8,7 @@ module.exports = async () => {
 
     const apps = [
         'rpi-tools-bot', 'rpi-tools-cron', 'magnet-co-parser',
-        'adguard-home-lists-my', 'mikrotik-pptp-hidemy-ip',
+        'adguard-home-lists-my',
     ];
 
     for (const app of apps) {
