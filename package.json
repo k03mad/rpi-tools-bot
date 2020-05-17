@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "moment": "2.25.3",
-    "node-telegram-bot-api": "0.40.0",
+    "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "7.6.4"
+    "utils-mad": "7.7.0"
   },
   "devDependencies": {
     "eslint": "7.0.0",
     "eslint-config-k03mad": "4.2.2",
     "eslint-plugin-const-case": "1.2.2",
-    "eslint-plugin-jsdoc": "25.0.1",
+    "eslint-plugin-jsdoc": "25.4.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sonarjs": "0.5.0",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "19.0.1",
-    "pre-commit": "1.2.2"
+    "eslint-plugin-unicorn": "20.0.0",
+    "husky": "4.2.5"
   },
   "scripts": {
     "lint": "eslint --report-unused-disable-directives ./ --format codeframe",
@@ -33,8 +33,5 @@
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "license": "Unlicense"
 }
