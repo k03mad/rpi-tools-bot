@@ -3,6 +3,8 @@
 const {adg, repo, promise} = require('utils-mad');
 
 module.exports = async opts => {
+    const LISTS_REPO = 'adguard-home-lists-my';
+
     if (!opts) {
         return 'No params found, example: white|black yandex.ru';
     }
@@ -18,9 +20,9 @@ module.exports = async opts => {
         throw new Error(`Something wrong with params\nURL: "${urlTrim}"\nLIST: "${list}"`);
     }
 
-    const logUpdate = await repo.update('adguard-home-lists-my');
-    const logAdd = await repo.run('adguard-home-lists-my', `${list} --url=${urlTrim}`);
-    const logCommit = await repo.run('adguard-home-lists-my', 'update');
+    const logUpdate = await repo.update(LISTS_REPO);
+    const logAdd = await repo.run(LISTS_REPO, `${list} --url=${urlTrim}`);
+    const logCommit = await repo.run(LISTS_REPO, 'update');
 
     await promise.delay(5000);
     const logRefresh = await adg.post('filtering/refresh', {json: {whitelist: true}});
