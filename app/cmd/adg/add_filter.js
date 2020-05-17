@@ -20,7 +20,7 @@ module.exports = async opts => {
 
     const logUpdate = await repo.update('adguard-home-lists-my');
     const logAdd = await repo.run('adguard-home-lists-my', `${list} --url=${urlTrim}`);
-    const logCommit = await repo.run('adguard-home-lists-my', 'update', {skipReset: true});
+    const logCommit = await repo.run('adguard-home-lists-my', 'update');
 
     await promise.delay(5000);
     const logRefresh = await adg.post('filtering/refresh', {json: {whitelist: true}});
