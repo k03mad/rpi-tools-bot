@@ -7,6 +7,7 @@ const {promises: fs} = require('fs');
 /**
  * Распарсить команды из списка и поставить их боту
  * @param {object} bot
+ * @returns {Array}
  */
 const setBotCommandsList = async bot => {
     const commands = await fs.readFile(`${appRoot}/app/cmd/list.md`, {encoding: 'utf-8'});
