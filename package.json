@@ -14,12 +14,11 @@
     "moment": "2.25.3",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "8.0.1"
+    "utils-mad": "8.0.2"
   },
   "devDependencies": {
     "eslint": "7.0.0",
-    "eslint-config-k03mad": "4.3.0",
-    "eslint-plugin-const-case": "1.2.2",
+    "eslint-config-k03mad": "5.0.0",
     "eslint-plugin-jsdoc": "25.4.2",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
