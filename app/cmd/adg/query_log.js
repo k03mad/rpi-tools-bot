@@ -3,6 +3,10 @@
 const moment = require('moment');
 const {adg} = require('utils-mad');
 
+/**
+ * @param {string} [status]
+ * @returns {Promise}
+ */
 module.exports = async status => {
     const {data} = await adg.get('querylog', {
         searchParams: {

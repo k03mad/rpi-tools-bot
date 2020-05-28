@@ -2,6 +2,7 @@
 
 const {adg} = require('utils-mad');
 
+/** @returns {Promise<string>} */
 module.exports = async () => {
     const {protection_enabled: state} = await adg.get('dns_info');
     await adg.post('dns_config', {json: {protection_enabled: !state}});

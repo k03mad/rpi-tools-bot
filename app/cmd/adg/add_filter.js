@@ -2,6 +2,10 @@
 
 const {adg, repo, promise} = require('utils-mad');
 
+/**
+ * @param {string} opts
+ * @returns {Promise<string>}
+ */
 module.exports = async opts => {
     const LISTS_REPO = 'adguard-home-lists-my';
 

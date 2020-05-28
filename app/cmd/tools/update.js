@@ -3,6 +3,7 @@
 const restart = require('../pm/restart');
 const {repo} = require('utils-mad');
 
+/** @returns {Promise<Array>} */
 module.exports = async () => {
     const logs = [];
 

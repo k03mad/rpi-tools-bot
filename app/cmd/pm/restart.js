@@ -2,6 +2,7 @@
 
 const {shell} = require('utils-mad');
 
+/** @returns {Promise<string>} */
 module.exports = async () => {
     const allApps = ['magnet-co-parser', 'cron'];
     const currentApps = ['bot'];

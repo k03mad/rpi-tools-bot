@@ -2,6 +2,7 @@
 
 const {mikrotik} = require('utils-mad');
 
+/** @returns {Promise<string>} */
 module.exports = async () => {
     const nat = await mikrotik.write('/ip/firewall/nat/print');
     const pi = nat.filter(elem => !elem.comment || elem.comment.startsWith('pi'));

@@ -4,6 +4,7 @@ const {print} = require('utils-mad');
 
 const MIN_ERRORS = 30;
 
+/** @param {object} bot */
 module.exports = bot => {
     let pollingErrors = 0;
 
