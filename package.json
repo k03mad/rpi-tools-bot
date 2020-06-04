@@ -28,7 +28,7 @@
     "husky": "4.2.5"
   },
   "scripts": {
-    "lint": "eslint --report-unused-disable-directives ./ --format codeframe",
+    "lint": "eslint ./ --report-unused-disable-directives --format=codeframe --ignore-pattern='!.*'",
     "setup": "yarn install",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
