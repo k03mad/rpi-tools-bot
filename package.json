@@ -29,7 +29,7 @@
   },
   "scripts": {
     "lint": "eslint ./ --report-unused-disable-directives --format=codeframe --ignore-pattern='!.*'",
-    "setup": "yarn install",
+    "setup": "pnpm i",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
   },
