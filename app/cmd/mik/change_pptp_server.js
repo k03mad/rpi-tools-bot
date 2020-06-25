@@ -1,11 +1,11 @@
 'use strict';
 
-const {repo, print} = require('utils-mad');
+const {shell, print} = require('utils-mad');
 
 /** @returns {Promise<string>} */
 module.exports = () => {
-    repo
-        .run('mikrotik-pptp-hidemy-ip', 'script')
+    shell
+        .run('mad-pptp')
         .catch(err => print.ex(err, {exit: true}));
 
     return 'Update script started';
