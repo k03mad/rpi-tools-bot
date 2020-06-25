@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "app-root-path": "3.0.0",
-    "moment": "2.26.0",
+    "moment": "2.27.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "8.0.3"
+    "utils-mad": "8.0.5"
   },
   "devDependencies": {
-    "eslint": "7.1.0",
-    "eslint-config-k03mad": "5.0.0",
-    "eslint-plugin-jsdoc": "26.0.1",
+    "eslint": "7.3.1",
+    "eslint-config-k03mad": "5.0.1",
+    "eslint-plugin-jsdoc": "28.5.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sonarjs": "0.5.0",
