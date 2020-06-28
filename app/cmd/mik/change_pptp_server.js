@@ -8,5 +8,5 @@ module.exports = () => {
         .run('mad-pptp')
         .catch(err => print.ex(err, {exit: true}));
 
-    return 'Update script started';
+    return 'Change pptp script started';
 };
