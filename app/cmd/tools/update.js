@@ -22,7 +22,8 @@ module.exports = async () => {
     logs.push(
         '>>> global <<<',
         // eslint-disable-next-line no-template-curly-in-string
-        await shell.run('for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f4); do npm i ${package} -g; done'),
+        await shell.run('for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f4); do npm i ${package} -g; done')
+            || 'no updates',
     );
 
     logs.push(await restart());
