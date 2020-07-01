@@ -1,3 +1,1 @@
-My Raspberry Pi Telegram bot
-
-(⌐■_■)
+# My Telegram bot
