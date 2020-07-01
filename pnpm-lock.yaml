@@ -6,8 +6,8 @@ dependencies:
   utils-mad: 8.1.0
 devDependencies:
   eslint: 7.3.1
-  eslint-config-k03mad: 5.0.1_caaa8fded837c02bdce8b032231be532
-  eslint-plugin-jsdoc: 28.5.1_eslint@7.3.1
+  eslint-config-k03mad: 5.0.1_fec835280381f51540f1863aa97f12b6
+  eslint-plugin-jsdoc: 28.6.1_eslint@7.3.1
   eslint-plugin-node: 11.1.0_eslint@7.3.1
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0_eslint@7.3.1
@@ -575,10 +575,10 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/5.0.1_caaa8fded837c02bdce8b032231be532:
+  /eslint-config-k03mad/5.0.1_fec835280381f51540f1863aa97f12b6:
     dependencies:
       eslint: 7.3.1
-      eslint-plugin-jsdoc: 28.5.1_eslint@7.3.1
+      eslint-plugin-jsdoc: 28.6.1_eslint@7.3.1
       eslint-plugin-node: 11.1.0_eslint@7.3.1
       eslint-plugin-promise: 4.2.1
       eslint-plugin-sonarjs: 0.5.0_eslint@7.3.1
@@ -607,7 +607,7 @@ packages:
       eslint: '>=4.19.1'
     resolution:
       integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==
-  /eslint-plugin-jsdoc/28.5.1_eslint@7.3.1:
+  /eslint-plugin-jsdoc/28.6.1_eslint@7.3.1:
     dependencies:
       comment-parser: 0.7.5
       debug: 4.1.1
@@ -623,7 +623,7 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0
     resolution:
-      integrity: sha512-1XSWu8UnGwqO8mX3XKGofffL83VRt00ptq0m5OrTLFDN3At4x+/pJ8YHJONKhGC35TtjskcS9/RR6F9pjQ8c+w==
+      integrity: sha512-Z3y7hcNPDuhL339D1KOf9SY8pMAxYxhaG4QLtu3KVn20k/hNF1u6WQv44wvuSCb6OfPJ4say37RUlSNqIjR+mw==
   /eslint-plugin-node/11.1.0_eslint@7.3.1:
     dependencies:
       eslint: 7.3.1
@@ -2191,7 +2191,7 @@ specifiers:
   app-root-path: 3.0.0
   eslint: 7.3.1
   eslint-config-k03mad: 5.0.1
-  eslint-plugin-jsdoc: 28.5.1
+  eslint-plugin-jsdoc: 28.6.1
   eslint-plugin-node: 11.1.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0
