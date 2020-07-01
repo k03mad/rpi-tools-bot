@@ -20,5 +20,5 @@ module.exports = async () => {
     const nextServer = array.next(servers, dhcp[0]['dns-server']);
 
     await mikrotik.write(['/ip/dhcp-server/network/set', '=.id=*1', `=dns-server=${nextServer}`]);
-    return `DNS: ${nextServer}`;
+    return `DNS: ${[...new Set(nextServer.split(','))].join(', ')}`;
 };
