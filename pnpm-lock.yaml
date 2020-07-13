@@ -3,11 +3,11 @@ dependencies:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.0.1
+  utils-mad: 9.1.1
 devDependencies:
   eslint: 7.4.0
-  eslint-config-k03mad: 5.0.1_076127b32fd94258a634f834e77fd7e0
-  eslint-plugin-jsdoc: 28.6.1_eslint@7.4.0
+  eslint-config-k03mad: 5.0.2_19e09ea1b517a3c59ceec0d19612d94f
+  eslint-plugin-jsdoc: 29.2.0_eslint@7.4.0
   eslint-plugin-node: 11.1.0_eslint@7.4.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0_eslint@7.4.0
@@ -34,12 +34,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-8rMof+gVP8mxYZApLF/JgNDAkdKa+aJt3ZYxF8z6+j/hpeXL7iMsKCPHa2jNMHu/qqBwzQF4OHNoYi8dMA/rYg==
-  /@sindresorhus/is/2.1.1:
+  /@sindresorhus/is/3.0.0:
     dev: false
     engines:
       node: '>=10'
     resolution:
-      integrity: sha512-/aPsuoj/1Dw/kzhkgz+ES6TxG0zfTMGLwuK2ZG00k/iJzYHTLCE8mVU8EPqEOp/lmxPoq1C1C9RYToRKb2KEfg==
+      integrity: sha512-kqA5I6Yun7PBHk8WN9BBP1c7FfN2SrD05GuVSEYPqDb4nerv7HqYfgBfMIKmT/EuejURkJKLZuLyGKGs6WEG9w==
   /@szmarczak/http-timer/4.0.5:
     dependencies:
       defer-to-connect: 2.0.0
@@ -336,10 +336,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
-  /colorette/1.2.0:
+  /colorette/1.2.1:
     dev: false
     resolution:
-      integrity: sha512-soRSroY+OF/8OdA3PTQXwaDJeMc7TfknKKrxeSCencL2a4+Tx5zhxmmv7hdpCjhKBjehzp8+bwe/T68K0hpIjw==
+      integrity: sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
   /combined-stream/1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -575,14 +575,12 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/5.0.1_076127b32fd94258a634f834e77fd7e0:
+  /eslint-config-k03mad/5.0.2_19e09ea1b517a3c59ceec0d19612d94f:
     dependencies:
       eslint: 7.4.0
-      eslint-plugin-jsdoc: 28.6.1_eslint@7.4.0
+      eslint-plugin-jsdoc: 29.2.0_eslint@7.4.0
       eslint-plugin-node: 11.1.0_eslint@7.4.0
-      eslint-plugin-promise: 4.2.1
       eslint-plugin-sonarjs: 0.5.0_eslint@7.4.0
-      eslint-plugin-sort-requires: 2.1.0
       eslint-plugin-unicorn: 20.1.0_eslint@7.4.0
     dev: true
     peerDependencies:
@@ -594,7 +592,7 @@ packages:
       eslint-plugin-sort-requires: '>=2.1.0'
       eslint-plugin-unicorn: '>=20.1.0'
     resolution:
-      integrity: sha512-5t5Ic22gW+9WotU3JsfXWSwkjOFd/s7zPtoMTqJ/VJ8sUbiNorr1OIeH1aXSCHmLhs6Av/XYWDqnsJTP2IFJpg==
+      integrity: sha512-sYkFT2Oo4DcY1UM+fJFNOcCE23OOgRAeuDqj+B6ItKe+nV4uqYymcSbD28JJIIQSbX4CtXQEg8cwZliI5C/L9A==
   /eslint-plugin-es/3.0.1_eslint@7.4.0:
     dependencies:
       eslint: 7.4.0
@@ -607,12 +605,12 @@ packages:
       eslint: '>=4.19.1'
     resolution:
       integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==
-  /eslint-plugin-jsdoc/28.6.1_eslint@7.4.0:
+  /eslint-plugin-jsdoc/29.2.0_eslint@7.4.0:
     dependencies:
       comment-parser: 0.7.5
       debug: 4.1.1
       eslint: 7.4.0
-      jsdoctypeparser: 7.0.0
+      jsdoctypeparser: 8.0.0
       lodash: 4.17.15
       regextras: 0.7.1
       semver: 7.3.2
@@ -623,7 +621,7 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0
     resolution:
-      integrity: sha512-Z3y7hcNPDuhL339D1KOf9SY8pMAxYxhaG4QLtu3KVn20k/hNF1u6WQv44wvuSCb6OfPJ4say37RUlSNqIjR+mw==
+      integrity: sha512-B1a8LWPkkxyxIp4y3pnRQR18j03Wp+V9gDE7IjQG/MvWAzp5gqXM0q71gXRAZMvWUjujAsNg8B9v1csl+/zkvw==
   /eslint-plugin-node/11.1.0_eslint@7.4.0:
     dependencies:
       eslint: 7.4.0
@@ -964,17 +962,16 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-BWICuzzDvDoH54NHKCseDanAhE3CeDorgDL5MT6LMXXj2WCnd9UC2szdk4AWLfjdgNBCXLUanXYcpBBKOSWGwg==
-  /got/11.3.0:
+  /got/11.5.0:
     dependencies:
-      '@sindresorhus/is': 2.1.1
+      '@sindresorhus/is': 3.0.0
       '@szmarczak/http-timer': 4.0.5
       '@types/cacheable-request': 6.0.1
       '@types/responselike': 1.0.0
       cacheable-lookup: 5.0.3
       cacheable-request: 7.0.1
       decompress-response: 6.0.0
-      get-stream: 5.1.0
-      http2-wrapper: 1.0.0-beta.4.6
+      http2-wrapper: 1.0.0-beta.5.2
       lowercase-keys: 2.0.0
       p-cancelable: 2.0.0
       responselike: 2.0.0
@@ -982,7 +979,7 @@ packages:
     engines:
       node: '>=10.19.0'
     resolution:
-      integrity: sha512-yi/kiZY2tNMtt5IfbfX8UL3hAZWb2gZruxYZ72AY28pU5p0TZjZdl0uRsuaFbnC0JopdUi3I+Mh1F3dPQ9Dh0Q==
+      integrity: sha512-vOZEcEaK0b6x11uniY0HcblZObKPRO75Jvz53VKuqGSaKCM/zEt0sj2LGYVdqDYJzO3wYdG+FPQQ1hsgoXy7vQ==
   /har-schema/2.0.0:
     dev: false
     engines:
@@ -1063,7 +1060,7 @@ packages:
       npm: '>=1.3.7'
     resolution:
       integrity: sha1-muzZJRFHcvPZW2WmCruPfBj7rOE=
-  /http2-wrapper/1.0.0-beta.4.6:
+  /http2-wrapper/1.0.0-beta.5.2:
     dependencies:
       quick-lru: 5.1.1
       resolve-alpn: 1.0.0
@@ -1071,7 +1068,7 @@ packages:
     engines:
       node: '>=10.19.0'
     resolution:
-      integrity: sha512-9oB4BiGDTI1FmIBlOF9OJ5hwJvcBEmPCqk/hy314Uhy2uq5TjekUZM8w8SPLLlUEM+mxNhXdPAXfrJN2Zbb/GQ==
+      integrity: sha512-xYz9goEyBnC8XwXDTuC/MZ6t+MrKVQZOk4s7+PaDkwIsQd8IwqvM+0M6bA/2lvG8GHXcPdf+MejTUeO2LCPCeQ==
   /husky/4.2.5:
     dependencies:
       chalk: 4.0.0
@@ -1216,10 +1213,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
-  /js-base64/2.6.2:
+  /js-base64/2.6.3:
     dev: false
     resolution:
-      integrity: sha512-1hgLrLIrmCgZG+ID3VoLNLOSwjGnoZa8tyrUdEteMeIzsT6PH7PMLyUvbDwzNE56P3PNxyvuIOx4Uh2E5rzQIw==
+      integrity: sha512-fiUvdfCaAXoQTHdKMgTvg6IkecXDcVz6V5rlftUTclF9IKBjMizvSdQaCl/z/6TApDeby5NL+axYou3i0mu1Pg==
   /js-tokens/4.0.0:
     dev: true
     resolution:
@@ -1236,13 +1233,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-peZUwuWi3rXyAdls77yoDA7y9RM=
-  /jsdoctypeparser/7.0.0:
+  /jsdoctypeparser/8.0.0:
     dev: true
     engines:
       node: '>=10'
     hasBin: true
     resolution:
-      integrity: sha512-6vWPn5qSy+MbgCVjXsQKVkRywhs+IxFU7Chw72DKsWoGueYp6QX8eTc55+EA0yPGYfhmglb1gfi283asXirfGQ==
+      integrity: sha512-eLCs6s4JqN8TjFJfgdiLHRvogLhOAJz+5RIA2FtoMe6ZDyuvghvppnlIToqAEnVbxRqLMrfnNXpW8FpmR6IMBw==
   /json-buffer/3.0.1:
     dev: false
     resolution:
@@ -2098,14 +2095,14 @@ packages:
     dev: false
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/9.0.1:
+  /utils-mad/9.1.1:
     dependencies:
       cheerio: 1.0.0-rc.3
-      colorette: 1.2.0
+      colorette: 1.2.1
       debug: 4.1.1
-      got: 11.3.0
+      got: 11.5.0
       hasha: 5.2.0
-      js-base64: 2.6.2
+      js-base64: 2.6.3
       moment: 2.27.0
       nano-time: 1.0.0
       node-routeros: 1.6.8
@@ -2116,7 +2113,7 @@ packages:
     engines:
       node: '>=14'
     resolution:
-      integrity: sha512-vHG+EDrCB4DcrEGuVh06QPVUs8QK7cGE82EWobJy9Fe8oiWG0OxzDmmxUL2BkUoDAw1xS82horeWOfqWTqz4Yw==
+      integrity: sha512-Gpry40SkZGPHc9NzcMhZ9wKeyfCXhRxLYCy/w4vX+sN1jp/VBluJHyMdVFHcCwDeFPONEl53EyLC56Tkb9VBaA==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2189,8 +2186,8 @@ packages:
 specifiers:
   app-root-path: 3.0.0
   eslint: 7.4.0
-  eslint-config-k03mad: 5.0.1
-  eslint-plugin-jsdoc: 28.6.1
+  eslint-config-k03mad: 5.0.2
+  eslint-plugin-jsdoc: 29.2.0
   eslint-plugin-node: 11.1.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0
@@ -2200,4 +2197,4 @@ specifiers:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.0.1
+  utils-mad: 9.1.1
