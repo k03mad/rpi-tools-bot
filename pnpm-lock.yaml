@@ -3,7 +3,7 @@ dependencies:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.1.3
+  utils-mad: 9.1.4
 devDependencies:
   eslint: 7.5.0
   eslint-config-k03mad: 5.0.2_4f758acc1e6bd233f782ebca1adcc56a
@@ -289,7 +289,7 @@ packages:
       dom-serializer: 0.1.1
       entities: 1.1.2
       htmlparser2: 3.10.1
-      lodash: 4.17.15
+      lodash: 4.17.19
       parse5: 3.0.3
     dev: false
     engines:
@@ -1213,10 +1213,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
-  /js-base64/3.3.2:
-    dev: false
-    resolution:
-      integrity: sha512-mSafqR00bmrHBuwFCyLVE8xPGQZBwLYPR2LzRiVOHJAi3zGjYA5bytWz/QQkHIQ+HgKn2suNKC2eyCE2uXY80Q==
   /js-tokens/4.0.0:
     dev: true
     resolution:
@@ -1313,7 +1309,6 @@ packages:
     resolution:
       integrity: sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
   /lodash/4.17.19:
-    dev: true
     resolution:
       integrity: sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
   /lowercase-keys/2.0.0:
@@ -2099,14 +2094,13 @@ packages:
     dev: false
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/9.1.3:
+  /utils-mad/9.1.4:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.2.1
       debug: 4.1.1
       got: 11.5.1
       hasha: 5.2.0
-      js-base64: 3.3.2
       moment: 2.27.0
       nano-time: 1.0.0
       node-routeros: 1.6.8
@@ -2117,7 +2111,7 @@ packages:
     engines:
       node: '>=14'
     resolution:
-      integrity: sha512-YgMkNWTH+BWyG5qNcsTzgm40Fir56DD7m9+JiJFmdcPwgGtbLdPWxC0YFY5ecBbPSc6yvBxdQHtx/O9jsYP6fg==
+      integrity: sha512-7OQi6Q5Rp9br4NOcg4Lval/maf0+gQMerADI0p31JgtGXLWiS/l4k+WLXTNr25kMcssy8KZXzgeK3Pp1O924yQ==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2201,4 +2195,4 @@ specifiers:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.1.3
+  utils-mad: 9.1.4
