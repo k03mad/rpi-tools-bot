@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "app-root-path": "3.0.0",
+    "as-table": "1.0.55",
     "moment": "2.27.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
