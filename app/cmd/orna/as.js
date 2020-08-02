@@ -1,6 +1,6 @@
 'use strict';
 
-const asTable = require('as-table').configure({dash: '—'});
+const asTable = require('as-table').configure({dash: ''});
 const {request} = require('utils-mad');
 
 /**
