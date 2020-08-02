@@ -1,6 +1,6 @@
 'use strict';
 
-const asTable = require('as-table');
+const asTable = require('as-table').configure({dash: '—'});
 const {request} = require('utils-mad');
 
 /**
@@ -73,7 +73,15 @@ module.exports = async opts => {
     });
 
     return [
-        `${body.name} (${body.quality * 100}%)`,
+        `${body.name} *${body.tier} (${body.type} ${body.quality * 100}%)`,
+        '',
+        body.description,
+        '',
+        asTable([
+            ['Materials', body.materials.map(elem => elem.name).join(', ')],
+            ['Dropped by', `${body.dropped_by.map(elem => elem.name).join(', ')} ${body.boss ? '(boss)' : ''}`],
+            ['Equipped by', body.equipped_by.map(elem => elem.name).join(', ')],
+        ]),
         '',
         asTable(stats),
     ].join('\n');
