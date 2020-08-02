@@ -10,7 +10,7 @@ module.exports = async () => {
         'sudo apt-get update',
         'sudo apt-get dist-upgrade -y',
         'sudo apt-get autoremove -y',
-        'sudo apt-get autoclean',
+        'sudo apt-get clean',
     ];
 
     for (const apt of aptUpdate) {
