@@ -16,7 +16,7 @@ module.exports = async () => {
     for (const apt of aptUpdate) {
         logs.push(
             `>>> ${apt.split(' ')[2]} <<<`,
-            await shell.run(apt),
+            await shell.run(apt) || 'empty',
         );
     }
 

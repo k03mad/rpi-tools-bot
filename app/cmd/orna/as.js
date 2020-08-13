@@ -10,7 +10,7 @@ const {request} = require('utils-mad');
  */
 module.exports = async opts => {
     const mapping = {
-        l: 'level',
+        lvl: 'level',
         hp: 'hp',
         mp: 'mana',
         att: 'attack',
@@ -22,33 +22,40 @@ module.exports = async opts => {
         crit: 'crit',
     };
 
-    if (!opts || !opts.match(/[ =]/)) {
+    const statsNames = Object.keys(mapping);
+
+    if (!opts || !opts.includes(' ') || !opts.match(statsNames.join('|'))) {
         return [
-            'Something wrong with params, example: vulcan buckler res=56',
-            `Supported stats: ${Object.keys(mapping).join(', ')}`,
+            'Something wrong with stats, example: vulcan buckler res 56',
+            `Supported stats: ${statsNames.join(', ')}`,
         ].join('\n');
     }
 
     const name = [];
+    let body, json, nameEnd;
 
-    const json = Object.fromEntries(opts
+    const prepareData = opts
         .split(' ')
-        .map(stats => {
-            if (!stats.includes('=')) {
-                name.push(stats);
+        .map(stat => {
+            if (!statsNames.includes(stat) && !nameEnd) {
+                name.push(stat);
                 return '';
             }
 
-            return stats.split('=').map(elem => Number(elem) || mapping[elem] || elem);
+            nameEnd = true;
+            return Number(stat) || mapping[stat] || stat;
         })
-        .filter(Boolean),
-    );
+        .filter(Boolean);
 
     if (name.length > 0) {
-        json.name = name.join(' ');
+        json = {name: name.join(' ')};
+    } else {
+        return 'Something wrong with item name, example: vulcan buckler res 56';
     }
 
-    let body;
+    for (let i = 0; i < prepareData.length; i += 2) {
+        json[prepareData[i]] = prepareData[i + 1];
+    }
 
     try {
         ({body} = await request.got('https://orna.guide/api/v1/assess', {method: 'POST', json}));
@@ -57,7 +64,7 @@ module.exports = async opts => {
             const {error} = JSON.parse(err.response.body);
 
             if (error) {
-                return error;
+                return `${error}\n\n${JSON.stringify(json, 0, 2)}`;
             }
         }
 
