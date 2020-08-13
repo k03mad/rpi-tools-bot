@@ -15,7 +15,7 @@
     "moment": "2.27.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.1.4"
+    "utils-mad": "9.1.5"
   },
   "devDependencies": {
     "eslint": "7.6.0",

@@ -4,7 +4,7 @@ dependencies:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.1.4
+  utils-mad: 9.1.5
 devDependencies:
   eslint: 7.6.0
   eslint-config-k03mad: 5.0.2_af0d723f11d7ae317de92d04ad835e0a
@@ -1043,7 +1043,7 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-BWICuzzDvDoH54NHKCseDanAhE3CeDorgDL5MT6LMXXj2WCnd9UC2szdk4AWLfjdgNBCXLUanXYcpBBKOSWGwg==
-  /got/11.5.1:
+  /got/11.5.2:
     dependencies:
       '@sindresorhus/is': 3.1.0
       '@szmarczak/http-timer': 4.0.5
@@ -1060,7 +1060,7 @@ packages:
     engines:
       node: '>=10.19.0'
     resolution:
-      integrity: sha512-reQEZcEBMTGnujmQ+Wm97mJs/OK6INtO6HmLI+xt3+9CvnRwWjXutUvb2mqr+Ao4Lu05Rx6+udx9sOQAmExMxA==
+      integrity: sha512-yUhpEDLeuGiGJjRSzEq3kvt4zJtAcjKmhIiwNp/eUs75tRlXfWcHo5tcBaMQtnjHWC7nQYT5HkY/l0QOQTkVww==
   /har-schema/2.0.0:
     dev: false
     engines:
@@ -2177,12 +2177,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/9.1.4:
+  /utils-mad/9.1.5:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.2.1
       debug: 4.1.1
-      got: 11.5.1
+      got: 11.5.2
       hasha: 5.2.0
       moment: 2.27.0
       nano-time: 1.0.0
@@ -2194,7 +2194,7 @@ packages:
     engines:
       node: '>=14'
     resolution:
-      integrity: sha512-7OQi6Q5Rp9br4NOcg4Lval/maf0+gQMerADI0p31JgtGXLWiS/l4k+WLXTNr25kMcssy8KZXzgeK3Pp1O924yQ==
+      integrity: sha512-fSPsKFFCSuadZGZ9jb3xW2ZvUapzoYnkiCgDjKXbKwbL2AM1OM3ShoReQ3H4eTuzYQdmwdesNMPCd4ERqeeI1w==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2279,4 +2279,4 @@ specifiers:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.1.4
+  utils-mad: 9.1.5
