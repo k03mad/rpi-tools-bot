@@ -5,6 +5,8 @@ const {parse, request, ua} = require('utils-mad');
 
 /** @returns {Promise<string>} */
 module.exports = async () => {
+    const TRACKS_NUM = 10;
+
     const {body} = await request.got(music.playlist, {
         headers: {'user-agent': ua.win.chrome},
     });
@@ -28,7 +30,7 @@ module.exports = async () => {
         },
     }, {expire: '1h'});
 
-    const output = await Promise.all(tracks.slice(0, 10).map(async track => {
+    const output = await Promise.all(tracks.slice(0, TRACKS_NUM).map(async track => {
         const search = await request.got('https://api.spotify.com/v1/search', {
             headers: {
                 Authorization: `${auth.body.token_type} ${auth.body.access_token}`,
