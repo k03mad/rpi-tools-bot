@@ -26,7 +26,7 @@ module.exports = (bot, enteredText, cmd) => {
 
             for (const send of array.convert(response)) {
                 const message = typeof send === 'string'
-                    ? `\`\`\`${send}\`\`\``
+                    ? `\`\`\`\n${send}\n\`\`\``
                     : send.message;
 
                 const opts = typeof send === 'string'
