@@ -9,6 +9,15 @@ const {request} = require('utils-mad');
  * https://orna.guide/gameplay?show=16
  */
 module.exports = async opts => {
+    const GUIDE_URL = 'https://orna.guide';
+
+    /**
+     * @param {string|number} id
+     * @param {string} type
+     * @returns {string}
+     */
+    const generateShowUrl = (id, type = 'items') => `${GUIDE_URL}/${type}?show=${id}`;
+
     const mapping = {
         lvl: 'level',
         hp: 'hp',
@@ -58,7 +67,7 @@ module.exports = async opts => {
     }
 
     try {
-        ({body} = await request.got('https://orna.guide/api/v1/assess', {method: 'POST', json}));
+        ({body} = await request.got(`${GUIDE_URL}/api/v1/assess`, {method: 'POST', json}));
     } catch (err) {
         if (err.response && err.response.body) {
             const {error} = JSON.parse(err.response.body);
@@ -82,11 +91,11 @@ module.exports = async opts => {
     return [
         {
             message: [
-                `[${body.name} *${body.tier}](https://orna.guide/items?show=${body.id}) (${body.type} ${body.quality * 100}%)`,
+                `[${body.name} *${body.tier}](${generateShowUrl(body.id)}) (${body.type} ${body.quality * 100}%)`,
                 `\n${body.description}\n`,
-                `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](https://orna.guide/monsters?show=${elem.id})`).join(', ')}`,
-                `Equipped by: ${body.equipped_by.map(elem => `[${elem.name}](https://orna.guide/classes?show=${elem.id})`).join(', ')}`,
-                `Materials: ${body.materials.map(elem => `[${elem.name}](https://orna.guide/items?show=${elem.id})`).join(', ')}`,
+                `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'monsters')})`).join(', ')}`,
+                `Equipped by: ${body.equipped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'classes')})`).join(', ')}`,
+                `Materials: ${body.materials.map(elem => `[${elem.name}](${generateShowUrl(elem.id)})`).join(', ')}`,
             ].join('\n'),
             opts: {
                 parse_mode: 'Markdown',
