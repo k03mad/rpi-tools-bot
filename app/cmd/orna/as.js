@@ -35,7 +35,7 @@ module.exports = async opts => {
 
     if (!opts || !opts.includes(' ') || !opts.match(statsNames.join('|'))) {
         return [
-            'Something wrong with stats, example: vulcan buckler res 56',
+            'Something wrong with stats, example: balor armor def 404 res 40',
             `Supported stats: ${statsNames.join(', ')}`,
         ].join('\n');
     }
@@ -59,7 +59,7 @@ module.exports = async opts => {
     if (name.length > 0) {
         json = {name: name.join(' ')};
     } else {
-        return 'Something wrong with item name, example: vulcan buckler res 56';
+        return 'Something wrong with item name, example: balor leggings def 386 res 34';
     }
 
     for (let i = 0; i < prepareData.length; i += 2) {
@@ -91,8 +91,9 @@ module.exports = async opts => {
     return [
         {
             message: [
-                `[${body.name} *${body.tier}](${generateShowUrl(body.id)}) (${body.type} ${body.quality * 100}%)`,
+                `[${body.name}](${generateShowUrl(body.id)}) \\*${body.tier} ${body.quality * 100}%`,
                 `\n${body.description}\n`,
+                `Type: ${body.type}`,
                 `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'monsters')})`).join(', ')}`,
                 `Equipped by: ${body.equipped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'classes')})`).join(', ')}`,
                 `Materials: ${body.materials.map(elem => `[${elem.name}](${generateShowUrl(elem.id)})`).join(', ')}`,
