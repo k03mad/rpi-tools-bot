@@ -9,11 +9,6 @@ const {setBotCommandsList} = require('./telegram/commands');
 errorsHandler(bot);
 setBotCommandsList(bot);
 
-Object.entries(all).forEach(([folder, cmds]) => {
-    Object.keys(cmds).forEach(cmd => reply(
-        bot,
-        `${folder}_${cmd}`,
-        all[folder][cmd],
-        {disable_web_page_preview: true},
-    ));
-});
+Object.entries(all)
+    .forEach(([folder, cmds]) => Object.keys(cmds)
+        .forEach(cmd => reply(bot, `${folder}_${cmd}`, all[folder][cmd])));

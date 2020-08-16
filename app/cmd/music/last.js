@@ -46,5 +46,8 @@ module.exports = async () => {
             : `${track.artist} - ${track.song}\nnot found`;
     }));
 
-    return output.filter(Boolean).join('\n\n');
+    return {
+        message: output.filter(Boolean).join('\n\n'),
+        opts: {disable_web_page_preview: true},
+    };
 };
