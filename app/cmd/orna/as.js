@@ -91,7 +91,7 @@ module.exports = async opts => {
     return [
         {
             message: [
-                `[${body.name}](${generateShowUrl(body.id)}) \\*${body.tier} **${body.quality * 100}%**`,
+                `[${body.name}](${generateShowUrl(body.id)}) \\*${body.tier} *${body.quality * 100}%*`,
                 `\n${body.description}\n`,
                 `Type: ${body.type}`,
                 `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'monsters')})`).join(', ')}`,
