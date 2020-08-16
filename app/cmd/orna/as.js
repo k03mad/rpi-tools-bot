@@ -84,9 +84,9 @@ module.exports = async opts => {
             message: [
                 `[${body.name} *${body.tier}](https://orna.guide/items?show=${body.id}) (${body.type} ${body.quality * 100}%)`,
                 `\n${body.description}\n`,
-                `Dropped by: ${body.dropped_by.map(elem => `[${elem.name}](https://orna.guide/monsters?show=${elem.id})`).join(', ')} ${body.boss ? '(boss)' : ''}`,
+                `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](https://orna.guide/monsters?show=${elem.id})`).join(', ')}`,
                 `Equipped by: ${body.equipped_by.map(elem => `[${elem.name}](https://orna.guide/classes?show=${elem.id})`).join(', ')}`,
-                `Materials: ${body.materials.map(elem => `[${elem.name}](https://orna.guide/monsters?show=${elem.id})`).join(', ')}`,
+                `Materials: ${body.materials.map(elem => `[${elem.name}](https://orna.guide/items?show=${elem.id})`).join(', ')}`,
             ].join('\n'),
             opts: {
                 parse_mode: 'Markdown',
