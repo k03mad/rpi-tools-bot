@@ -82,7 +82,7 @@ module.exports = async opts => {
     return [
         {
             message: [
-                `[https://orna.guide/items?show=${body.id}](${body.name})`,
+                `[${body.name}](https://orna.guide/items?show=${body.id})`,
                 `\\*${body.tier}`,
                 `(${body.type} ${body.quality * 100}%)`,
                 `\n\n${body.description}`,
