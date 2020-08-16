@@ -76,20 +76,21 @@ module.exports = async opts => {
         const mf = data.values.pop();
         const l10 = data.values.pop();
 
-        return {'': stat, l10, mf, df};
+        return {'': stat, '10': l10, mf, df};
     });
 
     return [
-        `${body.name} *${body.tier} (${body.type} ${body.quality * 100}%)`,
-        '',
-        body.description,
-        '',
-        asTable([
-            ['Dropped by', `${body.dropped_by.map(elem => elem.name).join(', ')} ${body.boss ? '(boss)' : ''}`],
-            ['Equipped by', body.equipped_by.map(elem => elem.name).join(', ')],
-            ['Materials', body.materials.map(elem => elem.name).join(', ')],
-        ]),
-        '',
-        asTable(stats),
-    ].join('\n');
+        {
+            message: `${body.name} *${body.tier} (${body.type} ${body.quality * 100}%)\n${body.description}`,
+        },
+        [
+            asTable([
+                ['Dropped by', `${body.dropped_by.map(elem => elem.name).join(', ')} ${body.boss ? '(boss)' : ''}`],
+                ['Equipped by', body.equipped_by.map(elem => elem.name).join(', ')],
+                ['Materials', body.materials.map(elem => elem.name).join(', ')],
+            ]),
+            '',
+            asTable(stats),
+        ].join('\n'),
+    ];
 };
