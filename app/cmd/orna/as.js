@@ -35,7 +35,7 @@ module.exports = async opts => {
 
     if (!opts || !opts.includes(' ') || !opts.match(statsNames.join('|'))) {
         return [
-            'Something wrong with stats, example: balor armor def 404 res 40',
+            'Something wrong with stats, example: phantom blinders def 380',
             `Supported stats: ${statsNames.join(', ')}`,
         ].join('\n');
     }
@@ -91,7 +91,7 @@ module.exports = async opts => {
     return [
         {
             message: [
-                `[${body.name}](${generateShowUrl(body.id)}) \\*${body.tier} ${body.quality * 100}%`,
+                `[${body.name}](${generateShowUrl(body.id)}) \\*${body.tier} **${body.quality * 100}%**`,
                 `\n${body.description}\n`,
                 `Type: ${body.type}`,
                 `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'monsters')})`).join(', ')}`,
