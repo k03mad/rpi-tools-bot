@@ -81,13 +81,15 @@ module.exports = async opts => {
 
     return [
         {
-            message: `[${body.name} *${body.tier} (${body.type} ${body.quality * 100}%)](https://orna.guide/items?show=${body.id})`,
+            message: `[${body.name} *${body.tier}](https://orna.guide/items?show=${body.id})`,
             opts: {
                 parse_mode: 'Markdown',
                 disable_web_page_preview: true,
             },
         },
         [
+            `${body.type} ${body.quality * 100}%`,
+            '',
             body.description,
             '',
             asTable([
