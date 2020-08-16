@@ -87,7 +87,10 @@ module.exports = async opts => {
                 `(${body.type} ${body.quality * 100}%)`,
                 `\n\n${body.description}`,
             ].join(' '),
-            opts: {parse_mode: 'Markdown'},
+            opts: {
+                parse_mode: 'Markdown',
+                disable_web_page_preview: true,
+            },
         },
         [
             asTable([
