@@ -5,6 +5,8 @@ adg_update_filters - adguard: update filters
 mik_change_pptp_server - mikrotik: change pptp server
 mik_switch_dhcp_dns - mikrotik: switch dhcp server dns
 mik_switch_nat_pi - mikrotik: switch pi nat rules
+mik_switch_wlan_2.4 - mikrotik: switch wifi 2.4
+mik_switch_wlan_5 - mikrotik: switch wifi 5
 music_last - music: search last liked tracks at spotify
 orna_as - orna: assess
 pi_reboot - pi: reboot
