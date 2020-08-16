@@ -47,7 +47,7 @@ module.exports = async () => {
     }));
 
     return {
-        message: output.filter(Boolean).join('\n\n'),
+        message: output.join('\n\n'),
         opts: {disable_web_page_preview: true},
     };
 };
