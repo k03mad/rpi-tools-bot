@@ -81,24 +81,18 @@ module.exports = async opts => {
 
     return [
         {
-            message: `[${body.name} *${body.tier}](https://orna.guide/items?show=${body.id})`,
+            message: [
+                `[${body.name} *${body.tier}](https://orna.guide/items?show=${body.id}) (${body.type} ${body.quality * 100}%)`,
+                `\n${body.description}\n`,
+                `Dropped by: ${body.dropped_by.map(elem => `[${elem.name}](https://orna.guide/monsters?show=${elem.id})`).join(', ')} ${body.boss ? '(boss)' : ''}`,
+                `Equipped by: ${body.equipped_by.map(elem => `[${elem.name}](https://orna.guide/classes?show=${elem.id})`).join(', ')}`,
+                `Materials: ${body.materials.map(elem => `[${elem.name}](https://orna.guide/monsters?show=${elem.id})`).join(', ')}`,
+            ].join('\n'),
             opts: {
                 parse_mode: 'Markdown',
                 disable_web_page_preview: true,
             },
         },
-        [
-            `${body.type} ${body.quality * 100}%`,
-            '',
-            body.description,
-            '',
-            asTable([
-                ['Dropped by', `${body.dropped_by.map(elem => elem.name).join(', ')} ${body.boss ? '(boss)' : ''}`],
-                ['Equipped by', body.equipped_by.map(elem => elem.name).join(', ')],
-                ['Materials', body.materials.map(elem => elem.name).join(', ')],
-            ]),
-            '',
-            asTable(stats),
-        ].join('\n'),
+        asTable(stats),
     ];
 };
