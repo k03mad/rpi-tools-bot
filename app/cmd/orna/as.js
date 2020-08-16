@@ -81,7 +81,12 @@ module.exports = async opts => {
 
     return [
         {
-            message: `[https://orna.guide/items?show=${body.id}](${body.name}) *${body.tier} (${body.type} ${body.quality * 100}%)\n\n${body.description}`,
+            message: [
+                `[https://orna.guide/items?show=${body.id}](${body.name})`,
+                `\\*${body.tier}`,
+                `(${body.type} ${body.quality * 100}%)`,
+                `\n\n${body.description}`,
+            ].join(' '),
             opts: {parse_mode: 'Markdown'},
         },
         [
