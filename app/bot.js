@@ -14,6 +14,5 @@ Object.entries(all).forEach(([folder, cmds]) => {
         bot,
         `${folder}_${cmd}`,
         all[folder][cmd],
-        {parse_mode: 'Markdown'},
     ));
 });
