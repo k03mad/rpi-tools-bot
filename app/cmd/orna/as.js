@@ -76,7 +76,7 @@ module.exports = async opts => {
         const mf = data.values.pop();
         const l10 = data.values.pop();
 
-        return {' ': stat, '10': l10, mf, df};
+        return {stat, 10: l10, mf, df};
     });
 
     return [
