@@ -85,7 +85,6 @@ module.exports = async opts => {
                 `[${body.name}](https://orna.guide/items?show=${body.id})`,
                 `\\*${body.tier}`,
                 `(${body.type} ${body.quality * 100}%)`,
-                `\n\n${body.description}`,
             ].join(' '),
             opts: {
                 parse_mode: 'Markdown',
@@ -93,6 +92,8 @@ module.exports = async opts => {
             },
         },
         [
+            body.description,
+            '',
             asTable([
                 ['Dropped by', `${body.dropped_by.map(elem => elem.name).join(', ')} ${body.boss ? '(boss)' : ''}`],
                 ['Equipped by', body.equipped_by.map(elem => elem.name).join(', ')],
