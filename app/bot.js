@@ -14,5 +14,6 @@ Object.entries(all).forEach(([folder, cmds]) => {
         bot,
         `${folder}_${cmd}`,
         all[folder][cmd],
+        {disable_web_page_preview: true},
     ));
 });
