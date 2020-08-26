@@ -25,17 +25,17 @@ module.exports = (bot, enteredText, cmd) => {
             }
 
             for (const send of array.convert(response)) {
-                const message = typeof send === 'string'
-                    ? `\`\`\`\n${send}\n\`\`\``
-                    : send.message;
+                const isMsgString = typeof send === 'string';
 
-                const opts = typeof send === 'string'
-                    ? {parse_mode: 'Markdown'}
-                    : send.opts || {};
+                for (const msgPart of string.split(isMsgString ? send : send.message, MAX_MSG_LENGTH)) {
+                    bot.sendChatAction(id, 'typing').catch(err => print.ex(err));
 
-                for (const msgPart of string.split(message, MAX_MSG_LENGTH)) {
                     try {
-                        await bot.sendMessage(id, msgPart, opts);
+                        await bot.sendMessage(
+                            id,
+                            isMsgString ? `\`\`\`${msgPart}\`\`\`` : msgPart,
+                            isMsgString ? {parse_mode: 'Markdown'} : send.opts,
+                        );
                     } catch (err) {
                         print.ex(err, {exit: true});
                     }

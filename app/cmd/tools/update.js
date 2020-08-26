@@ -21,7 +21,6 @@ module.exports = async () => {
 
     logs.push(
         '>>> global <<<',
-        // eslint-disable-next-line no-template-curly-in-string
         await shell.run('npm i -g $(npm -g outdated --parseable --depth=0 | cut -d: -f4)')
             || 'no updates',
     );

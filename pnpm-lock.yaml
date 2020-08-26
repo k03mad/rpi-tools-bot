@@ -4,11 +4,11 @@ dependencies:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.2.1
+  utils-mad: 9.2.2
 devDependencies:
   eslint: 7.7.0
-  eslint-config-k03mad: 5.0.2_62cbe21f3b94dd22d37ba24e57feb44f
-  eslint-plugin-jsdoc: 30.2.4_eslint@7.7.0
+  eslint-config-k03mad: 5.0.2_98cf8afe327055a029f61704f86a6913
+  eslint-plugin-jsdoc: 30.3.0_eslint@7.7.0
   eslint-plugin-node: 11.1.0_eslint@7.7.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0_eslint@7.7.0
@@ -377,7 +377,7 @@ packages:
       dom-serializer: 0.1.1
       entities: 1.1.2
       htmlparser2: 3.10.1
-      lodash: 4.17.19
+      lodash: 4.17.20
       parse5: 3.0.3
     dev: false
     engines:
@@ -663,10 +663,10 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-otzzTim2/1+lVrlH19EfQQJEhVJSu0zOb9ygb3iapN6UlyaDtyRq4b5U1FuW0v1lRa9Fp/GJyHkSwm6NqABgCA==
-  /eslint-config-k03mad/5.0.2_62cbe21f3b94dd22d37ba24e57feb44f:
+  /eslint-config-k03mad/5.0.2_98cf8afe327055a029f61704f86a6913:
     dependencies:
       eslint: 7.7.0
-      eslint-plugin-jsdoc: 30.2.4_eslint@7.7.0
+      eslint-plugin-jsdoc: 30.3.0_eslint@7.7.0
       eslint-plugin-node: 11.1.0_eslint@7.7.0
       eslint-plugin-promise: 4.2.1
       eslint-plugin-sonarjs: 0.5.0_eslint@7.7.0
@@ -695,7 +695,7 @@ packages:
       eslint: '>=4.19.1'
     resolution:
       integrity: sha512-GUmAsJaN4Fc7Gbtl8uOBlayo2DqhwWvEzykMHSCZHU3XdJ+NSzzZcVhXh3VxX5icqQ+oQdIEawXX8xkR3mIFmQ==
-  /eslint-plugin-jsdoc/30.2.4_eslint@7.7.0:
+  /eslint-plugin-jsdoc/30.3.0_eslint@7.7.0:
     dependencies:
       comment-parser: 0.7.6
       debug: 4.1.1
@@ -711,7 +711,7 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0
     resolution:
-      integrity: sha512-7TLp+1EK/ufnzlBUuzgDiPz5k2UUIa01cFkZTvvbJr8PE0iWVDqENg0yLhqGUYaZfYRFhHpqCML8SQR94omfrg==
+      integrity: sha512-RvDLH26ILwX2J60P7tlNdz5IlTFeC52TEFgAC12+nz/lOx4a7n3/hP8fBPFZrQP07WA1t9ZOO8H/i7cEs2BTnA==
   /eslint-plugin-node/11.1.0_eslint@7.7.0:
     dependencies:
       eslint: 7.7.0
@@ -1398,7 +1398,6 @@ packages:
     resolution:
       integrity: sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
   /lodash/4.17.20:
-    dev: true
     resolution:
       integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
   /lowercase-keys/2.0.0:
@@ -2181,7 +2180,7 @@ packages:
     dev: false
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/9.2.1:
+  /utils-mad/9.2.2:
     dependencies:
       cheerio: 1.0.0-rc.3
       colorette: 1.2.1
@@ -2198,7 +2197,7 @@ packages:
     engines:
       node: '>=14'
     resolution:
-      integrity: sha512-FsF9p/+sYifkpP4oNgZN3C2L6bZ4Addg4XtgClGQ4+pe3VJBo2b3skUgQyuHqX2RtDGNhaFkmemws/YdkrPQRA==
+      integrity: sha512-YIUPfgJ5peGZZvsEYXWjtC95Vm0NCb1wxhNsw7oTKPsNKX7H+AIMucmb7mMX3NXYQncPB8fMKOMuf1PPqnk14w==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2273,7 +2272,7 @@ specifiers:
   as-table: 1.0.55
   eslint: 7.7.0
   eslint-config-k03mad: 5.0.2
-  eslint-plugin-jsdoc: 30.2.4
+  eslint-plugin-jsdoc: 30.3.0
   eslint-plugin-node: 11.1.0
   eslint-plugin-promise: 4.2.1
   eslint-plugin-sonarjs: 0.5.0
@@ -2283,4 +2282,4 @@ specifiers:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.2.1
+  utils-mad: 9.2.2
