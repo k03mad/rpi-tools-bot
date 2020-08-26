@@ -4,7 +4,7 @@ dependencies:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.2.2
+  utils-mad: 9.3.0
 devDependencies:
   eslint: 7.7.0
   eslint-config-k03mad: 5.0.2_98cf8afe327055a029f61704f86a6913
@@ -124,7 +124,6 @@ packages:
     resolution:
       integrity: sha512-ykFq2zmBGOCbpIXtoVbz4SKY5QriWPh3AjyU4G74RYbtt5yOc5OfaY75ftjg7mikMOla1CTGpX3lLbuJh8DTrQ==
   /@types/color-name/1.1.1:
-    dev: true
     resolution:
       integrity: sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
   /@types/http-cache-semantics/4.0.0:
@@ -208,7 +207,6 @@ packages:
     dependencies:
       '@types/color-name': 1.1.1
       color-convert: 2.0.1
-    dev: true
     engines:
       node: '>=8'
     resolution:
@@ -366,7 +364,6 @@ packages:
     dependencies:
       ansi-styles: 4.2.1
       supports-color: 7.1.0
-    dev: true
     engines:
       node: '>=10'
     resolution:
@@ -411,7 +408,6 @@ packages:
   /color-convert/2.0.1:
     dependencies:
       color-name: 1.1.4
-    dev: true
     engines:
       node: '>=7.0.0'
     resolution:
@@ -421,13 +417,8 @@ packages:
     resolution:
       integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
   /color-name/1.1.4:
-    dev: true
     resolution:
       integrity: sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
-  /colorette/1.2.1:
-    dev: false
-    resolution:
-      integrity: sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
   /combined-stream/1.0.8:
     dependencies:
       delayed-stream: 1.0.0
@@ -1084,7 +1075,6 @@ packages:
     resolution:
       integrity: sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
   /has-flag/4.0.0:
-    dev: true
     engines:
       node: '>=8'
     resolution:
@@ -2107,7 +2097,6 @@ packages:
   /supports-color/7.1.0:
     dependencies:
       has-flag: 4.0.0
-    dev: true
     engines:
       node: '>=8'
     resolution:
@@ -2180,10 +2169,10 @@ packages:
     dev: false
     resolution:
       integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
-  /utils-mad/9.2.2:
+  /utils-mad/9.3.0:
     dependencies:
+      chalk: 4.1.0
       cheerio: 1.0.0-rc.3
-      colorette: 1.2.1
       debug: 4.1.1
       got: 11.5.2
       hasha: 5.2.0
@@ -2197,7 +2186,7 @@ packages:
     engines:
       node: '>=14'
     resolution:
-      integrity: sha512-YIUPfgJ5peGZZvsEYXWjtC95Vm0NCb1wxhNsw7oTKPsNKX7H+AIMucmb7mMX3NXYQncPB8fMKOMuf1PPqnk14w==
+      integrity: sha512-0tR/k5xi0qcDknXyu5PDcdkTCG8KvaNSqipr+tIBhPvW8EZhRAbaJYd3jD4gx6xsILpn4qF+brGOaUk9EmK9tQ==
   /uuid/3.4.0:
     dev: false
     hasBin: true
@@ -2282,4 +2271,4 @@ specifiers:
   moment: 2.27.0
   node-telegram-bot-api: 0.50.0
   require-all: 3.0.0
-  utils-mad: 9.2.2
+  utils-mad: 9.3.0

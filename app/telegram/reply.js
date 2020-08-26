@@ -33,7 +33,7 @@ module.exports = (bot, enteredText, cmd) => {
                     try {
                         await bot.sendMessage(
                             id,
-                            isMsgString ? `\`\`\`${msgPart}\`\`\`` : msgPart,
+                            isMsgString ? `\`\`\`\n${msgPart}\`\`\`` : msgPart,
                             isMsgString ? {parse_mode: 'Markdown'} : send.opts,
                         );
                     } catch (err) {
