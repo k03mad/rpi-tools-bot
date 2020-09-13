@@ -15,7 +15,7 @@
     "moment": "2.28.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.3.1"
+    "utils-mad": "9.3.2"
   },
   "devDependencies": {
     "eslint": "7.9.0",
@@ -30,7 +30,7 @@
   },
   "scripts": {
     "lint": "eslint ./ --report-unused-disable-directives --format=codeframe --ignore-pattern='!.*'",
-    "setup": "pnpm i",
+    "setup": "yarn install",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
   },
