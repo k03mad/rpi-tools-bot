@@ -721,10 +721,10 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-jsdoc@30.4.2:
-  version "30.4.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-30.4.2.tgz#d3113442a2b285e902903d91b987e2d6d4409006"
-  integrity sha512-Czm3gXyP1Ztibyh+J3t7osQ+AUrXhJp9CQfpo6cME8LwrlDpl2newDL18UO1Yk+TngcLKUyMt0byfpHjwhqNBg==
+eslint-plugin-jsdoc@30.5.1:
+  version "30.5.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-30.5.1.tgz#b024295db3ce3b258909419d9bcf747b8e65e2a7"
+  integrity sha512-cY3YNxdhFcQVkcQLnZw/iZGsTPMuWa9yWZclorMWkjdHprBQX0TMWMEcmJYM3IjHp1HJr7aD0Z0sCRifEBhnzg==
   dependencies:
     comment-parser "^0.7.6"
     debug "^4.1.1"
@@ -1938,6 +1938,11 @@ shebang-regex@^3.0.0:
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
   integrity sha512-7++dFhtcx3353uBaq8DDR4NuxBetBzC7ZQOhmTQInHEd6bSrXdiEyzCvG07Z44UYdLShWUyXt5M/yhz8ekcb1A==
 
+shrink-string@3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/shrink-string/-/shrink-string-3.0.7.tgz#8a8b120bed5f4c426a8ec4554df1b617d3a1f270"
+  integrity sha512-mqopWg3KeKIUy2XHiLpkIAVe7F5z3LK8R2vtMo2PZeJt7FK3F5oj4DYqPc/PJO1GJi+dOSlz24xnHzmOGMwiqQ==
+
 slash@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
@@ -2154,10 +2159,10 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-utils-mad@9.3.2:
-  version "9.3.2"
-  resolved "https://registry.yarnpkg.com/utils-mad/-/utils-mad-9.3.2.tgz#560e50eaad2d5dffd2386bddceb8b60c219d2de5"
-  integrity sha512-BufI4Hyix4jqEMuU6Fjgu+Toe6a38+y1JSTq5HfhHIVvdAYWzWrQ7x12foQXt8ad1U2GWT6J0N/uBa20D7utkg==
+utils-mad@9.5.0:
+  version "9.5.0"
+  resolved "https://registry.yarnpkg.com/utils-mad/-/utils-mad-9.5.0.tgz#03fa382a32decd993a6f1c00a66ee5d1f2d7ed06"
+  integrity sha512-jz/lF64+EID3KapuhSDfIP6eb/iurhXzqf4hRCNUB/p4Y/4IdqW0q8reX7+VkSSEfY+zo1R9AqaKxP8LpVeL6Q==
   dependencies:
     chalk "4.1.0"
     cheerio "1.0.0-rc.3"
@@ -2169,6 +2174,7 @@ utils-mad@9.3.2:
     node-routeros "1.6.8"
     pretty-bytes "5.4.1"
     random-mua "0.5.0"
+    shrink-string "3.0.7"
     xml-js "1.6.11"
 
 uuid@^3.3.2:
