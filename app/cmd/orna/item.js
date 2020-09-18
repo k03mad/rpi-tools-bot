@@ -10,20 +10,25 @@ const {orna} = require('utils-mad');
 module.exports = async opts => {
     const [item] = await orna.get('item', {name: opts});
 
+    if (!item) {
+        return 'Item not found';
+    }
+
     const message = [
-        `[${item.name}](${orna.web(item.id)})`,
-        `${item.element ? `${item.element} ` : ''}${item.type} \\*${item.tier}`,
+        `[${item.name}](${orna.web(item.id)}) (${item.element ? `${item.element} ` : ''}${item.type} \\*${item.tier})`,
         '',
         item.description,
         '',
-    ].filter(elem => elem !== null);
+    ];
 
     const [droppedBy, materials] = await Promise.all([
-        Promise.all(item.dropped_by.map(async dropped => {
-            const [body] = await orna.get('monster', {id: dropped.id});
-            dropped.tier = body.tier;
-            return dropped;
-        })),
+        item.dropped_by
+            ? Promise.all(item.dropped_by.map(async dropped => {
+                const [body] = await orna.get('monster', {id: dropped.id});
+                dropped.tier = body.tier;
+                return dropped;
+            }))
+            : '',
 
         Promise.all(item.materials.map(async material => {
             const [body] = await orna.get('item', {id: material.id});
@@ -31,7 +36,6 @@ module.exports = async opts => {
             return material;
         })),
     ]);
-
     message.push(
         `*Dropped by${item.boss ? ' boss:' : ':'}*`,
         droppedBy
@@ -51,9 +55,9 @@ module.exports = async opts => {
             .map(elem => `[${elem.name} *${elem.tier}](${orna.web(elem.id)})`)
             .join('\n'),
     );
-
+    console.log(message);
     return {
-        message: message.join('\n'),
+        message: message.filter(elem => elem !== null).join('\n'),
         opts: {
             parse_mode: 'Markdown',
             disable_web_page_preview: true,

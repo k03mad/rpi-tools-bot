@@ -47,6 +47,10 @@ module.exports = async opts => {
 
     const item = await orna.get('assess', json);
 
+    if (!item) {
+        return 'Item not found';
+    }
+
     const stats = Object.entries(item.stats).map(([stat, data]) => {
         const df = data.values.pop();
         const mf = data.values.pop();
@@ -57,8 +61,7 @@ module.exports = async opts => {
 
     return {
         message: [
-            `[${item.name}](${orna.web(item.id)}) ${Math.round(item.quality * 100)}%`,
-            `${item.element ? `${item.element} ` : ''}${item.type} \\*${item.tier}`,
+            `[${item.name}](/orna_item ${item.name})) ${Math.round(item.quality * 100)}%`,
             '',
             `\`\`\`\n${asTable(stats)}\`\`\``,
         ]
