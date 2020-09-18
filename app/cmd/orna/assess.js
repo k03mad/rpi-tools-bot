@@ -61,7 +61,7 @@ module.exports = async opts => {
 
     return {
         message: [
-            `[${item.name}](/orna_item ${item.name})) ${Math.round(item.quality * 100)}%`,
+            `[${item.name}](/orna_item ${item.name}) ${Math.round(item.quality * 100)}%`,
             '',
             `\`\`\`\n${asTable(stats)}\`\`\``,
         ]
