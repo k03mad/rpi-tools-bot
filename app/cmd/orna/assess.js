@@ -33,13 +33,6 @@ module.exports = async opts => {
 
     const statsNames = Object.keys(mapping);
 
-    if (!opts || !opts.includes(' ') || !opts.match(statsNames.join('|'))) {
-        return [
-            'Something wrong with stats, example: phantom blinders def 380',
-            `Supported stats: ${statsNames.join(', ')}`,
-        ].join('\n');
-    }
-
     const name = [];
     let body, json, nameEnd;
 
@@ -59,7 +52,7 @@ module.exports = async opts => {
     if (name.length > 0) {
         json = {name: name.join(' ')};
     } else {
-        return 'Something wrong with item name, example: balor leggings def 386 res 34';
+        return 'Item not found';
     }
 
     for (let i = 0; i < prepareData.length; i += 2) {

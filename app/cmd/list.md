@@ -7,7 +7,8 @@ mik_dns - mikrotik: switch dhcp server dns
 mik_nat - mikrotik: switch nat rules
 mik_wlan - mikrotik: switch wifi
 music_last - music: search last liked tracks at spotify
-orna_as - orna: assess
+orna_assess - orna: equipment assess
+orna_item - orna: item search by name
 pi_reboot - pi: reboot
 pi_shutdown - pi: shutdown
 pi_update - pi: apt install updates
