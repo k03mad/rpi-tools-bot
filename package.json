@@ -15,7 +15,7 @@
     "moment": "2.28.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.5.0"
+    "utils-mad": "9.5.2"
   },
   "devDependencies": {
     "eslint": "7.9.0",
@@ -25,7 +25,7 @@
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sonarjs": "0.5.0",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "21.0.0",
+    "eslint-plugin-unicorn": "22.0.0",
     "husky": "4.3.0"
   },
   "scripts": {

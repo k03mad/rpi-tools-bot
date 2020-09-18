@@ -1,23 +1,13 @@
 'use strict';
 
 const asTable = require('as-table');
-const {request} = require('utils-mad');
+const {orna} = require('utils-mad');
 
 /**
  * @param {string} opts
  * @returns {Promise<string>}
- * https://orna.guide/gameplay?show=16
  */
 module.exports = async opts => {
-    const GUIDE_URL = 'https://orna.guide';
-
-    /**
-     * @param {string|number} id
-     * @param {string} type
-     * @returns {string}
-     */
-    const generateShowUrl = (id, type = 'items') => `${GUIDE_URL}/${type}?show=${id}`;
-
     const mapping = {
         lvl: 'level',
         hp: 'hp',
@@ -34,7 +24,7 @@ module.exports = async opts => {
     const statsNames = Object.keys(mapping);
 
     const name = [];
-    let body, json, nameEnd;
+    let nameEnd;
 
     const prepareData = opts
         .split(' ')
@@ -49,31 +39,15 @@ module.exports = async opts => {
         })
         .filter(Boolean);
 
-    if (name.length > 0) {
-        json = {name: name.join(' ')};
-    } else {
-        return 'Item not found';
-    }
+    const json = {name: name.join(' ')};
 
     for (let i = 0; i < prepareData.length; i += 2) {
         json[prepareData[i]] = prepareData[i + 1];
     }
 
-    try {
-        ({body} = await request.got(`${GUIDE_URL}/api/v1/assess`, {method: 'POST', json}));
-    } catch (err) {
-        if (err.response && err.response.body) {
-            const {error} = JSON.parse(err.response.body);
+    const item = await orna.get('assess', json);
 
-            if (error) {
-                return `${error}\n\n${JSON.stringify(json, 0, 2)}`;
-            }
-        }
-
-        throw err;
-    }
-
-    const stats = Object.entries(body.stats).map(([stat, data]) => {
+    const stats = Object.entries(item.stats).map(([stat, data]) => {
         const df = data.values.pop();
         const mf = data.values.pop();
         const l10 = data.values.pop();
@@ -81,21 +55,18 @@ module.exports = async opts => {
         return {'': stat, l10, mf, df};
     });
 
-    return [
-        {
-            message: [
-                `[${body.name}](${generateShowUrl(body.id)}) \\*${body.tier} *${body.quality * 100}%*`,
-                `\n${body.description}\n`,
-                `Type: ${body.type}`,
-                `Dropped by: ${body.boss ? 'boss ' : ''}${body.dropped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'monsters')})`).join(', ')}`,
-                `Equipped by: ${body.equipped_by.map(elem => `[${elem.name}](${generateShowUrl(elem.id, 'classes')})`).join(', ')}`,
-                `Materials: ${body.materials.map(elem => `[${elem.name}](${generateShowUrl(elem.id)})`).join(', ')}`,
-            ].join('\n'),
-            opts: {
-                parse_mode: 'Markdown',
-                disable_web_page_preview: true,
-            },
+    return {
+        message: [
+            `[${item.name}](${orna.web(item.id)}) ${Math.round(item.quality * 100)}%`,
+            `${item.element ? `${item.element} ` : ''}${item.type} \\*${item.tier}`,
+            '',
+            `\`\`\`\n${asTable(stats)}\`\`\``,
+        ]
+            .filter(elem => elem !== null)
+            .join('\n'),
+        opts: {
+            parse_mode: 'Markdown',
+            disable_web_page_preview: true,
         },
-        asTable(stats),
-    ];
+    };
 };
