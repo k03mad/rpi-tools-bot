@@ -55,7 +55,7 @@ module.exports = async opts => {
             .map(elem => `[${elem.name} *${elem.tier}](${orna.web(elem.id)})`)
             .join('\n'),
     );
-    console.log(message);
+
     return {
         message: message.filter(elem => elem !== null).join('\n'),
         opts: {
