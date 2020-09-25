@@ -503,19 +503,12 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
-debug@*, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
+debug@*, debug@4.2.0, debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.2.0.tgz#7f150f93920e94c58f5574c2fd01a3110effe7f1"
   integrity sha512-IX2ncY78vDTjZMFUdmsvIRFY2Cf4FnD0wRs+nQwJU8Lu99/tPFdb0VybiiMTPe3I6rQmwsqQqRBvxU+bZ/I8sg==
   dependencies:
     ms "2.1.2"
-
-debug@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
-  integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
-  dependencies:
-    ms "^2.1.1"
 
 debug@^3.1.0:
   version "3.2.6"
@@ -715,10 +708,10 @@ eslint-ast-utils@^1.1.0:
     lodash.get "^4.4.2"
     lodash.zip "^4.2.0"
 
-eslint-config-k03mad@5.0.2:
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-k03mad/-/eslint-config-k03mad-5.0.2.tgz#047579692cfc13fdfaa4cb621578b365b18aae1c"
-  integrity sha512-sYkFT2Oo4DcY1UM+fJFNOcCE23OOgRAeuDqj+B6ItKe+nV4uqYymcSbD28JJIIQSbX4CtXQEg8cwZliI5C/L9A==
+eslint-config-k03mad@5.0.4:
+  version "5.0.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-k03mad/-/eslint-config-k03mad-5.0.4.tgz#de60f5dac21e40ca4d132e5c6877521e7192821e"
+  integrity sha512-83JZi15WUwXYhjY85h5vewABvV6Am4yD12rmIGXzEJxIk186NyCnWowSDzcWWloIRqmtxZU7iElzOALPQWqP/g==
 
 eslint-plugin-es@^3.0.0:
   version "3.0.1"
@@ -728,10 +721,10 @@ eslint-plugin-es@^3.0.0:
     eslint-utils "^2.0.0"
     regexpp "^3.0.0"
 
-eslint-plugin-jsdoc@30.5.1:
-  version "30.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-30.5.1.tgz#b024295db3ce3b258909419d9bcf747b8e65e2a7"
-  integrity sha512-cY3YNxdhFcQVkcQLnZw/iZGsTPMuWa9yWZclorMWkjdHprBQX0TMWMEcmJYM3IjHp1HJr7aD0Z0sCRifEBhnzg==
+eslint-plugin-jsdoc@30.5.2:
+  version "30.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jsdoc/-/eslint-plugin-jsdoc-30.5.2.tgz#a2002c52d5fb4a9d42b9fa3a3136a9dbdcb7f69e"
+  integrity sha512-LJfjqVGYrPUZv4Gt+1OB5NHhySVPeX4Sdd1qUUjTPnBSwbezry7j3NdPVIeU67VwCVJU2rmqd6jhZ7VYec37Cw==
   dependencies:
     comment-parser "^0.7.6"
     debug "^4.1.1"
@@ -1053,10 +1046,10 @@ globals@^12.1.0:
   dependencies:
     type-fest "^0.8.1"
 
-got@11.6.2:
-  version "11.6.2"
-  resolved "https://registry.yarnpkg.com/got/-/got-11.6.2.tgz#79d7bb8c11df212b97f25565407a1f4ae73210ec"
-  integrity sha512-/21qgUePCeus29Jk7MEti8cgQUNXFSWfIevNIk4H7u1wmXNDrGPKPY6YsPY+o9CIT/a2DjCjRz0x1nM9FtS2/A==
+got@11.7.0:
+  version "11.7.0"
+  resolved "https://registry.yarnpkg.com/got/-/got-11.7.0.tgz#a386360305571a74548872e674932b4ef70d3b24"
+  integrity sha512-7en2XwH2MEqOsrK0xaKhbWibBoZqy+f1RSUoIeF1BLcnf+pyQdDsljWMfmOh+QKJwuvDIiKx38GtPh5wFdGGjg==
   dependencies:
     "@sindresorhus/is" "^3.1.1"
     "@szmarczak/http-timer" "^4.0.5"
@@ -1453,10 +1446,10 @@ mkdirp@^0.5.1:
   dependencies:
     minimist "^1.2.5"
 
-moment@2.28.0:
-  version "2.28.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.28.0.tgz#cdfe73ce01327cee6537b0fafac2e0f21a237d75"
-  integrity sha512-Z5KOjYmnHyd/ukynmFd/WwyXHd7L4J9vTI/nn5Ap9AVUgaAE15VvQ9MOGmJJygEUklupqIrFnor/tjTwRU+tQw==
+moment@2.29.0:
+  version "2.29.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.0.tgz#fcbef955844d91deb55438613ddcec56e86a3425"
+  integrity sha512-z6IJ5HXYiuxvFTI6eiQ9dm77uE0gyy1yXNApVHqTcnIKfY9tIwEjlzsZ6u1LQXvVgKeTnv9Xm7NDvJ7lso3MtA==
 
 ms@2.1.2, ms@^2.1.1:
   version "2.1.2"
@@ -2166,17 +2159,17 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-utils-mad@9.5.2:
-  version "9.5.2"
-  resolved "https://registry.yarnpkg.com/utils-mad/-/utils-mad-9.5.2.tgz#7dbcceff9ec5e3abb7c5e3c97c45b095a50a63ec"
-  integrity sha512-bShTFfuUuiYFb3fojZA76Pq3j/z6wgqVjVXlRr0Do5o25UiYsZjRETpAUKoMXxf6xo5shQPIbYSKk5h9+fhyUg==
+utils-mad@9.5.3:
+  version "9.5.3"
+  resolved "https://registry.yarnpkg.com/utils-mad/-/utils-mad-9.5.3.tgz#559ee6337783d25a47768944439489d7a85a12fc"
+  integrity sha512-1KUhqjUdbmBeNeWA0oXIGpLnekJVKKe5fQtLpEKC5XTD3yLtaFW8FUKSvTuIkh1Vp9ahcRW/3sOm0tCWu6xXng==
   dependencies:
     chalk "4.1.0"
     cheerio "1.0.0-rc.3"
-    debug "4.1.1"
-    got "11.6.2"
+    debug "4.2.0"
+    got "11.7.0"
     hasha "5.2.0"
-    moment "2.28.0"
+    moment "2.29.0"
     nano-time "1.0.0"
     node-routeros "1.6.8"
     pretty-bytes "5.4.1"
