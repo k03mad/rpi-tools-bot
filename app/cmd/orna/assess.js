@@ -1,6 +1,7 @@
 'use strict';
 
 const asTable = require('as-table');
+const getItem = require('./item');
 const {orna} = require('utils-mad');
 
 /**
@@ -23,14 +24,14 @@ module.exports = async opts => {
 
     const statsNames = Object.keys(mapping);
 
-    const name = [];
+    const nameArr = [];
     let nameEnd;
 
     const prepareData = opts
         .split(' ')
         .map(stat => {
             if (!statsNames.includes(stat) && !nameEnd) {
-                name.push(stat);
+                nameArr.push(stat);
                 return '';
             }
 
@@ -39,19 +40,24 @@ module.exports = async opts => {
         })
         .filter(Boolean);
 
-    const json = {name: name.join(' ')};
+    const name = nameArr.join(' ');
+
+    const json = {name};
 
     for (let i = 0; i < prepareData.length; i += 2) {
         json[prepareData[i]] = prepareData[i + 1];
     }
 
-    const item = await orna.get('assess', json);
+    const [assess, item] = await Promise.all([
+        orna.get('assess', json),
+        getItem(name),
+    ]);
 
-    if (!item) {
+    if (!assess) {
         return 'Item not found';
     }
 
-    const stats = Object.entries(item.stats).map(([stat, data]) => {
+    const stats = Object.entries(assess.stats).map(([stat, data]) => {
         const df = data.values.pop();
         const mf = data.values.pop();
         const l10 = data.values.pop();
@@ -59,17 +65,13 @@ module.exports = async opts => {
         return {'': stat, l10, mf, df};
     });
 
-    return {
-        message: [
-            `[${item.name}](${orna.web(item.id)}) ${Math.round(item.quality * 100)}%`,
-            '',
-            `\`\`\`\n${asTable(stats)}\`\`\``,
-        ]
-            .filter(elem => elem !== null)
-            .join('\n'),
-        opts: {
-            parse_mode: 'Markdown',
-            disable_web_page_preview: true,
+    return [
+        item,
+        {
+            message: `\`\`\`\n${asTable(stats)}\`\`\``,
+            opts: {
+                parse_mode: 'Markdown',
+            },
         },
-    };
+    ];
 };
