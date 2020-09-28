@@ -8,7 +8,7 @@ const {shell, print} = require('utils-mad');
  */
 module.exports = opts => {
     shell
-        .run(`mad-mik-pptp${opts ? ` ${opts}` : ''}`)
+        .run(`mad-mik-pptp${opts ? ` "${opts}"` : ''}`)
         .catch(err => print.ex(err, {exit: true}));
 
     return 'Change pptp script started';
