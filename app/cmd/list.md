@@ -2,7 +2,7 @@ adg_add_filter - adguard: add domain to white or black list
 adg_query_log - adguard: get last queried domains
 adg_switch_state - adguard: switch blocking state
 adg_update_filters - adguard: update filters
-mik_dns - mikrotik: backup
+mik_bup - mikrotik: backup
 mik_dns - mikrotik: switch dhcp server dns
 mik_int - mikrotik: switch interface
 mik_nat - mikrotik: switch nat rules
