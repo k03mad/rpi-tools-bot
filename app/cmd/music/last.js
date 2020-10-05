@@ -1,15 +1,13 @@
 'use strict';
 
 const {music, spotify} = require('../../../env');
-const {parse, request, ua} = require('utils-mad');
+const {parse, request, shell} = require('utils-mad');
 
 /** @returns {Promise<string>} */
 module.exports = async () => {
     const TRACKS_NUM = 10;
 
-    const {body} = await request.got(music.playlist, {
-        headers: {'user-agent': ua.win.chrome},
-    });
+    const body = await shell.run(`curl ${music.playlist}`);
 
     const tracks = [];
     const texts = parse.text({body, selector: '.d-track__artists, .d-track__title'});
