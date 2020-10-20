@@ -7,7 +7,7 @@
   ],
   "repository": "k03mad/rpi-tools-bot",
   "engines": {
-    "node": ">=15"
+    "node": ">=14"
   },
   "dependencies": {
     "app-root-path": "3.0.0",
@@ -15,7 +15,7 @@
     "moment": "2.29.1",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.5.9"
+    "utils-mad": "9.5.10"
   },
   "devDependencies": {
     "eslint": "7.11.0",
