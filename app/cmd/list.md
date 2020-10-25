@@ -8,9 +8,6 @@ mik_int - mikrotik: switch interface
 mik_nat - mikrotik: switch nat rules
 mik_pptp - mikrotik: change pptp server
 mik_stn - mikrotik: switch wifi to ap or station
-music_last - music: search last liked tracks at spotify
-orna_assess - orna: equipment assess
-orna_item - orna: item search by name
 pi_reboot - pi: reboot
 pi_shutdown - pi: shutdown
 pi_update - pi: apt install updates
