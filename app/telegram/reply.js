@@ -1,7 +1,7 @@
 'use strict';
 
 const {array, string, print} = require('utils-mad');
-const {chat} = require('../../env');
+const {telegram} = require('../../env');
 
 /**
  * Reply on command text
@@ -14,7 +14,7 @@ module.exports = (bot, enteredText, cmd) => {
     const textRe = new RegExp(`^/${enteredText}(@[a-z_]+)? ?(.+)?`);
 
     bot.onText(textRe, async ({chat: {id}}, match) => {
-        if (id === chat) {
+        if (id === telegram.chat) {
             bot.sendChatAction(id, 'typing').catch(err => print.ex(err));
             let response;
 
