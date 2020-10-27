@@ -1,5 +1,8 @@
 'use strict';
 
+// https://github.com/yagop/node-telegram-bot-api/issues/319
+process.env.NTBA_FIX_319 = true;
+
 const path = require('path');
 const TelegramBot = require('node-telegram-bot-api');
 const {print} = require('utils-mad');
