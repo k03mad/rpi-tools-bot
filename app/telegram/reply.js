@@ -37,7 +37,10 @@ module.exports = (bot, enteredText, cmd) => {
                             isMsgString ? {parse_mode: 'Markdown'} : send.opts,
                         );
                     } catch (err) {
-                        print.ex(err, {exit: true});
+                        print.ex(err, {
+                            before: 'sendMessageErr',
+                            exit: true,
+                        });
                     }
                 }
             }

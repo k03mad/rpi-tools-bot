@@ -5,7 +5,7 @@ const {print} = require('utils-mad');
 /** @param {object} bot */
 module.exports = bot => {
     bot.on('webhook_error', err => print.ex(err, {
-        before: 'webHookErr',
+        before: 'onWebHookErr',
         exit: true,
     }));
 

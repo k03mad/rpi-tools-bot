@@ -21,7 +21,7 @@ const setBotCommandsList = async bot => {
         await bot.setMyCommands(list);
     } catch (err) {
         print.ex(err, {
-            before: 'set commands error',
+            before: 'setMyCommandsErr',
             exit: true,
         });
     }
