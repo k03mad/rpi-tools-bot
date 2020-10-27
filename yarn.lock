@@ -93,10 +93,10 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@eslint/eslintrc@^0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.2.0.tgz#bc7e3c4304d4c8720968ccaee793087dfb5fe6b4"
-  integrity sha512-+cIGPCBdLCzqxdtwppswP+zTsH9BOIGzAeKfBIbtb4gW/giMlfMwP0HUSFfhzh20f9u8uZ8hOp62+4GPquTbwQ==
+"@eslint/eslintrc@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.2.1.tgz#f72069c330461a06684d119384435e12a5d76e3c"
+  integrity sha512-XRUeBZ5zBWLYgSANMpThFddrZZkEbGHgUdt5UJjZfnlN9BGCiUBrf+nvbRupSjMvqzwnQN0qwCmOxITt1cfywA==
   dependencies:
     ajv "^6.12.4"
     debug "^4.1.1"
@@ -708,10 +708,10 @@ eslint-ast-utils@^1.1.0:
     lodash.get "^4.4.2"
     lodash.zip "^4.2.0"
 
-eslint-config-k03mad@5.0.4:
-  version "5.0.4"
-  resolved "https://registry.yarnpkg.com/eslint-config-k03mad/-/eslint-config-k03mad-5.0.4.tgz#de60f5dac21e40ca4d132e5c6877521e7192821e"
-  integrity sha512-83JZi15WUwXYhjY85h5vewABvV6Am4yD12rmIGXzEJxIk186NyCnWowSDzcWWloIRqmtxZU7iElzOALPQWqP/g==
+eslint-config-k03mad@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-k03mad/-/eslint-config-k03mad-5.1.0.tgz#c69f8fe9adc27e82b0e07797339190dd87fdbaf4"
+  integrity sha512-UMETSy5wf0UcM2dJ6ER5NctOF1GWboqH7iVRt32SJiP/sGcjuSxIiGQV82at9aORcTWpGNWdZdkEwjH1Vi76gw==
 
 eslint-plugin-es@^3.0.0:
   version "3.0.1"
@@ -815,13 +815,13 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@7.12.0:
-  version "7.12.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.12.0.tgz#7b6a85f87a9adc239e979bb721cde5ce0dc27da6"
-  integrity sha512-n5pEU27DRxCSlOhJ2rO57GDLcNsxO0LPpAbpFdh7xmcDmjmlGUfoyrsB3I7yYdQXO5N3gkSTiDrPSPNFiiirXA==
+eslint@7.12.1:
+  version "7.12.1"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.12.1.tgz#bd9a81fa67a6cfd51656cdb88812ce49ccec5801"
+  integrity sha512-HlMTEdr/LicJfN08LB3nM1rRYliDXOmfoO4vj39xN6BLpFzF00hbwBoqHk8UcJ2M/3nlARZWy/mslvGEuZFvsg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
-    "@eslint/eslintrc" "^0.2.0"
+    "@eslint/eslintrc" "^0.2.1"
     ajv "^6.10.0"
     chalk "^4.0.0"
     cross-spawn "^7.0.2"
@@ -2164,10 +2164,10 @@ util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-utils-mad@9.5.10:
-  version "9.5.10"
-  resolved "https://registry.yarnpkg.com/utils-mad/-/utils-mad-9.5.10.tgz#84c13bbf6f0bf79b25e1894f33b32ac68dd03881"
-  integrity sha512-fR51M9FRzSL3LQAQO5LD/NhlStRtWGAeUQNxfefAhmBmWd7bVuDxdwiO3rx463IoH+gzhO/KGYTR5VlKkSfKAA==
+utils-mad@9.6.5:
+  version "9.6.5"
+  resolved "https://registry.yarnpkg.com/utils-mad/-/utils-mad-9.6.5.tgz#24a0ec04d504ce5799f91c041c31f9cdbce5f8d2"
+  integrity sha512-IepelwSsHVoRB/awEmlB+vpF4OgkyapS4kja7aQ0Y0tfuc8pZptomRPBKk4aeOUwXGQ3y1efrr4da5Ncldpfow==
   dependencies:
     chalk "4.1.0"
     cheerio "1.0.0-rc.3"
