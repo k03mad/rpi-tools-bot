@@ -1,6 +1,15 @@
 'use strict';
 
 module.exports = {
-    chat: Number(process.env.MY_CHAT),
-    telegramToken: process.env.RP_TELEGRAM_TOKEN,
+    telegram: {
+        chat: Number(process.env.TELEGRAM_MY_CHAT),
+        token: process.env.TELEGRAM_RASPI_TOKEN,
+        port: process.env.TELEGRAM_RASPI_PORT,
+    },
+    mikrotik: {
+        cloud: process.env.MIKROTIK_CLOUD,
+    },
+    pi: {
+        cert: process.env.PI_CERT_FOLDER,
+    },
 };

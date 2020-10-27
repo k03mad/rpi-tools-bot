@@ -2,23 +2,12 @@
 
 const {print} = require('utils-mad');
 
-const MIN_ERRORS = 30;
-
 /** @param {object} bot */
 module.exports = bot => {
-    let pollingErrors = 0;
-
-    bot.on('polling_error', err => {
-        pollingErrors++;
-
-        if (pollingErrors >= MIN_ERRORS) {
-            print.ex(err, {
-                before: `onPollingErr (count: ${pollingErrors})`,
-                exit: true,
-            });
-            pollingErrors = 0;
-        }
-    });
+    bot.on('webhook_error', err => print.ex(err, {
+        before: 'webHookErr',
+        exit: true,
+    }));
 
     bot.on('uncaughtException', err => print.ex(err, {
         before: 'onUncaughtEx',
