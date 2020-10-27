@@ -1,5 +1,8 @@
 'use strict';
 
+// https://github.com/yagop/node-telegram-bot-api/issues/319
+process.env.NTBA_FIX_319 = true;
+
 module.exports = {
     telegram: {
         chat: Number(process.env.TELEGRAM_MY_CHAT),
