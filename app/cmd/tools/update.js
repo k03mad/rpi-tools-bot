@@ -8,8 +8,9 @@ module.exports = async () => {
     const logs = [];
 
     const repoUpdate = [
-        'rpi-tools-bot', 'rpi-tools-cron',
-        'magnet-co-parser', 'adguard-home-lists-my',
+        'rpi-tools-bot',
+        'rpi-tools-cron',
+        'magnet-co-parser',
     ];
 
     for (const app of repoUpdate) {
