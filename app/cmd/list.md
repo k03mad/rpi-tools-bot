@@ -1,5 +1,5 @@
 mik_bup - mikrotik: backup
-mik_dns - mikrotik: switch dhcp server dns
+mik_dns - mikrotik: switch dns
 mik_int - mikrotik: switch interface
 mik_nat - mikrotik: switch nat rules
 mik_pptp - mikrotik: change pptp server
