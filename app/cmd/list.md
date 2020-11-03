@@ -2,7 +2,6 @@ mik_bup - mikrotik: backup
 mik_dns - mikrotik: switch dns
 mik_int - mikrotik: switch interface
 mik_nat - mikrotik: switch nat rules
-mik_pptp - mikrotik: change pptp server
 mik_stn - mikrotik: switch wifi to ap or station
 pi_reboot - pi: reboot
 pi_shutdown - pi: shutdown
