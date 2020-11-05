@@ -7,7 +7,7 @@
   ],
   "repository": "k03mad/rpi-tools-bot",
   "engines": {
-    "node": ">=15"
+    "node": ">=14"
   },
   "dependencies": {
     "app-root-path": "3.0.0",
@@ -27,7 +27,7 @@
   },
   "scripts": {
     "lint": "eslint ./ --report-unused-disable-directives --format=codeframe --ignore-pattern='!.*'",
-    "setup": "npm i",
+    "setup": "yarn install",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
   },
