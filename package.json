@@ -13,12 +13,12 @@
     "app-root-path": "3.0.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.6.9"
+    "utils-mad": "9.7.7"
   },
   "devDependencies": {
-    "eslint": "7.13.0",
+    "eslint": "7.14.0",
     "eslint-config-k03mad": "6.0.2",
-    "eslint-plugin-jsdoc": "30.7.7",
+    "eslint-plugin-jsdoc": "30.7.8",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sort-requires": "2.1.0",
