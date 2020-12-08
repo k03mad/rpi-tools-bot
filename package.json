@@ -13,7 +13,7 @@
     "app-root-path": "3.0.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.9.0"
+    "utils-mad": "9.9.1"
   },
   "devDependencies": {
     "eslint": "7.15.0",

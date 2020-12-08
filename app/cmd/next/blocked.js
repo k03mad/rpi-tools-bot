@@ -27,5 +27,8 @@ module.exports = async (pageRequests = 30) => {
         lastTime = logs[logs.length - 1].timestamp;
     }
 
-    return [...blocked].join('\n');
+    return [
+        [...blocked].join('\n'),
+        `count: ${blocked.size}`,
+    ];
 };
