@@ -1,7 +1,5 @@
 'use strict';
 
-module.exports = {
-    hooks: {
-        'pre-commit': 'npm run lint',
-    },
+module.exports.hooks = {
+    'pre-commit': 'echo qwe',
 };
