@@ -7,15 +7,22 @@ const {next} = require('utils-mad');
  * @param {number} pageRequests
  * @returns {Promise}
  */
-module.exports = async (domains = '-', pageRequests = 30) => {
-    const all = new Set();
-    const allowed = new Set();
-    const blocked = new Set();
+module.exports = async (domains = '-', pageRequests = 20) => {
+    pageRequests = Number(pageRequests);
+
+    const all = [];
+    const allowed = [];
+    const blocked = [];
 
     let lastTime;
+    let method = 'push';
 
-    for (let i = 1; i <= Number(pageRequests); i++) {
-        const {logs} = await next.get({
+    for (let i = 1; i <= pageRequests; i++) {
+        if (i === pageRequests) {
+            lastTime = '';
+        }
+
+        let {logs} = await next.get({
             path: 'logs',
             searchParams: {
                 before: lastTime || '',
@@ -24,13 +31,19 @@ module.exports = async (domains = '-', pageRequests = 30) => {
             },
         });
 
-        logs.forEach(({lists, name}) => {
-            if (lists.length > 0) {
-                all.add(`- ${name}`);
-                blocked.add(name);
+        if (i === pageRequests) {
+            logs = logs.reverse();
+            method = 'unshift';
+        }
+
+        // eslint-disable-next-line no-loop-func
+        logs.forEach(({status, name}) => {
+            if (status === 2) {
+                all[method](`- ${name}`);
+                blocked[method](name);
             } else {
-                all.add(`+ ${name}`);
-                allowed.add(name);
+                all[method](`+ ${name}`);
+                allowed[method](name);
             }
         });
 
@@ -38,10 +51,10 @@ module.exports = async (domains = '-', pageRequests = 30) => {
     }
 
     if (domains === '-') {
-        return [...blocked].join('\n');
+        return [...new Set(blocked)].join('\n');
     } else if (domains === '+') {
-        return [...allowed].join('\n');
+        return [...new Set(allowed)].join('\n');
     }
 
-    return [...all].join('\n');
+    return [...new Set(all)].join('\n');
 };
