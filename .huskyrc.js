@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports.hooks = {
-    'pre-commit': 'echo qwe',
+    'pre-commit': 'npm run lint',
 };

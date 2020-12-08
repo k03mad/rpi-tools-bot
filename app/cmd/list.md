@@ -3,6 +3,7 @@ mik_dns - mikrotik: switch dns
 mik_int - mikrotik: switch interface
 mik_nat - mikrotik: switch nat rules
 mik_stn - mikrotik: switch wifi to ap or station
+next_blocked - next: print last blocked queries
 pi_reboot - pi: reboot
 pi_shutdown - pi: shutdown
 pi_update - pi: apt install updates
