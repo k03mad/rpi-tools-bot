@@ -13,17 +13,17 @@
     "app-root-path": "3.0.0",
     "node-telegram-bot-api": "0.50.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.7.7"
+    "utils-mad": "9.9.0"
   },
   "devDependencies": {
-    "eslint": "7.14.0",
+    "eslint": "7.15.0",
     "eslint-config-k03mad": "6.0.2",
     "eslint-plugin-jsdoc": "30.7.8",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sort-requires": "2.1.0",
     "eslint-plugin-unicorn": "23.0.0",
-    "husky": "4.3.0"
+    "husky": "4.3.5"
   },
   "scripts": {
     "lint": "eslint ./ --report-unused-disable-directives --format=codeframe --ignore-pattern='!.*'",
