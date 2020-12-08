@@ -48,10 +48,10 @@ module.exports = async (domains, sort = 'off', pageRequests = 20) => {
         // eslint-disable-next-line no-loop-func
         logs.forEach(({status, name}) => {
             if (status === 2) {
-                all[method](`-.${name}`);
+                all[method](`- ${name}`);
                 blocked[method](name);
             } else {
-                all[method](`+.${name}`);
+                all[method](`+ ${name}`);
                 allowed[method](name);
             }
         });
