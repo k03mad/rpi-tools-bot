@@ -1,13 +1,22 @@
 'use strict';
 
-const {next} = require('utils-mad');
+const {next, hosts} = require('utils-mad');
 
 /**
  * @param {string} domains
+ * @param {string} sort
  * @param {number} pageRequests
  * @returns {Promise}
  */
-module.exports = async (domains = '-', pageRequests = 20) => {
+module.exports = async (domains, sort = 'off', pageRequests = 20) => {
+    if (!domains) {
+        return '/next_logs {type (-|+|all)} {sort (on|off)} {pages (N)}';
+    }
+
+    const sortDomains = domainsSet => sort === 'on'
+        ? hosts.comment(hosts.sort(new Set(domainsSet))).join('\n')
+        : [...new Set(domainsSet)].join('\n');
+
     pageRequests = Number(pageRequests);
 
     const all = [];
@@ -51,10 +60,10 @@ module.exports = async (domains = '-', pageRequests = 20) => {
     }
 
     if (domains === '-') {
-        return [...new Set(blocked)].join('\n');
+        return sortDomains(blocked);
     } else if (domains === '+') {
-        return [...new Set(allowed)].join('\n');
+        return sortDomains(allowed);
     }
 
-    return [...new Set(all)].join('\n');
+    return sortDomains(all);
 };

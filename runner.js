@@ -2,9 +2,9 @@
 
 const all = require('require-all')(`${__dirname}/app/cmd`);
 
-const [path, file, arg] = process.env.npm_config_name.split('/');
+const [path, file, ...arg] = process.env.npm_config_name.split('/');
 
 (async () => {
-    const log = await all[path][file](arg);
+    const log = await all[path][file](...arg);
     console.log(log);
 })();
