@@ -9,7 +9,7 @@ const {next, hosts} = require('utils-mad');
  * @returns {Promise}
  */
 module.exports = async (domains, sort = 'off', pageRequests = 20) => {
-    if (domains !== '-' || domains !== '+') {
+    if (domains !== '-' && domains !== '+') {
         return '/next_logs {type (-|+)} {sort (on|off)} {pages (N)}';
     }
 
