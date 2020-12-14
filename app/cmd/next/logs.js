@@ -31,7 +31,7 @@ module.exports = async (domains, sort = 'off', pageRequests = 20) => {
             lastTime = '';
         }
 
-        let {logs} = await next.get({
+        let {logs} = await next.query({
             path: 'logs',
             searchParams: {
                 before: lastTime || '',

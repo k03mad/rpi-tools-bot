@@ -11,9 +11,11 @@
   },
   "dependencies": {
     "app-root-path": "3.0.0",
+    "hexyjs": "2.1.4",
     "node-telegram-bot-api": "0.50.0",
+    "p-map": "4.0.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.9.2"
+    "utils-mad": "9.10.0"
   },
   "devDependencies": {
     "eslint": "7.15.0",
