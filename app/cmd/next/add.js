@@ -27,7 +27,7 @@ module.exports = async (list, addDomain) => {
     }
 
     const listType = lists[list];
-    const currentDomains = await getList();
+    const currentDomains = await getList(listType);
 
     await pMap(currentDomains, domain => next.query({
         method: 'DELETE',
@@ -51,7 +51,7 @@ module.exports = async (list, addDomain) => {
         });
     }
 
-    const afterDomains = await getList();
+    const afterDomains = await getList(listType);
 
     return [
         `\nBefore sort: ${currentDomains.length} domains in ${listType}\n`,
