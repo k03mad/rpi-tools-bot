@@ -4,6 +4,7 @@ mik_int - mikrotik: switch interface
 mik_nat - mikrotik: switch nat rules
 mik_stn - mikrotik: switch wifi to ap or station
 next_add - next: add domain to allow or deny list
+next_check - next: check domains in lists for no dns answer
 next_logs - next: print last unique queries
 pi_reboot - pi: reboot
 pi_shutdown - pi: shutdown
