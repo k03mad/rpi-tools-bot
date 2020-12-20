@@ -4,37 +4,42 @@ const hexyjs = require('hexyjs');
 const pMap = require('p-map');
 const {next, hosts, promise} = require('utils-mad');
 
+const concurrency = 5;
+
 const lists = {
     '-': 'denylist',
     '+': 'allowlist',
 };
 
-const getList = async (path) => {
+const getList = async path => {
     const list = await next.query({path});
     return list.map(({domain}) => domain);
 };
 
 /**
- * @param {list} list
- * @param {string} domain
+ * @param {string} list
+ * @param {string} addDomain
  * @returns {Promise}
  */
-module.exports = async (list, domain) => {
-    const concurrency = 5;
+module.exports = async (list, addDomain) => {
+    if (!Object.keys(lists).includes(list)) {
+        return '/next_add {type (-|+)} {domain}';
+    }
 
+    const listType = lists[list];
     const currentDomains = await getList();
 
     await pMap(currentDomains, domain => next.query({
         method: 'DELETE',
-        path: `allowlist/hex:${hexyjs.strToHex(domain)}`,
+        path: `${listType}/hex:${hexyjs.strToHex(domain)}`,
     }), {concurrency});
 
     let message = '';
 
-    if (allowDomain?.match(/.+\..+/)) {
-        const trimmed = allowDomain.trim();
+    if (addDomain?.match(/.+\..+/)) {
+        const trimmed = addDomain.trim();
         currentDomains.push(trimmed);
-        message = `"${trimmed}" added to allowlist`;
+        message = `"${trimmed}" added to ${listType}`;
     }
 
     for (const domain of hosts.sort(new Set(currentDomains)).reverse()) {
@@ -42,16 +47,16 @@ module.exports = async (list, domain) => {
 
         await next.query({
             method: 'PUT',
-            path: `allowlist/hex:${hexyjs.strToHex(domain)}`,
+            path: `${listType}/hex:${hexyjs.strToHex(domain)}`,
         });
     }
 
     const afterDomains = await getList();
 
     return [
-        `\nBefore sort: ${currentDomains.length} domains\n`,
+        `\nBefore sort: ${currentDomains.length} domains in ${listType}\n`,
         currentDomains.join('\n'),
-        `\nAfter sort: ${afterDomains.length} domains\n`,
+        `\nAfter sort: ${afterDomains.length} domains in ${listType}\n`,
         afterDomains.join('\n'),
         currentDomains.length === afterDomains.length
             ? '' : '\n\nSOMETHING GOES WRONG\nDomains length doesn\'t eql after sort',

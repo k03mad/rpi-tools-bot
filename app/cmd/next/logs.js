@@ -10,7 +10,7 @@ const {next, hosts} = require('utils-mad');
  */
 module.exports = async (domains, sort = 'off', pageRequests = 20) => {
     if (domains !== '-' && domains !== '+') {
-        return '/next_logs {type (-|+)} {sort (on|off)} {pages (N)}';
+        return '/next_logs {type (-|+)} {sort (on|off)} {pages}';
     }
 
     const sortDomains = domainsSet => sort === 'on'
