@@ -4,16 +4,22 @@ const hexyjs = require('hexyjs');
 const pMap = require('p-map');
 const {next, hosts, promise} = require('utils-mad');
 
-const getList = async () => {
-    const list = await next.query({path: 'allowlist'});
+const lists = {
+    '-': 'denylist',
+    '+': 'allowlist',
+};
+
+const getList = async (path) => {
+    const list = await next.query({path});
     return list.map(({domain}) => domain);
 };
 
 /**
- * @param {string} allowDomain
+ * @param {list} list
+ * @param {string} domain
  * @returns {Promise}
  */
-module.exports = async allowDomain => {
+module.exports = async (list, domain) => {
     const concurrency = 5;
 
     const currentDomains = await getList();
