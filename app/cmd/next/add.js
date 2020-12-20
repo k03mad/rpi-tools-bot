@@ -1,5 +1,6 @@
 'use strict';
 
+const debug = require('debug')('utils-mad:cmd:next:add');
 const hexyjs = require('hexyjs');
 const pMap = require('p-map');
 const {next, hosts, promise} = require('utils-mad');
@@ -42,13 +43,20 @@ module.exports = async (list, addDomain) => {
         message = `"${trimmed}" added to ${listType}`;
     }
 
-    for (const domain of hosts.sort(new Set(currentDomains)).reverse()) {
-        await promise.delay();
+    let i = 1;
+    const sortedReversed = hosts.sort(new Set(currentDomains)).reverse();
+    const {length} = sortedReversed;
 
+    for (const domain of sortedReversed) {
+        debug(`${i} of ${length}`);
+
+        await promise.delay();
         await next.query({
             method: 'PUT',
             path: `${listType}/hex:${hexyjs.strToHex(domain)}`,
         });
+
+        i++;
     }
 
     const afterDomains = await getList(listType);
