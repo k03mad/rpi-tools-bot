@@ -8,10 +8,13 @@ const {next, request, shell} = require('utils-mad');
  * @returns {Promise}
  */
 module.exports = async () => {
-    const concurrency = 5;
-    const lists = ['allowlist', 'denylist'];
+    const ip = /(\d+.?){4}/;
+    const noAnswer = dim('no answer');
 
-    const [flushed, domains] = await Promise.all([
+    const lists = ['allowlist', 'denylist'];
+    const concurrency = 5;
+
+    const [, domains] = await Promise.all([
         shell.run('mad-mik-dns flush'),
 
         Promise.all(lists.map(async path => {
@@ -27,11 +30,11 @@ module.exports = async () => {
             const {Answer} = await request.doh(domain);
             return Answer
                 ? `${domain} ${dim(Answer
-                    .filter(elem => elem.data.match(/(\d+.?){4}/))
+                    .filter(elem => elem.data.match(ip))
                     .map(elem => elem.data)
                     .sort()
                     .join(', '))}`
-                : `${domain} ${dim('no answer')}`;
+                : `${domain} ${noAnswer}`;
         }, {concurrency}),
 
         pMap(domainsFlat, async domain => {
@@ -39,16 +42,14 @@ module.exports = async () => {
             return log
                 ? `${domain} ${dim(log
                     .split('\n')
-                    .filter(elem => elem.match(/(\d+.?){4}/))
+                    .filter(elem => elem.match(ip))
                     .sort()
                     .join(', '))}`
-                : `${domain} ${dim('no answer')}`;
+                : `${domain} ${noAnswer}`;
         }, {concurrency}),
     ]);
 
     return [
-        flushed,
-        '',
         cyan('DOH: '),
         doh,
         '',
