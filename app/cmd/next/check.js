@@ -1,60 +1,113 @@
 'use strict';
 
+const hexyjs = require('hexyjs');
 const pMap = require('p-map');
-const {cyan, dim} = require('colorette');
+const {cyan, dim, yellow, magenta} = require('colorette');
 const {mikrotik} = require('../../../env');
-const {next, request, shell} = require('utils-mad');
+const {next, request, shell, promise} = require('utils-mad');
 
-/**
- * @returns {Promise}
- */
+const getList = async path => {
+    const list = await next.query({path});
+    return list.map(({domain}) => domain);
+};
+
+/** @returns {Promise} */
 module.exports = async () => {
     const ip = /(\d+.?){4}/;
     const noAnswer = dim('no answer');
 
     const lists = ['allowlist', 'denylist'];
+
     const concurrency = 5;
+    const pause = 3000;
 
-    const [, domains] = await Promise.all([
-        shell.run('mad-mik-dns flush'),
+    const message = [];
 
-        Promise.all(lists.map(async path => {
-            const list = await next.query({path});
-            return list.map(({domain}) => domain);
-        })),
-    ]);
+    for (const list of lists) {
+        await shell.run('mad-mik-dns flush');
+        const domains = (await getList(list)).flat();
 
-    const domainsFlat = domains.flat();
+        if (domains.length > 0) {
+            // disable personal filters
+            await pMap(domains, domain => next.query({
+                method: 'PATCH',
+                path: `${list}/hex:${hexyjs.strToHex(domain)}`,
+                json: {active: false},
+            }), {concurrency});
 
-    const [doh, dig] = await Promise.all([
-        pMap(domainsFlat, async domain => {
-            const {Answer} = await request.doh(domain);
-            return Answer
-                ? `${domain} ${dim(Answer
-                    .filter(elem => elem.data.match(ip))
-                    .map(elem => elem.data)
-                    .sort()
-                    .join(', '))}`
-                : `${domain} ${noAnswer}`;
-        }, {concurrency}),
+            await promise.delay(pause);
 
-        pMap(domainsFlat, async domain => {
-            const log = await shell.run(`dig @${mikrotik.host} ${domain} +short`);
-            return log
-                ? `${domain} ${dim(log
-                    .split('\n')
-                    .filter(elem => elem.match(ip))
-                    .sort()
-                    .join(', '))}`
-                : `${domain} ${noAnswer}`;
-        }, {concurrency}),
-    ]);
+            // get dns records: from other doh-service and from current machine dig
+            const [doh, dig] = await Promise.all([
+                pMap(domains, async domain => {
+                    const {Answer} = await request.doh(domain);
+                    return Answer
+                        ? `— ${domain} ${dim(Answer
+                            .filter(elem => elem.data.match(ip))
+                            .map(elem => elem.data)
+                            .sort()
+                            .join(', '))}`
+                        : `${domain} ${noAnswer}`;
+                }, {concurrency}),
 
-    return [
-        cyan('DOH: '),
-        doh,
-        '',
-        cyan('dig: '),
-        dig,
-    ].flat().join('\n');
+                pMap(domains, async domain => {
+                    const log = await shell.run(`dig @${mikrotik.host} ${domain} +short`);
+                    return log
+                        ? `— ${domain} ${dim(log
+                            .split('\n')
+                            .filter(elem => elem.match(ip))
+                            .sort()
+                            .join(', '))}`
+                        : `${domain} ${noAnswer}`;
+                }, {concurrency}),
+            ]);
+
+            await promise.delay(pause / 2);
+
+            // get last requsts logs
+            const {logs} = await next.query({
+                path: 'logs',
+                searchParams: {simple: 1, lng: 'en'},
+            });
+
+            // save list from allow/block reasons
+            const foundInLists = [];
+
+            domains.forEach(domain => {
+                const lastDomainLog = logs.find(elem => elem.name === domain);
+
+                if (lastDomainLog?.lists.length > 0) {
+                    foundInLists.push(`— ${domain} ${dim(lastDomainLog.lists.join(', '))}`);
+                }
+            });
+
+            // reenable filters
+            await pMap(domains, domain => next.query({
+                method: 'PATCH',
+                path: `${list}/hex:${hexyjs.strToHex(domain)}`,
+                json: {active: true},
+            }), {concurrency});
+
+            message.push(
+                '',
+                yellow(`__${list.toUpperCase()}__`),
+                '',
+                cyan('DOH: '),
+                doh,
+                '',
+                cyan('dig: '),
+                dig,
+            );
+
+            if (foundInLists.length > 0) {
+                message.push(
+                    '',
+                    magenta('REASONS:'),
+                    foundInLists,
+                );
+            }
+        }
+    }
+
+    return message.flat().join('\n');
 };

@@ -17,7 +17,7 @@
     "node-telegram-bot-api": "0.51.0",
     "p-map": "4.0.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.10.5"
+    "utils-mad": "9.10.8"
   },
   "devDependencies": {
     "eslint": "7.17.0",
@@ -26,7 +26,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "24.0.0",
+    "eslint-plugin-unicorn": "25.0.1",
     "husky": "4.3.6"
   },
   "scripts": {
