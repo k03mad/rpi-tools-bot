@@ -2,6 +2,7 @@
 
 const pMap = require('p-map');
 const {cyan, dim} = require('colorette');
+const {mikrotik} = require('../../../env');
 const {next, request, shell} = require('utils-mad');
 
 /**
@@ -38,7 +39,7 @@ module.exports = async () => {
         }, {concurrency}),
 
         pMap(domainsFlat, async domain => {
-            const log = await shell.run(`dig ${domain} +short`);
+            const log = await shell.run(`dig @${mikrotik.host} ${domain} +short`);
             return log
                 ? `${domain} ${dim(log
                     .split('\n')
