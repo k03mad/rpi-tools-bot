@@ -11,15 +11,16 @@
   },
   "dependencies": {
     "app-root-path": "3.0.0",
-    "debug": "4.3.0",
+    "colorette": "1.2.1",
+    "debug": "4.3.1",
     "hexyjs": "2.1.4",
-    "node-telegram-bot-api": "0.50.0",
+    "node-telegram-bot-api": "0.51.0",
     "p-map": "4.0.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.10.2"
+    "utils-mad": "9.10.5"
   },
   "devDependencies": {
-    "eslint": "7.16.0",
+    "eslint": "7.17.0",
     "eslint-config-k03mad": "6.0.2",
     "eslint-plugin-jsdoc": "30.7.9",
     "eslint-plugin-node": "11.1.0",

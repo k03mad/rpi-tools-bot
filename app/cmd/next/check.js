@@ -1,7 +1,8 @@
 'use strict';
 
 const pMap = require('p-map');
-const {next, request} = require('utils-mad');
+const {cyan, dim} = require('colorette');
+const {next, request, shell} = require('utils-mad');
 
 /**
  * @returns {Promise}
@@ -10,22 +11,48 @@ module.exports = async () => {
     const concurrency = 5;
     const lists = ['allowlist', 'denylist'];
 
-    const domains = await Promise.all(lists.map(async path => {
-        const list = await next.query({path});
-        return list.map(({domain}) => domain);
-    }));
+    const [flushed, domains] = await Promise.all([
+        shell.run('mad-mik-dns flush'),
 
-    const noAnswer = await pMap(domains.flat(), async domain => {
-        const {body} = await request.cache('https://cloudflare-dns.com/dns-query', {
-            headers: {accept: 'application/dns-json'},
-            searchParams: {name: domain},
-        }, {expire: '1h'});
+        Promise.all(lists.map(async path => {
+            const list = await next.query({path});
+            return list.map(({domain}) => domain);
+        })),
+    ]);
 
-        return body.Answer ? '' : domain;
-    }, {concurrency});
+    const domainsFlat = domains.flat();
 
-    const noAnswerFiltered = noAnswer.filter(Boolean).sort();
-    return noAnswerFiltered.length > 0
-        ? `Domains in lists without dns answer:\n\n${noAnswerFiltered.join('\n')}`
-        : 'All domains in lists with dns answer';
+    const [doh, dig] = await Promise.all([
+        pMap(domainsFlat, async domain => {
+            const {Answer} = await request.doh(domain);
+            return Answer
+                ? `${domain} ${dim(Answer
+                    .filter(elem => elem.data.match(/(\d+.?){4}/))
+                    .map(elem => elem.data)
+                    .sort()
+                    .join(', '))}`
+                : `${domain} ${dim('no answer')}`;
+        }, {concurrency}),
+
+        pMap(domainsFlat, async domain => {
+            const log = await shell.run(`dig ${domain} +short`);
+            return log
+                ? `${domain} ${dim(log
+                    .split('\n')
+                    .filter(elem => elem.match(/(\d+.?){4}/))
+                    .sort()
+                    .join(', '))}`
+                : `${domain} ${dim('no answer')}`;
+        }, {concurrency}),
+    ]);
+
+    return [
+        flushed,
+        '',
+        cyan('DOH: '),
+        doh,
+        '',
+        cyan('dig: '),
+        dig,
+    ].flat().join('\n');
 };
