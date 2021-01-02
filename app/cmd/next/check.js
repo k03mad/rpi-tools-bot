@@ -13,7 +13,7 @@ const getList = async path => {
 
 /** @returns {Promise} */
 module.exports = async () => {
-    const ip = /(\d+.?){4}/;
+    const ip = /(\d{1,3}\.){3}\d{1,3}/;
     const noAnswer = dim('no answer');
 
     const lists = ['allowlist', 'denylist'];
@@ -46,8 +46,8 @@ module.exports = async () => {
                             .filter(elem => elem.data.match(ip))
                             .map(elem => elem.data)
                             .sort()
-                            .join(', '))}`
-                        : `${domain} ${noAnswer}`;
+                            .pop())}`
+                        : `!! ${domain} ${noAnswer}`;
                 }, {concurrency}),
 
                 pMap(domains, async domain => {
@@ -57,8 +57,8 @@ module.exports = async () => {
                             .split('\n')
                             .filter(elem => elem.match(ip))
                             .sort()
-                            .join(', '))}`
-                        : `${domain} ${noAnswer}`;
+                            .pop())}`
+                        : `!! ${domain} ${noAnswer}`;
                 }, {concurrency}),
             ]);
 
