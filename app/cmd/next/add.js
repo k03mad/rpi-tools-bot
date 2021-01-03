@@ -69,5 +69,5 @@ module.exports = async (list, addDomain) => {
         currentDomains.length === afterDomains.length
             ? '' : '\n\nSOMETHING GOES WRONG\nDomains length doesn\'t eql after sort',
         message,
-    ].join('\n');
+    ].join('\n').trim();
 };
