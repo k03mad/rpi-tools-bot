@@ -109,5 +109,5 @@ module.exports = async () => {
         }
     }
 
-    return message.flat().join('\n');
+    return message.flat().join('\n').trim();
 };
