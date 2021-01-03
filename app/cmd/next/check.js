@@ -19,7 +19,7 @@ module.exports = async () => {
     const lists = ['allowlist', 'denylist'];
 
     const concurrency = 5;
-    const pause = 3000;
+    const pause = 5000;
 
     const message = [];
 
@@ -62,7 +62,7 @@ module.exports = async () => {
                 }, {concurrency}),
             ]);
 
-            await promise.delay(pause / 2);
+            await promise.delay(pause);
 
             // get last requsts logs
             const {logs} = await next.query({
