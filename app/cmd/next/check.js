@@ -18,7 +18,7 @@ module.exports = async () => {
 
     const lists = ['allowlist', 'denylist'];
 
-    const concurrency = 5;
+    const concurrency = 2;
     const pause = 5000;
 
     const message = [];
