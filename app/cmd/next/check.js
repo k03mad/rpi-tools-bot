@@ -33,8 +33,8 @@ const pushRecords = (message, arr, name) => {
 module.exports = async () => {
     const lists = ['allowlist', 'denylist'];
 
-    const concurrency = 5;
-    const pause = 3000;
+    const concurrency = 4;
+    const pause = 5000;
 
     const message = [];
 
