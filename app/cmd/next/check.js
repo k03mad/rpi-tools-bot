@@ -24,7 +24,7 @@ const pushRecords = (message, arr, name) => {
         message.push(
             '',
             cyan(`${name}:`),
-            hosts.sort(arr),
+            arr,
         );
     }
 };
