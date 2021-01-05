@@ -5,29 +5,29 @@ const {next, hosts} = require('utils-mad');
 /**
  * @param {string} domains
  * @param {string} sort
- * @param {number} pageRequests
+ * @param {number} pages
  * @returns {Promise}
  */
-module.exports = async (domains, sort = 'off', pageRequests = 20) => {
+module.exports = async (domains, sort = 'on', pages = 100) => {
     if (domains !== '-' && domains !== '+') {
-        return '/next_logs {type (-|+)} {sort (on|off)} {pages}';
+        return '/next_logs {type (-|+)} {sort (on|off = on)} {pages = 100}';
     }
 
     const sortDomains = domainsSet => sort === 'on'
         ? hosts.comment(hosts.sort(new Set(domainsSet))).join('\n')
         : [...new Set(domainsSet)].reverse().join('\n');
 
-    pageRequests = Number(pageRequests);
+    pages = Number(pages);
 
     const allowed = [];
     const blocked = [];
 
     let lastTime;
 
-    for (let i = 1; i <= pageRequests; i++) {
+    for (let i = 1; i <= pages; i++) {
         let method = 'push';
 
-        if (i === pageRequests) {
+        if (i === pages) {
             lastTime = '';
         }
 
@@ -40,15 +40,17 @@ module.exports = async (domains, sort = 'off', pageRequests = 20) => {
             },
         });
 
-        if (i === pageRequests) {
+        if (i === pages) {
             logs = logs.reverse();
             method = 'unshift';
         }
 
-        logs.forEach(({status, name}) => {
-            status === 2
-                ? blocked[method](name)
-                : allowed[method](name);
+        logs.forEach(({status, name, deviceName}) => {
+            if (deviceName !== 'Mad-Checker') {
+                status === 2
+                    ? blocked[method](name)
+                    : allowed[method](name);
+            }
         });
 
         lastTime = logs[logs.length - 1].timestamp;
