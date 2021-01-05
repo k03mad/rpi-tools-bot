@@ -4,15 +4,15 @@ const env = require('../../../env');
 const hexyjs = require('hexyjs');
 const pMap = require('p-map');
 const {cyan, dim, yellow} = require('colorette');
-const {next, request, promise, hosts} = require('utils-mad');
+const {next, request, promise} = require('utils-mad');
 
 const getList = async path => {
     const list = await next.query({path});
     return list.map(({domain}) => domain);
 };
 
-const prepareAnswer = (domain, Answer) => Answer
-    ? `— ${domain} ${dim(Answer
+const prepareAnswer = (domain, answer) => answer
+    ? `— ${domain} ${dim(answer
         .filter(elem => elem.data.match(/(\d{1,3}\.){3}\d{1,3}/))
         .map(elem => elem.data)
         .sort()
@@ -56,14 +56,17 @@ module.exports = async () => {
             const nextdns = [];
             const common = [];
 
-            await pMap(domains, async domain => {
-                let Answer;
+            const answers = await pMap(domains, async domain => {
+                const res = await Promise.all([
+                    request.doh({domain}),
+                    request.doh({domain, resolver: `https://dns.nextdns.io/${env.next.config}/Mad-Checker`}),
+                ]);
+                return {domain, cloudflare: res[0].Answer, nextdns: res[1].Answer};
+            }, {concurrency});
 
-                ({Answer} = await request.doh({domain}));
-                const preparedDef = prepareAnswer(domain, Answer);
-
-                ({Answer} = await request.doh({domain, resolver: `https://dns.nextdns.io/${env.next.config}/Mad-Checker`}));
-                const preparedNext = prepareAnswer(domain, Answer);
+            answers.forEach(answer => {
+                const preparedDef = prepareAnswer(answer.domain, answer.cloudflare);
+                const preparedNext = prepareAnswer(answer.domain, answer.nextdns);
 
                 if (preparedDef === preparedNext) {
                     common.push(preparedDef);
@@ -71,7 +74,7 @@ module.exports = async () => {
                     cloudflare.push(preparedDef);
                     nextdns.push(preparedNext);
                 }
-            }, {concurrency});
+            });
 
             await promise.delay(pause);
 
