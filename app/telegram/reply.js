@@ -19,8 +19,7 @@ module.exports = (bot, enteredText, cmd) => {
             let response;
 
             try {
-                const args = match[2]?.split(/\s+/);
-                response = await cmd(...args || []);
+                response = await cmd(match[2] || '');
             } catch (err) {
                 response = err.toString();
             }
