@@ -1,3 +1,5 @@
+lan_host - get lan hosts
+lan_ip - get geoip info
 mik_bup - mikrotik: backup
 mik_dns - mikrotik: switch dns
 mik_int - mikrotik: switch interface
