@@ -17,11 +17,11 @@
     "node-telegram-bot-api": "0.51.0",
     "p-map": "4.0.0",
     "require-all": "3.0.0",
-    "utils-mad": "9.10.9"
+    "utils-mad": "9.11.1"
   },
   "devDependencies": {
     "eslint": "7.17.0",
-    "eslint-config-k03mad": "6.0.3",
+    "eslint-config-k03mad": "6.0.4",
     "eslint-plugin-jsdoc": "30.7.13",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.2.1",
