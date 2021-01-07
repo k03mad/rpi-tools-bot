@@ -1,9 +1,8 @@
 'use strict';
 
-const appRoot = require('app-root-path');
+const globby = require('globby');
 const reply = require('../telegram/reply');
 const {print} = require('utils-mad');
-const {promises: fs} = require('fs');
 const {shell} = require('utils-mad');
 
 /**
@@ -12,22 +11,27 @@ const {shell} = require('utils-mad');
  * @returns {Array}
  */
 const setBotCommandsList = async bot => {
-    const commands = await fs.readFile(`${appRoot}/app/cmd/list.md`, {encoding: 'utf-8'});
+    const [commands, bin] = await Promise.all([
+        globby('./app/cmd'),
+        shell.run('ls $(npm bin -g)'),
+    ]);
 
-    const list = commands.split('\n').filter(Boolean).map(elem => {
-        const [command, description] = elem.split(' - ');
-        return {command, description};
+    const list = commands.map(elem => {
+        const splitted = elem.split('/');
+        const name = splitted.pop().replace('.js', '');
+        const type = splitted.pop();
+
+        return {command: `${type}_${name}`, description: 'local'};
     });
 
-    const bin = await shell.run('npm bin -g');
-    const ls = await shell.run(`ls ${bin}`);
-
-    ls.split(/\s+/).forEach(command => {
+    bin.split(/\s+/).filter(Boolean).forEach(command => {
         if (command.match(/^mad_([a-z]+_[a-z]+)$/)) {
             list.push({command, description: 'global'});
             reply(bot, command, shell.run, command);
         }
     });
+
+    console.log(list);
 
     try {
         await bot.setMyCommands(list);
