@@ -8,8 +8,9 @@ const {telegram} = require('../../env');
  * @param {object} bot telegram node api
  * @param {string} enteredText received command
  * @param {Function} cmd prepare answer with function
+ * @param {string} args custom args
  */
-module.exports = (bot, enteredText, cmd) => {
+module.exports = (bot, enteredText, cmd, args) => {
     const MAX_MSG_LENGTH = 4096;
     const textRe = new RegExp(`^/${enteredText}(@[a-z_]+)? ?(.+)?`);
 
@@ -19,7 +20,17 @@ module.exports = (bot, enteredText, cmd) => {
             let response;
 
             try {
-                response = await cmd(match[2] || '');
+                let runArgs = '';
+
+                if (args) {
+                    runArgs = args;
+                }
+
+                if (match[2]) {
+                    runArgs += ` ${match[2]}`;
+                }
+
+                response = await cmd(runArgs.trim());
             } catch (err) {
                 response = err.toString();
             }
