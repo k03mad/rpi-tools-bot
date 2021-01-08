@@ -31,8 +31,6 @@ const setBotCommandsList = async bot => {
         }
     });
 
-    console.log(list);
-
     try {
         await bot.setMyCommands(list);
     } catch (err) {
