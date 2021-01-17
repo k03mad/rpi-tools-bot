@@ -25,7 +25,7 @@ const setBotCommandsList = async bot => {
     });
 
     bin.split(/\s+/).filter(Boolean).forEach(command => {
-        if (command.match(/^mad_([a-z]+_[a-z]+)$/)) {
+        if (/^mad_([a-z]+_[a-z]+)$/.test(command)) {
             list.push({command, description: 'global'});
             reply(bot, command, shell.run, command);
         }
