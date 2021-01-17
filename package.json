@@ -1,6 +1,6 @@
 {
   "name": "rpi-tools-bot",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "Raspberry Pi 3 Telegram Bot",
   "maintainers": [
     "Kirill Molchanov <k03.mad@gmail.com"
