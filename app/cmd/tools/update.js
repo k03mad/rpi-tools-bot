@@ -24,14 +24,15 @@ module.exports = async () => {
     console.log(':: -----------------------');
     console.log(':: > outdated', outdated);
     console.log(':: -----------------------');
+
     // logs.push(
     //     '>>> global <<<',
     //     // eslint-disable-next-line no-template-curly-in-string
-    //     await shell.run("npm -g outdated --parseable --depth=0 | pjs --after \"LINES.map(elem => elem.split(':')[3]).filter(elem => elem.startsWith('npm@') === false).join(' ')\" | xargs -t npm i -g")
+    //     await shell.run('for package in $(npm -g outdated --parseable --depth=0 | cut -d: -f4); do if [[ ! ${package} =~ ^npm@ ]]; then echo "➡️  ${package}" && npm i -g ${package}; fi; done')
     //         || 'no updates',
+    //     await restart(),
     // );
 
-    // logs.push(await restart());
     // return logs;
     return '1';
 };
