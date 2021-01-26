@@ -30,7 +30,7 @@ module.exports = async () => {
     if (modules) {
         logs.push(
             `>>> ${modules} <<<`,
-            await shell.run(`npm i -g ${modules.join(' ')}`),
+            await shell.run(`npm i -g ${modules}`),
         );
     }
 
