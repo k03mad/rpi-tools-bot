@@ -22,7 +22,7 @@ module.exports = async () => {
 
     const outdated = await shell.run('npm -g outdated --parseable --depth=0');
     console.log(':: -----------------------');
-    console.log(':: > outdated', outdated);
+    console.log(':: > outdated', outdated.split(/\s+/));
     console.log(':: -----------------------');
 
     // logs.push(
