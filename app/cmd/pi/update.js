@@ -1,24 +1,59 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const restart = require('../pm/restart');
+const {shell, repo} = require('utils-mad');
+
+const aptUpdate = [
+    'update',
+    'dist-upgrade -y',
+    'autoremove -y',
+    'clean',
+];
+
+const repoUpdate = [
+    'rpi-tools-bot',
+    'rpi-tools-cron',
+    'magnet-co-parser',
+];
 
 /** @returns {Promise} */
 module.exports = async () => {
     const logs = [];
 
-    const aptUpdate = [
-        'sudo apt-get update',
-        'sudo apt-get dist-upgrade -y',
-        'sudo apt-get autoremove -y',
-        'sudo apt-get clean',
-    ];
+    logs.push('__ APT __');
 
     for (const apt of aptUpdate) {
         logs.push(
-            `>>> ${apt.split(' ')[2]} <<<`,
-            await shell.run(apt) || 'empty',
+            `>>> ${apt} <<<`,
+            await shell.run(`sudo apt-get ${apt}`) || 'empty',
         );
     }
+
+    logs.push('__ NPM __');
+
+    const outdated = await shell.run('npm -g outdated --parseable --depth=0');
+    const parsed = outdated
+        .split(/\s+/)
+        .map(elem => elem.split(':')[3])
+        .filter(elem => !elem.startsWith('npm@'));
+
+    if (parsed.length > 0) {
+        logs.push(
+            ...parsed.map(mod => `>>> ${mod} <<<`),
+            await shell.run(`npm i -g ${parsed.join(' ')}`),
+        );
+    }
+
+    logs.push('__ REPO __');
+
+    for (const app of repoUpdate) {
+        logs.push(
+            `>>> ${app} <<<`,
+            await repo.update(app),
+        );
+    }
+
+    logs.push(await restart());
 
     return logs;
 };
