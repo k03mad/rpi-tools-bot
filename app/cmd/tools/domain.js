@@ -1,6 +1,6 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const {shell, hosts} = require('utils-mad');
 
 const path = '~/git/Turbolist3r';
 
@@ -9,20 +9,27 @@ const path = '~/git/Turbolist3r';
  * @returns {Promise}
  **/
 module.exports = async domain => {
-    const logs = [
-        await shell.run([
-            `cd ${path}`,
-            'git reset --hard',
-            'git pull',
-        ]),
-    ];
+    if (!domain) {
+        return '/tools_domain {domain}';
+    }
+
+    const update = await shell.run([
+        `cd ${path}`,
+        'git reset --hard',
+        'git pull',
+    ]);
 
     const output = await shell.run([
         `cd ${path}`,
         `python turbolist3r.py -d ${domain} -q`,
     ]);
 
-    logs.push(output.replace(/Process[\S\s]+assignment/, '').trim());
+    const formatted = hosts.sort(
+        output
+            .replace(/\u001B\[92m|\u001B\[0m|Process[\S\s]+assignment/g, '')
+            .split(/\s+/)
+            .filter(Boolean),
+    ).join('\n');
 
-    return logs;
+    return [update, formatted];
 };
