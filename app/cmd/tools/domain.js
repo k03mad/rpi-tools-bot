@@ -5,31 +5,35 @@ const {shell, hosts} = require('utils-mad');
 const path = '~/git/Turbolist3r';
 
 /**
- * @param {string} domain
+ * @param {string} domains
  * @returns {Promise}
  **/
-module.exports = async domain => {
-    if (!domain) {
-        return '/tools_domain {domain}';
+module.exports = async domains => {
+    if (!domains) {
+        return '/tools_domain {domain,...}';
     }
 
-    const update = await shell.run([
-        `cd ${path}`,
-        'git reset --hard',
-        'git pull',
-    ]);
+    const logs = [
+        await shell.run([
+            `cd ${path}`,
+            'git reset --hard',
+            'git pull',
+        ]),
+    ];
 
-    const output = await shell.run([
-        `cd ${path}`,
-        `python turbolist3r.py -d ${domain} -q`,
-    ]);
+    for (const domain of domains.split(',')) {
+        const output = await shell.run([
+            `cd ${path}`,
+            `python turbolist3r.py -d ${domain} -q`,
+        ]);
 
-    const formatted = hosts.sort(
-        output
-            .replace(/\u001B\[92m|\u001B\[0m|Process[\S\s]+assignment/g, '')
+        const parsed = output
+            .replace(/\u001B\[92m|\u001B\[0m/g, '')
             .split(/\s+/)
-            .filter(Boolean),
-    ).join('\n');
+            .filter(elem => elem.match(/(?:.+\.){2}.+$/));
 
-    return [update, formatted];
+        logs.push(hosts.sort(parsed).join('\n'));
+    }
+
+    return logs;
 };
