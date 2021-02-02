@@ -1,6 +1,6 @@
 'use strict';
 
-const {shell, hosts} = require('utils-mad');
+const {shell} = require('utils-mad');
 
 const path = '~/git/Turbolist3r';
 
@@ -22,17 +22,14 @@ module.exports = async domains => {
     ];
 
     for (const domain of domains.split(',')) {
+        logs.push(`___ ${domain} ___`);
+
         const output = await shell.run([
             `cd ${path}`,
-            `python turbolist3r.py -d ${domain} -q`,
+            `python turbolist3r.py -d ${domain} -q -a`,
         ]);
 
-        const parsed = output
-            .replace(/\u001B\[92m|\u001B\[0m/g, '')
-            .split(/\s+/)
-            .filter(elem => elem.match(/(?:.+\.){2}.+$/));
-
-        logs.push(hosts.sort(parsed).join('\n'));
+        logs.push(output);
     }
 
     return logs;
