@@ -60,7 +60,7 @@ module.exports = async domains => {
                 .entries(data)
                 .map(([host, ip]) => [host.split('.').reverse(), ip])
                 .sort()
-                .map(([host, ip]) => `${host.reverse().join('.')} \`${ip.join(',')}\``)
+                .map(([host, ip]) => `${host.reverse().join('.')} ${ip.length > 0 ? `\`${ip.join(',')}\`` : ''}`.trim())
                 .join('\n'),
         );
     }
