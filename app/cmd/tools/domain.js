@@ -29,7 +29,13 @@ module.exports = async domains => {
             `python turbolist3r.py -d ${domain} -q -a`,
         ]);
 
-        logs.push(output);
+        const parsed = output
+            .replace(/\u001B\[\d+m/g, '')
+            .split(/== (CNAME records|A records) ==/g)
+            .filter(Boolean)
+            .map(elem => elem.trim());
+
+        logs.push(...parsed);
     }
 
     return logs;
