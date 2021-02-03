@@ -2,8 +2,6 @@
 
 const {shell} = require('utils-mad');
 
-const path = '~/git/Turbolist3r';
-
 /**
  * @param {string} domains
  * @returns {Promise}
@@ -13,30 +11,59 @@ module.exports = async domains => {
         return '/tools_domain {domain,...}';
     }
 
-    const logs = [
-        await shell.run([
-            `cd ${path}`,
-            'git reset --hard',
-            'git pull',
-        ]),
-    ];
+    const path = '~/git/Turbolist3r';
+    const arrow = ' -->-- ';
 
-    for (const domain of domains.split(',')) {
-        logs.push(`___ ${domain} ___`);
+    const status = await shell.run([
+        `cd ${path}`,
+        'git fetch origin',
+        'git status',
+    ]);
+
+    const logs = [];
+
+    for (let domain of domains.split(',')) {
+        domain = domain.replace(/(http(s)?:\/\/(www\.)?)?/, '');
+
+        logs.push(`*${domain}*`);
 
         const output = await shell.run([
             `cd ${path}`,
             `python turbolist3r.py -d ${domain} -q -a`,
         ]);
 
-        const parsed = output
-            .replace(/\u001B\[\d+m/g, '')
-            .split(/== (CNAME records|A records) ==/g)
-            .filter(Boolean)
-            .map(elem => elem.trim());
+        const data = {};
 
-        logs.push(...parsed);
+        output
+            .replace(/\u001B\[\d+m/g, '')
+            .split(/\n/)
+            .forEach(line => {
+                if (line.match(`${domain}$`)) {
+                    data[line] = [];
+                }
+
+                if (line.includes(arrow)) {
+                    const [address, ...rest] = line
+                        .split(arrow)
+                        .map(elem => elem.replace(/.$/, ''));
+
+                    if (data[address]) {
+                        data[address].push(...rest);
+                    } else {
+                        data[address] = rest;
+                    }
+                }
+            });
+
+        logs.push(
+            Object
+                .entries(data)
+                .map(([host, ip]) => [host.split('.').reverse(), ip])
+                .sort()
+                .map(([host, ip]) => `${host.reverse().join('.')} \`${ip.join(',')}\``)
+                .join('\n'),
+        );
     }
 
-    return logs;
+    return [status, ...logs.map(message => ({message, opts: {parse_mode: 'Markdown'}}))];
 };
