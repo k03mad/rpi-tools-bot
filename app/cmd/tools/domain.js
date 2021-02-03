@@ -45,7 +45,7 @@ module.exports = async domains => {
                 if (line.includes(arrow)) {
                     const [address, ...rest] = line
                         .split(arrow)
-                        .map(elem => elem.replace(/.$/, ''));
+                        .map(elem => elem.replace(/\.$/, ''));
 
                     if (data[address]) {
                         data[address].push(...rest);
