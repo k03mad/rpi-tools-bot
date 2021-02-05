@@ -1,6 +1,6 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const {shell, string} = require('utils-mad');
 
 /**
  * @param {string} domains
@@ -60,7 +60,12 @@ module.exports = async domains => {
                 .entries(data)
                 .map(([host, ip]) => [host.split('.').reverse(), ip])
                 .sort()
-                .map(([host, ip]) => `${host.reverse().join('.')} ${ip.length > 0 ? `\`${ip.join(',')}\`` : ''}`.trim())
+                .map(([host, ip]) => {
+                    const name = string.escape(host.reverse().join('.'));
+                    const extra = ip.length > 0 ? `\`${ip.join(',')}\`` : '';
+
+                    return `${name} ${extra}`.trim();
+                })
                 .join('\n'),
         );
     }
