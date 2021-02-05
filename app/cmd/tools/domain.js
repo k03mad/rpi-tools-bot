@@ -23,7 +23,7 @@ module.exports = async domains => {
     const logs = [];
 
     for (let domain of domains.split(',')) {
-        domain = domain.replace(/(http(s)?:\/\/(www\.)?)?/, '');
+        domain = domain.replace(/(http(s)?:\/\/(www\.)?)?|\/$/g, '');
 
         logs.push(`*${domain}*`);
 
