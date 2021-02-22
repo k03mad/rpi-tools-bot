@@ -13,16 +13,16 @@
     "globby": "11.0.2",
     "node-telegram-bot-api": "0.51.0",
     "require-all": "3.0.0",
-    "utils-mad": "12.0.1"
+    "utils-mad": "13.0.2"
   },
   "devDependencies": {
-    "eslint": "7.19.0",
+    "eslint": "7.20.0",
     "eslint-config-k03mad": "7.0.3",
-    "eslint-plugin-jsdoc": "31.6.1",
+    "eslint-plugin-jsdoc": "32.1.0",
     "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-promise": "4.2.1",
+    "eslint-plugin-promise": "4.3.1",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "27.0.0",
+    "eslint-plugin-unicorn": "28.0.2",
     "husky": "4.3.8"
   },
   "scripts": {
