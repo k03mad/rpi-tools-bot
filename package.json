@@ -13,7 +13,7 @@
     "globby": "11.0.2",
     "node-telegram-bot-api": "0.51.0",
     "require-all": "3.0.0",
-    "utils-mad": "13.0.2"
+    "utils-mad": "13.0.3"
   },
   "devDependencies": {
     "eslint": "7.20.0",
