@@ -1,6 +1,6 @@
 'use strict';
 
-const {print} = require('utils-mad');
+const {print} = require('@k03mad/utils');
 
 const MIN_ERRORS = 30;
 

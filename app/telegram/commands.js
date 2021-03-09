@@ -2,8 +2,8 @@
 
 const globby = require('globby');
 const reply = require('../telegram/reply');
-const {print} = require('utils-mad');
-const {shell} = require('utils-mad');
+const {print} = require('@k03mad/utils');
+const {shell} = require('@k03mad/utils');
 
 /**
  * Распарсить команды из списка и поставить их боту

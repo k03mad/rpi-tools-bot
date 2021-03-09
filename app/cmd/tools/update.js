@@ -1,7 +1,7 @@
 'use strict';
 
 const restart = require('../pm/restart');
-const {shell, repo} = require('utils-mad');
+const {shell, repo} = require('@k03mad/utils');
 
 const repoUpdate = [
     'rpi-tools-bot',

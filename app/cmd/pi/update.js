@@ -1,6 +1,6 @@
 'use strict';
 
-const {shell} = require('utils-mad');
+const {shell} = require('@k03mad/utils');
 
 const aptUpdate = [
     'update',

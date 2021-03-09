@@ -1,6 +1,6 @@
 'use strict';
 
-const {array, string, print} = require('utils-mad');
+const {array, string, print} = require('@k03mad/utils');
 const {telegram} = require('../../env');
 
 /**

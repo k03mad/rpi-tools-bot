@@ -6,18 +6,20 @@
     "Kirill Molchanov <k03.mad@gmail.com"
   ],
   "repository": "k03mad/rpi-tools-bot",
+  "license": "MIT",
+  "private": true,
   "engines": {
     "node": ">=15"
   },
   "dependencies": {
+    "@k03mad/utils": "14.0.0",
     "globby": "11.0.2",
     "node-telegram-bot-api": "0.51.0",
-    "require-all": "3.0.0",
-    "utils-mad": "13.0.4"
+    "require-all": "3.0.0"
   },
   "devDependencies": {
-    "eslint": "7.20.0",
-    "eslint-config-k03mad": "7.0.3",
+    "@k03mad/eslint-config": "8.0.0",
+    "eslint": "7.21.0",
     "eslint-plugin-jsdoc": "32.2.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "4.3.1",
@@ -30,6 +32,5 @@
     "setup": "npm i",
     "start": "pm2 start pm2.json",
     "runner": "DEBUG=utils-mad* node runner"
-  },
-  "license": "Unlicense"
+  }
 }
