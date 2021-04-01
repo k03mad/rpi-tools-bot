@@ -19,10 +19,18 @@ module.exports = async () => {
         .map(elem => elem.split(':')[3])
         .filter(elem => !elem.startsWith('npm@'));
 
-    if (parsed.length > 0) {
+    for (const pkg of parsed) {
+        let output;
+
+        try {
+            output = await shell.run(`npm i -g ${pkg}`);
+        } catch (err) {
+            output = err;
+        }
+
         logs.push(
-            ...parsed.map(mod => `>>> ${mod} <<<`),
-            await shell.run(`npm i -g ${parsed.join(' ')}`),
+            `>>> ${pkg} <<<`,
+            output,
         );
     }
 
