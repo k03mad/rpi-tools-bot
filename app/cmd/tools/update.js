@@ -16,8 +16,7 @@ module.exports = async () => {
     const outdated = await shell.run('npm -g outdated --parseable --depth=0');
     const parsed = outdated
         .split(/\s+/)
-        .map(elem => elem.split(':')[3])
-        .filter(elem => !elem.startsWith('npm@'));
+        .map(elem => elem.split(':')[3]);
 
     for (const pkg of parsed) {
         let output;
