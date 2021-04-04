@@ -18,19 +18,23 @@ module.exports = async () => {
         .split(/\s+/)
         .map(elem => elem.split(':')[3]);
 
-    for (const pkg of parsed) {
-        let output;
+    if (parsed.length > 0) {
 
-        try {
-            output = await shell.run(`npm i -g ${pkg}`);
-        } catch (err) {
-            output = err;
+        for (const pkg of parsed) {
+            let output;
+
+            try {
+                output = await shell.run(`npm i -g ${pkg}`);
+            } catch (err) {
+                output = err;
+            }
+
+            logs.push(
+                `>>> ${pkg} <<<`,
+                output,
+            );
         }
 
-        logs.push(
-            `>>> ${pkg} <<<`,
-            output,
-        );
     }
 
     logs.push('__ REPO __');
