@@ -16,7 +16,8 @@ module.exports = async () => {
     const outdated = await shell.run('npm -g outdated --parseable --depth=0');
     const parsed = outdated
         .split(/\s+/)
-        .map(elem => elem.split(':')[3]);
+        .map(elem => elem.split(':')[3])
+        .filter(Boolean);
 
     if (parsed.length > 0) {
 
