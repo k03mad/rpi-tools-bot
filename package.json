@@ -12,7 +12,7 @@
     "node": ">=15"
   },
   "dependencies": {
-    "@k03mad/utils": "14.1.1",
+    "@k03mad/utils": "14.2.0",
     "globby": "11.0.3",
     "node-telegram-bot-api": "0.52.0",
     "require-all": "3.0.0"
@@ -24,7 +24,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "29.0.0",
+    "eslint-plugin-unicorn": "30.0.0",
     "husky": "6.0.0"
   },
   "scripts": {
