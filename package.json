@@ -9,7 +9,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": ">=15"
+    "node": ">=16"
   },
   "dependencies": {
     "@k03mad/utils": "14.2.0",
