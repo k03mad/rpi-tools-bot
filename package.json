@@ -14,7 +14,7 @@
   "dependencies": {
     "@k03mad/utils": "14.2.0",
     "globby": "11.0.3",
-    "node-telegram-bot-api": "0.52.0",
+    "node-telegram-bot-api": "0.53.0",
     "require-all": "3.0.0"
   },
   "devDependencies": {
