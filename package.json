@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@k03mad/eslint-config": "8.0.0",
-    "eslint": "7.24.0",
+    "eslint": "7.25.0",
     "eslint-plugin-jsdoc": "32.3.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
