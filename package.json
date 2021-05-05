@@ -12,19 +12,19 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@k03mad/utils": "14.2.0",
+    "@k03mad/utils": "14.2.1",
     "globby": "11.0.3",
-    "node-telegram-bot-api": "0.52.0",
+    "node-telegram-bot-api": "0.53.0",
     "require-all": "3.0.0"
   },
   "devDependencies": {
-    "@k03mad/eslint-config": "8.0.0",
-    "eslint": "7.24.0",
-    "eslint-plugin-jsdoc": "32.3.0",
+    "@k03mad/eslint-config": "8.0.3",
+    "eslint": "7.25.0",
+    "eslint-plugin-jsdoc": "33.1.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "30.0.0",
+    "eslint-plugin-unicorn": "31.0.0",
     "husky": "6.0.0"
   },
   "scripts": {
