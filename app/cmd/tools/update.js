@@ -7,7 +7,6 @@ const repoUpdate = [
     'rpi-tools-bot',
     'rpi-tools-cron',
     'magnet-co-parser',
-    'nextdns-lists-sync',
 ];
 
 /** @returns {Promise} */
