@@ -12,7 +12,7 @@
     "node": ">=16"
   },
   "dependencies": {
-    "@k03mad/utils": "14.5.1",
+    "@k03mad/utils": "14.5.3",
     "globby": "11.0.4",
     "node-telegram-bot-api": "0.53.0",
     "require-all": "3.0.0"
@@ -20,12 +20,12 @@
   "devDependencies": {
     "@k03mad/eslint-config": "8.2.2",
     "eslint": "7.29.0",
-    "eslint-plugin-jsdoc": "35.4.0",
+    "eslint-plugin-jsdoc": "35.4.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-promise": "5.1.0",
     "eslint-plugin-sort-requires": "2.1.0",
-    "eslint-plugin-unicorn": "33.0.1",
-    "husky": "6.0.0"
+    "eslint-plugin-unicorn": "34.0.1",
+    "husky": "7.0.0"
   },
   "scripts": {
     "lint": "eslint ./ --report-unused-disable-directives --format=codeframe --ignore-pattern='!.*'",
