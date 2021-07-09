@@ -12,11 +12,7 @@ module.exports = bot => {
         pollingErrors++;
 
         if (pollingErrors >= MIN_ERRORS) {
-            print.ex(err, {
-                before: `onPollingErr (count: ${pollingErrors})`,
-                exit: true,
-            });
-
+            print.ex(err, {before: `onPollingErr (count: ${pollingErrors})`});
             pollingErrors = 0;
         }
     });
